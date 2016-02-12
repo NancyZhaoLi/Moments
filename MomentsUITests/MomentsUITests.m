@@ -3,7 +3,7 @@
 //  MomentsUITests
 //
 //  Created by Monica Luo on 2016-02-10.
-//  Copyright © 2016 Nancy Li. All rights reserved.
+//  Copyright © 2016 Emily Xue. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
