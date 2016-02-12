@@ -2,7 +2,7 @@
 //  MomentsUITests.m
 //  MomentsUITests
 //
-//  Created by Nancy Li on 2016-02-10.
+//  Created by Monica Luo on 2016-02-10.
 //  Copyright © 2016 Nancy Li. All rights reserved.
 //
 
