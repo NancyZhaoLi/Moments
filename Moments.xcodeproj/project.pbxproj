@@ -14,6 +14,7 @@
 		763D56381C6FF02900EA6470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 763D56361C6FF02900EA6470 /* LaunchScreen.storyboard */; };
 		763D56431C6FF02A00EA6470 /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D56421C6FF02A00EA6470 /* MomentsTests.swift */; };
 		763D564E1C6FF02A00EA6470 /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D564D1C6FF02A00EA6470 /* MomentsUITests.swift */; };
+		763D565C1C6FF5C100EA6470 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 763D565B1C6FF5C100EA6470 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		763D56491C6FF02A00EA6470 /* MomentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		763D564D1C6FF02A00EA6470 /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		763D564F1C6FF02A00EA6470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		763D565B1C6FF5C100EA6470 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				763D56341C6FF02900EA6470 /* Assets.xcassets */,
 				763D56361C6FF02900EA6470 /* LaunchScreen.storyboard */,
 				763D56391C6FF02900EA6470 /* Info.plist */,
+				763D565B1C6FF5C100EA6470 /* README.md */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				763D565C1C6FF5C100EA6470 /* README.md in Sources */,
 				763D56301C6FF02900EA6470 /* ViewController.swift in Sources */,
 				763D562E1C6FF02900EA6470 /* AppDelegate.swift in Sources */,
 			);
