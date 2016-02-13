@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Moments
 //
-//  Created by Yuning (Emily) Xue on 2016-02-13.
+//  Created by Yuning Xue on 2016-02-13.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
