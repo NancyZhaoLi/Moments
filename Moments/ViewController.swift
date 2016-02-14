@@ -92,8 +92,8 @@ class ViewController: UIViewController {
                             // add a new user in database
                             self.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
                             
-                            // login success, go to login complete page
-                            self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
+                            // TODO: login success, go to login complete page
+                            //self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
                             
                         }
                     })
