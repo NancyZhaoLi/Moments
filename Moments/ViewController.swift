@@ -21,12 +21,26 @@ class ViewController: UIViewController {
         
     }
     
+    func displayAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+        })))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        
+    }
+    
     override func viewDidAppear(animated: Bool) {
         if ref.authData != nil {
             print("there is a user already signed in")
             
-            // TODO: if a user already signed in, skip the login process,
-            // go to login complete page
+        // TODO: if a user already signed in, skip the login process,
+        // go to login complete page
         //self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
             
         } else {
@@ -44,14 +58,24 @@ class ViewController: UIViewController {
     @IBAction func login(sender: AnyObject) {
         
         if emailTextField == "" || passwordTextField.text == "" {
-            print("Please fill in all fields")
+            displayAlert("Error in form", message: "Please enter a username and password")
             
         } else {
             ref.authUser(emailTextField.text, password: passwordTextField.text, withCompletionBlock: { (error, authData) -> Void in
                 
                 if error != nil {
-                    print(error)
-                    print("There is an error with the given information")
+                    if let errorCode = FAuthenticationError(rawValue: error.code) {
+                        switch (errorCode) {
+                        case .InvalidEmail:
+                            self.displayAlert("Failed Login", message: "Invalid email address, please try again")
+                        case .InvalidPassword:
+                            self.displayAlert("Failed Login", message: "Invalid password, please try again")
+                        case .UserDoesNotExist:
+                            self.displayAlert("Failed Login", message: "User does not exists, please try again")
+                        default:
+                            self.displayAlert("Failed Login", message: "An error has occured")
+                        }
+                    }
                     
                 } else {
                     print("login success!")
@@ -67,21 +91,41 @@ class ViewController: UIViewController {
     
     @IBAction func signUp(sender: AnyObject) {
         if emailTextField == "" || passwordTextField.text == "" {
-            print("Please fill in all fields")
+            displayAlert("Error in form", message: "Please enter a username and password")
+            
         } else {
             ref.createUser(emailTextField.text, password: passwordTextField.text, withValueCompletionBlock: { (error, result) -> Void in
                 
                 if error != nil {
-                    print(error)
+                    if let errorCode = FAuthenticationError(rawValue: error.code) {
+                        switch (errorCode) {
+                        case .EmailTaken:
+                            self.displayAlert("Failed sign up", message: "The email address is already taken, please use another one")
+                        case .InvalidEmail:
+                            self.displayAlert("Failed sign up", message: "The specified email is not a valid email")
+                        default:
+                            self.displayAlert("Failed sign up", message: "An error has occured")
+                        }
+                    }
+                    
                 } else {
-                    print("success sign up!")
                     
                     // after sign up, login
                     self.ref.authUser(self.emailTextField.text, password: self.passwordTextField.text, withCompletionBlock: { (error, authData) -> Void in
                         
                         if error != nil {
-                            print(error)
-                            print("There is an error with the given information")
+                            if let errorCode = FAuthenticationError(rawValue: error.code) {
+                                switch (errorCode) {
+                                case .InvalidEmail:
+                                    self.displayAlert("Failed Login", message: "Invalid email address, please try again")
+                                case .InvalidPassword:
+                                    self.displayAlert("Failed Login", message: "Invalid password, please try again")
+                                case .UserDoesNotExist:
+                                    self.displayAlert("Failed Login", message: "User does not exists, please try again")
+                                default:
+                                    self.displayAlert("Failed Login", message: "An error has occured")
+                                }
+                            }
                             
                         } else {
                             let newUser = [

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="08g-e4-gRK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -17,34 +17,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2lg-sO-tGV">
-                                <rect key="frame" x="47" y="240" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2lg-sO-tGV">
+                                <rect key="frame" x="47" y="257" width="280" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="QMG-gn-z6Q"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gZn-E5-gIO">
-                                <rect key="frame" x="47" y="167" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gZn-E5-gIO">
+                                <rect key="frame" x="47" y="198" width="280" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="8ft-qj-ZSX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWF-Oz-Odt">
-                                <rect key="frame" x="69" y="319" width="80" height="54"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82R-2X-Gvt">
+                                <rect key="frame" x="115" y="104" width="144" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="jcZ-KH-Hc3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="28"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="He8-o1-TIH">
+                                <rect key="frame" x="73" y="386" width="229" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="229" id="zRa-oJ-tLS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
+                                <state key="normal" title="Sign Up for Moments"/>
+                                <connections>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="umu-m6-gVC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWF-Oz-Odt">
+                                <rect key="frame" x="147" y="324" width="80" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="vwI-y0-JDr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="20"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bwe-uz-KNk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="He8-o1-TIH">
-                                <rect key="frame" x="185" y="323" width="121" height="45"/>
-                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="26"/>
-                                <state key="normal" title="Sign Up"/>
-                                <connections>
-                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="umu-m6-gVC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="82R-2X-Gvt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="50D-gj-sJk"/>
+                            <constraint firstItem="dWF-Oz-Odt" firstAttribute="top" secondItem="2lg-sO-tGV" secondAttribute="bottom" constant="35" id="J8A-OO-wSY"/>
+                            <constraint firstItem="2lg-sO-tGV" firstAttribute="top" secondItem="gZn-E5-gIO" secondAttribute="bottom" constant="29" id="N5Y-Ur-b51"/>
+                            <constraint firstItem="He8-o1-TIH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N72-gL-k8J"/>
+                            <constraint firstItem="dWF-Oz-Odt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Rbp-gC-srq"/>
+                            <constraint firstItem="gZn-E5-gIO" firstAttribute="top" secondItem="82R-2X-Gvt" secondAttribute="bottom" constant="62" id="Sls-Co-rSy"/>
+                            <constraint firstItem="gZn-E5-gIO" firstAttribute="top" secondItem="82R-2X-Gvt" secondAttribute="bottom" constant="48" id="aM3-S3-jdC"/>
+                            <constraint firstItem="82R-2X-Gvt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="84" id="ah1-GP-jG6"/>
+                            <constraint firstItem="2lg-sO-tGV" firstAttribute="top" secondItem="gZn-E5-gIO" secondAttribute="bottom" constant="45" id="b9i-gw-QV7"/>
+                            <constraint firstItem="82R-2X-Gvt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="121" id="hGX-4Z-myH"/>
+                            <constraint firstItem="2lg-sO-tGV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ml2-Sf-1C6"/>
+                            <constraint firstItem="He8-o1-TIH" firstAttribute="top" secondItem="dWF-Oz-Odt" secondAttribute="bottom" constant="7" id="w3F-9C-tm5"/>
+                            <constraint firstItem="gZn-E5-gIO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xPt-E9-jjP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hGX-4Z-myH"/>
+                                <exclude reference="Sls-Co-rSy"/>
+                                <exclude reference="b9i-gw-QV7"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Moments" id="woZ-db-7Pv"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -55,26 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="683.5" y="264.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="SBv-Dp-paH">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="08g-e4-gRK" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="08Y-Zg-cyT">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="OmF-cw-vre"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ep-CO-fkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="152" y="265"/>
+            <point key="canvasLocation" x="187.5" y="-20.5"/>
         </scene>
     </scenes>
 </document>
