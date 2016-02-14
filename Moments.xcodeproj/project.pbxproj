@@ -14,7 +14,6 @@
 		763D56381C6FF02900EA6470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 763D56361C6FF02900EA6470 /* LaunchScreen.storyboard */; };
 		763D56431C6FF02A00EA6470 /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D56421C6FF02A00EA6470 /* MomentsTests.swift */; };
 		763D564E1C6FF02A00EA6470 /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D564D1C6FF02A00EA6470 /* MomentsUITests.swift */; };
-		763D565C1C6FF5C100EA6470 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 763D565B1C6FF5C100EA6470 /* README.md */; };
 		A4E2E1F3371561F8A9AD2C56 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAEA07EAEF2A89AC56DF44 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +48,6 @@
 		763D56491C6FF02A00EA6470 /* MomentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		763D564D1C6FF02A00EA6470 /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		763D564F1C6FF02A00EA6470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		763D565B1C6FF5C100EA6470 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76958D601C70034300B7DB95 /* Moments-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moments-Bridging-Header.h"; sourceTree = "<group>"; };
 		BC6AA74CFF400715FFFBE8EC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EACAEA07EAEF2A89AC56DF44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,7 +119,6 @@
 				763D56341C6FF02900EA6470 /* Assets.xcassets */,
 				763D56361C6FF02900EA6470 /* LaunchScreen.storyboard */,
 				763D56391C6FF02900EA6470 /* Info.plist */,
-				763D565B1C6FF5C100EA6470 /* README.md */,
 				76958D601C70034300B7DB95 /* Moments-Bridging-Header.h */,
 			);
 			path = Moments;
@@ -339,7 +336,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				763D565C1C6FF5C100EA6470 /* README.md in Sources */,
 				763D56301C6FF02900EA6470 /* ViewController.swift in Sources */,
 				763D562E1C6FF02900EA6470 /* AppDelegate.swift in Sources */,
 			);
