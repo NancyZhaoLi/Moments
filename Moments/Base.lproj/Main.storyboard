@@ -101,7 +101,7 @@
             </objects>
             <point key="canvasLocation" x="187.5" y="-54.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Home-->
         <scene sceneID="SE5-Ui-lfW">
             <objects>
                 <viewController id="J81-Zv-3n7" sceneMemberID="viewController">
@@ -114,7 +114,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" selectedImage="home.png" systemItem="bookmarks" id="Y2q-Yi-5k1">
+                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="Y2q-Yi-5k1">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                 </viewController>
@@ -143,7 +143,7 @@
             </objects>
             <point key="canvasLocation" x="804" y="-64"/>
         </scene>
-        <!--Item-->
+        <!--Moments-->
         <scene sceneID="DTw-rm-Hw7">
             <objects>
                 <viewController id="JwI-Ro-xqL" sceneMemberID="viewController">
@@ -156,13 +156,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Ria-EY-b3Z"/>
+                    <tabBarItem key="tabBarItem" title="Moments" image="album" id="Ria-EY-b3Z"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoP-mk-TIP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="149" y="729"/>
         </scene>
-        <!--View Controller-->
+        <!--New-->
         <scene sceneID="H45-lx-9bb">
             <objects>
                 <viewController id="5qC-lH-3yT" sceneMemberID="viewController">
@@ -175,13 +175,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="zSe-dP-VSv"/>
+                    <tabBarItem key="tabBarItem" title="New" image="newpage" id="zSe-dP-VSv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhS-SH-6e3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="804" y="734"/>
         </scene>
-        <!--Item-->
+        <!--Setting-->
         <scene sceneID="HFp-87-2wF">
             <objects>
                 <viewController id="36J-xw-WFZ" sceneMemberID="viewController">
@@ -194,13 +194,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="aR0-vG-2W8"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="personal_icon" id="aR0-vG-2W8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qoz-3y-uyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2179" y="631"/>
         </scene>
-        <!--Item-->
+        <!--Calendar-->
         <scene sceneID="8BH-JZ-HUG">
             <objects>
                 <viewController id="Vxc-U5-UMy" sceneMemberID="viewController">
@@ -213,7 +213,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="YmC-iu-mWX"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="Calendar" id="YmC-iu-mWX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5RN-F1-7Vp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -221,6 +221,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="home.png" width="128" height="128"/>
+        <image name="Calendar" width="25" height="25"/>
+        <image name="album" width="25" height="25"/>
+        <image name="home" width="25" height="25"/>
+        <image name="newpage" width="25" height="25"/>
+        <image name="personal_icon" width="25" height="25"/>
     </resources>
 </document>

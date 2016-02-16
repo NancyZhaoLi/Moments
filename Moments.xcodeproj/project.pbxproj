@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46119CEB1C738CA000DB5F12 /* Calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 46119CEA1C738CA000DB5F12 /* Calendar.png */; };
-		46119CED1C738CB200DB5F12 /* album.png in Resources */ = {isa = PBXBuildFile; fileRef = 46119CEC1C738CB200DB5F12 /* album.png */; };
-		46119CEF1C738CC000DB5F12 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 46119CEE1C738CC000DB5F12 /* home.png */; };
-		46119CF11C738CD100DB5F12 /* personal_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46119CF01C738CD100DB5F12 /* personal_icon.png */; };
 		763D562E1C6FF02900EA6470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D562D1C6FF02900EA6470 /* AppDelegate.swift */; };
 		763D56301C6FF02900EA6470 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D562F1C6FF02900EA6470 /* ViewController.swift */; };
 		763D56331C6FF02900EA6470 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 763D56311C6FF02900EA6470 /* Main.storyboard */; };
@@ -39,10 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		46119CEA1C738CA000DB5F12 /* Calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calendar.png; sourceTree = "<group>"; };
-		46119CEC1C738CB200DB5F12 /* album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = album.png; sourceTree = "<group>"; };
-		46119CEE1C738CC000DB5F12 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
-		46119CF01C738CD100DB5F12 /* personal_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personal_icon.png; sourceTree = "<group>"; };
 		763D562A1C6FF02900EA6470 /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		763D562D1C6FF02900EA6470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		763D562F1C6FF02900EA6470 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,10 +116,6 @@
 				763D562D1C6FF02900EA6470 /* AppDelegate.swift */,
 				763D562F1C6FF02900EA6470 /* ViewController.swift */,
 				763D56311C6FF02900EA6470 /* Main.storyboard */,
-				46119CEC1C738CB200DB5F12 /* album.png */,
-				46119CEA1C738CA000DB5F12 /* Calendar.png */,
-				46119CEE1C738CC000DB5F12 /* home.png */,
-				46119CF01C738CD100DB5F12 /* personal_icon.png */,
 				763D56341C6FF02900EA6470 /* Assets.xcassets */,
 				763D56361C6FF02900EA6470 /* LaunchScreen.storyboard */,
 				763D56391C6FF02900EA6470 /* Info.plist */,
@@ -274,12 +262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				763D56381C6FF02900EA6470 /* LaunchScreen.storyboard in Resources */,
-				46119CEB1C738CA000DB5F12 /* Calendar.png in Resources */,
-				46119CEF1C738CC000DB5F12 /* home.png in Resources */,
 				763D56351C6FF02900EA6470 /* Assets.xcassets in Resources */,
 				763D56331C6FF02900EA6470 /* Main.storyboard in Resources */,
-				46119CED1C738CB200DB5F12 /* album.png in Resources */,
-				46119CF11C738CD100DB5F12 /* personal_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
