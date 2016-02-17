@@ -104,7 +104,7 @@
         <!--Home-->
         <scene sceneID="SE5-Ui-lfW">
             <objects>
-                <viewController id="J81-Zv-3n7" sceneMemberID="viewController">
+                <viewController id="J81-Zv-3n7" customClass="HomeViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mWP-wI-Ls5"/>
                         <viewControllerLayoutGuide type="bottom" id="951-1C-CgK"/>
@@ -184,7 +184,7 @@
         <!--Setting-->
         <scene sceneID="HFp-87-2wF">
             <objects>
-                <viewController id="36J-xw-WFZ" sceneMemberID="viewController">
+                <viewController id="36J-xw-WFZ" customClass="UserSettingViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UNy-zO-tVa"/>
                         <viewControllerLayoutGuide type="bottom" id="OCN-aV-XJd"/>
@@ -192,13 +192,23 @@
                     <view key="view" contentMode="scaleToFill" id="RCX-6g-SOL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADM-em-CZn">
+                                <rect key="frame" x="180" y="507" width="44" height="30"/>
+                                <state key="normal" title="logout"/>
+                                <connections>
+                                    <action selector="Logout:" destination="36J-xw-WFZ" eventType="touchUpInside" id="gLU-Yh-sX0"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="8eF-Nr-SOO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Setting" image="personal_icon" id="aR0-vG-2W8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qoz-3y-uyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2179" y="631"/>
+            <point key="canvasLocation" x="2178.5" y="630.5"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="8BH-JZ-HUG">
