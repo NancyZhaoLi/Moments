@@ -8,10 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    
+    //Monica changed this:-----------------------------------------------------------
+    //touch outside of the keybourd to cause the keyboard down
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    //touch return to cause the keyboard down, this one doesn't work
+    /*
+    func textFieldShouldReturn (textField: UITextField)->Bool{
+    textField.resignFirstResponder() // another way to say close the keyboard
+    return true
+    }
+    ----------------------------------------------------------------------------------*/
+    
     
     let ref = Firebase(url: "https://momentsxmen.firebaseio.com/")
     

@@ -98,7 +98,7 @@
         <!--Home-->
         <scene sceneID="IZ0-hl-mPs">
             <objects>
-                <viewController id="WXg-ml-XV5" sceneMemberID="viewController">
+                <viewController id="WXg-ml-XV5" customClass="HomeViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ed7-pZ-OYd"/>
                         <viewControllerLayoutGuide type="bottom" id="jIu-Sb-iYP"/>
@@ -113,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbc-f1-qFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1627.5" y="337.5"/>
+            <point key="canvasLocation" x="1363.5" y="345.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3Kx-aV-Gor">
@@ -154,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nl5-j9-0Gr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="635" y="1061"/>
+            <point key="canvasLocation" x="386.5" y="1168.5"/>
         </scene>
         <!--New-->
         <scene sceneID="zVO-y4-4fk">
@@ -173,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2H-cO-x1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1347" y="1065"/>
+            <point key="canvasLocation" x="814.5" y="1168.5"/>
         </scene>
         <!--Moments-->
         <scene sceneID="kQG-kR-We8">
@@ -192,12 +192,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJt-kv-I3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="1029"/>
+            <point key="canvasLocation" x="1230.5" y="1168.5"/>
         </scene>
         <!--Setting-->
         <scene sceneID="jPk-Pt-IS6">
             <objects>
-                <viewController id="E8b-DU-ODK" sceneMemberID="viewController">
+                <viewController id="E8b-DU-ODK" customClass="UserSettingViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nlj-bo-AzE"/>
                         <viewControllerLayoutGuide type="bottom" id="33H-jh-EFN"/>
@@ -205,13 +205,23 @@
                     <view key="view" contentMode="scaleToFill" id="AfN-Cw-42k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTf-Z9-gt0">
+                                <rect key="frame" x="163" y="541" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="Logout:" destination="E8b-DU-ODK" eventType="touchUpInside" id="mYh-FV-hlB"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="53v-P4-WwD"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Setting" image="personal_icon" id="MjE-sV-NMh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfT-TK-3Cz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2783" y="1029"/>
+            <point key="canvasLocation" x="1650.5" y="1168.5"/>
         </scene>
     </scenes>
     <resources>
