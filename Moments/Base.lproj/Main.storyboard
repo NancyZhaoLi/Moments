@@ -67,7 +67,7 @@
                                     <constraint firstAttribute="width" constant="259" id="4qk-fZ-939"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -140,7 +140,7 @@
         <!--Calendar-->
         <scene sceneID="UI2-Us-TFf">
             <objects>
-                <viewController id="OvC-yC-rzH" sceneMemberID="viewController">
+                <viewController id="OvC-yC-rzH" customClass="CalendarViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9hU-rM-3cO"/>
                         <viewControllerLayoutGuide type="bottom" id="U9d-Kn-kUb"/>

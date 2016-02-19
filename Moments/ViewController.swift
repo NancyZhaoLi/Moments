@@ -12,21 +12,7 @@ class ViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    
-    //Monica changed this:-----------------------------------------------------------
-    //touch outside of the keybourd to cause the keyboard down
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    //touch return to cause the keyboard down, this one doesn't work
-    /*
-    func textFieldShouldReturn (textField: UITextField)->Bool{
-    textField.resignFirstResponder() // another way to say close the keyboard
-    return true
-    }
-    ----------------------------------------------------------------------------------*/
-    
+
     
     let ref = Firebase(url: "https://momentsxmen.firebaseio.com/")
     
@@ -42,12 +28,13 @@ class ViewController: UIViewController , UITextFieldDelegate {
         
         self.presentViewController(alert, animated: true, completion: nil)
         
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -64,6 +51,19 @@ class ViewController: UIViewController , UITextFieldDelegate {
             print("you will have to login or sign up")
             
         }
+    }
+    
+    // close keyboard when touches began
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+        
+    }
+    
+    // close keyboard when press return button
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+        
     }
     
     @IBAction func login(sender: AnyObject) {
@@ -93,7 +93,6 @@ class ViewController: UIViewController , UITextFieldDelegate {
                     
                     // TODO: if login success, go to login complete page
                     self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
-                    
                     
                 }
             })
@@ -150,7 +149,6 @@ class ViewController: UIViewController , UITextFieldDelegate {
                             
                             // TODO: login success, go to login complete page
                             self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
-                            
                             
                         }
                     })
