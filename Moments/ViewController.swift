@@ -42,7 +42,7 @@ class ViewController: UIViewController {
             // TODO: if a user already signed in, skip the login process,
             // go to login complete page
             
-            //self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
+            self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
             
             
         } else {
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
                     print("login success!")
                     
                     // TODO: if login success, go to login complete page
-                    //self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
+                    self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
                     
                     
                 }
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
                             self.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
                             
                             // TODO: login success, go to login complete page
-                            //self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
+                            self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
                             
                             
                         }
