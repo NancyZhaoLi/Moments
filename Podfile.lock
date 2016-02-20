@@ -1,10 +1,13 @@
 PODS:
+  - CVCalendar (1.2.9)
   - Firebase (2.5.1)
 
 DEPENDENCIES:
+  - CVCalendar (~> 1.2.8)
   - Firebase (>= 2.5.0)
 
 SPEC CHECKSUMS:
+  CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
 
 COCOAPODS: 0.39.0

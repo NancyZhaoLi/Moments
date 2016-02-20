@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserSettingViewController: UITableViewController {
     let ref = Firebase(url: "https://momentsxmen.firebaseio.com/")

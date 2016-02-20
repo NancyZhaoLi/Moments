@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import CVCalendar
 
 class CalendarViewController: UIViewController {
+    
+    @IBOutlet weak var menuView: CVCalendarMenuView!
+    @IBOutlet weak var calendarView: CVCalendarView!
+    @IBOutlet weak var monthLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        print("Calendar loaded")
+        monthLabel.text = CVDate(date: NSDate()).globalDescription
     }
     
     override func didReceiveMemoryWarning() {
@@ -22,5 +27,32 @@ class CalendarViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        calendarView.commitCalendarViewUpdate()
+        menuView.commitMenuViewUpdate()
+    }
     
+}
+
+extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+
+    func presentationMode() -> CalendarMode {
+        return .MonthView
+    }
+    
+    func firstWeekday() -> Weekday {
+        return .Sunday
+    }
+}
+
+extension CalendarViewController: CVCalendarViewAppearanceDelegate {
+    func dayLabelPresentWeekdayInitallyBold() -> Bool {
+        return true
+    }
+    
+    func spaceBetweenDayViews() -> CGFloat {
+        return 2
+    }
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		46119D331C76CC1B00DB5F12 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46119D321C76CC1B00DB5F12 /* HomeViewController.swift */; };
 		46119D351C76CC3A00DB5F12 /* UserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */; };
-		55F71AC92A0A7605BBF03F08 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E26E2D4E14B8F7C975A4DAA /* libPods.a */; };
 		7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605EF051C77852A002FB013 /* CalendarViewController.swift */; };
 		769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F41C76AABE00FC883E /* AppDelegate.swift */; };
 		769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F61C76AABE00FC883E /* ViewController.swift */; };
@@ -21,6 +20,7 @@
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
 		ADD431C11C77ED1800DA345E /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewViewController.swift */; };
 		ADD431C71C78522A00DA345E /* ImageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C61C78522A00DA345E /* ImageItemViewController.swift */; };
+		DCA83739988F7ABCDC140EC4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7C33052FBC7C3E84D8CBFA /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,12 +58,11 @@
 		769DD8131C76AABE00FC883E /* MomentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD8171C76AABE00FC883E /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		769DD8191C76AABE00FC883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		769DD8251C76AB5700FC883E /* Moments-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moments-Bridging-Header.h"; sourceTree = "<group>"; };
-		7E26E2D4E14B8F7C975A4DAA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD431C01C77ED1800DA345E /* NewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		ADD431C61C78522A00DA345E /* ImageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemViewController.swift; sourceTree = "<group>"; };
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EA7C33052FBC7C3E84D8CBFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55F71AC92A0A7605BBF03F08 /* libPods.a in Frameworks */,
+				DCA83739988F7ABCDC140EC4 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +128,6 @@
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
 				769DD8031C76AABE00FC883E /* Info.plist */,
 				769DD7FB1C76AABE00FC883E /* Moments.xcdatamodeld */,
-				769DD8251C76AB5700FC883E /* Moments-Bridging-Header.h */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -164,7 +162,7 @@
 		F12AE0561ECDFDBB824A7069 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7E26E2D4E14B8F7C975A4DAA /* libPods.a */,
+				EA7C33052FBC7C3E84D8CBFA /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
