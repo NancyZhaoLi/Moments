@@ -11,7 +11,6 @@ import UIKit
 class NewViewController: UIViewController {
     
     @IBAction func addItem(sender: AnyObject) {
-        //
         print(sender.title)
     }
     override func viewDidLoad() {
