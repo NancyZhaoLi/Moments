@@ -12,12 +12,24 @@ class NewViewController: UIViewController {
     
     @IBAction func addItem(sender: AnyObject) {
         if sender.title == "Text" {
-            var myTextView: UITextView = UITextView(frame: CGRect(x: 100, y: 100, width: 100.00, height: 60.00));
+            let myTextView: UITextView = UITextView(frame: CGRect(x: 100, y: 200, width: 100.00, height: 60.00));
             myTextView.text = "..."
             myTextView.editable = true
             myTextView.layer.borderWidth = 2
             myTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
             self.view.addSubview(myTextView)
+        }
+        else if sender.title == "Image" {
+            let frame = CGRectMake(100,100,50,50)
+            let imageView = ImageItemViewController(frame: frame)
+            imageView.image = UIImage(named: "album")
+            self.view.addSubview(imageView)
+        }
+        else if sender.title == "Video" {
+            
+        }
+        else if sender.title == "Audio" {
+            
         }
     }
     override func viewDidLoad() {
