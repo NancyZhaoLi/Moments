@@ -11,7 +11,14 @@ import UIKit
 class NewViewController: UIViewController {
     
     @IBAction func addItem(sender: AnyObject) {
-        print(sender.title)
+        if sender.title == "Text" {
+            var myTextView: UITextView = UITextView(frame: CGRect(x: 100, y: 100, width: 100.00, height: 60.00));
+            myTextView.text = "..."
+            myTextView.editable = true
+            myTextView.layer.borderWidth = 2
+            myTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
+            self.view.addSubview(myTextView)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
