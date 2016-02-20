@@ -10,6 +10,10 @@ import UIKit
 
 class NewViewController: UIViewController {
     
+    @IBAction func save(sender: AnyObject) {
+        //save all view items for backup
+    }
+    
     @IBAction func addItem(sender: AnyObject) {
         if sender.title == "Text" {
             let myTextView: UITextView = UITextView(frame: CGRect(x: 100, y: 200, width: 100.00, height: 60.00));
