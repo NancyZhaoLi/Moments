@@ -311,10 +311,105 @@
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="Nge-Yx-e4c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3VR-ni-llv">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Psn-6W-yRb"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" id="xL5-yN-BhY">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1At-lW-NkO">
+                                            <rect key="frame" x="16" y="8" width="50" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Cancel"/>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Scy-MT-s6P"/>
+                                    <barButtonItem title="0" style="plain" id="N93-s9-af5">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K2B-2H-Izg">
+                                            <rect key="frame" x="69" y="7" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Text"/>
+                                        </button>
+                                        <connections>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="GIo-OJ-Q9j"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="1" style="plain" id="CVT-Rb-6D1">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vFU-la-FDu">
+                                            <rect key="frame" x="109" y="7" width="42" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Image"/>
+                                        </button>
+                                        <connections>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="lUa-pH-0Oo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="2" style="plain" id="Mml-2C-uKF">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="24H-UU-2kk" userLabel="Audio">
+                                            <rect key="frame" x="161" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Audio"/>
+                                        </button>
+                                        <connections>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="pbK-Gc-Mea"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="3" style="plain" id="b9v-y3-h25">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dEK-7Q-YjG">
+                                            <rect key="frame" x="221" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Video"/>
+                                        </button>
+                                        <connections>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="51t-2h-l2T"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="5" style="plain" id="9Hb-i4-H7O">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n8I-rp-P6e">
+                                            <rect key="frame" x="281" y="7" width="34" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="View"/>
+                                        </button>
+                                        <connections>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="6aj-T8-zX3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7pX-9w-7f8"/>
+                                    <barButtonItem style="plain" id="kyV-LL-9qO">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vq0-nn-Sbt">
+                                            <rect key="frame" x="318" y="7" width="41" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Add"/>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acv-lb-vnZ">
+                                <rect key="frame" x="24" y="75" width="38" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JZF-pr-lVz">
+                                <rect key="frame" x="85" y="69" width="270" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3VR-ni-llv" firstAttribute="leading" secondItem="Nge-Yx-e4c" secondAttribute="leadingMargin" constant="-20" id="0Sw-rw-wcC"/>
+                            <constraint firstItem="3VR-ni-llv" firstAttribute="top" secondItem="LLC-VO-BvC" secondAttribute="bottom" id="DbA-lQ-GRK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3VR-ni-llv" secondAttribute="trailing" constant="-20" id="zPw-dh-66U"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="New" image="newpage" id="jJH-C2-2gc"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="momentTitle" destination="JZF-pr-lVz" id="rDF-Ae-bab"/>
                         <segue destination="C6T-dM-x1C" kind="popoverPresentation" identifier="showNewCompPopover" popoverAnchorView="Nge-Yx-e4c" id="N9i-Lr-XK4">
                             <popoverArrowDirection key="popoverArrowDirection" left="YES" right="YES"/>
                         </segue>
@@ -669,38 +764,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0kn-wY-cW5">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Item" id="4ce-m6-E7M"/>
-                                    <barButtonItem title="Item" id="eDV-WM-Bj0"/>
-                                    <barButtonItem title="Item" id="RKB-jG-VYg"/>
-                                    <barButtonItem title="Item" id="nW4-8n-ouq"/>
-                                    <barButtonItem title="Item" id="vrz-fs-SMo"/>
-                                    <barButtonItem title="Item" id="T5T-wg-jvk"/>
-                                </items>
-                                <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </toolbar>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ii-9V-alw">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8he-9i-fNH">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="GEE-Ra-Tcq"/>
+                                </constraints>
                                 <items>
-                                    <navigationItem id="ezz-zD-JKl">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Hzv-mh-kDg">
-                                            <connections>
-                                                <action selector="cancelAddText:" destination="hv9-Kf-qPs" id="mu5-6G-LeR"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gRr-E7-gdS">
-                                            <connections>
-                                                <action selector="addText:" destination="hv9-Kf-qPs" id="COt-Vm-8Ac"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <barButtonItem title="Cancel" id="B9U-fP-wYx"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YSr-79-T14"/>
+                                    <barButtonItem style="plain" id="ICE-H6-OfF">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="McI-lZ-yC1">
+                                            <rect key="frame" x="102" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Size"/>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="TLy-Xg-pPW">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0wC-tp-ZVn">
+                                            <rect key="frame" x="162" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Colour"/>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="3fT-AK-Pub">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ePC-Nj-Zzt">
+                                            <rect key="frame" x="222" y="7" width="50" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Font"/>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ya5-Yb-46c"/>
+                                    <barButtonItem title="Add" id="bzW-8b-EgP"/>
                                 </items>
-                            </navigationBar>
+                            </toolbar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0N-6G-Qcx">
-                                <rect key="frame" x="20" y="83" width="335" height="520"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="64" width="335" height="559"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Enter Your Text Here...">
                                         <attributes>
@@ -714,7 +813,14 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8he-9i-fNH" firstAttribute="top" secondItem="8VC-VO-dg4" secondAttribute="bottom" id="SuS-7O-bzR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8he-9i-fNH" secondAttribute="trailing" constant="-20" id="aHr-fO-maH"/>
+                            <constraint firstItem="8he-9i-fNH" firstAttribute="leading" secondItem="uu1-fw-VMN" secondAttribute="leadingMargin" constant="-20" id="fWZ-f0-RN2"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textEditView" destination="b0N-6G-Qcx" id="8xM-yI-kFp"/>
                     </connections>

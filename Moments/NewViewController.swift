@@ -11,9 +11,20 @@ import MediaPlayer
 import AVKit
 import AVFoundation
 
-class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewItemViewControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
+class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
     
     var touchLocation: CGPoint?
+    var touchMode : Int? = 5
+    
+    @IBAction func selectTouchMode(sender: AnyObject) {
+        if let title = sender.title {
+            touchMode = Int(title!)
+            print ("mode selected" + String(touchMode))
+        }
+    }
+
+    @IBOutlet weak var momentTitle: UITextField!
+    
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
@@ -66,24 +77,6 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
     
     @IBAction func save(sender: AnyObject) {
         
-    }
-    
-
-    
-    func addItem(controller: NewItemViewController, type: String? ){
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        
-        if let typeToAdd = type {
-            if typeToAdd == "text" {
-                self.performSegueWithIdentifier("showNewTextModal", sender: self)
-            } else if typeToAdd == "image" {
-                addImage()
-            } else if typeToAdd == "audio" {
-                addAudio()
-            } else if typeToAdd == "video" {
-                addVideo()
-            }
-        }
     }
     
     func addText(controller: NewTextViewController, textView: UITextView) {
@@ -139,19 +132,40 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         } else {
             let touch = touches.first!
             self.touchLocation = touch.locationInView(touch.view)
-            self.performSegueWithIdentifier("showNewCompPopover", sender: self)
+            if let touchMode = self.touchMode {
+                switch (touchMode) {
+                case 0:
+                    self.performSegueWithIdentifier("showNewTextModal", sender: self)
+                    break
+                case 1:
+                    addImage()
+                    break
+                case 2:
+                    addAudio()
+                    break
+                case 3:
+                    addVideo()
+                    break
+                case 4:
+                    break
+                default:
+                    break
+                }
+            }
+            //self.performSegueWithIdentifier("showNewCompPopover", sender: self)
         }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showNewCompPopover" {
-            let vc = segue.destinationViewController as! NewItemViewController
-            vc.delegate = self
+        //if segue.identifier == "showNewCompPopover" {
+            //let vc = segue.destinationViewController as! NewItemViewController
+            //vc.delegate = self
 
-            let popoverVC = vc.popoverPresentationController
-            popoverVC?.delegate = self
-            popoverVC?.sourceRect = CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 0, 0)
-        } else if segue.identifier == "showNewTextModal" {
+            //let popoverVC = vc.popoverPresentationController
+            //popoverVC?.delegate = self
+            //popoverVC?.sourceRect = CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 0, 0)
+        //}
+        if segue.identifier == "showNewTextModal" {
             let vc = segue.destinationViewController as! NewTextViewController
             vc.modalPresentationStyle = .OverCurrentContext
             vc.delegate = self
