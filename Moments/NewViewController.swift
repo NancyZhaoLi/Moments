@@ -8,7 +8,9 @@
 
 import UIKit
 
-class NewViewController: UIViewController {
+class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate  {
+    
+    var touchLocation: CGPoint?
     
     @IBAction func save(sender: AnyObject) {
         //save all view items for backup
@@ -46,6 +48,34 @@ class NewViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        if (touches.isEmpty) {
+            print("empty")
+        } else {
+            let touch = touches.first!
+            self.touchLocation = touch.locationInView(touch.view)
+            self.performSegueWithIdentifier("showNewCompPopover", sender: self)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if ( segue.identifier == "showNewCompPopover" ) {
+            print("find vc")
+            let vc = segue.destinationViewController as! NewCompViewController
+            vc.touchLocation = self.touchLocation
+            vc.sender = self
+            print("get popupcontroller")
+            let popoverMenuVC = vc.popoverPresentationController
+            popoverMenuVC?.delegate = self
+            popoverMenuVC?.sourceRect = CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 0, 0)
+        }
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
     }
     
     
