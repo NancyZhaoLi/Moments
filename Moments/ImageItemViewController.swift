@@ -17,9 +17,13 @@ class ImageItemViewController: UIImageView {
         //self.gestureRecognizers = [touchRecognizer]
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(ßcoder aDecoder: NSCoder) {
         print("got")
         super.init(coder: aDecoder)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

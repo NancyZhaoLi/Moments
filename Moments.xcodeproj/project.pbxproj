@@ -21,7 +21,7 @@
 		ADD431C11C77ED1800DA345E /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewViewController.swift */; };
 		ADD431C71C78522A00DA345E /* ImageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C61C78522A00DA345E /* ImageItemViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */; };
-		D04EEB6E1C79C5C000911661 /* NewCompViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6D1C79C5C000911661 /* NewCompViewController.swift */; };
+		D04EEB6E1C79C5C000911661 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6D1C79C5C000911661 /* NewItemViewController.swift */; };
 		D04EEB701C79CFB600911661 /* NewTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */; };
 		DCA83739988F7ABCDC140EC4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7C33052FBC7C3E84D8CBFA /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -66,7 +66,7 @@
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerViewController.swift; path = ../AudioPlayerViewController.swift; sourceTree = "<group>"; };
-		D04EEB6D1C79C5C000911661 /* NewCompViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCompViewController.swift; sourceTree = "<group>"; };
+		D04EEB6D1C79C5C000911661 /* NewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTextViewController.swift; sourceTree = "<group>"; };
 		EA7C33052FBC7C3E84D8CBFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -131,7 +131,7 @@
 				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
 				ADD431C01C77ED1800DA345E /* NewViewController.swift */,
 				D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */,
-				D04EEB6D1C79C5C000911661 /* NewCompViewController.swift */,
+				D04EEB6D1C79C5C000911661 /* NewItemViewController.swift */,
 				ADD431C61C78522A00DA345E /* ImageItemViewController.swift */,
 				769DD7FE1C76AABE00FC883E /* Assets.xcassets */,
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
@@ -370,7 +370,7 @@
 				769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */,
 				769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */,
 				ADD431C71C78522A00DA345E /* ImageItemViewController.swift in Sources */,
-				D04EEB6E1C79C5C000911661 /* NewCompViewController.swift in Sources */,
+				D04EEB6E1C79C5C000911661 /* NewItemViewController.swift in Sources */,
 				46119D331C76CC1B00DB5F12 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

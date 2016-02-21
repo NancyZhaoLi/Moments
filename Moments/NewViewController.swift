@@ -11,7 +11,7 @@ import MediaPlayer
 import AVKit
 import AVFoundation
 
-class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewCompViewControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
+class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewItemViewControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
     
     var touchLocation: CGPoint?
     
@@ -93,7 +93,7 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         }
     }
     
-    func addItem(controller: NewCompViewController, type: String? ){
+    func addItem(controller: NewItemViewController, type: String? ){
         controller.dismissViewControllerAnimated(true, completion: nil)
         
         if let typeToAdd = type {
@@ -157,7 +157,6 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
         if (touches.isEmpty) {
             print("empty")
         } else {
@@ -169,8 +168,7 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showNewCompPopover" {
-            let vc = segue.destinationViewController as! NewCompViewController
-            vc.touchLocation = self.touchLocation
+            let vc = segue.destinationViewController as! NewItemViewController
             vc.delegate = self
 
             let popoverVC = vc.popoverPresentationController
