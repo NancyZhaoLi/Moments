@@ -34,6 +34,19 @@ class CalendarViewController: UIViewController {
         menuView.commitMenuViewUpdate()
     }
     
+    @IBAction func getToday(sender: AnyObject) {
+        calendarView.toggleCurrentDayView()
+    }
+    
+    @IBAction func getNextMonth(sender: AnyObject) {
+        calendarView.loadNextView()
+    }
+    
+    @IBAction func getPreMonth(sender: AnyObject) {
+        calendarView.loadPreviousView()
+    }
+    
+    
 }
 
 extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
@@ -45,6 +58,42 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     func firstWeekday() -> Weekday {
         return .Sunday
     }
+    
+    func shouldShowWeekdaysOut() -> Bool {
+        return true
+    }
+    
+    func didSelectDayView(dayView: CVCalendarDayView, animationDidFinish: Bool) {
+        print("\(dayView.date.commonDescription) is selected!")
+    }
+    
+    func presentedDateUpdated(date: CVDate) {
+        monthLabel.text = calendarView.presentedDate.globalDescription
+    }
+    
+    func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
+        return 16
+    }
+    
+    func dotMarker(shouldMoveOnHighlightingOnDayView dayView: CVCalendarDayView) -> Bool {
+        return false
+    }
+    
+    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
+        let day = dayView.date.day
+        let randomDay = 10
+        if day == randomDay {
+            return true
+        }
+        
+        return false
+    }
+    
+    func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> [UIColor] {
+        let color = UIColor.blueColor()
+        return [color]
+    }
+    
 }
 
 extension CalendarViewController: CVCalendarViewAppearanceDelegate {
@@ -52,7 +101,9 @@ extension CalendarViewController: CVCalendarViewAppearanceDelegate {
         return true
     }
     
-    func spaceBetweenDayViews() -> CGFloat {
-        return 2
+    func spaceBetweenWeekViews() -> CGFloat {
+        return -3
     }
+    
+    
 }
