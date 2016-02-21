@@ -208,9 +208,9 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
         setDayOutViewsVisible(hidden)
     }
     
+    // Yuning Modified this function
     public override func togglePresentedDate(date: NSDate) {
-        let presentedDate = Date(date: date)
-        if let presented = monthViews[Presented] {
+            if let presented = monthViews[Presented] {
             monthViews[Previous]?.removeFromSuperview()
             monthViews[Following]?.removeFromSuperview()
             insertMonthView(getPreviousMonth(date), withIdentifier: Previous)
@@ -230,7 +230,6 @@ public final class CVCalendarMonthContentViewController: CVCalendarContentViewCo
                 currentMonthView.alpha = 1
             }) { _ in
                 presented.removeFromSuperview()
-                self.selectDayViewWithDay(presentedDate.day, inMonthView: currentMonthView)
                 self.updateLayoutIfNeeded()
             }
         }
