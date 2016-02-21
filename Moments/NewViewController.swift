@@ -8,9 +8,20 @@
 
 import UIKit
 
-class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate  {
+class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
     
     var touchLocation: CGPoint?
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        print("Image Selected")
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        let frame = CGRectMake(self.touchLocation!.x,self.touchLocation!.y,80,80)
+        let imageView = ImageItemViewController(frame: frame)
+        imageView.image = image
+        self.view.addSubview(imageView)
+    }
     
     @IBAction func save(sender: AnyObject) {
         //save all view items for backup
@@ -38,6 +49,34 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
             
         }
     }
+    
+    func addText(){
+        let textView = UITextView(frame: CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 120, 120))
+        textView.textAlignment = NSTextAlignment.Left
+        textView.textColor = UIColor.whiteColor()
+        textView.backgroundColor = UIColor.brownColor()
+        self.view.addSubview(textView)
+    }
+    
+    func addImage(){
+        var image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        //To get to camera
+        //image.sourceType = UIImagePickerControllerSourceType.Camera
+        image.allowsEditing = false
+        self.presentViewController(image, animated: true, completion: nil)
+        
+    }
+    
+    func addAudio(){
+        
+    }
+    
+    func addVideo(){
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

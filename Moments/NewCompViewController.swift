@@ -14,21 +14,23 @@ class NewCompViewController: UIViewController {
     var sender: NewViewController?
     
     @IBAction func newTextPressed(sender: AnyObject) {
-        let textView = UITextView(frame: CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 120, 120))
-        textView.textAlignment = NSTextAlignment.Left
-        textView.textColor = UIColor.whiteColor()
-        textView.backgroundColor = UIColor.brownColor()
         self.dismissViewControllerAnimated(true, completion: nil)
-        self.sender!.view.addSubview(textView)
+        self.sender!.addText()
     }
     
     @IBAction func newImagePressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.sender!.addImage()
     }
     
     @IBAction func newAudioPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.sender!.addAudio()
     }
     
     @IBAction func newVideoPressed(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.sender!.addVideo()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
