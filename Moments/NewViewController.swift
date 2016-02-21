@@ -14,21 +14,22 @@ import AVFoundation
 class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
     
     var touchLocation: CGPoint?
-    var touchMode : Int? = 5
+    var touchMode : String? = "View"
     
     @IBAction func selectTouchMode(sender: AnyObject) {
         print ("button selected")
-        if sender.title == nil {
-            print ("no title")
-        }
-        if let title = sender.title {
-            touchMode = Int(title!)
+        if let title = sender.currentTitle {
+            touchMode = title
             print ("mode selected" + String(touchMode))
         }
     }
 
     @IBOutlet weak var momentTitle: UITextField!
     
+    
+    func resetView (){
+        touchMode = "View"
+    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
@@ -39,10 +40,12 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         let imageView = ImageItemViewController(frame: frame)
         imageView.image = image
         self.view.addSubview(imageView)
+        resetView()
     }
     
     func mediaPickerDidCancel(mediaPicker: MPMediaPickerController) {
         mediaPicker.dismissViewControllerAnimated(true, completion: nil)
+        resetView()
     }
     
     func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
@@ -92,9 +95,16 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         tv.backgroundColor = textView.backgroundColor
         tv.text = textView.text
         self.view.addSubview(tv)
+        resetView()
+    }
+    
+    func cancelAddItem(controller: NewTextViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        resetView()
     }
     
     func addImage(){
+        print("add image")
         let image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
@@ -137,23 +147,18 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
             let touch = touches.first!
             self.touchLocation = touch.locationInView(touch.view)
             if let touchMode = self.touchMode {
-                switch (touchMode) {
-                case 0:
+                if  touchMode == "Text" {
                     self.performSegueWithIdentifier("showNewTextModal", sender: self)
-                    break
-                case 1:
+                } else if touchMode == "Image" {
                     addImage()
-                    break
-                case 2:
+                } else if touchMode == "Audio" {
                     addAudio()
-                    break
-                case 3:
+                } else if touchMode == "Video" {
                     addVideo()
-                    break
-                case 4:
-                    break
-                default:
-                    break
+                } else if touchMode == "Sticker" {
+                    
+                } else {
+                    
                 }
             }
             //self.performSegueWithIdentifier("showNewCompPopover", sender: self)

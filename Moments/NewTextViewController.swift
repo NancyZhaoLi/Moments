@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewTextViewControllerDelegate {
     func addText(controller: NewTextViewController, textView: UITextView)
+    func cancelAddItem(controller: NewTextViewController)
 }
 
 
@@ -18,7 +19,9 @@ class NewTextViewController: UIViewController {
     var delegate : NewTextViewControllerDelegate?
     
     @IBAction func cancelAddText(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if let delegate = self.delegate {
+            delegate.cancelAddItem(self)
+        }
     }
     
     
