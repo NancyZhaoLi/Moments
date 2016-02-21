@@ -333,7 +333,7 @@
                                             <state key="normal" title="Text"/>
                                         </button>
                                         <connections>
-                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="GIo-OJ-Q9j"/>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="jHv-OM-gfL"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="1" style="plain" id="CVT-Rb-6D1">
@@ -343,7 +343,7 @@
                                             <state key="normal" title="Image"/>
                                         </button>
                                         <connections>
-                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="lUa-pH-0Oo"/>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="TSy-kA-sDN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="2" style="plain" id="Mml-2C-uKF">
@@ -353,7 +353,7 @@
                                             <state key="normal" title="Audio"/>
                                         </button>
                                         <connections>
-                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="pbK-Gc-Mea"/>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="K9J-dE-7dY"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="3" style="plain" id="b9v-y3-h25">
@@ -363,7 +363,7 @@
                                             <state key="normal" title="Video"/>
                                         </button>
                                         <connections>
-                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="51t-2h-l2T"/>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="y5f-WN-QCQ"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="5" style="plain" id="9Hb-i4-H7O">
@@ -373,7 +373,7 @@
                                             <state key="normal" title="View"/>
                                         </button>
                                         <connections>
-                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="6aj-T8-zX3"/>
+                                            <action selector="selectTouchMode:" destination="k7V-YG-Yyz" id="eMg-5h-BMF"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7pX-9w-7f8"/>

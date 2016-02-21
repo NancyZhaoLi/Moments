@@ -17,6 +17,10 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
     var touchMode : Int? = 5
     
     @IBAction func selectTouchMode(sender: AnyObject) {
+        print ("button selected")
+        if sender.title == nil {
+            print ("no title")
+        }
         if let title = sender.title {
             touchMode = Int(title!)
             print ("mode selected" + String(touchMode))
