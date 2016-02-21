@@ -11,6 +11,7 @@
 		46119D351C76CC3A00DB5F12 /* UserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */; };
 		468BC2801C7A52BA00D93268 /* README - Core Data Entity  in Resources */ = {isa = PBXBuildFile; fileRef = 468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */; };
 		468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2811C7A81F800D93268 /* ImageItemViewController.swift */; };
+		468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2831C7A837500D93268 /* MainUIViewController.swift */; };
 		7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605EF051C77852A002FB013 /* CalendarViewController.swift */; };
 		769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F41C76AABE00FC883E /* AppDelegate.swift */; };
 		769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F61C76AABE00FC883E /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingViewController.swift; sourceTree = "<group>"; };
 		468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README - Core Data Entity "; sourceTree = "<group>"; };
 		468BC2811C7A81F800D93268 /* ImageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemViewController.swift; sourceTree = "<group>"; };
+		468BC2831C7A837500D93268 /* MainUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
 		7605EF051C77852A002FB013 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		769DD7F11C76AABE00FC883E /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD7F41C76AABE00FC883E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */,
 				769DD7F61C76AABE00FC883E /* ViewController.swift */,
 				769DD7F81C76AABE00FC883E /* Main.storyboard */,
+				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
 				46119D321C76CC1B00DB5F12 /* HomeViewController.swift */,
 				7605EF051C77852A002FB013 /* CalendarViewController.swift */,
 				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
@@ -372,6 +375,7 @@
 				769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */,
 				769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */,
 				46119D331C76CC1B00DB5F12 /* HomeViewController.swift in Sources */,
+				468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

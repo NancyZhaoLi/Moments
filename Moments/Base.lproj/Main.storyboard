@@ -134,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="1889.5" y="-795.5"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainUI View Controller-->
         <scene sceneID="3Kx-aV-Gor">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="g9q-TV-mod" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="g9q-TV-mod" customClass="MainUIViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="2r7-dW-8fQ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="LhI-8l-Uc7">
