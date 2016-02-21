@@ -269,7 +269,7 @@
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="vPU-Ig-bE2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Calendar" id="oco-fs-nYf">
+                    <navigationItem key="navigationItem" id="oco-fs-nYf">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Wmm-go-bn6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qjT-I7-bbd">
                                 <rect key="frame" x="16" y="7" width="58" height="30"/>

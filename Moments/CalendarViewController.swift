@@ -93,6 +93,23 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
         let color = UIColor.blueColor()
         return [color]
     }
+
+    func preliminaryView(viewOnDayView dayView: DayView) -> UIView {
+        let highlight = CVAuxiliaryView(dayView: dayView, rect: dayView.bounds, shape: CVShape.Circle)
+        highlight.fillColor = .colorFromCode(0xF5DEB3)
+        return highlight
+    }
+    
+    func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
+        if (dayView.isCurrentDay) {
+            return true
+        }
+        return false
+    }
+    
+    func shouldAutoSelectDayOnMonthChange() -> Bool {
+        return false
+    }
     
 }
 
