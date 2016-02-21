@@ -17,6 +17,7 @@
 		763D56431C6FF02A00EA6470 /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D56421C6FF02A00EA6470 /* MomentsTests.swift */; };
 		763D564E1C6FF02A00EA6470 /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D564D1C6FF02A00EA6470 /* MomentsUITests.swift */; };
 		A4E2E1F3371561F8A9AD2C56 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAEA07EAEF2A89AC56DF44 /* libPods.a */; };
+		D0755EFC1C77136B006AF25F /* NewMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0755EFB1C77136B006AF25F /* NewMomentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		763D564F1C6FF02A00EA6470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76958D601C70034300B7DB95 /* Moments-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moments-Bridging-Header.h"; sourceTree = "<group>"; };
 		BC6AA74CFF400715FFFBE8EC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D0755EFB1C77136B006AF25F /* NewMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentViewController.swift; sourceTree = "<group>"; };
 		EACAEA07EAEF2A89AC56DF44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DCAC2B4275BE709073468F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 				763D562D1C6FF02900EA6470 /* AppDelegate.swift */,
 				763D562F1C6FF02900EA6470 /* ViewController.swift */,
 				763D56311C6FF02900EA6470 /* Main.storyboard */,
+				D0755EFB1C77136B006AF25F /* NewMomentViewController.swift */,
 				46119CF21C73B03100DB5F12 /* HomeViewController.swift */,
 				46119CF41C73B1D600DB5F12 /* UserSettingViewController.swift */,
 				763D56341C6FF02900EA6470 /* Assets.xcassets */,
@@ -345,6 +348,7 @@
 				763D56301C6FF02900EA6470 /* ViewController.swift in Sources */,
 				763D562E1C6FF02900EA6470 /* AppDelegate.swift in Sources */,
 				46119CF51C73B1D600DB5F12 /* UserSettingViewController.swift in Sources */,
+				D0755EFC1C77136B006AF25F /* NewMomentViewController.swift in Sources */,
 				46119CF31C73B03100DB5F12 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

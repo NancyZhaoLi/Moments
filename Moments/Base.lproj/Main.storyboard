@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -165,7 +165,7 @@
         <!--New-->
         <scene sceneID="H45-lx-9bb">
             <objects>
-                <viewController id="5qC-lH-3yT" sceneMemberID="viewController">
+                <viewController id="5qC-lH-3yT" customClass="NewMomentViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BdE-Af-VJj"/>
                         <viewControllerLayoutGuide type="bottom" id="EW5-v0-5Wi"/>
@@ -173,13 +173,80 @@
                     <view key="view" contentMode="scaleToFill" id="3lo-ci-10R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PxF-iE-QsL">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="New Moment" id="K5w-JK-S9L">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="tZI-X4-ssF"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="0B6-KY-hA6"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="New" image="newpage" id="zSe-dP-VSv"/>
+                    <tabBarItem key="tabBarItem" title="New" image="AC4D45FF-7969-4C9E-B108-48B907D1F177" id="zSe-dP-VSv"/>
+                    <connections>
+                        <segue destination="UH6-4p-RxK" kind="popoverPresentation" identifier="showNewCompPopover" popoverAnchorView="3lo-ci-10R" id="fL6-wo-PXy">
+                            <popoverArrowDirection key="popoverArrowDirection" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhS-SH-6e3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="734"/>
+            <point key="canvasLocation" x="803.5" y="841.5"/>
+        </scene>
+        <!--New Comp View Controller-->
+        <scene sceneID="ja7-qT-gUh">
+            <objects>
+                <viewController id="UH6-4p-RxK" customClass="NewCompViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gw8-BZ-gjn"/>
+                        <viewControllerLayoutGuide type="bottom" id="56V-Ro-Wza"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wes-tD-WOG">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7q-hv-O6L">
+                                <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
+                                <state key="normal" title="Text"/>
+                                <connections>
+                                    <action selector="newTextPressed:" destination="UH6-4p-RxK" eventType="touchUpInside" id="8hu-BJ-7nx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwn-WO-Y5H">
+                                <rect key="frame" x="0.0" y="30" width="120" height="30"/>
+                                <state key="normal" title="Image"/>
+                                <connections>
+                                    <action selector="newImagePressed:" destination="UH6-4p-RxK" eventType="touchUpInside" id="tba-wN-gSK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSi-Rb-muG">
+                                <rect key="frame" x="0.0" y="60" width="120" height="30"/>
+                                <state key="normal" title="Audio"/>
+                                <connections>
+                                    <action selector="newAudioPressed:" destination="UH6-4p-RxK" eventType="touchUpInside" id="CdZ-3s-Y3L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mnh-9F-KCv">
+                                <rect key="frame" x="0.0" y="90" width="120" height="30"/>
+                                <state key="normal" title="Video"/>
+                                <connections>
+                                    <action selector="newVideoPressed:" destination="UH6-4p-RxK" eventType="touchUpInside" id="MUX-pH-IMU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="120" height="120"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="120" height="120"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fex-UM-FZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1166" y="729"/>
         </scene>
         <!--Setting-->
         <scene sceneID="HFp-87-2wF">
@@ -231,10 +298,121 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AC4D45FF-7969-4C9E-B108-48B907D1F177" width="25" height="25">
+            <mutableData key="keyedArchiveRepresentation">
+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
+AAAAAAAAAAAAAGRlc2MAAAAAAAAALklFQyA2MTk2Ni0yLjEgRGVmYXVsdCBSR0IgY29sb3VyIHNwYWNl
+IC0gc1JHQgAAAAAAAAAAAAAALklFQyA2MTk2Ni0yLjEgRGVmYXVsdCBSR0IgY29sb3VyIHNwYWNlIC0g
+c1JHQgAAAAAAAAAAAAAAAAAAAAAAAAAAAABkZXNjAAAAAAAAACxSZWZlcmVuY2UgVmlld2luZyBDb25k
+aXRpb24gaW4gSUVDNjE5NjYtMi4xAAAAAAAAAAAAAAAsUmVmZXJlbmNlIFZpZXdpbmcgQ29uZGl0aW9u
+IGluIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdmlldwAAAAAAE6T+ABRfLgAQ
+zxQAA+3MAAQTCwADXJ4AAAABWFlaIAAAAAAATAlWAFAAAABXH+dtZWFzAAAAAAAAAAEAAAAAAAAAAAAA
+AAAAAAAAAAACjwAAAAJzaWcgAAAAAENSVCBjdXJ2AAAAAAAABAAAAAAFAAoADwAUABkAHgAjACgALQAy
+ADcAOwBAAEUASgBPAFQAWQBeAGMAaABtAHIAdwB8AIEAhgCLAJAAlQCaAJ8ApACpAK4AsgC3ALwAwQDG
+AMsA0ADVANsA4ADlAOsA8AD2APsBAQEHAQ0BEwEZAR8BJQErATIBOAE+AUUBTAFSAVkBYAFnAW4BdQF8
+AYMBiwGSAZoBoQGpAbEBuQHBAckB0QHZAeEB6QHyAfoCAwIMAhQCHQImAi8COAJBAksCVAJdAmcCcQJ6
+AoQCjgKYAqICrAK2AsECywLVAuAC6wL1AwADCwMWAyEDLQM4A0MDTwNaA2YDcgN+A4oDlgOiA64DugPH
+A9MD4APsA/kEBgQTBCAELQQ7BEgEVQRjBHEEfgSMBJoEqAS2BMQE0wThBPAE/gUNBRwFKwU6BUkFWAVn
+BXcFhgWWBaYFtQXFBdUF5QX2BgYGFgYnBjcGSAZZBmoGewaMBp0GrwbABtEG4wb1BwcHGQcrBz0HTwdh
+B3QHhgeZB6wHvwfSB+UH+AgLCB8IMghGCFoIbgiCCJYIqgi+CNII5wj7CRAJJQk6CU8JZAl5CY8JpAm6
+Cc8J5Qn7ChEKJwo9ClQKagqBCpgKrgrFCtwK8wsLCyILOQtRC2kLgAuYC7ALyAvhC/kMEgwqDEMMXAx1
+DI4MpwzADNkM8w0NDSYNQA1aDXQNjg2pDcMN3g34DhMOLg5JDmQOfw6bDrYO0g7uDwkPJQ9BD14Peg+W
+D7MPzw/sEAkQJhBDEGEQfhCbELkQ1xD1ERMRMRFPEW0RjBGqEckR6BIHEiYSRRJkEoQSoxLDEuMTAxMj
+E0MTYxODE6QTxRPlFAYUJxRJFGoUixStFM4U8BUSFTQVVhV4FZsVvRXgFgMWJhZJFmwWjxayFtYW+hcd
+F0EXZReJF64X0hf3GBsYQBhlGIoYrxjVGPoZIBlFGWsZkRm3Gd0aBBoqGlEadxqeGsUa7BsUGzsbYxuK
+G7Ib2hwCHCocUhx7HKMczBz1HR4dRx1wHZkdwx3sHhYeQB5qHpQevh7pHxMfPh9pH5Qfvx/qIBUgQSBs
+IJggxCDwIRwhSCF1IaEhziH7IiciVSKCIq8i3SMKIzgjZiOUI8Ij8CQfJE0kfCSrJNolCSU4JWgllyXH
+JfcmJyZXJocmtyboJxgnSSd6J6sn3CgNKD8ocSiiKNQpBik4KWspnSnQKgIqNSpoKpsqzysCKzYraSud
+K9EsBSw5LG4soizXLQwtQS12Last4S4WLkwugi63Lu4vJC9aL5Evxy/+MDUwbDCkMNsxEjFKMYIxujHy
+MioyYzKbMtQzDTNGM38zuDPxNCs0ZTSeNNg1EzVNNYc1wjX9Njc2cjauNuk3JDdgN5w31zgUOFA4jDjI
+OQU5Qjl/Obw5+To2OnQ6sjrvOy07azuqO+g8JzxlPKQ84z0iPWE9oT3gPiA+YD6gPuA/IT9hP6I/4kAj
+QGRApkDnQSlBakGsQe5CMEJyQrVC90M6Q31DwEQDREdEikTORRJFVUWaRd5GIkZnRqtG8Ec1R3tHwEgF
+SEtIkUjXSR1JY0mpSfBKN0p9SsRLDEtTS5pL4kwqTHJMuk0CTUpNk03cTiVObk63TwBPSU+TT91QJ1Bx
+ULtRBlFQUZtR5lIxUnxSx1MTU19TqlP2VEJUj1TbVShVdVXCVg9WXFapVvdXRFeSV+BYL1h9WMtZGllp
+WbhaB1pWWqZa9VtFW5Vb5Vw1XIZc1l0nXXhdyV4aXmxevV8PX2Ffs2AFYFdgqmD8YU9homH1YklinGLw
+Y0Njl2PrZEBklGTpZT1lkmXnZj1mkmboZz1nk2fpaD9olmjsaUNpmmnxakhqn2r3a09rp2v/bFdsr20I
+bWBtuW4SbmtuxG8eb3hv0XArcIZw4HE6cZVx8HJLcqZzAXNdc7h0FHRwdMx1KHWFdeF2Pnabdvh3Vnez
+eBF4bnjMeSp5iXnnekZ6pXsEe2N7wnwhfIF84X1BfaF+AX5ifsJ/I3+Ef+WAR4CogQqBa4HNgjCCkoL0
+g1eDuoQdhICE44VHhauGDoZyhteHO4efiASIaYjOiTOJmYn+imSKyoswi5aL/IxjjMqNMY2Yjf+OZo7O
+jzaPnpAGkG6Q1pE/kaiSEZJ6kuOTTZO2lCCUipT0lV+VyZY0lp+XCpd1l+CYTJi4mSSZkJn8mmia1ZtC
+m6+cHJyJnPedZJ3SnkCerp8dn4uf+qBpoNihR6G2oiailqMGo3aj5qRWpMelOKWpphqmi6b9p26n4KhS
+qMSpN6mpqhyqj6sCq3Wr6axcrNCtRK24ri2uoa8Wr4uwALB1sOqxYLHWskuywrM4s660JbSctRO1irYB
+tnm28Ldot+C4WbjRuUq5wro7urW7LrunvCG8m70VvY++Cr6Evv+/er/1wHDA7MFnwePCX8Lbw1jD1MRR
+xM7FS8XIxkbGw8dBx7/IPci8yTrJuco4yrfLNsu2zDXMtc01zbXONs62zzfPuNA50LrRPNG+0j/SwdNE
+08bUSdTL1U7V0dZV1tjXXNfg2GTY6Nls2fHadtr724DcBdyK3RDdlt4c3qLfKd+v4DbgveFE4cziU+Lb
+42Pj6+Rz5PzlhOYN5pbnH+ep6DLovOlG6dDqW+rl63Dr++yG7RHtnO4o7rTvQO/M8Fjw5fFy8f/yjPMZ
+86f0NPTC9VD13vZt9vv3ivgZ+Kj5OPnH+lf65/t3/Af8mP0p/br+S/7c/23//9IiIyQlWiRjbGFzc25h
+bWVYJGNsYXNzZXNfEBBOU0JpdG1hcEltYWdlUmVwoyYnKF8QEE5TQml0bWFwSW1hZ2VSZXBaTlNJbWFn
+ZVJlcFhOU09iamVjdNIiIyorV05TQXJyYXmiKijSIiMtLl5OU011dGFibGVBcnJheaMtKijTMDEJMjM0
+V05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0iIjNjdXTlNDb2xvcqI2KNIiIzk6V05TSW1hZ2Wi
+OShfEA9OU0tleWVkQXJjaGl2ZXLRPT5Ucm9vdIABAAgAEQAaACMALQAyADcARQBLAFQAWwBoAG8AdwB5
+AH4AgACCAIcAkgCUAJYAmACdAKAAogCkAKYAqACtAMQAxgDIF54XoxeuF7cXyhfOF+EX7Bf1F/oYAhgF
+GAoYGRgdGCQYLBg5GD4YQBhCGEcYTxhSGFcYXxhiGHQYdxh8AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAA
+AAAAAAAAGH4
+</mutableData>
+        </image>
         <image name="Calendar" width="25" height="25"/>
         <image name="album" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
-        <image name="newpage" width="25" height="25"/>
         <image name="personal_icon" width="25" height="25"/>
     </resources>
 </document>
