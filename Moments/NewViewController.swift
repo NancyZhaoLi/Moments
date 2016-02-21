@@ -32,11 +32,35 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
     
     func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         print("Video or audio selected")
+        mediaPicker.dismissViewControllerAnimated(true, completion: nil)
         if let mediaItem: MPMediaItem = mediaItemCollection.representativeItem {
-            if mediaItem.mediaType == .AnyVideo {
+            if mediaItem.mediaType == .AnyAudio {
+                if let url = mediaItem.assetURL {
+                    do {
+                        let player = try AVAudioPlayer(contentsOfURL: url)
+                        if let playerViewController = storyboard?.instantiateViewControllerWithIdentifier("audioPlayer") as? AudioPlayerViewController {
+                            playerViewController.player = player
+                            
+                            self.view.addSubview(playerViewController.view)
+                            self.addChildViewController(playerViewController)
+                        }
+                        
+
+                    } catch {
+                        print("audio player cannot be created")
+                    }
+
+                }
+            } else if mediaItem.mediaType == .AnyVideo {
+                if let url = mediaItem.assetURL {
+                    let player = AVPlayer(URL: url)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
                 
-            } else if mediaItem.mediaType == .AnyAudio {
-                //let video = AVPlayerViewController()
+                    playerViewController.view.frame = CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 100, 80)
+                    self.view.addSubview(playerViewController.view)
+                    self.addChildViewController(playerViewController)
+                }
             }
         }
     }

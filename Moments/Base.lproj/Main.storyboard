@@ -649,6 +649,53 @@
             </objects>
             <point key="canvasLocation" x="2310" y="947"/>
         </scene>
+        <!--audioPlayer-->
+        <scene sceneID="28X-uF-uKn">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3EZ-UX-QwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="audioPlayer" title="audioPlayer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wSC-hV-IPB" customClass="AudioPlayerViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qcb-Lt-hVn"/>
+                        <viewControllerLayoutGuide type="bottom" id="S9a-Ix-QwO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rqB-Zu-fGw">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQT-gu-izR">
+                                <rect key="frame" x="8" y="30" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="pause:" destination="wSC-hV-IPB" eventType="touchUpInside" id="HeR-n2-MHW"/>
+                                    <action selector="play:" destination="wSC-hV-IPB" eventType="touchUpInside" id="okI-D1-WSi"/>
+                                    <action selector="playOrPause:" destination="wSC-hV-IPB" eventType="touchUpInside" id="SIB-sX-tqw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFb-Di-aSQ">
+                                <rect key="frame" x="134" y="30" width="46" height="30"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stop:" destination="wSC-hV-IPB" eventType="touchUpInside" id="R7K-EO-Vea"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8s1-cP-jcv">
+                                <rect key="frame" x="15" y="28" width="150" height="2"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="180" height="60"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="180" height="60"/>
+                    <connections>
+                        <outlet property="playOrPauseButton" destination="ZQT-gu-izR" id="Tjh-Cf-Z5C"/>
+                        <outlet property="progBar" destination="8s1-cP-jcv" id="Xln-CB-miB"/>
+                        <outlet property="stopButton" destination="dFb-Di-aSQ" id="w3d-vA-WNb"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2765" y="823"/>
+        </scene>
         <!--New Text View Controller-->
         <scene sceneID="Tno-F7-LDn">
             <objects>
