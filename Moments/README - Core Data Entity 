@@ -1,0 +1,40 @@
+Moment
+
+id : Int 64 - yy/mm/dd + id[4 digits]
+title : String - title of the moment entry
+itemId : Int64 - id of items in the moment entry => id of Text/OtherItemEntity
+favourite: Boolean
+categoryName : String
+date : Date - creation date
+backgroundColour : UIColor
+
+-----------------------------------------------------------------
+Item
+
+id : Int 64 - id of item in moment (yy/mm/dd + type + id[3 digits])
+frame : CGRect - [locationX, locationY, width, height]
+content : String
+rotaion : Float - in radian
+type : Int16 - ["text"=0, "image"=1 "audio"=2, "video"=3, "sticker"=4]
+otherAttribute : [colour: UIColor, font: String, size: Float] (text)
+                 nil (others)
+priority : Int16 - priority of item in the moment
+
+-----------------------------------------------------------------
+Category
+
+name : String
+momentId : - id of moments in the category => id of MomentEntity
+colour : UIColor
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

@@ -44,8 +44,6 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
                             self.view.addSubview(playerViewController.view)
                             self.addChildViewController(playerViewController)
                         }
-                        
-
                     } catch {
                         print("audio player cannot be created")
                     }
@@ -67,31 +65,10 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
 
     
     @IBAction func save(sender: AnyObject) {
-        //save all view items for backup
+        
     }
     
-    @IBAction func addItem(sender: AnyObject) {
-        if sender.title == "Text" {
-            let myTextView: UITextView = UITextView(frame: CGRect(x: 100, y: 200, width: 100.00, height: 60.00));
-            myTextView.text = "..."
-            myTextView.editable = true
-            myTextView.layer.borderWidth = 2
-            myTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
-            self.view.addSubview(myTextView)
-        }
-        else if sender.title == "Image" {
-            let frame = CGRectMake(100,100,50,50)
-            let imageView = ImageItemViewController(frame: frame)
-            imageView.image = UIImage(named: "album")
-            self.view.addSubview(imageView)
-        }
-        else if sender.title == "Video" {
-            
-        }
-        else if sender.title == "Audio" {
-            
-        }
-    }
+
     
     func addItem(controller: NewItemViewController, type: String? ){
         controller.dismissViewControllerAnimated(true, completion: nil)

@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="Category" syncable="YES">
+        <attribute name="colour" attributeType="Transformable" syncable="YES"/>
+        <attribute name="momentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="containedMoment" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Moment" inverseName="inCategory" inverseEntity="Moment" syncable="YES"/>
+    </entity>
+    <entity name="Item" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frame" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="otherAttribute" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="rotation" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedItem" inverseEntity="Moment" syncable="YES"/>
+    </entity>
+    <entity name="Moment" syncable="YES">
+        <attribute name="backgroundColour" attributeType="Transformable" syncable="YES"/>
+        <attribute name="categoryName" attributeType="String" syncable="YES"/>
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="favourite" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="itemId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="containedItem" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" inverseName="inMoment" inverseEntity="Item" syncable="YES"/>
+        <relationship name="inCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="containedMoment" inverseEntity="Category" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Moment" positionX="-72" positionY="54" width="128" height="178"/>
+        <element name="Item" positionX="-288" positionY="-43" width="162" height="148"/>
+        <element name="Category" positionX="-288" positionY="162" width="128" height="103"/>
+    </elements>
 </model>
