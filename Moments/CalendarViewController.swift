@@ -119,7 +119,7 @@ extension CalendarViewController: CVCalendarViewAppearanceDelegate {
     }
     
     func spaceBetweenWeekViews() -> CGFloat {
-        return -3
+        return -2
     }
     
     
