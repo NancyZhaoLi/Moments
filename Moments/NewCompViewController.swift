@@ -8,30 +8,41 @@
 
 import UIKit
 
+protocol NewCompViewControllerDelegate {
+    func addItem(controller: NewCompViewController, type: String? )
+}
+
+
 class NewCompViewController: UIViewController {
     
     var touchLocation : CGPoint?
-    var sender: NewViewController?
+    var delegate: NewCompViewControllerDelegate?
     
     @IBAction func newTextPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.sender!.addText()
+        if let delegate = self.delegate {
+            print("add text")
+            delegate.addItem(self, type: "text")
+        }
     }
     
     @IBAction func newImagePressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.sender!.addImage()
+        if let delegate = self.delegate {
+            delegate.addItem(self, type: "image")
+        }
     }
     
     @IBAction func newAudioPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.sender!.addAudio()
+        if let delegate = self.delegate {
+            delegate.addItem(self, type: "audio")
+        }
     }
     
     @IBAction func newVideoPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.sender!.addVideo()
+        if let delegate = self.delegate {
+            delegate.addItem(self, type: "video")
+        }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("menu popup loaded")
@@ -39,7 +50,6 @@ class NewCompViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }

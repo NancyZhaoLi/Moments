@@ -192,7 +192,7 @@
                                     <constraint firstAttribute="width" constant="177" id="Zn1-lK-o8a"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wtu-Je-Fqn" customClass="CVCalendarView" customModule="CVCalendar">
@@ -245,7 +245,7 @@
                                     <constraint firstAttribute="width" constant="1" id="T46-oT-HSU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -357,11 +357,12 @@
                         <segue destination="C6T-dM-x1C" kind="popoverPresentation" identifier="showNewCompPopover" popoverAnchorView="Nge-Yx-e4c" id="N9i-Lr-XK4">
                             <popoverArrowDirection key="popoverArrowDirection" left="YES" right="YES"/>
                         </segue>
+                        <segue destination="hv9-Kf-qPs" kind="presentation" identifier="showNewTextModal" modalPresentationStyle="fullScreen" id="qe0-vV-499"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2H-cO-x1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2614.5" y="380.5"/>
+            <point key="canvasLocation" x="2565.5" y="343.5"/>
         </scene>
         <!--Moments-->
         <scene sceneID="kQG-kR-We8">
@@ -646,7 +647,73 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Soj-dp-MU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2314" y="911"/>
+            <point key="canvasLocation" x="2310" y="947"/>
+        </scene>
+        <!--New Text View Controller-->
+        <scene sceneID="Tno-F7-LDn">
+            <objects>
+                <viewController id="hv9-Kf-qPs" customClass="NewTextViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8VC-VO-dg4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eht-Ol-MhF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uu1-fw-VMN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0kn-wY-cW5">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="4ce-m6-E7M"/>
+                                    <barButtonItem title="Item" id="eDV-WM-Bj0"/>
+                                    <barButtonItem title="Item" id="RKB-jG-VYg"/>
+                                    <barButtonItem title="Item" id="nW4-8n-ouq"/>
+                                    <barButtonItem title="Item" id="vrz-fs-SMo"/>
+                                    <barButtonItem title="Item" id="T5T-wg-jvk"/>
+                                </items>
+                                <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ii-9V-alw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem id="ezz-zD-JKl">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Hzv-mh-kDg">
+                                            <connections>
+                                                <action selector="cancelAddText:" destination="hv9-Kf-qPs" id="mu5-6G-LeR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gRr-E7-gdS">
+                                            <connections>
+                                                <action selector="addText:" destination="hv9-Kf-qPs" id="COt-Vm-8Ac"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0N-6G-Qcx">
+                                <rect key="frame" x="20" y="83" width="335" height="520"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Enter Your Text Here...">
+                                        <attributes>
+                                            <font key="NSFont" size="18" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="textEditView" destination="b0N-6G-Qcx" id="8xM-yI-kFp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cqS-gl-wjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3093.5" y="343.5"/>
         </scene>
     </scenes>
     <resources>

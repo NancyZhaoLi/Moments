@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import MediaPlayer
+import AVKit
+import AVFoundation
 
-class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
+class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewCompViewControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
     
     var touchLocation: CGPoint?
     
@@ -22,6 +25,22 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         imageView.image = image
         self.view.addSubview(imageView)
     }
+    
+    func mediaPickerDidCancel(mediaPicker: MPMediaPickerController) {
+        mediaPicker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        print("Video or audio selected")
+        if let mediaItem: MPMediaItem = mediaItemCollection.representativeItem {
+            if mediaItem.mediaType == .AnyVideo {
+                
+            } else if mediaItem.mediaType == .AnyAudio {
+                //let video = AVPlayerViewController()
+            }
+        }
+    }
+
     
     @IBAction func save(sender: AnyObject) {
         //save all view items for backup
@@ -50,31 +69,55 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         }
     }
     
-    func addText(){
-        let textView = UITextView(frame: CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 120, 120))
-        textView.textAlignment = NSTextAlignment.Left
-        textView.textColor = UIColor.whiteColor()
-        textView.backgroundColor = UIColor.brownColor()
-        self.view.addSubview(textView)
+    func addItem(controller: NewCompViewController, type: String? ){
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+        if let typeToAdd = type {
+            if typeToAdd == "text" {
+                self.performSegueWithIdentifier("showNewTextModal", sender: self)
+            } else if typeToAdd == "image" {
+                addImage()
+            } else if typeToAdd == "audio" {
+                addAudio()
+            } else if typeToAdd == "video" {
+                addVideo()
+            }
+        }
+    }
+    
+    func addText(controller: NewTextViewController, textView: UITextView) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+        let tv = UITextView(frame: CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 120, 120))
+        tv.textAlignment = textView.textAlignment
+        tv.textColor = textView.textColor
+        tv.backgroundColor = textView.backgroundColor
+        tv.text = textView.text
+        self.view.addSubview(tv)
     }
     
     func addImage(){
-        var image = UIImagePickerController()
+        let image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         //To get to camera
         //image.sourceType = UIImagePickerControllerSourceType.Camera
         image.allowsEditing = false
         self.presentViewController(image, animated: true, completion: nil)
-        
     }
     
     func addAudio(){
-        
+        let audio = MPMediaPickerController(mediaTypes: .AnyAudio)
+        audio.delegate = self
+        audio.allowsPickingMultipleItems = false
+        self.presentViewController(audio, animated: true, completion: nil)
     }
     
     func addVideo(){
-        
+        let video = MPMediaPickerController(mediaTypes: .AnyVideo)
+        video.delegate = self
+        video.allowsPickingMultipleItems = false
+        self.presentViewController(video, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -101,15 +144,18 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if ( segue.identifier == "showNewCompPopover" ) {
-            print("find vc")
+        if segue.identifier == "showNewCompPopover" {
             let vc = segue.destinationViewController as! NewCompViewController
             vc.touchLocation = self.touchLocation
-            vc.sender = self
-            print("get popupcontroller")
-            let popoverMenuVC = vc.popoverPresentationController
-            popoverMenuVC?.delegate = self
-            popoverMenuVC?.sourceRect = CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 0, 0)
+            vc.delegate = self
+
+            let popoverVC = vc.popoverPresentationController
+            popoverVC?.delegate = self
+            popoverVC?.sourceRect = CGRectMake(self.touchLocation!.x, self.touchLocation!.y, 0, 0)
+        } else if segue.identifier == "showNewTextModal" {
+            let vc = segue.destinationViewController as! NewTextViewController
+            vc.modalPresentationStyle = .OverCurrentContext
+            vc.delegate = self
         }
     }
     
