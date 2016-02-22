@@ -1,0 +1,96 @@
+Before all interactions
+-----------------------
+let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+let context: NSManagedObjectContext =  appDel.managedObjectContext
+
+Obtain the entity to insert?
+---------------------------
+var newObject = NSEntityDescription.insertNewObjectForEntityForName("entityName", inManagedObjectContext: context)
+
+Obtain the entity and create a new object
+-----------------------------------------
+let entity = NSEntityDescription.entityForName("entityName", inManagedObjectContext: context)
+let newObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
+
+To add data to new object
+-------------------------
+newObject.setValue(value, forKey: "attributeName")
+
+To save the context
+-------------------
+do{
+    try context.save()
+} catch {
+    print("ERROR: saving context to Moment")
+}
+
+Fetch request
+-------------
+let request = NSFetchRequest(entityName: "entityName")
+request.predicate = NSPredicate(formate: "predicateString", argForPredicate)
+
+NOTE: if you just want to outline of the request, do request.returnsObjectsAsFaults = true
+
+do {
+    let results = try context.executeFetchRequest(request)
+    if result.count > 0 {
+        for result in results as! [NSManagedObject] {
+
+        }
+    }
+} catch {
+    print("ERROR: fetching failed")
+}
+
+Operations On Result
+--------------------
+DELETE : context.deleteObject(r)
+GET VALUE : result.valueForKey("attributeName")
+SET VALUE : result.setValue(value, forKey: "attributeName")
+CAST VALUE TO KNOWN DATATYPE :
+if let value = result.valueForKey("attributeName") as? Datatype {
+    code
+}
+
+Predicate String
+----------------
+
+
+
+Relationship
+------------
+Suppose : many to many relationship with person entity and address entity
+
+Create a relationship:
+1. create the set
+newPerson.setValue(NSSet(obejct: newAddress), forKey: "addresses")
+
+2. save the newPerson context
+do {
+    try newPerson.managedObjectContext?.save()
+} catch {
+    errorHandling
+}
+
+NOTE: the Core Data creates the inverse relationship for us
+NOTE: the above save newPerson, newAddress and the relationship
+
+Update a relationship:
+1. create an address as above
+2. set the value of the new address as above
+3. add to the relationship
+let addresses = newPerson.mutableSetValueForKey("addresses")
+addresses.addObject(otherAddress)
+
+Delete a relationship:
+newPerson.setValue(nil, forKey: "addresses")
+
+NOTE: for one to one, you can simply do newPerson.setValue(item, forKey: "oneToOneRelationship")
+
+
+
+
+
+
+
+

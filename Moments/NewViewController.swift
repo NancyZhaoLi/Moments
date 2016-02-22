@@ -10,11 +10,13 @@ import UIKit
 import MediaPlayer
 import AVKit
 import AVFoundation
+import CoreData
 
 class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
     
     var touchLocation: CGPoint?
     var touchMode : String? = "View"
+    @IBOutlet weak var momentTitle: UITextField!
     
     @IBAction func selectTouchMode(sender: AnyObject) {
         print ("button selected")
@@ -23,14 +25,16 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
             print ("mode selected" + String(touchMode))
         }
     }
-
-    @IBOutlet weak var momentTitle: UITextField!
     
+    @IBAction func save(sender: AnyObject) {
+        
+    }
     
     func resetView (){
         touchMode = "View"
     }
     
+    // Functions for UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
         print("Image Selected")
@@ -43,6 +47,7 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         resetView()
     }
     
+    // Functions for MPMediaPickerControllerDelegate
     func mediaPickerDidCancel(mediaPicker: MPMediaPickerController) {
         mediaPicker.dismissViewControllerAnimated(true, completion: nil)
         resetView()
@@ -81,10 +86,6 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         }
     }
 
-    
-    @IBAction func save(sender: AnyObject) {
-        
-    }
     
     func addText(controller: NewTextViewController, textView: UITextView) {
         controller.dismissViewControllerAnimated(true, completion: nil)
@@ -131,8 +132,8 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         print("New moment loaded")
+
     }
     
     override func didReceiveMemoryWarning() {

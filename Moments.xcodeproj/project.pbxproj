@@ -23,6 +23,8 @@
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
 		ADD431C11C77ED1800DA345E /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */; };
+		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
+		D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */ = {isa = PBXBuildFile; fileRef = D045946F1C7AACCD00A1AD12 /* REAME - Agenda */; };
 		D04EEB701C79CFB600911661 /* NewTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */; };
 		DCA83739988F7ABCDC140EC4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7C33052FBC7C3E84D8CBFA /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,8 @@
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerViewController.swift; path = ../AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Core Data Tutorial"; sourceTree = "<group>"; };
+		D045946F1C7AACCD00A1AD12 /* REAME - Agenda */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Agenda"; sourceTree = "<group>"; };
 		D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTextViewController.swift; sourceTree = "<group>"; };
 		EA7C33052FBC7C3E84D8CBFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -139,6 +143,8 @@
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
 				769DD8031C76AABE00FC883E /* Info.plist */,
 				769DD7FB1C76AABE00FC883E /* Moments.xcdatamodeld */,
+				D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */,
+				D045946F1C7AACCD00A1AD12 /* REAME - Agenda */,
 				468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */,
 			);
 			path = Moments;
@@ -291,8 +297,10 @@
 			files = (
 				769DD8021C76AABE00FC883E /* LaunchScreen.storyboard in Resources */,
 				468BC2801C7A52BA00D93268 /* README - Core Data Entity  in Resources */,
+				D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */,
 				769DD7FF1C76AABE00FC883E /* Assets.xcassets in Resources */,
 				769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */,
+				D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
