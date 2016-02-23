@@ -103,6 +103,10 @@ class NewMomentViewController: UIViewController,UIPopoverPresentationControllerD
         let frame = CGRectMake(self.touchLocation!.x,self.touchLocation!.y,200,200)
         let imageView = ImageItemViewController(frame: frame)
         imageView.image = image
+        print("editingInfo: ")
+        print(editingInfo)
+        let url = editingInfo![UIImagePickerControllerReferenceURL] as! NSURL
+        imageView.url = url.absoluteString
         self.view.addSubview(imageView)
     }
     
@@ -168,7 +172,7 @@ class NewMomentViewController: UIViewController,UIPopoverPresentationControllerD
         image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         //To get to camera
         //image.sourceType = UIImagePickerControllerSourceType.Camera
-        image.allowsEditing = false
+        image.allowsEditing = true
         self.presentViewController(image, animated: true, completion: nil)
         resetTouchMode()
     }

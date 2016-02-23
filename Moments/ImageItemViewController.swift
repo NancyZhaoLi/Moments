@@ -10,6 +10,7 @@ import UIKit
 
 class ImageItemViewController: UIImageView {
     var lastLocation:CGPoint = CGPointMake(0,0)
+    var url : String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

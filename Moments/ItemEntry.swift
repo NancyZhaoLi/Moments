@@ -11,28 +11,27 @@ import UIKit
 
 
 struct TextItemOtherAttribute {
-  var colour : UIColor = UIColor.blackColor()
-  var font : String = "Arial"
-  var size : Int = 10
+    var colour : UIColor = UIColor.blackColor()
+    // TO-DO: get the system default
+    var font : UIFont = UIFont(name: "Arial", size: 2.0)!
   
-  init(){}
+    init(){}
   
-  init(colour: UIColor, font: String, size: Int) {
-    self.colour = colour
-    self.font = font
-    self.size = size
-  }
+    init(colour: UIColor, font: UIFont) {
+        self.colour = colour
+        self.font = font
+    }
 }
 
 class ItemEntry {
-  let id : Int
+  let id : Int64
   let type : Int
   var frame : CGRect
   var content : String?
   var rotation : Float = 0
   var otherAttribute : TextItemOtherAttribute = TextItemOtherAttribute()
 
-  init(id : Int, type : Int, frame : CGRect) {
+  init(id : Int64, type : Int, frame : CGRect) {
     self.id = id
     self.type = type
     self.frame = frame
@@ -46,8 +45,9 @@ class ItemEntry {
     self.rotation = rotation
   }
   
-  func setOtherAttribute(otherAttr: TextItemOtherAttribute) {
-    self.otherAttribute = otherAttr
+  func setOtherAttribute(colour: UIColor, font: UIFont) {
+    self.otherAttribute.colour = colour
+    self.otherAttribute.font = font
   }
 
 }

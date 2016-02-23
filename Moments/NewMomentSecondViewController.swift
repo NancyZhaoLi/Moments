@@ -39,8 +39,15 @@ class NewMomentSecondViewController: UIViewController {
     var moment : MomentEntry?
     var momentDate : NSDate = NSDate()
     var momentTitle : String?
+
+    var idPrefix : String?
     var momentId : Int64?
-    var momentIdPrefix : String?
+    var textItemId : Int64?
+    var imageItemId : Int64?
+    var audioItemId : Int64?
+    var videoItemId : Int64?
+    var stickerItemId : Int64?
+    
     var context : NSManagedObjectContext?
 
     @IBOutlet weak var momentTitleDisplay: UITextField!
@@ -54,10 +61,9 @@ class NewMomentSecondViewController: UIViewController {
         self.context = appDel.managedObjectContext
         
         self.momentCategoryDisplay.text = "Uncategorized"
-        self.momentIdPrefix = self.momentDate.shortYear + self.momentDate.month + self.momentDate.day
+        self.idPrefix = self.momentDate.shortYear + self.momentDate.month + self.momentDate.day
         getDefaultTitle()
-        getNewMomentId()
-
+        getNewIds()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,13 +72,26 @@ class NewMomentSecondViewController: UIViewController {
     }
 
     @IBAction func saveMoment(sender: AnyObject) {
-       self.moment = MomentEntry(id: self.momentId!, date: self.momentDate, title: self.momentTitle!)
+        
+        self.moment = MomentEntry(id: self.momentId!, date: self.momentDate, title: self.momentTitle!)
         for subview in delegate!.view.subviews {
-            print("view: ")
-            print(subview)
+            if let text = subview as? UITextView {
+                print("view: text")
+                print(subview)
+                var item = ItemEntry(id: self.textItemId!, type: 0, frame: subview.frame)
+                item.setContent(text.text)
+                item.setOtherAttribute(text.textColor!, font: text.font!)
+                self.textItemId = self.textItemId! + Int64(1)
+            } else if let image = subview as? ImageItemViewController {
+                print("view: image")
+                print(subview)
+                var item = ItemEntry(id: self.imageItemId!, type: 1, frame: image.frame)
+                item.setContent(image.url!)
+            }
+
         }
     }
-        
+    
     @IBAction func goBack(sender: AnyObject) {
         print("go back clicked")
         if let delegate = self.delegate {
@@ -91,34 +110,44 @@ class NewMomentSecondViewController: UIViewController {
         self.momentTitleDisplay.text = self.momentTitle
     }
     
-    func getNewMomentId() {
-        let lastId : Int = getMaxId("Moment", type: nil)
+    func getNewIds() {
+        let lastId : Int = getMaxId("Moment", type: nil) + 1
         
         if (lastId >= 0) {
-            self.momentId = Int64(self.momentIdPrefix! + String(format: "%04d", 0))
+            self.momentId = Int64(self.idPrefix! + String(format: "%04d", lastId))
             print ("new momentId: " + String(self.momentId!))
         } else {
             print("failed to get new moment id")
         }
+        
+        self.textItemId = Int64(self.idPrefix! + String(format: "%05d", getMaxId("Item", type: "Text") + 1))
+        print("textItemId: " + String(self.textItemId))
+        self.imageItemId = Int64(self.idPrefix! + String(format: "%05d", getMaxId("Item", type: "Image") + 1))
+        print("imageItemId: " + String(self.imageItemId))
+        self.audioItemId = Int64(self.idPrefix! + String(format: "%05d", getMaxId("Item", type: "Audio") + 1))
+        print("audioItemId: " + String(self.audioItemId))
+        self.videoItemId = Int64(self.idPrefix! + String(format: "%05d", getMaxId("Item", type: "Video") + 1))
+        print("videoItemId: " + String(self.videoItemId))
+        self.stickerItemId = Int64(self.idPrefix! + String(format: "%05d", getMaxId("Item", type: "Sticker") + 1))
     }
     
     func getMaxId(entityName: String, type : String?) -> Int {
         var baseInt : Int64 = 0
         
         if (entityName == "Moment") {
-            baseInt = Int64(self.momentIdPrefix! + "0000")!
+            baseInt = Int64(self.idPrefix! + "0000")!
         } else {
             if let itemType = type {
                 if itemType == "Text" {
-                    baseInt = Int64(self.momentIdPrefix! + "0000")!
+                    baseInt = Int64(self.idPrefix! + "0000")!
                 } else if itemType == "Image" {
-                    baseInt = Int64(self.momentIdPrefix! + "1000")!
+                    baseInt = Int64(self.idPrefix! + "1000")!
                 } else if itemType == "Audio" {
-                    baseInt = Int64(self.momentIdPrefix! + "2000")!
+                    baseInt = Int64(self.idPrefix! + "2000")!
                 } else if itemType == "Video" {
-                    baseInt = Int64(self.momentIdPrefix! + "3000")!
+                    baseInt = Int64(self.idPrefix! + "3000")!
                 } else if itemType == "Sticker" {
-                    baseInt = Int64(self.momentIdPrefix! + "4000")!
+                    baseInt = Int64(self.idPrefix! + "4000")!
                 }
             }
         }
@@ -142,12 +171,12 @@ class NewMomentSecondViewController: UIViewController {
                 }
             } else {
                 print("no result for the fetch at " + entityName)
-                return 0
+                return -1
             }
         } catch {
             print("ERROR: fetching failed")
         }
         
-        return -1
+        return -2
     }
 }
