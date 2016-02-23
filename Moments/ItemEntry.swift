@@ -7,3 +7,46 @@
 //
 
 import Foundation
+
+
+struct TextItemOtherAttribute {
+  var colour : UIColor = UIColor.blackColor
+  var font : String = "Arial"
+  var size : Int = 10
+  
+  init(){}
+  
+  init(colour: UIColor, font: String, size: Int) {
+    self.colour = colour
+    self.font = font
+    self.size = size
+  }
+}
+
+Class ItemEntry {
+  var id : Int
+  var type : Int
+  var frame : CGRect 
+  var content : String?
+  var rotation : Float = 0
+  var otherAttribute : TextItemOtherAttribute = TextItemOtherAttribute()
+
+  init(id : Int, type : Int, frame : CGRect) {
+    self.id = id
+    self.type = type
+    self.frame = frame
+  }
+  
+  func setContent(content: Int) {
+    self.content = content
+  }
+  
+  func setRotation(rotation : Float) {
+    self.rotation = rotation
+  }
+  
+  func setOtherAttribute(otherAttr: TextItemOtherAttribute) {
+    self.otherAttribute = otherAttr
+  }
+
+}
