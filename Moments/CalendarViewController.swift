@@ -15,6 +15,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var monthLabel: UILabel!
     
+    var pickedDay:NSDate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,13 @@ class CalendarViewController: UIViewController {
         calendarView.loadPreviousView()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "calendarDay" {
+            let calendarDayViewController = segue.destinationViewController as! CalendarDayViewController
+            calendarDayViewController.date = pickedDay
+        }
+    }
     
 }
 
@@ -65,7 +73,12 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     
     func didSelectDayView(dayView: CVCalendarDayView, animationDidFinish: Bool) {
         print("\(dayView.date.commonDescription) is selected!")
+        pickedDay = dayView.date.convertedDate()
+
+        self.performSegueWithIdentifier("calendarDay", sender: self)
     }
+    
+    
     
     func presentedDateUpdated(date: CVDate) {
         monthLabel.text = calendarView.presentedDate.globalDescription

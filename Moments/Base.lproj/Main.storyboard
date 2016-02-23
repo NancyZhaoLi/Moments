@@ -269,36 +269,44 @@
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="vPU-Ig-bE2"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="oco-fs-nYf">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="Wmm-go-bn6">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qjT-I7-bbd">
-                                <rect key="frame" x="16" y="7" width="58" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Timeline">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="cny-Gh-jy0">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SfO-Pt-rid">
-                                <rect key="frame" x="329" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="today"/>
-                                <connections>
-                                    <action selector="getToday:" destination="OvC-yC-rzH" eventType="touchUpInside" id="RCO-Fh-EBk"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Today" id="j5N-kb-Fhy">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="getToday:" destination="OvC-yC-rzH" id="5uY-bL-IAk"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendarView" destination="wtu-Je-Fqn" id="bpZ-We-PNW"/>
                         <outlet property="menuView" destination="j5x-kn-Yhv" id="Ocd-IQ-hk9"/>
                         <outlet property="monthLabel" destination="dT4-7a-InT" id="V9a-q3-Thq"/>
+                        <segue destination="XoJ-Mm-agi" kind="show" identifier="calendarDay" id="HPe-c4-7Hw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nl5-j9-0Gr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1889.5" y="-35.5"/>
+        </scene>
+        <!--Calendar Day View Controller-->
+        <scene sceneID="Lk1-mZ-GyB">
+            <objects>
+                <viewController id="XoJ-Mm-agi" customClass="CalendarDayViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XyX-3T-QFY"/>
+                        <viewControllerLayoutGuide type="bottom" id="WKw-1A-Ad9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z6s-Yb-ai2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgt-Db-vgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2336.5" y="-35.5"/>
         </scene>
         <!--New-->
         <scene sceneID="zVO-y4-4fk">
@@ -941,7 +949,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="cSl-pA-aLP">
                                             <connections>
-                                                <segue destination="e2J-qK-OTL" kind="unwind" unwindAction="unwindToHomeView:" id="NhL-Rm-WPr"/>
+                                                <segue destination="e2J-qK-OTL" kind="unwind" identifier="saveNewMoment" unwindAction="unwindToHomeView:" id="NhL-Rm-WPr"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -998,6 +1006,5 @@
         <image name="newpage" width="25" height="25"/>
         <image name="personal_icon" width="25" height="25"/>
         <image name="rightArrow" width="64" height="64"/>
-        <image name="today" width="100" height="100"/>
     </resources>
 </document>
