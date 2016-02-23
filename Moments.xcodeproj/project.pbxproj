@@ -115,6 +115,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7678347D1C7D147800FC1B96 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				7605EF051C77852A002FB013 /* CalendarViewController.swift */,
+				7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
+		7678347E1C7D14A000FC1B96 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				46119D321C76CC1B00DB5F12 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		7678347F1C7D14AF00FC1B96 /* NewMoment */ = {
+			isa = PBXGroup;
+			children = (
+				ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */,
+				D05674011C7C601E002AEDB3 /* NewMomentSecondViewController.swift */,
+				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
+				D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */,
+				D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */,
+			);
+			name = NewMoment;
+			sourceTree = "<group>";
+		};
+		767834801C7D14E100FC1B96 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		767834811C7D14FD00FC1B96 /* MomentsMode */ = {
+			isa = PBXGroup;
+			children = (
+				ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */,
+			);
+			name = MomentsMode;
+			sourceTree = "<group>";
+		};
+		767834821C7D151B00FC1B96 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				7605932F1C7BDAB000A26DDF /* MomentEntry.swift */,
+				760593311C7BDBFB00A26DDF /* ItemEntry.swift */,
+				760593331C7BDC1D00A26DDF /* CategoryEntry.swift */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		767834831C7D152D00FC1B96 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */,
+				D045946F1C7AACCD00A1AD12 /* REAME - Agenda */,
+				468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
 		769DD7E81C76AABE00FC883E = {
 			isa = PBXGroup;
 			children = (
@@ -140,30 +205,21 @@
 		769DD7F31C76AABE00FC883E /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				7678347E1C7D14A000FC1B96 /* Home */,
+				7678347D1C7D147800FC1B96 /* Calendar */,
+				7678347F1C7D14AF00FC1B96 /* NewMoment */,
+				767834811C7D14FD00FC1B96 /* MomentsMode */,
+				767834801C7D14E100FC1B96 /* Settings */,
+				767834821C7D151B00FC1B96 /* DataModel */,
+				767834831C7D152D00FC1B96 /* Others */,
 				769DD7F41C76AABE00FC883E /* AppDelegate.swift */,
-				D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */,
 				769DD7F61C76AABE00FC883E /* ViewController.swift */,
 				769DD7F81C76AABE00FC883E /* Main.storyboard */,
-				D05674011C7C601E002AEDB3 /* NewMomentSecondViewController.swift */,
 				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
-				46119D321C76CC1B00DB5F12 /* HomeViewController.swift */,
-				7605EF051C77852A002FB013 /* CalendarViewController.swift */,
-				7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */,
-				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
-				ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */,
-				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
-				ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */,
-				D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */,
 				769DD7FE1C76AABE00FC883E /* Assets.xcassets */,
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
 				769DD8031C76AABE00FC883E /* Info.plist */,
 				769DD7FB1C76AABE00FC883E /* Moments.xcdatamodeld */,
-				D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */,
-				D045946F1C7AACCD00A1AD12 /* REAME - Agenda */,
-				468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */,
-				7605932F1C7BDAB000A26DDF /* MomentEntry.swift */,
-				760593311C7BDBFB00A26DDF /* ItemEntry.swift */,
-				760593331C7BDC1D00A26DDF /* CategoryEntry.swift */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
