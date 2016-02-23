@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -460,20 +460,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2H-cO-x1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2862.5" y="377.5"/>
+            <point key="canvasLocation" x="2862.5" y="352.5"/>
         </scene>
         <!--Moments-->
         <scene sceneID="kQG-kR-We8">
             <objects>
-                <viewController id="15x-v9-DXg" sceneMemberID="viewController">
+                <viewController id="15x-v9-DXg" customClass="MomentsViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QTg-c0-iW5"/>
                         <viewControllerLayoutGuide type="bottom" id="cgM-N5-aIM"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ntk-0J-uLe">
+                    <view key="view" contentMode="scaleToFill" id="Ntk-0J-uLe" customClass="Moments">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHV-7D-7ig">
+                                <rect key="frame" x="31" y="256" width="312" height="30"/>
+                                <color key="backgroundColor" red="0.95772571200000001" green="0.99345012629999996" blue="0.76752747730000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Start Date:"/>
+                                <connections>
+                                    <action selector="setStartDate:" destination="15x-v9-DXg" eventType="touchUpInside" id="xqR-UB-YNO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKj-DI-2Xl">
+                                <rect key="frame" x="31" y="311" width="312" height="30"/>
+                                <color key="backgroundColor" red="0.95772571200000001" green="0.99345012629999996" blue="0.76752747730000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="End Date:"/>
+                                <connections>
+                                    <action selector="setEndDate:" destination="15x-v9-DXg" eventType="touchUpInside" id="C9g-GS-jsj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnl-fs-bcd">
+                                <rect key="frame" x="164" y="455" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.95772571200000001" green="0.99345012629999996" blue="0.76752747730000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="start"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                     </view>
                     <navigationItem key="navigationItem" title="Moments" id="aN6-wd-ScQ"/>
                 </viewController>
@@ -645,12 +671,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="                                   We are X-Men" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8NE-qu-TOK">
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YEW-em-rrD">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8NE-qu-TOK">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Moments is the ultimate tool for combining and organizing the memories that you have recorded; It supports 4 multimedia types, provides 2 methods for creating a 'moment', and accommodates various organization methods. Capture your memories with Moments!</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -752,7 +784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Soj-dp-MU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2677" y="976"/>
+            <point key="canvasLocation" x="2649" y="942"/>
         </scene>
         <!--audioPlayer-->
         <scene sceneID="28X-uF-uKn">
@@ -884,7 +916,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqS-gl-wjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3212.5" y="1234.5"/>
+            <point key="canvasLocation" x="3244.5" y="1200.5"/>
         </scene>
         <!--New Moment Second View Controller-->
         <scene sceneID="CaV-jI-4Wg">
@@ -923,7 +955,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqU-WN-XYv">
                                 <rect key="frame" x="20" y="94" width="57" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LwG-1o-zGd">
@@ -934,7 +966,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeO-qi-ctb">
                                 <rect key="frame" x="-1" y="146" width="99" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -948,7 +980,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xU-WM-tPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3455.5" y="377.5"/>
+            <point key="canvasLocation" x="3329.5" y="352.5"/>
         </scene>
     </scenes>
     <resources>

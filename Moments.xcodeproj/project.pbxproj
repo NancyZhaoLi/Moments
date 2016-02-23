@@ -25,6 +25,7 @@
 		769DD80D1C76AABE00FC883E /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD80C1C76AABE00FC883E /* MomentsTests.swift */; };
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
 		ADD431C11C77ED1800DA345E /* NewMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */; };
+		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */; };
 		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
 		D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */ = {isa = PBXBuildFile; fileRef = D045946F1C7AACCD00A1AD12 /* REAME - Agenda */; };
@@ -75,6 +76,7 @@
 		769DD8171C76AABE00FC883E /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		769DD8191C76AABE00FC883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentViewController.swift; sourceTree = "<group>"; };
+		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerViewController.swift; path = ../AudioPlayerViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
 				ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */,
 				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
+				ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */,
 				D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */,
 				769DD7FE1C76AABE00FC883E /* Assets.xcassets */,
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
@@ -393,6 +396,7 @@
 				46119D351C76CC3A00DB5F12 /* UserSettingViewController.swift in Sources */,
 				760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */,
 				ADD431C11C77ED1800DA345E /* NewMomentViewController.swift in Sources */,
+				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,
 				760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */,
 				769DD7FD1C76AABE00FC883E /* Moments.xcdatamodeld in Sources */,
 				769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */,
