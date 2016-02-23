@@ -71,6 +71,7 @@ class NewMomentSecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /*
     @IBAction func saveMoment(sender: AnyObject) {
         
         self.moment = MomentEntry(id: self.momentId!, date: self.momentDate, title: self.momentTitle!)
@@ -91,6 +92,7 @@ class NewMomentSecondViewController: UIViewController {
 
         }
     }
+*/
     
     @IBAction func goBack(sender: AnyObject) {
         print("go back clicked")
