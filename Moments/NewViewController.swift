@@ -40,7 +40,7 @@ class NewViewController: UIViewController,UIPopoverPresentationControllerDelegat
         print("Image Selected")
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        let frame = CGRectMake(self.touchLocation!.x,self.touchLocation!.y,80,80)
+        let frame = CGRectMake(self.touchLocation!.x,self.touchLocation!.y,200,200)
         let imageView = ImageItemViewController(frame: frame)
         imageView.image = image
         self.view.addSubview(imageView)
