@@ -16,8 +16,7 @@ frame : CGRect - [locationX, locationY, width, height]
 content : String
 rotaion : Float - in radian
 type : Int16 - ["text"=0, "image"=1 "audio"=2, "video"=3, "sticker"=4]
-otherAttribute : [colour: UIColor, font: String, size: Float] (text)
-                 nil (others)
+otherAttribute : [colour: UIColor, font: UIFont] (text)
 priority : Int16 - priority of item in the moment
 
 -----------------------------------------------------------------
