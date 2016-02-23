@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
-Class MomentEntry {
-  var id : Int
-  var date : NSDate
+class MomentEntry {
+  let id : Int
+  let date : NSDate
   var title: String
   
   var textItemId: [Int]?
@@ -23,7 +24,7 @@ Class MomentEntry {
   var favourite : Bool = false
   var backgroundColour : UIColor = UIColor.whiteColor()
   
-  init(id : Int, date: NSData, title: String) {
+  init(id : Int, date: NSDate, title: String) {
     self.id = id
     self.date = date
     self.title = title

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 struct TextItemOtherAttribute {
@@ -23,10 +24,10 @@ struct TextItemOtherAttribute {
   }
 }
 
-Class ItemEntry {
-  var id : Int
-  var type : Int
-  var frame : CGRect 
+class ItemEntry {
+  let id : Int
+  let type : Int
+  var frame : CGRect
   var content : String?
   var rotation : Float = 0
   var otherAttribute : TextItemOtherAttribute = TextItemOtherAttribute()
@@ -37,7 +38,7 @@ Class ItemEntry {
     self.frame = frame
   }
   
-  func setContent(content: Int) {
+  func setContent(content: String) {
     self.content = content
   }
   
