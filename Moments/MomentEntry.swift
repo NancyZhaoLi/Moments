@@ -41,7 +41,7 @@ Class MomentEntry {
     self.backgroundColour = colour
   }
   
-  func setFavourite(favourite : Boolean) {
+  func setFavourite(favourite : Bool) {
     self.favourite = favourite
   }
   
