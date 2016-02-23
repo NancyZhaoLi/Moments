@@ -10,7 +10,7 @@ import Foundation
 
 
 struct TextItemOtherAttribute {
-  var colour : UIColor = UIColor.blackColor
+  var colour : UIColor = UIColor.blackColor()
   var font : String = "Arial"
   var size : Int = 10
   
