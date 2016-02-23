@@ -12,23 +12,13 @@ import AVKit
 import AVFoundation
 import CoreData
 
-class NewViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
+class NewMomentViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, NewTextViewControllerDelegate, MPMediaPickerControllerDelegate {
     
     var touchLocation: CGPoint?
     var touchMode : String? = "View"
-    @IBOutlet weak var momentTitle: UITextField!
+
+    @IBA
     
-    @IBAction func selectTouchMode(sender: AnyObject) {
-        print ("button selected")
-        if let title = sender.currentTitle {
-            touchMode = title
-            print ("mode selected" + String(touchMode))
-        }
-    }
-    
-    @IBAction func save(sender: AnyObject) {
-        
-    }
     
     func resetView (){
         touchMode = "View"

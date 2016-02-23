@@ -10,44 +10,44 @@ import Foundation
 import UIKit
 
 class MomentEntry {
-  let id : Int
-  let date : NSDate
-  var title: String
+    let id : Int64
+    let date : NSDate
+    var title: String
   
-  var textItemId: [Int]?
-  var imageItemId: [Int]?
-  var audioItemId: [Int]?
-  var videoItemId: [Int]?
-  var stickerItemId: [Int]?
+    var textItemId: [Int64]?
+    var imageItemId: [Int64]?
+    var audioItemId: [Int64]?
+    var videoItemId: [Int64]?
+    var stickerItemId: [Int64]?
 
-  var categoryName : String = "Uncategorized"
-  var favourite : Bool = false
-  var backgroundColour : UIColor = UIColor.whiteColor()
+    var categoryName : String = "Uncategorized"
+    var favourite : Bool = false
+    var backgroundColour : UIColor = UIColor.whiteColor()
   
-  init(id : Int, date: NSDate, title: String) {
-    self.id = id
-    self.date = date
-    self.title = title
-  }
+    init(id : Int64, date: NSDate, title: String) {
+        self.id = id
+        self.date = date
+        self.title = title
+    }
   
-  func setIds(textItemId: [Int], imageItemId: [Int], audioItemId: [Int], videoItemId: [Int], stickerItemId : [Int]){
-    self.textItemId = textItemId
-    self.imageItemId = imageItemId
-    self.audioItemId = audioItemId
-    self.videoItemId = videoItemId
-    self.stickerItemId = stickerItemId
-  }
+    func setIds(textItemId: [Int64], imageItemId: [Int64], audioItemId: [Int64], videoItemId: [Int64], stickerItemId : [Int64]){
+        self.textItemId = textItemId
+        self.imageItemId = imageItemId
+        self.audioItemId = audioItemId
+        self.videoItemId = videoItemId
+        self.stickerItemId = stickerItemId
+    }
   
-  func setBackgroundColour(colour: UIColor) {
-    self.backgroundColour = colour
-  }
+    func setBackgroundColour(colour: UIColor) {
+        self.backgroundColour = colour
+    }
   
-  func setFavourite(favourite : Bool) {
-    self.favourite = favourite
-  }
+    func setFavourite(favourite : Bool) {
+        self.favourite = favourite
+    }
   
-  func setCategoryName(categoryName : String) {
-    self.categoryName = categoryName
-  }
-  
+    func setCategoryName(categoryName : String) {
+        self.categoryName = categoryName
+    }
+    
 }
