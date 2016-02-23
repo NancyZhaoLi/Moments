@@ -28,14 +28,16 @@ Fetch request
 -------------
 let request = NSFetchRequest(entityName: "entityName")
 request.predicate = NSPredicate(formate: "predicateString", argForPredicate)
-
-NOTE: if you just want to outline of the request, do request.returnsObjectsAsFaults = true
+request.returnsObjectsAsFaults = false
+//NOTE: if you just want to outline of the request, do request.returnsObjectsAsFaults = true
 
 do {
     let results = try context.executeFetchRequest(request)
     if result.count > 0 {
         for result in results as! [NSManagedObject] {
-
+            if let username = result.valueForKey("username") as? String{
+                print(username)
+            }
         }
     }
 } catch {
@@ -44,7 +46,7 @@ do {
 
 Operations On Result
 --------------------
-DELETE : context.deleteObject(r)
+DELETE : context.deleteObject(result)
 GET VALUE : result.valueForKey("attributeName")
 SET VALUE : result.setValue(value, forKey: "attributeName")
 CAST VALUE TO KNOWN DATATYPE :
@@ -54,7 +56,8 @@ if let value = result.valueForKey("attributeName") as? Datatype {
 
 Predicate String
 ----------------
-
+let request = NSFetchRequest(entityName: "Users")
+request.predicate = NSPredicate(format: "username = %@", "Tommy")
 
 
 Relationship
