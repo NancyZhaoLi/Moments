@@ -930,7 +930,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JgN-1P-6va">
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JgN-1P-6va">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <items>
                                     <navigationItem id="U6z-mM-Qwh">
@@ -971,6 +971,12 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JgN-1P-6va" firstAttribute="centerX" secondItem="9Jz-Y2-Bku" secondAttribute="centerX" id="2ow-wS-iD7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JgN-1P-6va" secondAttribute="trailing" constant="-20" id="7nB-RJ-DPS"/>
+                            <constraint firstItem="JgN-1P-6va" firstAttribute="leading" secondItem="9Jz-Y2-Bku" secondAttribute="leadingMargin" constant="-20" id="DjY-Rj-wKq"/>
+                            <constraint firstItem="JgN-1P-6va" firstAttribute="top" secondItem="Sti-a1-Bj4" secondAttribute="bottom" constant="8" id="uKe-Hs-h1e"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
