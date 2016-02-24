@@ -50,6 +50,7 @@ class NewMomentManager {
     var momentTitle : String?
     var favourite : Bool = false
     var momentCategory : String = "Uncategorized"
+    var momentColour : UIColor = UIColor.whiteColor()
     
     var moment : MomentEntry?
     var idPrefix : String?
@@ -62,8 +63,7 @@ class NewMomentManager {
     
     var testMode : Bool = true
     var debugPrefix : String = "[NewMomentManager] - "
-    
-    init() {}
+
     
     func setCanvas(canvas: NewMomentCanvasViewController) {
         self.canvas = canvas
@@ -167,12 +167,12 @@ class NewMomentManager {
         return nil
     }
     
-    func saveMoment() {
+    func saveMomentEntry() {
         setIdPrefix()
         setIdSuffix()
         updateTitle()
         updateColour()
-        self.moment = MomentEntry.init(getId(), date: self.momentDate, title: self.momentTitle!)
+        self.moment = MomentEntry.init(id: getId(), date: self.momentDate, title: self.momentTitle!)
         if self.favourite {
             self.moment!.setFavourite(self.favourite)
         }
@@ -198,7 +198,7 @@ class NewMomentManager {
     }
     
     func updateColour() -> Bool {
-        
+        return true
     }
     
     func getId() -> Int64 {

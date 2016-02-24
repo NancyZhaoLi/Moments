@@ -27,6 +27,9 @@ class NewMomentSavePageViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "saveNewMoment"{
+            self.manager!.saveMomentEntry()
+        }
     }
     
     @IBAction func goBack(sender: AnyObject) {
@@ -46,7 +49,6 @@ class NewMomentSavePageViewController: UIViewController {
     }
     
     func saveMomentEntry() -> MomentEntry {
-        self.manager!.saveMoment()
         return self.manager!.moment!
     }
 
