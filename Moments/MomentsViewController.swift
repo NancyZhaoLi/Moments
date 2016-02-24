@@ -51,14 +51,14 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .MediumStyle
         timeFormatter.timeStyle = .NoStyle
-        startDate.text = timeFormatter.stringFromDate(sender.date)
+        startDate.text = "Start Date: " + timeFormatter.stringFromDate(sender.date)
     }
     
     func handleEndDatePicker(sender: UIDatePicker){
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateStyle = .MediumStyle
         timeFormatter.timeStyle = .NoStyle
-        endDate.text = timeFormatter.stringFromDate(sender.date)
+        endDate.text = "End Date: " + timeFormatter.stringFromDate(sender.date)
     }
     
     override func viewDidLoad(){
