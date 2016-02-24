@@ -8,8 +8,9 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
 
-class AudioPlayerViewController: UIViewController {
+class AudioItemViewController: UIViewController {
 
     var player: AVAudioPlayer?
     var havePlayed: Bool = false
@@ -62,4 +63,32 @@ class AudioPlayerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+class AudioItemManager : ItemManager {
+
+    override init() {
+        super.init()
+        self.type = ItemType.Audio
+        self.debugPrefix = "[AudioItemManager] -"
+    }
+    
+    func addAudio(audio: MPMediaItem) {
+        let debugPrefix = "[addAudio] - "
+        
+        if let url = audio.assetURL {
+            do {
+                let audioPlayer = try AVAudioPlayer(contentsOfURL: url)
+                if let audioItemVC = super.canvas!.storyboard?.instantiateViewControllerWithIdentifier("audioPlayer") as? AudioItemViewController {
+                    audioItemVC.player = audioPlayer
+                
+                    super.canvas!.view.addSubview(audioItemVC.view)
+                    super.canvas!.addChildViewController(audioItemVC)
+                }
+            } catch {
+                debug(debugPrefix + "audio player cannot be created")
+            }
+        }
+    }
+
 }

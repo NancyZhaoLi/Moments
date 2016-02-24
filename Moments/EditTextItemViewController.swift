@@ -8,19 +8,19 @@
 
 import UIKit
 
-protocol NewTextViewControllerDelegate {
-    func addText(controller: NewTextViewController, textView: UITextView)
-    func cancelAddItem(controller: NewTextViewController)
+protocol EditTextItemViewControllerDelegate {
+    func addText(controller: EditTextItemViewController, textView: UITextView)
+    func cancelAddTextItem(controller: EditTextItemViewController)
 }
 
 
-class NewTextViewController: UIViewController {
+class EditTextItemViewController: UIViewController {
 
-    var delegate : NewTextViewControllerDelegate?
+    var delegate : EditTextItemViewControllerDelegate?
     
     @IBAction func cancelAddText(sender: AnyObject) {
         if let delegate = self.delegate {
-            delegate.cancelAddItem(self)
+            delegate.cancelAddTextItem(self)
         }
     }
     

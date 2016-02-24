@@ -8,14 +8,12 @@
 
 import UIKit
 
-class ImageItemViewController: UIImageView {
+class ImageItemView: UIImageView {
     var lastLocation:CGPoint = CGPointMake(0,0)
     var url : String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let touchRecognizer = UIPanGestureRecognizer(target:self, action: "detectTouch:")
-        //self.gestureRecognizers = [touchRecognizer]
     }
     
     required init?(ßcoder aDecoder: NSCoder) {
@@ -38,7 +36,83 @@ class ImageItemViewController: UIImageView {
     }
     func detectTouch(recognizer:UIPanGestureRecognizer){
         print("detect")
-        let translation = recognizer.translationInView(self.superview!)
+       let translation = recognizer.translationInView(self.superview!)
         self.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
     }
 }
+
+class ImageItemViewController: UIViewController {
+    
+    var manager: ImageItemManager?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    convenience init() {
+        self.init(manager: nil)
+    }
+    
+    init(manager: ImageItemManager?) {
+        super.init(nibName: nil, bundle: nil)
+        self.manager = manager
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
+        
+        let imageSize: CGFloat = 200.0
+        let frame = CGRectMake(location.x, location.y, imageSize, imageSize)
+        let imageView = ImageItemView(frame: frame)
+        
+        imageView.image = image
+        if let editInfo = editingInfo {
+            if let url = editInfo[UIImagePickerControllerReferenceURL] as? NSURL {
+                imageView.url = url.absoluteString
+            }
+        }
+        self.view = imageView
+    }
+}
+
+class ImageItemManager : ItemManager {
+    private var imageVCs : [ImageItemViewController] = [ImageItemViewController]()
+    
+    override init() {
+        super.init()
+        super.type = ItemType.Image
+        super.debugPrefix = "[ImageItemManager] - "
+    }
+    
+    func addNewImageVC(newImageVC: ImageItemViewController) {
+        self.imageVCs.append(newImageVC)
+        
+        super.canvas!.view.addSubview(newImageVC.view)
+        super.canvas!.addChildViewController(newImageVC)
+    }
+    
+    func deleteImage(deletedImageVC: ImageItemViewController) {
+        
+    }
+    
+    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
+        var newImageVC = ImageItemViewController(manager: self)
+        newImageVC.addImage(image, location: location, editingInfo: editingInfo)
+            
+        addNewImageVC(newImageVC)
+    }
+}
+
+
+
+
+
+
+

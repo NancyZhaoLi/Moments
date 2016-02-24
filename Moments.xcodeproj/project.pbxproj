@@ -40,13 +40,19 @@
 		769DD8021C76AABE00FC883E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */; };
 		769DD80D1C76AABE00FC883E /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD80C1C76AABE00FC883E /* MomentsTests.swift */; };
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
-		ADD431C11C77ED1800DA345E /* NewMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */; };
+		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
-		D02AA2371C7A085B00B2F88C /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */; };
+		D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */; };
 		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
 		D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */ = {isa = PBXBuildFile; fileRef = D045946F1C7AACCD00A1AD12 /* REAME - Agenda */; };
-		D04EEB701C79CFB600911661 /* NewTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */; };
-		D05674021C7C601E002AEDB3 /* NewMomentSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05674011C7C601E002AEDB3 /* NewMomentSecondViewController.swift */; };
+		D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */; };
+		D048BEEB1C7D971800BD3115 /* VideoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */; };
+		D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */; };
+		D048BEEF1C7DA99A00BD3115 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEE1C7DA99A00BD3115 /* ItemManager.swift */; };
+		D048BEF51C7DAE4500BD3115 /* StickerItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */; };
+		D048BEF71C7DC10300BD3115 /* NewMomentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */; };
+		D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */; };
+		D05674021C7C601E002AEDB3 /* NewMomentSavePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */; };
 		DCA83739988F7ABCDC140EC4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7C33052FBC7C3E84D8CBFA /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,15 +113,21 @@
 		769DD8131C76AABE00FC883E /* MomentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD8171C76AABE00FC883E /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		769DD8191C76AABE00FC883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentViewController.swift; sourceTree = "<group>"; };
+		ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentCanvasViewController.swift; sourceTree = "<group>"; };
 		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerViewController.swift; path = ../AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioItemViewController.swift; path = ../AudioItemViewController.swift; sourceTree = "<group>"; };
 		D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Core Data Tutorial"; sourceTree = "<group>"; };
 		D045946F1C7AACCD00A1AD12 /* REAME - Agenda */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Agenda"; sourceTree = "<group>"; };
-		D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTextViewController.swift; sourceTree = "<group>"; };
-		D05674011C7C601E002AEDB3 /* NewMomentSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentSecondViewController.swift; sourceTree = "<group>"; };
+		D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherCanvasOptionViewController.swift; sourceTree = "<group>"; };
+		D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemViewController.swift; sourceTree = "<group>"; };
+		D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemViewController.swift; sourceTree = "<group>"; };
+		D048BEEE1C7DA99A00BD3115 /* ItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
+		D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemViewController.swift; sourceTree = "<group>"; };
+		D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentManager.swift; sourceTree = "<group>"; };
+		D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemViewController.swift; sourceTree = "<group>"; };
+		D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentSavePageViewController.swift; sourceTree = "<group>"; };
 		EA7C33052FBC7C3E84D8CBFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -165,11 +177,17 @@
 		7678347F1C7D14AF00FC1B96 /* NewMoment */ = {
 			isa = PBXGroup;
 			children = (
-				ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */,
-				D05674011C7C601E002AEDB3 /* NewMomentSecondViewController.swift */,
+				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
+				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
+				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
+				D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */,
+				D048BEEE1C7DA99A00BD3115 /* ItemManager.swift */,
+				D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */,
 				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
-				D04EEB6F1C79CFB600911661 /* NewTextViewController.swift */,
-				D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */,
+				D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */,
+				D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */,
+				D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */,
+				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
 			);
 			name = NewMoment;
 			sourceTree = "<group>";
@@ -502,34 +520,40 @@
 			files = (
 				7627633E1C7D646C00F417F0 /* ImageItem+CoreDataProperties.swift in Sources */,
 				762763391C7D646C00F417F0 /* VideoItem.swift in Sources */,
-				D04EEB701C79CFB600911661 /* NewTextViewController.swift in Sources */,
+				D048BEF51C7DAE4500BD3115 /* StickerItemViewController.swift in Sources */,
+				D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */,
 				7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */,
 				7627633B1C7D646C00F417F0 /* AudioItem.swift in Sources */,
 				7627633A1C7D646C00F417F0 /* AudioItem+CoreDataProperties.swift in Sources */,
 				7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */,
 				762763411C7D646C00F417F0 /* TextItem.swift in Sources */,
-				D02AA2371C7A085B00B2F88C /* AudioPlayerViewController.swift in Sources */,
+				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
+				D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */,
 				762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */,
 				468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */,
 				7627633D1C7D646C00F417F0 /* Category.swift in Sources */,
 				762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */,
+				D048BEEB1C7D971800BD3115 /* VideoItemViewController.swift in Sources */,
 				7627633F1C7D646C00F417F0 /* ImageItem.swift in Sources */,
 				760593321C7BDBFB00A26DDF /* TextItemEntry.swift in Sources */,
 				46119D351C76CC3A00DB5F12 /* UserSettingViewController.swift in Sources */,
+				D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */,
 				762763401C7D646C00F417F0 /* TextItem+CoreDataProperties.swift in Sources */,
 				762763421C7D646C00F417F0 /* Moment+CoreDataProperties.swift in Sources */,
 				760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */,
-				ADD431C11C77ED1800DA345E /* NewMomentViewController.swift in Sources */,
+				ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */,
 				762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */,
 				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,
+				D048BEF71C7DC10300BD3115 /* NewMomentManager.swift in Sources */,
 				760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */,
 				762763431C7D646C00F417F0 /* Moment.swift in Sources */,
 				7627633C1C7D646C00F417F0 /* Category+CoreDataProperties.swift in Sources */,
 				762763381C7D646C00F417F0 /* VideoItem+CoreDataProperties.swift in Sources */,
 				769DD7FD1C76AABE00FC883E /* Moments.xcdatamodeld in Sources */,
 				769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */,
-				D05674021C7C601E002AEDB3 /* NewMomentSecondViewController.swift in Sources */,
+				D05674021C7C601E002AEDB3 /* NewMomentSavePageViewController.swift in Sources */,
 				769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */,
+				D048BEEF1C7DA99A00BD3115 /* ItemManager.swift in Sources */,
 				46119D331C76CC1B00DB5F12 /* HomeViewController.swift in Sources */,
 				468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */,
 			);

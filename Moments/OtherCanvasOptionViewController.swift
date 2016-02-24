@@ -1,36 +1,24 @@
 //
-//  HomeViewController.swift
+//  OtherOptionViewController.swift
 //  Moments
 //
-//  Created by Mengyi LUO on 2016-02-18.
+//  Created by Xin Lin on 2016-02-23.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class OtherCanvasOptionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("home loaded")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func unwindToHomeView(segue: UIStoryboardSegue) {
-        if let NewMomentSavePageVC = segue.sourceViewController as? NewMomentSavePageViewController {
-            print(NewMomentSavePageVC)
-            
-        }
-    }
-    
-    func saveNewMomentToCoreData(moment:MomentEntry) {
-        print("saveNewMoment")
     }
     
 
