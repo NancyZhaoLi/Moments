@@ -17,6 +17,7 @@
 		760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760593331C7BDC1D00A26DDF /* CategoryEntry.swift */; };
 		7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605EF051C77852A002FB013 /* CalendarViewController.swift */; };
 		7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */; };
+		767834851C7D26BF00FC1B96 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767834841C7D26BF00FC1B96 /* DataController.swift */; };
 		769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F41C76AABE00FC883E /* AppDelegate.swift */; };
 		769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F61C76AABE00FC883E /* ViewController.swift */; };
 		769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769DD7F81C76AABE00FC883E /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		760593331C7BDC1D00A26DDF /* CategoryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryEntry.swift; sourceTree = "<group>"; };
 		7605EF051C77852A002FB013 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayViewController.swift; sourceTree = "<group>"; };
+		767834841C7D26BF00FC1B96 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		769DD7F11C76AABE00FC883E /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD7F41C76AABE00FC883E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		769DD7F61C76AABE00FC883E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				7605932F1C7BDAB000A26DDF /* MomentEntry.swift */,
 				760593311C7BDBFB00A26DDF /* ItemEntry.swift */,
 				760593331C7BDC1D00A26DDF /* CategoryEntry.swift */,
+				767834841C7D26BF00FC1B96 /* DataController.swift */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -178,6 +181,13 @@
 				468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */,
 			);
 			name = Others;
+			sourceTree = "<group>";
+		};
+		767834881C7D3EC600FC1B96 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
 		769DD7E81C76AABE00FC883E = {
@@ -205,6 +215,7 @@
 		769DD7F31C76AABE00FC883E /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				767834881C7D3EC600FC1B96 /* CoreDataModel */,
 				7678347E1C7D14A000FC1B96 /* Home */,
 				7678347D1C7D147800FC1B96 /* Calendar */,
 				7678347F1C7D14AF00FC1B96 /* NewMoment */,
@@ -460,6 +471,7 @@
 				760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */,
 				769DD7FD1C76AABE00FC883E /* Moments.xcdatamodeld in Sources */,
 				769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */,
+				767834851C7D26BF00FC1B96 /* DataController.swift in Sources */,
 				D05674021C7C601E002AEDB3 /* NewMomentSecondViewController.swift in Sources */,
 				769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */,
 				46119D331C76CC1B00DB5F12 /* HomeViewController.swift in Sources */,

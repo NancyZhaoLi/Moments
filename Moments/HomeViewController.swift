@@ -23,10 +23,18 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func unwindToHomeView(segue: UIStoryboardSegue) {
-        if let newMomentSecondViewController = segue.sourceViewController as? NewMomentSecondViewController {
-            print("saveNewMoment")
+        if let NewMomentSecondViewController = segue.sourceViewController as? NewMomentSecondViewController {
+            
+            if let moment:MomentEntry = NewMomentSecondViewController.moment{
+                saveNewMomentToCoreData(moment)
+            }
         }
     }
+    
+    func saveNewMomentToCoreData(moment:MomentEntry) {
+        print("saveNewMoment")
+    }
+    
 
     /*
     // MARK: - Navigation

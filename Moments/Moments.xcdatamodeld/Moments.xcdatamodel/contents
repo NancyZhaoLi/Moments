@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Automatic">
-    <entity name="Category" syncable="YES">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="AudioItem" representedClassName=".AudioItem" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="frame" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="rotation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedAudioItem" inverseEntity="Moment" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName=".Category" syncable="YES">
         <attribute name="colour" attributeType="Transformable" syncable="YES"/>
-        <attribute name="momentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="containedMoment" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Moment" inverseName="inCategory" inverseEntity="Moment" syncable="YES"/>
     </entity>
-    <entity name="Item" syncable="YES">
+    <entity name="ImageItem" representedClassName=".ImageItem" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="frame" attributeType="Transformable" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="otherAttribute" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="rotation" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="type" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedItem" inverseEntity="Moment" syncable="YES"/>
+        <attribute name="frame" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="rotation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedImageItem" inverseEntity="Moment" syncable="YES"/>
     </entity>
-    <entity name="Moment" syncable="YES">
-        <attribute name="audioItemId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    <entity name="Moment" representedClassName=".MomentEntryMO" syncable="YES">
         <attribute name="backgroundColour" attributeType="Transformable" syncable="YES"/>
-        <attribute name="categoryName" attributeType="String" syncable="YES"/>
         <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="favourite" attributeType="Boolean" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="imageItemId" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="stickerItemId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="textItemId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <attribute name="videoItemId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="containedItem" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Item" inverseName="inMoment" inverseEntity="Item" syncable="YES"/>
+        <relationship name="containedAudioItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AudioItem" inverseName="inMoment" inverseEntity="AudioItem" syncable="YES"/>
+        <relationship name="containedImageItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ImageItem" inverseName="inMoment" inverseEntity="ImageItem" syncable="YES"/>
+        <relationship name="containedTextItem" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TextItem" inverseName="inMoment" inverseEntity="TextItem" syncable="YES"/>
+        <relationship name="containedVideoItem" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VideoItem" inverseName="inMoment" inverseEntity="VideoItem" syncable="YES"/>
         <relationship name="inCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="containedMoment" inverseEntity="Category" syncable="YES"/>
     </entity>
+    <entity name="TextItem" representedClassName=".TextItem" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frame" attributeType="Transformable" syncable="YES"/>
+        <attribute name="otherAttribute" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="rotation" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedTextItem" inverseEntity="Moment" syncable="YES"/>
+    </entity>
+    <entity name="VideoItem" representedClassName=".VideoItem" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frame" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="rotation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedVideoItem" inverseEntity="Moment" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Category" positionX="-288" positionY="162" width="128" height="103"/>
-        <element name="Item" positionX="-288" positionY="-43" width="162" height="148"/>
-        <element name="Moment" positionX="-72" positionY="54" width="128" height="240"/>
+        <element name="Category" positionX="-288" positionY="162" width="128" height="90"/>
+        <element name="TextItem" positionX="-288" positionY="-43" width="162" height="120"/>
+        <element name="Moment" positionX="-72" positionY="54" width="128" height="180"/>
+        <element name="VideoItem" positionX="-180" positionY="99" width="128" height="105"/>
+        <element name="ImageItem" positionX="-171" positionY="108" width="128" height="105"/>
+        <element name="AudioItem" positionX="-162" positionY="117" width="128" height="105"/>
     </elements>
 </model>

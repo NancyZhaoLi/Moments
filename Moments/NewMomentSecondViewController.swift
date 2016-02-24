@@ -70,6 +70,12 @@ class NewMomentSecondViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "saveNewMoment" {
+            moment = MomentEntry(id: self.momentId!, date: self.momentDate, title: self.momentTitle!)
+        }
+    }
 
     /*
     @IBAction func saveMoment(sender: AnyObject) {
