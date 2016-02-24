@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func unwindToHomeView(segue: UIStoryboardSegue) {
         if let NewMomentSavePageVC = segue.sourceViewController as? NewMomentSavePageViewController {
-            print(NewMomentSavePageVC)
+            print("saveNewMoment!!!")
             
         }
     }

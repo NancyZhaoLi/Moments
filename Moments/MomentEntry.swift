@@ -11,12 +11,18 @@ import UIKit
 
 class MomentEntry {
     let date : NSDate
+    let id: Int64
     var title: String
 
     var favourite : Bool = false
     var backgroundColour : UIColor = UIColor.whiteColor()
+    var textItemEntries = [TextItemEntry]()
+    var imageItemEntries = [ImageItemEntry]()
+    var audioItemEntries = [AudioItemEntry]()
+    var videoItemEntries = [VideoItemEntry]()
   
-    init(date: NSDate, title: String) {
+    init(id: Int64, date: NSDate, title: String) {
+        self.id = id
         self.date = date
         self.title = title
     }
@@ -27,6 +33,22 @@ class MomentEntry {
   
     func setFavourite(favourite : Bool) {
         self.favourite = favourite
+    }
+    
+    func addTextItemEntry(text: TextItemEntry) {
+        textItemEntries.append(text)
+    }
+    
+    func addImageItemEntry(image: ImageItemEntry) {
+        imageItemEntries.append(image)
+    }
+    
+    func addAudioItemEntry(audio: AudioItemEntry) {
+        audioItemEntries.append(audio)
+    }
+    
+    func addVideoItemEntry(video: VideoItemEntry) {
+        videoItemEntries.append(video)
     }
     
 }
