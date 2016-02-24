@@ -311,7 +311,7 @@
         <!--New-->
         <scene sceneID="zVO-y4-4fk">
             <objects>
-                <viewController id="k7V-YG-Yyz" customClass="NewMomentViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="k7V-YG-Yyz" customClass="NewMomentCanvasViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LLC-VO-BvC"/>
                         <viewControllerLayoutGuide type="bottom" id="oaS-gR-jjR"/>
@@ -389,7 +389,7 @@
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Scy-MT-s6P"/>
-                                    <barButtonItem title="0" style="plain" id="N93-s9-af5">
+                                    <barButtonItem title="+Item" style="plain" id="N93-s9-af5">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="K2B-2H-Izg">
                                             <rect key="frame" x="78" y="7" width="70" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -399,7 +399,7 @@
                                             </connections>
                                         </button>
                                     </barButtonItem>
-                                    <barButtonItem title="5" style="plain" id="9Hb-i4-H7O">
+                                    <barButtonItem title="View" style="plain" id="9Hb-i4-H7O">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n8I-rp-P6e">
                                             <rect key="frame" x="158" y="7" width="34" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -409,17 +409,19 @@
                                             </connections>
                                         </button>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" id="iSm-iZ-sgT">
+                                    <barButtonItem title="Other" style="plain" id="iSm-iZ-sgT">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fb3-Vu-Koo">
                                             <rect key="frame" x="202" y="7" width="50" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Other"/>
                                             <connections>
-                                                <action selector="otherOptions:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="N92-tU-jGn"/>
+                                                <segue destination="C6T-dM-x1C" kind="popoverPresentation" identifier="showOtherOptionPopover" popoverAnchorView="fb3-Vu-Koo" id="91B-UX-8h7">
+                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                </segue>
                                             </connections>
                                         </button>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" id="ReP-UI-2Wg">
+                                    <barButtonItem title="Fav?" style="plain" id="ReP-UI-2Wg">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xGc-HN-lol">
                                             <rect key="frame" x="262" y="7" width="50" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -430,7 +432,7 @@
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7pX-9w-7f8"/>
-                                    <barButtonItem style="plain" id="kyV-LL-9qO">
+                                    <barButtonItem title="Next" style="plain" id="kyV-LL-9qO">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vq0-nn-Sbt">
                                             <rect key="frame" x="324" y="7" width="35" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -459,9 +461,6 @@
                     <connections>
                         <outlet property="addItemBar" destination="TX4-wp-8i0" id="V8d-5a-rUt"/>
                         <outlet property="favouriteSetter" destination="xGc-HN-lol" id="Pbz-uV-6uz"/>
-                        <segue destination="C6T-dM-x1C" kind="popoverPresentation" identifier="showNewCompPopover" popoverAnchorView="K2B-2H-Izg" id="N9i-Lr-XK4">
-                            <popoverArrowDirection key="popoverArrowDirection" left="YES" right="YES"/>
-                        </segue>
                         <segue destination="hv9-Kf-qPs" kind="presentation" identifier="showNewTextModal" modalPresentationStyle="fullScreen" id="qe0-vV-499"/>
                         <segue destination="nYU-nk-Mw4" kind="presentation" identifier="newMomentToSavePageSegue" modalTransitionStyle="flipHorizontal" id="sSc-gK-7s7"/>
                     </connections>
@@ -776,51 +775,23 @@
             </objects>
             <point key="canvasLocation" x="1350.5" y="2529.5"/>
         </scene>
-        <!--New Item View Controller-->
+        <!--Other Canvas Option View Controller-->
         <scene sceneID="DZj-1M-O3o">
             <objects>
-                <viewController id="C6T-dM-x1C" customClass="NewItemViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="C6T-dM-x1C" customClass="OtherCanvasOptionViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sfY-yJ-Rt7"/>
                         <viewControllerLayoutGuide type="bottom" id="8v6-3J-rBd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tkc-8B-xUS">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7t-Rh-OCz">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
-                                <state key="normal" title="Text"/>
+                                <state key="normal" title="Background"/>
                                 <connections>
                                     <action selector="newTextPressed:" destination="C6T-dM-x1C" eventType="touchUpInside" id="Uuc-8u-fbN"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gm3-as-xVW">
-                                <rect key="frame" x="0.0" y="60" width="120" height="30"/>
-                                <state key="normal" title="Audio"/>
-                                <connections>
-                                    <action selector="newAudioPressed:" destination="C6T-dM-x1C" eventType="touchUpInside" id="X4D-Fm-xvf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdf-eF-Gor">
-                                <rect key="frame" x="0.0" y="90" width="120" height="30"/>
-                                <state key="normal" title="Video"/>
-                                <connections>
-                                    <action selector="newVideoPressed:" destination="C6T-dM-x1C" eventType="touchUpInside" id="lQK-od-3TT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVv-KM-5MJ">
-                                <rect key="frame" x="0.0" y="120" width="120" height="30"/>
-                                <state key="normal" title="Sticker"/>
-                                <connections>
-                                    <action selector="newVideoPressed:" destination="C6T-dM-x1C" eventType="touchUpInside" id="JcN-id-Pcz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psn-gd-uhs">
-                                <rect key="frame" x="0.0" y="28" width="120" height="30"/>
-                                <state key="normal" title="Image"/>
-                                <connections>
-                                    <action selector="newImagePressed:" destination="C6T-dM-x1C" eventType="touchUpInside" id="gqY-Xb-2qi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -828,7 +799,7 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="120" height="120"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="120" height="150"/>
+                    <size key="freeformSize" width="120" height="30"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Soj-dp-MU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -917,10 +888,10 @@
             </objects>
             <point key="canvasLocation" x="2386" y="747"/>
         </scene>
-        <!--New Text View Controller-->
+        <!--Edit Text Item View Controller-->
         <scene sceneID="Tno-F7-LDn">
             <objects>
-                <viewController id="hv9-Kf-qPs" customClass="NewTextViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hv9-Kf-qPs" customClass="EditTextItemViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8VC-VO-dg4"/>
                         <viewControllerLayoutGuide type="bottom" id="Eht-Ol-MhF"/>
@@ -1002,10 +973,10 @@
             </objects>
             <point key="canvasLocation" x="3244.5" y="1200.5"/>
         </scene>
-        <!--New Moment Second View Controller-->
+        <!--New Moment Save Page View Controller-->
         <scene sceneID="CaV-jI-4Wg">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" id="nYU-nk-Mw4" customClass="NewMomentSecondViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="flipHorizontal" id="nYU-nk-Mw4" customClass="NewMomentSavePageViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sti-a1-Bj4"/>
                         <viewControllerLayoutGuide type="bottom" id="yV4-LX-6qY"/>

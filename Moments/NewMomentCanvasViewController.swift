@@ -137,6 +137,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
             vc.modalPresentationStyle = .OverCurrentContext
             vc.delegate = self
         } else if segue.identifier == "showOtherOptionPopover" {
+            print("OtherOptionPopover segue begin")
             let vc = segue.destinationViewController as! OtherCanvasOptionViewController
             let popoverVC = vc.popoverPresentationController
             popoverVC?.delegate = self
