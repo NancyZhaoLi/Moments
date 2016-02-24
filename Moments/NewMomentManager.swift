@@ -190,7 +190,7 @@ class NewMomentManager {
     }
     
     func updateTitle() {
-        if let title = self.savePage!.momentCategoryDisplay.text {
+        if let title = self.savePage!.momentTitleDisplay.text {
             if title.isEmpty {
                 debug("[updateTitle] - empty text")
             } else {
