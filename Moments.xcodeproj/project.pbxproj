@@ -40,6 +40,7 @@
 		769DD8021C76AABE00FC883E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */; };
 		769DD80D1C76AABE00FC883E /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD80C1C76AABE00FC883E /* MomentsTests.swift */; };
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
+		AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */; };
 		ADD431C11C77ED1800DA345E /* NewMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioPlayerViewController.swift */; };
@@ -107,6 +108,8 @@
 		769DD8131C76AABE00FC883E /* MomentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD8171C76AABE00FC883E /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		769DD8191C76AABE00FC883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsPlayerViewController.swift; sourceTree = "<group>"; };
+		AD081AEB1C7D91A70084B286 /* moments.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = moments.mp4; sourceTree = "<group>"; };
 		ADD431C01C77ED1800DA345E /* NewMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentViewController.swift; sourceTree = "<group>"; };
 		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */,
+				AD081AEB1C7D91A70084B286 /* moments.mp4 */,
+				AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */,
 			);
 			name = MomentsMode;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				762763421C7D646C00F417F0 /* Moment+CoreDataProperties.swift in Sources */,
 				760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */,
 				ADD431C11C77ED1800DA345E /* NewMomentViewController.swift in Sources */,
+				AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */,
 				762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */,
 				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,
 				760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */,
