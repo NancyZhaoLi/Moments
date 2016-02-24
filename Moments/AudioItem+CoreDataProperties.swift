@@ -17,6 +17,6 @@ extension AudioItem {
     @NSManaged var content: NSNumber?
     @NSManaged var frame: NSObject?
     @NSManaged var rotation: NSNumber?
-    @NSManaged var inMoment: MomentEntryMO?
+    @NSManaged var inMoment: Moment?
 
 }

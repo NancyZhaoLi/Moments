@@ -18,6 +18,6 @@ extension TextItem {
     @NSManaged var frame: NSObject?
     @NSManaged var otherAttribute: NSObject?
     @NSManaged var rotation: NSNumber?
-    @NSManaged var inMoment: MomentEntryMO?
+    @NSManaged var inMoment: Moment?
 
 }

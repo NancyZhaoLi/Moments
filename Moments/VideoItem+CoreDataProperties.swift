@@ -17,6 +17,6 @@ extension VideoItem {
     @NSManaged var content: String?
     @NSManaged var frame: NSObject?
     @NSManaged var rotation: NSNumber?
-    @NSManaged var inMoment: MomentEntryMO?
+    @NSManaged var inMoment: Moment?
 
 }
