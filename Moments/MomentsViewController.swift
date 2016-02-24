@@ -8,35 +8,66 @@
 
 import UIKit
 
-class MomentsViewController: UIViewController {
+class MomentsViewController: UIViewController, UITextFieldDelegate {
 
+    var fav = false;
+    
     @IBOutlet weak var startDate: UITextField!
 
     
     @IBOutlet weak var endDate: UITextField!
 
-    
     @IBAction func startDate(sender: UITextField) {
-        print("clikc")
-        var datePickerView: UIDatePicker = UIDatePicker()
+        let datePickerView: UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.Date
         sender.inputView = datePickerView
-        datePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.TouchUpInside)
-        
+        datePickerView.addTarget(self, action: Selector("handleStartDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
+    }
+
+    @IBAction func endDate(sender: UITextField) {
+        let datePickerView: UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: Selector("handleEndDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
     }
     
-    func handleDatePicker(sender: UIDatePicker){
-        var timeFormatter = NSDateFormatter()
-        timeFormatter.dateStyle = .NoStyle
+    @IBAction func playMoments(sender: AnyObject) {
+        print("generating video")
+    }
+    
+    
+    @IBAction func favorite(sender: UIButton) {
+        fav = !fav
+        if fav {
+            let image = UIImage(named: "FavoriteSelected")
+            sender.setImage(image, forState: UIControlState.Normal)        }
+        else {
+            let image = UIImage(named: "Favorite")
+            sender.setImage(image, forState: UIControlState.Normal)        }
+    }
+
+
+    func handleStartDatePicker(sender: UIDatePicker){
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .MediumStyle
         timeFormatter.timeStyle = .NoStyle
         startDate.text = timeFormatter.stringFromDate(sender.date)
     }
     
-    override func viewDidLoad(){
-        super.viewDidLoad()
+    func handleEndDatePicker(sender: UIDatePicker){
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .MediumStyle
+        timeFormatter.timeStyle = .NoStyle
+        endDate.text = timeFormatter.stringFromDate(sender.date)
     }
     
+    override func viewDidLoad(){
+        super.viewDidLoad()
+        self.startDate.delegate = self
+        self.endDate.delegate = self
+    }
     
-    @IBAction func endDate(sender: AnyObject) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
