@@ -8,15 +8,17 @@
 
 import UIKit
 
-class MomentsPlayerViewController: UIViewController {
+class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
+        //self.webView.delegate = self
         
+        let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
+
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width) \" height = \" \(self.webView.frame.height)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
     }
     
@@ -24,6 +26,4 @@ class MomentsPlayerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
