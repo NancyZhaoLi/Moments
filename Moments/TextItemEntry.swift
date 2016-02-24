@@ -24,26 +24,28 @@ struct TextItemOtherAttribute {
 }
 
 class TextItemEntry {
-  var frame : CGRect
-  var content : String?
-  var rotation : Float = 0
-  var otherAttribute : TextItemOtherAttribute = TextItemOtherAttribute()
+    let id: Int64
+    var frame : CGRect
+    var content : String?
+    var rotation : Float = 0
+    var otherAttribute : TextItemOtherAttribute = TextItemOtherAttribute()
 
-  init(frame : CGRect) {
-    self.frame = frame
-  }
+    init(id: Int64, frame : CGRect) {
+        self.id = id
+        self.frame = frame
+    }
   
-  func setContent(content: String) {
-    self.content = content
-  }
+    func setContent(content: String) {
+        self.content = content
+    }
   
-  func setRotation(rotation : Float) {
-    self.rotation = rotation
-  }
+    func setRotation(rotation : Float) {
+        self.rotation = rotation
+    }
   
-  func setOtherAttribute(colour: UIColor, font: UIFont) {
-    self.otherAttribute.colour = colour
-    self.otherAttribute.font = font
-  }
+    func setOtherAttribute(colour: UIColor, font: UIFont) {
+        self.otherAttribute.colour = colour
+        self.otherAttribute.font = font
+    }
 
 }

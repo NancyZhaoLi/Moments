@@ -10,11 +10,13 @@ import Foundation
 import UIKit
 
 class VideoItemEntry {
+    let id: Int64
     var frame : CGRect
     var content : String?
     var rotation : Float = 0
     
-    init(frame : CGRect) {
+    init(id: Int64, frame : CGRect) {
+        self.id = id
         self.frame = frame
     }
     
