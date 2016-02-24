@@ -20,6 +20,7 @@ class MomentEntry {
     var imageItemEntries = [ImageItemEntry]()
     var audioItemEntries = [AudioItemEntry]()
     var videoItemEntries = [VideoItemEntry]()
+    var stickerItemEntries = [StickerItemEntry]()
   
     init(id: Int64, date: NSDate, title: String) {
         self.id = id
@@ -49,6 +50,10 @@ class MomentEntry {
     
     func addVideoItemEntry(video: VideoItemEntry) {
         videoItemEntries.append(video)
+    }
+    
+    func addStickerItemEntry(sticker: StickerItemEntry) {
+        stickerItemEntries.append(sticker)
     }
     
 }

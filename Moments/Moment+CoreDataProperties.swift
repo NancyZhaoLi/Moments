@@ -21,8 +21,9 @@ extension Moment {
     @NSManaged var title: String?
     @NSManaged var containedAudioItem: NSSet?
     @NSManaged var containedImageItem: NSSet?
-    @NSManaged var containedTextItem: NSOrderedSet?
+    @NSManaged var containedTextItem: NSSet?
     @NSManaged var containedVideoItem: NSSet?
     @NSManaged var inCategory: Category?
+    @NSManaged var containedStickerItem: NSSet?
 
 }
