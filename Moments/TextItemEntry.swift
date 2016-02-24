@@ -23,17 +23,13 @@ struct TextItemOtherAttribute {
     }
 }
 
-class ItemEntry {
-  let id : Int64
-  let type : Int
+class TextItemEntry {
   var frame : CGRect
   var content : String?
   var rotation : Float = 0
   var otherAttribute : TextItemOtherAttribute = TextItemOtherAttribute()
 
-  init(id : Int64, type : Int, frame : CGRect) {
-    self.id = id
-    self.type = type
+  init(frame : CGRect) {
     self.frame = frame
   }
   

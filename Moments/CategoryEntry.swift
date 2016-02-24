@@ -2,8 +2,28 @@
 //  CategoryEntry.swift
 //  Moments
 //
-//  Created by Xin Lin on 2016-02-22.
+//  Created by Yuning Xue on 2016-02-22.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
 import Foundation
+import UIKit
+
+class CategoryEntry {
+    var colour: UIColor = UIColor.whiteColor()
+    var name: String
+    
+    init(colour: UIColor, name: String) {
+        self.colour = colour
+        self.name = name
+    }
+    
+    func setColour(colour: UIColor) {
+        self.colour = colour
+    }
+    
+    func setName(name: String) {
+        self.name = name
+    }
+    
+}

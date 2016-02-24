@@ -40,6 +40,7 @@ class NewMomentSecondViewController: UIViewController {
     var momentDate : NSDate = NSDate()
     var momentTitle : String?
 
+    /*
     var idPrefix : String?
     var momentId : Int64?
     var textItemId : Int64?
@@ -47,6 +48,7 @@ class NewMomentSecondViewController: UIViewController {
     var audioItemId : Int64?
     var videoItemId : Int64?
     var stickerItemId : Int64?
+*/
     
     var context : NSManagedObjectContext?
 
@@ -61,9 +63,9 @@ class NewMomentSecondViewController: UIViewController {
         self.context = appDel.managedObjectContext
         
         self.momentCategoryDisplay.text = "Uncategorized"
-        self.idPrefix = self.momentDate.shortYear + self.momentDate.month + self.momentDate.day
+        //self.idPrefix = self.momentDate.shortYear + self.momentDate.month + self.momentDate.day
         getDefaultTitle()
-        getNewIds()
+        //getNewIds()
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +75,7 @@ class NewMomentSecondViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "saveNewMoment" {
-            moment = MomentEntry(id: self.momentId!, date: self.momentDate, title: self.momentTitle!)
+            moment = MomentEntry(date: self.momentDate, title: self.momentTitle!)
         }
     }
 
@@ -118,6 +120,7 @@ class NewMomentSecondViewController: UIViewController {
         self.momentTitleDisplay.text = self.momentTitle
     }
     
+    /*
     func getNewIds() {
         let lastId : Int = getMaxId("Moment", type: nil) + 1
         
@@ -187,4 +190,6 @@ class NewMomentSecondViewController: UIViewController {
         
         return -2
     }
+
+*/
 }
