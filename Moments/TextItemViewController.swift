@@ -25,6 +25,8 @@ class TextItemViewController: UIViewController {
 
 class TextItemManager : ItemManager {
     
+    var textItems : [TextItemViewController] = [TextItemViewController]()
+    
     override init() {
         super.init()
         super.type = ItemType.Text
@@ -41,7 +43,26 @@ class TextItemManager : ItemManager {
         textItemView.text = textView.text
         
         textItemVC.view = textItemView
+        
+        self.textItems.append(textItemVC)
         super.canvas!.view.addSubview(textItemVC.view)
         super.canvas!.addChildViewController(textItemVC)
+    }
+    
+    override func saveAllItemEntry() {
+        var id = getId()
+        
+        debugBegin("saveAllItemEntry")
+        for textItem in textItems {
+            let view = textItem.view as! UITextView
+            var textItemEntry = TextItemEntry(id: id, frame: view.frame)
+            textItemEntry.setContent(view.text)
+            super.superManager?.addTextItemEntry(textItemEntry)
+            
+            id += 1
+        }
+        
+        debug("[saveAllItemEntry] - max text id: " + String(id))
+        debugEnd("saveAllItemEntry")
     }
 }

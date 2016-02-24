@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
         let audioItemEntries: [AudioItemEntry] = moment.audioItemEntries
         let videoItemEntries: [VideoItemEntry] = moment.videoItemEntries
         let stickerItemEntries: [StickerItemEntry] = moment.stickerItemEntries
-        //let category: CategoryEntry = moment.category!
+        let category: CategoryEntry = moment.category!
         
         newMomentEntity.setValue(backgroundColour, forKey: "backgroundColour")
         newMomentEntity.setValue(date, forKey: "date")
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
         newMomentEntity.setValue(NSSet(array: audioItemEntries), forKey: "containedAudioItem")
         newMomentEntity.setValue(NSSet(array: videoItemEntries), forKey: "containedVideoItem")
         newMomentEntity.setValue(NSSet(array: stickerItemEntries), forKey: "containedStickerItem")
-        //newMomentEntity.setValue(category, forKey: "inCategory")
+        newMomentEntity.setValue(category, forKey: "inCategory")
         
         // save it
         do{

@@ -46,16 +46,14 @@ class NewMomentManager {
     
     
     // Moment Entry Data
-    var momentDate : NSDate = NSDate()
-    var momentTitle : String?
-    var favourite : Bool = false
-    var momentCategory : String = "Uncategorized"
-    var momentColour : UIColor = UIColor.whiteColor()
-    
     var moment : MomentEntry?
-    var idPrefix : String?
-    var idSuffix : String?
-
+    var momentDate : NSDate = NSDate()
+    var momentTitle : String = ""
+    var favourite : Bool = false
+    var momentCategory : CategoryEntry = CategoryEntry()
+    var momentColour : UIColor = UIColor.whiteColor()
+    var idPrefix : String = ""
+    var idSuffix : String = ""
     
     // CoreData variables
     var context : NSManagedObjectContext?
@@ -67,15 +65,19 @@ class NewMomentManager {
     
     func setCanvas(canvas: NewMomentCanvasViewController) {
         self.canvas = canvas
+        setContext()
+        setIdPrefix()
+        setIdSuffix()
         initItemManagers()
+    }
+    
+    func setContext() {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        self.context = appDel.managedObjectContext
     }
     
     func setSavePage(savePage: NewMomentSavePageViewController) {
         self.savePage = savePage
-        
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        self.context = appDel.managedObjectContext
-        
         setDefaultCategory()
         setDefaultTitle()
     }
@@ -87,19 +89,11 @@ class NewMomentManager {
     }
     
     func initItemManagers(){
-        self.textManager.setCanvasAndManager(self.canvas!, manager: self)
-        self.imageManager.setCanvasAndManager(self.canvas!, manager: self)
-        self.audioManager.setCanvasAndManager(self.canvas!, manager: self)
-        self.videoManager.setCanvasAndManager(self.canvas!, manager: self)
-        self.stickerManager.setCanvasAndManager(self.canvas!, manager: self)
-    }
-    
-    func setItemManagersIDPrefix() {
-        self.textManager.setIdPrefix(self.idPrefix!)
-        self.imageManager.setIdPrefix(self.idPrefix!)
-        self.audioManager.setIdPrefix(self.idPrefix!)
-        self.videoManager.setIdPrefix(self.idPrefix!)
-        self.stickerManager.setIdPrefix(self.idPrefix!)
+        self.textManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
+        self.imageManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
+        self.audioManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
+        self.videoManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
+        self.stickerManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
     }
     
     func addText(textView: UITextView, location: CGPoint) {
@@ -123,21 +117,20 @@ class NewMomentManager {
     }
     
     func setDefaultCategory() {
-       self.savePage!.setMomentCategory(self.momentCategory)
+       self.savePage!.setMomentCategory(self.momentCategory.name)
     }
     
     func setDefaultTitle() {
         self.momentTitle = "Moment - " + self.momentDate.day + "/" + self.momentDate.month + "/" + self.momentDate.longYear
-        self.savePage!.setMomentTitle(self.momentTitle!)
+        self.savePage!.setMomentTitle(self.momentTitle)
     }
 
     func setIdPrefix() {
         self.idPrefix = self.momentDate.shortYear + self.momentDate.month + self.momentDate.day
-        setItemManagersIDPrefix()
     }
     
     func setIdSuffix() {
-        if let maxIdInCD : Int64 = requestMaxOfIdGreaterThan(Int64(self.idPrefix! + "0000")!, entity: "Moment") {
+        if let maxIdInCD : Int64 = requestMaxOfIdGreaterThan(Int64(self.idPrefix + "0000")!, entity: "Moment") {
             self.idSuffix = String(format: "%04lld", maxIdInCD)
         } else {
             self.idSuffix = "0000"
@@ -168,11 +161,12 @@ class NewMomentManager {
     }
     
     func saveMomentEntry() {
+        debugBegin("saveMomentEntry")
         setIdPrefix()
         setIdSuffix()
         updateTitle()
         updateColour()
-        self.moment = MomentEntry.init(id: getId(), date: self.momentDate, title: self.momentTitle!)
+        self.moment = MomentEntry.init(id: getId(), date: self.momentDate, title: self.momentTitle)
         if self.favourite {
             self.moment!.setFavourite(self.favourite)
         }
@@ -180,6 +174,19 @@ class NewMomentManager {
         if updateColour() {
             self.moment!.setBackgroundColour(self.momentColour)
         }
+        
+        self.moment!.category = self.momentCategory
+        
+        self.textManager.notifySaveMoment()
+        debug("[saveMomentEntry] - textManger notified")
+        self.imageManager.notifySaveMoment()
+        debug("[saveMomentEntry] - imageManger notified")
+        self.audioManager.notifySaveMoment()
+        debug("[saveMomentEntry] - audioManger notified")
+        self.videoManager.notifySaveMoment()
+        debug("[saveMomentEntry] - videoManger notified")
+        self.stickerManager.notifySaveMoment()
+        debugEnd("saveMomentEntry")
     }
     
     func updateTitle() {
@@ -193,7 +200,6 @@ class NewMomentManager {
             debug("[updateTitle] - nil text")
 
         }
-        
     }
     
     func updateColour() -> Bool {
@@ -201,12 +207,56 @@ class NewMomentManager {
     }
     
     func getId() -> Int64 {
-        return Int64(self.idPrefix! + self.idSuffix!)!
+        let id = Int64(self.idPrefix + self.idSuffix)!
+        debugBegin("[getId] - id: " + String(id))
+        return id
+    }
+
+    func addTextItemEntry(entry: TextItemEntry) {
+        debugBegin("addTextItemEntry")
+        self.moment!.addTextItemEntry(entry)
+        debugEnd("addTextItemEntry")
+    }
+    
+    func addImageItemEntry(entry: ImageItemEntry) {
+        debugBegin("addImageItemEntry")
+        self.moment!.addImageItemEntry(entry)
+        debugEnd("addImageItemEntry")
+    }
+    
+    func addAudioItemEntry(entry: AudioItemEntry) {
+        debugBegin("addAudioItemEntry")
+        self.moment!.addAudioItemEntry(entry)
+        debugEnd("addAudioItemEntry")
+    }
+    
+    func addVideoItemEntry(entry: VideoItemEntry) {
+        debugBegin("addVideoItemEntry")
+        self.moment!.addVideoItemEntry(entry)
+        debugEnd("addVideoItemEntry")
+    }
+    
+    func addStickerItemEntry(entry: StickerItemEntry) {
+        debugBegin("addStickerItemEntry")
+        self.moment!.addStickerItemEntry(entry)
+        debugEnd("addStickerItemEntry")
     }
     
     func debug (msg: String) {
         if (self.testMode) {
             print(self.debugPrefix + msg)
+        }
+    }
+    
+    func debugBegin(fn: String) {
+        if (self.testMode) {
+            print(self.debugPrefix + "[" + fn + "] - begin")
+        }
+    }
+    
+    func debugEnd(fn: String) {
+        if (self.testMode) {
+            print(self.debugPrefix + "[" + fn + "] - end")
         }
     }
     

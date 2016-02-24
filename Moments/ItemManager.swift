@@ -38,40 +38,56 @@ enum ItemType: String {
 class ItemManager {
     var canvas : NewMomentCanvasViewController?
     var superManager : NewMomentManager?
-    var idPrefix : String?
+    var idPrefix : String = ""
     var testMode: Bool = true
     var debugPrefix : String = "[ItemManager] - "
-    var type : ItemType?
-    var idSuffix : String?
+    var type : ItemType = ItemType.Text
+    var idSuffix : String = ""
     
     init() {}
     
-    func setCanvasAndManager(canvas: NewMomentCanvasViewController, manager : NewMomentManager){
+    func setCanvasAndManager(canvas: NewMomentCanvasViewController, manager : NewMomentManager, idPrefix: String){
         self.canvas = canvas
         self.superManager = manager
-    }
-    
-    func setIdPrefix(prefix: String) {
-        self.idPrefix = prefix
-    }
-    
-    func debug (msg: String) {
-        if (self.testMode) {
-            print(self.debugPrefix + msg)
-        }
-    }
-
-    func setBaseId() {
-        self.idSuffix = self.idPrefix! +  getMaxIdInCoreData()
+        self.idPrefix = idPrefix + self.type.idPrefix
+        self.idSuffix = getMaxIdInCoreData()
     }
     
     func getMaxIdInCoreData() -> String {
-        if let maxIdInCD : Int64 = superManager!.requestMaxOfIdGreaterThan(Int64(self.idPrefix! + ItemType.baseId)!, entity: self.type!.entity) {
+        if let maxIdInCD : Int64 = superManager!.requestMaxOfIdGreaterThan(Int64(self.idPrefix)!, entity: self.type.entity) {
             return String(format: "%04lld", maxIdInCD)
         } else {
             return "000"
         }
     }
     
+    func getId() -> Int64 {
+        let id = Int64(self.idPrefix + self.idSuffix)!
+        debug("[getId] - id: " + String(id))
+        return id
+    }
+    
+    func notifySaveMoment(){
+        saveAllItemEntry()
+    }
 
+    func saveAllItemEntry(){}
+    
+    func debug (msg: String) {
+        if (self.testMode) {
+            print(self.debugPrefix + msg)
+        }
+    }
+    
+    func debugBegin(fn: String) {
+        if (self.testMode) {
+            print(self.debugPrefix + "[" + fn + "] - begin")
+        }
+    }
+    
+    func debugEnd(fn: String) {
+        if (self.testMode) {
+            print(self.debugPrefix + "[" + fn + "] - end")
+        }
+    }
 }

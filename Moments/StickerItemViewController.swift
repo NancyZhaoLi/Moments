@@ -23,4 +23,10 @@ class StickerItemViewController: UIViewController {
 
 class StickerItemManager : ItemManager {
     
+    
+    override init() {
+        super.init()
+        super.type = ItemType.Text
+        super.debugPrefix = "[TextItemManager] - "
+    }
 }

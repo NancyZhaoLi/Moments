@@ -83,21 +83,15 @@ class ImageItemViewController: UIViewController {
 }
 
 class ImageItemManager : ItemManager {
-    private var imageVCs : [ImageItemViewController] = [ImageItemViewController]()
+    
+    private var imageItems : [ImageItemViewController] = [ImageItemViewController]()
     
     override init() {
         super.init()
         super.type = ItemType.Image
         super.debugPrefix = "[ImageItemManager] - "
     }
-    
-    func addNewImageVC(newImageVC: ImageItemViewController) {
-        self.imageVCs.append(newImageVC)
-        
-        super.canvas!.view.addSubview(newImageVC.view)
-        super.canvas!.addChildViewController(newImageVC)
-    }
-    
+
     func deleteImage(deletedImageVC: ImageItemViewController) {
         
     }
@@ -106,7 +100,26 @@ class ImageItemManager : ItemManager {
         var newImageVC = ImageItemViewController(manager: self)
         newImageVC.addImage(image, location: location, editingInfo: editingInfo)
             
-        addNewImageVC(newImageVC)
+        self.imageItems.append(newImageVC)
+        super.canvas!.view.addSubview(newImageVC.view)
+        super.canvas!.addChildViewController(newImageVC)
+    }
+    
+    override func saveAllItemEntry() {
+        debugBegin("saveAllItemEntry")
+        var id = getId()
+        
+        for imageItem in imageItems {
+            let view = imageItem.view as! ImageItemView
+            var imageItemEntry = ImageItemEntry(id: id, frame: view.frame)
+            imageItemEntry.setContent(view.url!)
+            
+            self.superManager!.addImageItemEntry(imageItemEntry)
+            id += 1
+        }
+        
+        debug("[saveAllItemEntry] - max image id: " + String(id))
+        debugEnd("saveAllItemEntry")
     }
 }
 
