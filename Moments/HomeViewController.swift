@@ -10,12 +10,16 @@ import UIKit
 import CoreData
 
 class HomeViewController: UIViewController {
+    
+    var momentsMO = [NSManagedObject]()
+    var moments = [MomentEntry]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         print("home loaded")
+        getMomentsMOFromCoreData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +32,8 @@ class HomeViewController: UIViewController {
             
             if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
                 saveNewMomentToCoreData(moment)
+                moments.append(moment)
+                reloadMomentsMOFromCoreData()
             }
         }
     }
@@ -73,6 +79,53 @@ class HomeViewController: UIViewController {
         
     }
     
+    func getMomentsMOFromCoreData(){
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestMoments = NSFetchRequest(entityName: "Moment")
+        requestMoments.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(requestMoments) as? [NSManagedObject]
+            momentsMO = results!
+            
+            for var i = 0; i < momentsMO.count; ++i {
+                addMomentFromCoreData(momentsMO[i])
+            }
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+    func reloadMomentsMOFromCoreData(){
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestMoments = NSFetchRequest(entityName: "Moment")
+        requestMoments.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(requestMoments) as? [NSManagedObject]
+            momentsMO = results!
+            
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+    func addMomentFromCoreData(momentMO: NSManagedObject) {
+        let id =  momentMO.valueForKey("id")?.longLongValue
+        let date = momentMO.valueForKey("date") as? NSDate
+        let title = momentMO.valueForKey("title") as? String
+        let moment = MomentEntry(id: id!, date: date!, title: title!)
+        moments.append(moment)
+        print("id: \(id!), date: \(date!), title: \(title!)")
+    }
 
     /*
     // MARK: - Navigation
