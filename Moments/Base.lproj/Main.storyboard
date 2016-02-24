@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -501,6 +501,9 @@
                                 <rect key="frame" x="164" y="455" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.95772571200000001" green="0.99345012629999996" blue="0.76752747730000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="start"/>
+                                <connections>
+                                    <segue destination="wJg-Uy-hoe" kind="show" id="35d-oS-7cb"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -512,7 +515,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJt-kv-I3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1889.5" y="768.5"/>
+            <point key="canvasLocation" x="1861.5" y="1000.5"/>
+        </scene>
+        <!--Moments Player-->
+        <scene sceneID="TPp-F6-RyP">
+            <objects>
+                <viewController title="Moments Player" id="wJg-Uy-hoe" customClass="MomentsPlayerViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aPB-mK-9NN"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZMJ-G1-dGP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OD0-7t-NTR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-xw-xqp">
+                                <rect key="frame" x="39" y="145" width="297" height="225"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP1-J9-oBi">
+                                <rect key="frame" x="164" y="469" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <segue destination="DxD-iU-yeg" kind="show" id="I1T-I7-Fv2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="webView" destination="ZRh-xw-xqp" id="VcO-ER-Iz4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fBI-IK-2b7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2305.5" y="1559.5"/>
+>>>>>>> 5b2e916e63d5eeea11a1e675aefcc6e3bc49f5e4
         </scene>
         <!--User Settings-->
         <scene sceneID="ojW-qZ-aJu">
@@ -664,7 +705,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKu-yo-Jgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1889.5" y="1549.5"/>
+            <point key="canvasLocation" x="1855.5" y="2529.5"/>
         </scene>
         <!--About Us-->
         <scene sceneID="26q-2e-Bqd">
@@ -697,7 +738,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIv-jU-0LA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="1889.5" y="2441.5"/>
+=======
+            <point key="canvasLocation" x="2296.5" y="2529.5"/>
+>>>>>>> 5b2e916e63d5eeea11a1e675aefcc6e3bc49f5e4
         </scene>
         <!--Moments-->
         <scene sceneID="Zls-lE-Xeu">
@@ -714,7 +759,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rg-3d-jiS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="1460.5" y="768.5"/>
+=======
+            <point key="canvasLocation" x="1417.5" y="1000.5"/>
+>>>>>>> 5b2e916e63d5eeea11a1e675aefcc6e3bc49f5e4
         </scene>
         <!--Settings-->
         <scene sceneID="PUX-e3-gv4">
@@ -733,7 +782,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUp-aP-3dH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="1460.5" y="1549.5"/>
+=======
+            <point key="canvasLocation" x="1350.5" y="2529.5"/>
+>>>>>>> 5b2e916e63d5eeea11a1e675aefcc6e3bc49f5e4
         </scene>
         <!--Other Canvas Option View Controller-->
         <scene sceneID="DZj-1M-O3o">
@@ -762,6 +815,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Soj-dp-MU8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3202" y="-41"/>
+        </scene>
+        <!--Moments Save Confirmation-->
+        <scene sceneID="xJi-PV-Bfz">
+            <objects>
+                <viewController title="Moments Save Confirmation" id="DxD-iU-yeg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Wx-H5-Ha0"/>
+                        <viewControllerLayoutGuide type="bottom" id="kjH-Kb-Mh3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gDq-bP-DGg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The video has been saved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oih-ju-gSb">
+                                <rect key="frame" x="23" y="239" width="328" height="55"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sR-8V-XyF">
+                                <rect key="frame" x="158" y="377" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <segue destination="15x-v9-DXg" kind="show" id="3Lu-sg-H34"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PRT-Zv-Xjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2725.5" y="1559.5"/>
         </scene>
         <!--audioPlayer-->
         <scene sceneID="28X-uF-uKn">
@@ -976,4 +1065,7 @@
         <image name="personal_icon" width="25" height="25"/>
         <image name="rightArrow" width="64" height="64"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3Lu-sg-H34"/>
+    </inferredMetricsTieBreakers>
 </document>
