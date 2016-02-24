@@ -1,5 +1,5 @@
 //
-//  MomentEntryMO.swift
+//  Moment.swift
 //  Moments
 //
 //  Created by Yuning Xue on 2016-02-23.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class MomentEntryMO: NSManagedObject {
+class Moment: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

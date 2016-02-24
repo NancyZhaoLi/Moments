@@ -1,5 +1,5 @@
 //
-//  MomentEntryMO+CoreDataProperties.swift
+//  Moment+CoreDataProperties.swift
 //  Moments
 //
 //  Created by Yuning Xue on 2016-02-23.
@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension MomentEntryMO {
+extension Moment {
 
     @NSManaged var backgroundColour: NSObject?
     @NSManaged var date: NSDate?

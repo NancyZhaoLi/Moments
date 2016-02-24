@@ -17,7 +17,7 @@
         <attribute name="rotation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedImageItem" inverseEntity="Moment" syncable="YES"/>
     </entity>
-    <entity name="Moment" representedClassName=".MomentEntryMO" syncable="YES">
+    <entity name="Moment" representedClassName=".Moment" syncable="YES">
         <attribute name="backgroundColour" attributeType="Transformable" syncable="YES"/>
         <attribute name="date" attributeType="Date" syncable="YES"/>
         <attribute name="favourite" attributeType="Boolean" syncable="YES"/>
@@ -42,11 +42,11 @@
         <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedVideoItem" inverseEntity="Moment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="-288" positionY="162" width="128" height="90"/>
-        <element name="TextItem" positionX="-288" positionY="-43" width="162" height="120"/>
-        <element name="Moment" positionX="-72" positionY="54" width="128" height="180"/>
-        <element name="VideoItem" positionX="-180" positionY="99" width="128" height="105"/>
-        <element name="ImageItem" positionX="-171" positionY="108" width="128" height="105"/>
         <element name="AudioItem" positionX="-162" positionY="117" width="128" height="105"/>
+        <element name="Category" positionX="-288" positionY="162" width="128" height="90"/>
+        <element name="ImageItem" positionX="-171" positionY="108" width="128" height="105"/>
+        <element name="Moment" positionX="-72" positionY="54" width="128" height="180"/>
+        <element name="TextItem" positionX="-288" positionY="-43" width="162" height="120"/>
+        <element name="VideoItem" positionX="-180" positionY="99" width="128" height="105"/>
     </elements>
 </model>
