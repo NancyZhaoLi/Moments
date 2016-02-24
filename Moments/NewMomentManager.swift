@@ -149,7 +149,7 @@ class NewMomentManager {
         do {
             let results = try self.context!.executeFetchRequest(request)
             if results.count > 0 {
-                return results[0] as! Int64
+                return results[0].longLongValue
             } else {
                 return nil
             }
