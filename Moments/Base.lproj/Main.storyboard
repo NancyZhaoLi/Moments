@@ -481,26 +481,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHV-7D-7ig">
-                                <rect key="frame" x="31" y="256" width="312" height="30"/>
-                                <color key="backgroundColor" red="0.95772571200000001" green="0.99345012629999996" blue="0.76752747730000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Start Date:"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start Date:" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="312-oE-xn8">
+                                <rect key="frame" x="26" y="249" width="317" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="setStartDate:" destination="15x-v9-DXg" eventType="touchUpInside" id="xqR-UB-YNO"/>
+                                    <action selector="startDate:" destination="15x-v9-DXg" eventType="editingDidEnd" id="gtI-qj-FC8"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKj-DI-2Xl">
-                                <rect key="frame" x="31" y="311" width="312" height="30"/>
-                                <color key="backgroundColor" red="0.95772571200000001" green="0.99345012629999996" blue="0.76752747730000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="End Date:"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End Date:" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RW3-Dw-ofm">
+                                <rect key="frame" x="26" y="312" width="317" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="setEndDate:" destination="15x-v9-DXg" eventType="touchUpInside" id="C9g-GS-jsj"/>
+                                    <action selector="endDate:" destination="15x-v9-DXg" eventType="editingDidEnd" id="qFo-DC-Qe1"/>
                                 </connections>
-                            </button>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnl-fs-bcd">
-                                <rect key="frame" x="164" y="455" width="46" height="30"/>
+                                <rect key="frame" x="125" y="450" width="124" height="31"/>
                                 <color key="backgroundColor" red="0.95772571200000001" green="0.99345012629999996" blue="0.76752747730000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="start"/>
+                                <state key="normal" title="Play Moments"/>
                                 <connections>
                                     <segue destination="wJg-Uy-hoe" kind="show" id="35d-oS-7cb"/>
                                 </connections>
@@ -512,6 +512,10 @@
                         </accessibility>
                     </view>
                     <navigationItem key="navigationItem" title="Moments" id="aN6-wd-ScQ"/>
+                    <connections>
+                        <outlet property="endDate" destination="RW3-Dw-ofm" id="FMf-Po-fhS"/>
+                        <outlet property="startDate" destination="312-oE-xn8" id="Fd8-vy-Bff"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJt-kv-I3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
