@@ -114,11 +114,15 @@ class NewMomentManager {
     }
     
     func addMediaItem(mediaItem: MPMediaItem, location: CGPoint) {
-        if mediaItem.mediaType == .AnyAudio {
+        debug("[addMediaItem] called")
+        //if mediaItem.mediaType == MPMediaType.AnyAudio {
             self.audioManager.addAudio(mediaItem)
-        } else if mediaItem.mediaType == .AnyVideo {
-            self.videoManager.addVideo(mediaItem, location: location)
-        }
+        //} else if mediaItem.valueForProperty("MPMediaItemPropertyMediaType") as! String == MPMediaType.AnyVideo {
+        //    self.videoManager.addVideo(mediaItem, location: location)
+        //} else {
+            debug("[addMediaItem] - file not audio or video")
+            debug("mediaType: " + String(mediaItem.valueForProperty("MPMediaItemPropertyMediaType")))
+        //}
     }
     
     func setDefaultCategory() {

@@ -243,7 +243,10 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
         print("Video or audio selected")
         mediaPicker.dismissViewControllerAnimated(true, completion: nil)
         if let mediaItem: MPMediaItem = mediaItemCollection.representativeItem {
+            debug("[mediaPicker] - " + String(mediaItem))
             self.manager.addMediaItem(mediaItem, location: self.touchLocation!)
+        } else {
+            debug("[mediaPicker] - mediaItem not found")
         }
     }
     

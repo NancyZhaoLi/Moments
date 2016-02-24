@@ -844,7 +844,7 @@
         <!--audioPlayer-->
         <scene sceneID="28X-uF-uKn">
             <objects>
-                <viewController storyboardIdentifier="audioPlayer" title="audioPlayer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wSC-hV-IPB" customClass="AudioPlayerViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="audioPlayer" title="audioPlayer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wSC-hV-IPB" customClass="AudioItemViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qcb-Lt-hVn"/>
                         <viewControllerLayoutGuide type="bottom" id="S9a-Ix-QwO"/>
