@@ -78,9 +78,6 @@ class NewMomentManager {
         
         setDefaultCategory()
         setDefaultTitle()
-        setIdPrefix()
-        
-        //getNewIds()
     }
     
     func setFavourite() -> Bool {
@@ -139,7 +136,7 @@ class NewMomentManager {
         setItemManagersIDPrefix()
     }
     
-    func setBaseId() {
+    func setIdSuffix() {
         if let maxIdInCD : Int64 = requestMaxOfIdGreaterThan(Int64(self.idPrefix! + "0000")!, entity: "Moment") {
             self.idSuffix = String(format: "%04lld", maxIdInCD)
         } else {
@@ -171,7 +168,41 @@ class NewMomentManager {
     }
     
     func saveMoment() {
+        setIdPrefix()
+        setIdSuffix()
+        updateTitle()
+        updateColour()
+        self.moment = MomentEntry.init(getId(), date: self.momentDate, title: self.momentTitle!)
+        if self.favourite {
+            self.moment!.setFavourite(self.favourite)
+        }
+        if updateColour() {
+            self.moment!.setBackgroundColour(self.momentColour)
+        }
         
+        
+    }
+    
+    func updateTitle() {
+        if let title = self.savePage!.momentCategoryDisplay.text {
+            if title.isEmpty {
+                debug("[updateTitle] - empty text")
+            } else {
+                self.momentTitle = title
+            }
+        } else {
+            debug("[updateTitle] - nil text")
+
+        }
+        
+    }
+    
+    func updateColour() -> Bool {
+        
+    }
+    
+    func getId() -> Int64 {
+        return Int64(self.idPrefix! + self.idSuffix!)!
     }
     
     func debug (msg: String) {

@@ -40,8 +40,8 @@
 		769DD8021C76AABE00FC883E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */; };
 		769DD80D1C76AABE00FC883E /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD80C1C76AABE00FC883E /* MomentsTests.swift */; };
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
-		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */; };
+		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */; };
 		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
@@ -114,9 +114,9 @@
 		769DD8131C76AABE00FC883E /* MomentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD8171C76AABE00FC883E /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		769DD8191C76AABE00FC883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentCanvasViewController.swift; sourceTree = "<group>"; };
 		AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsPlayerViewController.swift; sourceTree = "<group>"; };
 		AD081AEB1C7D91A70084B286 /* moments.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = moments.mp4; sourceTree = "<group>"; };
+		ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentCanvasViewController.swift; sourceTree = "<group>"; };
 		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -180,11 +180,11 @@
 		7678347F1C7D14AF00FC1B96 /* NewMoment */ = {
 			isa = PBXGroup;
 			children = (
-				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
 				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
 				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
 				D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */,
 				D048BEEE1C7DA99A00BD3115 /* ItemManager.swift */,
+				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
 				D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */,
 				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
 				D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */,
@@ -406,7 +406,7 @@
 				TargetAttributes = {
 					769DD7F01C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 2DN9PN56QE;
+						DevelopmentTeam = ZZ9R9MP283;
 					};
 					769DD8071C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -703,10 +703,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Moments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Moments.Moments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moments/Moments-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -718,10 +721,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Moments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Moments.Moments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moments/Moments-Bridging-Header.h";
 			};
 			name = Release;
