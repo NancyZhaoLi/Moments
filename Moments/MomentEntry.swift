@@ -21,6 +21,7 @@ class MomentEntry {
     var audioItemEntries = [AudioItemEntry]()
     var videoItemEntries = [VideoItemEntry]()
     var stickerItemEntries = [StickerItemEntry]()
+    var category: CategoryEntry?
   
     init(id: Int64, date: NSDate, title: String) {
         self.id = id
@@ -54,6 +55,10 @@ class MomentEntry {
     
     func addStickerItemEntry(sticker: StickerItemEntry) {
         stickerItemEntries.append(sticker)
+    }
+    
+    func setCategory(colour: UIColor, name: String) {
+        self.category = CategoryEntry(colour: colour, name: name)
     }
     
 }
