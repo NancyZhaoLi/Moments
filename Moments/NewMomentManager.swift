@@ -176,11 +176,10 @@ class NewMomentManager {
         if self.favourite {
             self.moment!.setFavourite(self.favourite)
         }
+        
         if updateColour() {
             self.moment!.setBackgroundColour(self.momentColour)
         }
-        
-        
     }
     
     func updateTitle() {
@@ -198,7 +197,7 @@ class NewMomentManager {
     }
     
     func updateColour() -> Bool {
-        return true
+        return false
     }
     
     func getId() -> Int64 {
