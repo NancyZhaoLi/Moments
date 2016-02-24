@@ -19,7 +19,9 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
         
         let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
 
-        webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width) \" height = \" \(self.webView.frame.height)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
+        webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
+        print(self.webView.frame.width)
+        print(self.webView.frame.height)
     }
     
     override func didReceiveMemoryWarning() {
