@@ -551,8 +551,8 @@
                                     <segue destination="DxD-iU-yeg" kind="show" id="I1T-I7-Fv2"/>
                                 </connections>
                             </button>
-                            <webView contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-xw-xqp">
-                                <rect key="frame" x="37" y="210" width="300" height="247"/>
+                            <webView contentMode="center" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-xw-xqp">
+                                <rect key="frame" x="37" y="209" width="300" height="250"/>
                                 <color key="backgroundColor" red="0.74806368459999995" green="0.99345012629999996" blue="0.6791862608" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
