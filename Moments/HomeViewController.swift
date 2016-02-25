@@ -59,6 +59,7 @@ class HomeViewController: UIViewController {
         let date = momentMO.date
         let title = momentMO.title
         let moment = MomentEntry(id: id!, date: date!, title: title!)
+        //moment.setBackgroundColour(momentMO.backgroundColour)
         moments.append(moment)
         print("id: \(id!), date: \(date!), title: \(title!)")
     }
