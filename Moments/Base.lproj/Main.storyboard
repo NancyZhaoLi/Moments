@@ -140,7 +140,7 @@
                                 <rect key="frame" x="20" y="99" width="335" height="470"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xml-bX-oqr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="xml-bX-oqr">
                                         <rect key="frame" x="0.0" y="28" width="335" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xml-bX-oqr" id="7zu-vw-fqR">
@@ -149,6 +149,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WXg-ml-XV5" id="8Cs-KL-DXs"/>
+                                    <outlet property="delegate" destination="WXg-ml-XV5" id="y85-Q0-Gw8"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -334,20 +338,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cpM-Yv-myy">
-                                <rect key="frame" x="20" y="122" width="335" height="501"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="1" id="ATd-eT-20U">
-                                        <rect key="frame" x="0.0" y="92" width="335" height="1"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ATd-eT-20U" id="tZO-tr-Idw">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="0.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="February 24, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Eb-qI-ZuZ">
                                 <rect key="frame" x="20" y="64" width="335" height="58"/>
                                 <constraints>
@@ -357,18 +347,32 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V86-ou-8LK">
+                                <rect key="frame" x="20" y="130" width="335" height="469"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JEy-5h-rCi">
+                                        <rect key="frame" x="0.0" y="28" width="335" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JEy-5h-rCi" id="xDw-Mw-TVv">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4Eb-qI-ZuZ" firstAttribute="trailing" secondItem="Z6s-Yb-ai2" secondAttribute="trailingMargin" id="70n-wZ-cfa"/>
-                            <constraint firstItem="cpM-Yv-myy" firstAttribute="leading" secondItem="Z6s-Yb-ai2" secondAttribute="leadingMargin" id="UkG-dS-ByB"/>
+                            <constraint firstItem="V86-ou-8LK" firstAttribute="leading" secondItem="Z6s-Yb-ai2" secondAttribute="leadingMargin" id="7ap-iB-qzZ"/>
+                            <constraint firstItem="WKw-1A-Ad9" firstAttribute="top" secondItem="V86-ou-8LK" secondAttribute="bottom" constant="24" id="DDe-1n-WYL"/>
                             <constraint firstItem="4Eb-qI-ZuZ" firstAttribute="top" secondItem="XyX-3T-QFY" secondAttribute="bottom" id="XOG-ek-MbY"/>
-                            <constraint firstItem="cpM-Yv-myy" firstAttribute="trailing" secondItem="Z6s-Yb-ai2" secondAttribute="trailingMargin" id="bFk-Ux-xs6"/>
+                            <constraint firstItem="V86-ou-8LK" firstAttribute="trailing" secondItem="Z6s-Yb-ai2" secondAttribute="trailingMargin" id="bpc-fS-eAu"/>
                             <constraint firstItem="4Eb-qI-ZuZ" firstAttribute="centerX" secondItem="Z6s-Yb-ai2" secondAttribute="centerX" id="dYY-Im-tZB"/>
-                            <constraint firstItem="cpM-Yv-myy" firstAttribute="centerX" secondItem="Z6s-Yb-ai2" secondAttribute="centerX" id="niT-IU-imc"/>
+                            <constraint firstItem="V86-ou-8LK" firstAttribute="top" secondItem="4Eb-qI-ZuZ" secondAttribute="bottom" constant="8" id="gDi-2g-g2N"/>
+                            <constraint firstItem="V86-ou-8LK" firstAttribute="centerX" secondItem="Z6s-Yb-ai2" secondAttribute="centerX" id="iMw-Dc-pmr"/>
                             <constraint firstItem="4Eb-qI-ZuZ" firstAttribute="leading" secondItem="Z6s-Yb-ai2" secondAttribute="leadingMargin" id="pYC-yI-1Nx"/>
-                            <constraint firstItem="WKw-1A-Ad9" firstAttribute="top" secondItem="cpM-Yv-myy" secondAttribute="bottom" id="qFX-Q7-0Tb"/>
-                            <constraint firstItem="cpM-Yv-myy" firstAttribute="top" secondItem="4Eb-qI-ZuZ" secondAttribute="bottom" id="rc3-6H-gJO"/>
                         </constraints>
                     </view>
                 </viewController>
