@@ -20,5 +20,8 @@ extension TextItem {
     @NSManaged var otherAttribute: NSObject?
     @NSManaged var rotation: NSNumber?
     @NSManaged var inMoment: Moment?
+    
+    
+    
 
 }
