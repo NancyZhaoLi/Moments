@@ -15,18 +15,19 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var homeView: UIView!
     @IBOutlet weak var momentTableView: UITableView!
     
-    var content = ["Rob", "K", "E"]
     var momentsMO = [Moment]()
     var moments = [MomentEntry]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        print("home loaded")
+        constructMomentTableView()
         getMomentsFromCoreData()
         
+        let cellNib = UINib(nibName: "MomentTableCell", bundle: NSBundle.mainBundle())
+        momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableCell")
         
+        self.momentTableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.momentTableView.showsVerticalScrollIndicator = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +46,12 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    func constructMomentTableView() {
+        
+        self.momentTableView.frame = CGRect(x: 40, y: 0, width: self.homeView.frame.width - 80, height: self.homeView.frame.height - 50)
+        
+        
+    }
     
     func getMomentsFromCoreData(){
         
@@ -70,16 +77,32 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         print("id: \(id!), date: \(date!), title: \(title!)")
     }
     
+    // moments table
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return content.count
+        return moments.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = content[indexPath.row]
+        let cell = momentTableView.dequeueReusableCellWithIdentifier("MomentTableCell", forIndexPath: indexPath) as! MomentTableCell
+        
+        cell.frame.size.width = self.momentTableView.frame.width
+        cell.moment = moments[indexPath.row]
         
         return cell
     }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        return 120
+    }
+    
+    
+
 
 }
