@@ -54,7 +54,7 @@ class ItemManager {
     }
     
     func getMaxIdInCoreData() -> String {
-        if let maxIdInCD : Int64 = superManager!.requestMaxOfIdGreaterThan(self.getId(), entity: self.type.entity) {
+        if let maxIdInCD : Int64 = CoreDataFetchHelper.requestMaxOfIdGreaterThan(self.getId(), entity: self.type.entity) {
             return String(format: "%04lld", maxIdInCD + 1)
         } else {
             return "000"
