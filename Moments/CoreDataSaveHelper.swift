@@ -16,35 +16,50 @@ class CoreDataSaveHelper {
     static func saveNewMomentToCoreData(moment:MomentEntry) {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
         
         
-        let newMomentEntity = NSEntityDescription.insertNewObjectForEntityForName("Moment", inManagedObjectContext: context) as! Moment
+        var momentMO = Moment(entity: entity!, insertIntoManagedObjectContext: context)
+        momentMO.backgroundColour = moment.backgroundColour
+        momentMO.date = moment.date
+        momentMO.favourite = NSNumber(bool: moment.favourite)
+        momentMO.id = NSNumber(longLong: moment.id)
+        momentMO.title = moment.title
+        momentMO.containedAudioItem = NSSet()
+        momentMO.containedImageItem = NSSet()
+        momentMO.containedTextItem = NSSet()
+        momentMO.containedVideoItem = NSSet()
+        momentMO.containedStickerItem = NSSet()
         
-        let backgroundColour: UIColor = moment.backgroundColour
-        let date: NSDate  = moment.date
-        let favourite: Bool = moment.favourite
-        let id: Int64 = moment.id
-        let title: String = moment.title
-        //let textItemEntries: [TextItemEntry] = moment.textItemEntries
-        //let imageItemEntries: [ImageItemEntry] = moment.imageItemEntries
-        //let audioItemEntries: [AudioItemEntry] = moment.audioItemEntries
-        //let videoItemEntries: [VideoItemEntry] = moment.videoItemEntries
-        //let stickerItemEntries: [StickerItemEntry] = moment.stickerItemEntries
-        //let category: CategoryEntry = moment.category!
+        let containedAudioItem = momentMO.mutableSetValueForKey("containedAudioItem")
+        let containedImageItem = momentMO.mutableSetValueForKey("containedImageItem")
+        let containedTextItem = momentMO.mutableSetValueForKey("containedTextItem")
+        let containedVideoItem = momentMO.mutableSetValueForKey("containedVideoItem")
+        let containedStickerItem = momentMO.mutableSetValueForKey("containedStickerItem")
         
-        newMomentEntity.setValue(backgroundColour, forKey: "backgroundColour")
-        newMomentEntity.setValue(date, forKey: "date")
-        newMomentEntity.setValue(favourite, forKey: "favourite")
-        newMomentEntity.setValue(NSNumber(longLong: id), forKey: "id")
-        newMomentEntity.setValue(title, forKey: "title")
-        //newMomentEntity.setValue(NSSet(array: textItemEntries), forKey: "containedTextItem")
-        //newMomentEntity.setValue(NSSet(array: imageItemEntries), forKey: "containedImageItem")
-        //newMomentEntity.setValue(NSSet(array: audioItemEntries), forKey: "containedAudioItem")
-        //newMomentEntity.setValue(NSSet(array: videoItemEntries), forKey: "containedVideoItem")
-        //newMomentEntity.setValue(NSSet(array: stickerItemEntries), forKey: "containedStickerItem")
-        //newMomentEntity.setValue(category, forKey: "inCategory")
+        for textItem in moment.textItemEntries {
+            let textItemMO = saveTextItemToCoreData(textItem)
+            containedTextItem.addObject(textItemMO)
+        }
         
-        // save it
+        for imageItem in moment.imageItemEntries {
+            let imageItemMO = saveImageItemToCoreData(imageItem)
+            containedImageItem.addObject(imageItemMO)
+        }
+        
+        /*
+        for audioItem in moment.audioItemEntries {
+            saveAudioItemToCoreData(audioItem)
+        }
+        
+        for videoItem in moment.videoItemEntries {
+            saveVideoItemToCoreData(videoItem)
+        }
+        
+        let category: CategoryEntry = moment.category!
+
+        */
+
         do{
             try context.save()
         } catch {
@@ -53,28 +68,46 @@ class CoreDataSaveHelper {
         
     }
     		
-    static func saveTextItemToCoreData(textItem: TextItemEntry) {
+    static func saveTextItemToCoreData(textItem: TextItemEntry) -> TextItem {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
-        let entity = NSEntityDescription.entityForName("textItem", inManagedObjectContext: context)
+        let entity = NSEntityDescription.entityForName("TextItem", inManagedObjectContext: context)
         
         var textItemMO = TextItem(entity: entity!, insertIntoManagedObjectContext: context)
         textItemMO.id = NSNumber(longLong: textItem.id)
         textItemMO.content = textItem.content
         textItemMO.frame = NSStringFromCGRect(textItem.frame)
         textItemMO.rotation = NSNumber(float: textItem.rotation)
-        textItemMO.otherAttribute = textItem.otherAttribute
+        //textItemMO.otherAttribute = textItem.otherAttribute
         
         do {
             try context.save()
         } catch {
             print("ERROR: cannot save textItem to context")
         }
+        
+        return textItemMO
     }
     
-    
-    
-    
-    
+    static func saveImageItemToCoreData(imageItem: ImageItemEntry) -> ImageItem {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("ImageItem", inManagedObjectContext: context)
+        
+        var imageItemMO = ImageItem(entity: entity!, insertIntoManagedObjectContext: context)
+        imageItemMO.id = NSNumber(longLong: imageItem.id)
+        imageItemMO.content = imageItem.content
+        imageItemMO.frame = NSStringFromCGRect(imageItem.frame)
+        imageItemMO.rotation = NSNumber(float: imageItem.rotation)
+        
+        do {
+            try context.save()
+        } catch {
+            print("ERROR: cannot save imageItem to context")
+        }
+        
+        return imageItemMO
+
+    }
 }
 
