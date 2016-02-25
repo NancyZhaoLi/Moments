@@ -60,13 +60,21 @@ class CoreDataSaveHelper {
         
         var textItemMO = TextItem(entity: entity!, insertIntoManagedObjectContext: context)
         textItemMO.id = NSNumber(longLong: textItem.id)
+        textItemMO.content = textItem.content
+        textItemMO.frame = NSStringFromCGRect(textItem.frame)
+        textItemMO.rotation = NSNumber(float: textItem.rotation)
+        textItemMO.otherAttribute = textItem.otherAttribute
         
-        
-        
-        
-        
+        do {
+            try context.save()
+        } catch {
+            print("ERROR: cannot save textItem to context")
+        }
     }
     
     
     
+    
+    
 }
+

@@ -10,14 +10,17 @@ import Foundation
 import UIKit
 
 
-struct TextItemOtherAttribute {
+class TextItemOtherAttribute: NSObject {
     var colour : UIColor = UIColor.blackColor()
     // TO-DO: get the system default
     var font : UIFont = UIFont(name: "Arial", size: 2.0)!
   
-    init(){}
-  
+    override init() {
+        super.init()
+    }
+    
     init(colour: UIColor, font: UIFont) {
+        super.init()
         self.colour = colour
         self.font = font
     }
