@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -18,42 +18,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFc-vH-FrO">
-                                <rect key="frame" x="112" y="103" width="151" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="0dt-8D-Ufp"/>
-                                    <constraint firstAttribute="width" constant="151" id="dAP-o4-xzl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbb-E1-Eh0">
-                                <rect key="frame" x="140" y="360" width="95" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbb-E1-Eh0">
+                                <rect key="frame" x="141" y="421" width="94" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="95" id="BLZ-Zm-J6X"/>
                                     <constraint firstAttribute="height" constant="40" id="sj9-Oq-AMB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Login"/>
+                                <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="20"/>
+                                <color key="tintColor" red="0.71764707569999997" green="0.95686280729999995" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jeW-Zk-vIb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYx-C1-Bty">
-                                <rect key="frame" x="85" y="408" width="204" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYx-C1-Bty">
+                                <rect key="frame" x="141" y="481" width="94" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="0M8-C3-Rza"/>
                                     <constraint firstAttribute="width" constant="204" id="XoP-re-n0Y"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Sign Up for Moments"/>
+                                <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="20"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gc0-bp-QIM"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oQ-ka-5Wl">
-                                <rect key="frame" x="58" y="269" width="259" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2oQ-ka-5Wl">
+                                <rect key="frame" x="58" y="319" width="259" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="259" id="AfM-0U-pcy"/>
                                     <constraint firstAttribute="height" constant="30" id="MgE-MW-rAQ"/>
@@ -61,8 +61,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Uu-gl-Tm5">
-                                <rect key="frame" x="58" y="195" width="259" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Uu-gl-Tm5">
+                                <rect key="frame" x="58" y="266" width="259" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1e1-o7-62M"/>
                                     <constraint firstAttribute="width" constant="259" id="4qk-fZ-939"/>
@@ -70,18 +70,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzg-n6-a4v">
+                                <rect key="frame" x="58" y="148" width="259" height="93"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="60"/>
+                                <color key="textColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PFc-vH-FrO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2hV-hp-8Aj"/>
-                            <constraint firstItem="3Uu-gl-Tm5" firstAttribute="top" secondItem="PFc-vH-FrO" secondAttribute="bottom" constant="54" id="A7U-Ql-0oR"/>
                             <constraint firstItem="bbb-E1-Eh0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="CbN-LU-qw6"/>
                             <constraint firstItem="wYx-C1-Bty" firstAttribute="top" secondItem="bbb-E1-Eh0" secondAttribute="bottom" constant="8" id="Cy1-LI-0N3"/>
                             <constraint firstItem="2oQ-ka-5Wl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="F3a-uy-bf0"/>
                             <constraint firstItem="3Uu-gl-Tm5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zkb-Tf-T9t"/>
                             <constraint firstItem="wYx-C1-Bty" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eT9-bK-juC"/>
                             <constraint firstItem="2oQ-ka-5Wl" firstAttribute="top" secondItem="3Uu-gl-Tm5" secondAttribute="bottom" constant="44" id="hOd-iO-GRK"/>
-                            <constraint firstItem="PFc-vH-FrO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="83" id="l0P-9U-qsp"/>
                             <constraint firstItem="bbb-E1-Eh0" firstAttribute="top" secondItem="2oQ-ka-5Wl" secondAttribute="bottom" constant="61" id="nLv-jD-BBt"/>
                         </constraints>
                     </view>
@@ -126,9 +129,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
-                                <rect key="frame" x="283" y="588" width="92" height="30"/>
-                                <state key="normal" title="New Moment"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
+                                <rect key="frame" x="162" y="568" width="50" height="50"/>
+                                <state key="normal" image="newpage"/>
                                 <connections>
                                     <segue destination="k7V-YG-Yyz" kind="presentation" identifier="HomeToNewMoment" id="g0S-rU-vpO"/>
                                 </connections>
@@ -256,9 +259,9 @@
                                     <outlet property="calendarDelegate" destination="OvC-yC-rzH" id="p5D-Vq-Acl"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Sg-y0T">
-                                <rect key="frame" x="283" y="593" width="92" height="30"/>
-                                <state key="normal" title="New Moment"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Sg-y0T">
+                                <rect key="frame" x="162" y="573" width="50" height="50"/>
+                                <state key="normal" image="newpage"/>
                                 <connections>
                                     <segue destination="k7V-YG-Yyz" kind="presentation" identifier="CalenderToNewMoment" id="mm9-Jz-635"/>
                                 </connections>
@@ -499,7 +502,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start Date" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="312-oE-xn8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Start Date: Default" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="312-oE-xn8">
                                 <rect key="frame" x="26" y="249" width="317" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -517,7 +520,7 @@
                                     <segue destination="wJg-Uy-hoe" kind="show" id="35d-oS-7cb"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End Date" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RW3-Dw-ofm">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="End Date: Default" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RW3-Dw-ofm">
                                 <rect key="frame" x="29" y="310" width="317" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -573,6 +576,12 @@
                                 <rect key="frame" x="37" y="209" width="300" height="250"/>
                                 <color key="backgroundColor" red="0.74806368459999995" green="0.99345012629999996" blue="0.6791862608" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click below to play your moments!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-jd-3Hv">
+                                <rect key="frame" x="37" y="137" width="300" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -849,7 +858,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The video has been saved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oih-ju-gSb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your video has been saved!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oih-ju-gSb">
                                 <rect key="frame" x="23" y="239" width="328" height="55"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
