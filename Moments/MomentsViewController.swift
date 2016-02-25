@@ -39,10 +39,10 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func favorite(sender: UIButton) {
         fav = !fav
         if fav {
-            let image = UIImage(named: "FavoriteSelected")
+            let image = UIImage(named: "FavouriteSelected")
             sender.setImage(image, forState: UIControlState.Normal)        }
         else {
-            let image = UIImage(named: "Favorite")
+            let image = UIImage(named: "Favourite")
             sender.setImage(image, forState: UIControlState.Normal)        }
     }
 
