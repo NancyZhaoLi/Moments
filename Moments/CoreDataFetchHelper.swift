@@ -7,3 +7,32 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
+
+
+class CoreDataFetchHelper {
+    
+    static var context: NSManagedObjectContext?
+    
+    init() {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        CoreDataFetchHelper.context =  appDel.managedObjectContext
+    }
+    
+    func fetchMomentsMOFromCoreData() -> [NSManagedObject] {
+        
+        let requestMoments = NSFetchRequest(entityName: "Moment")
+        requestMoments.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try CoreDataFetchHelper.context!.executeFetchRequest(requestMoments) as? [NSManagedObject]
+
+            return results!
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+}
