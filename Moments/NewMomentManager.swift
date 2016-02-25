@@ -130,41 +130,13 @@ class NewMomentManager {
     }
     
     func setIdSuffix() {
-        if let maxIdInCD : Int64 = requestMaxOfIdGreaterThan(Int64(self.idPrefix + "0000")!, entity: "Moment") {
+        if let maxIdInCD : Int64 = CoreDataFetchHelper.requestMaxOfIdGreaterThan(Int64(self.idPrefix + "0000")!, entity: "Moment") {
             self.idSuffix = String(format: "%04lld", maxIdInCD + 1)
         } else {
             self.idSuffix = "0000"
         }
     }
     
-    func requestMaxOfIdGreaterThan(minimum: Int64, entity: String) -> Int64? {
-        let request = NSFetchRequest(entityName: entity)
-        let sortDes = NSSortDescriptor(key: "id", ascending: false)
-        
-        request.sortDescriptors = [sortDes]
-        request.predicate = NSPredicate(format: "id >= %lld", minimum)
-        request.returnsObjectsAsFaults = false
-        request.fetchLimit = 1
-        
-        do {
-            let results = try self.context!.executeFetchRequest(request)
-            if results.count > 0 {
-                let result = results[0].valueForKey("id")!.longLongValue
-                if entity == "Moment" {
-                    return result % Int64("10000")!
-                } else {
-                    return result % ItemType.modValue
-                }
-            } else {
-                debug("[requestId] - no item")
-                return nil
-            }
-        } catch {
-            debug("[getMaxId] - Fetching failed")
-        }
-        
-        return nil
-    }
     
     func saveMomentEntry() {
         debugBegin("saveMomentEntry")
