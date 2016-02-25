@@ -132,13 +132,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
-                                <rect key="frame" x="162" y="570" width="50" height="50"/>
-                                <state key="normal" image="newpage"/>
-                                <connections>
-                                    <segue destination="k7V-YG-Yyz" kind="presentation" identifier="HomeToNewMoment" id="g0S-rU-vpO"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="esN-9B-b61">
                                 <rect key="frame" x="20" y="99" width="335" height="470"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,7 +143,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="cd6-7q-mMo"/>
+                    <navigationItem key="navigationItem" title="Home" id="cd6-7q-mMo">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="gt4-Lo-tFU">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m74-nf-6np">
+                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="Add-a-button-icon"/>
+                                <connections>
+                                    <segue destination="k7V-YG-Yyz" kind="presentation" identifier="HomeToNewMoment" id="g0S-rU-vpO"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="homeView" destination="e13-7W-GB8" id="VUe-db-u8f"/>
@@ -278,13 +282,6 @@
                                     <outlet property="calendarDelegate" destination="OvC-yC-rzH" id="p5D-Vq-Acl"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Sg-y0T">
-                                <rect key="frame" x="162" y="570" width="50" height="50"/>
-                                <state key="normal" image="newpage"/>
-                                <connections>
-                                    <segue destination="k7V-YG-Yyz" kind="presentation" identifier="CalenderToNewMoment" id="mm9-Jz-635"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="0D0-Y3-vBl"/>
@@ -307,11 +304,21 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oco-fs-nYf">
-                        <barButtonItem key="rightBarButtonItem" title="Today" id="j5N-kb-Fhy">
+                        <barButtonItem key="leftBarButtonItem" image="Today-1" id="j5N-kb-Fhy">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="getToday:" destination="OvC-yC-rzH" id="5uY-bL-IAk"/>
                             </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="o8g-N8-vwj">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BWl-Sg-y0T">
+                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="Add-a-button-icon"/>
+                                <connections>
+                                    <segue destination="k7V-YG-Yyz" kind="presentation" identifier="CalenderToNewMoment" id="mm9-Jz-635"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -324,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nl5-j9-0Gr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1889.5" y="-35.5"/>
+            <point key="canvasLocation" x="1909.5" y="-25.5"/>
         </scene>
         <!--Calendar Day View Controller-->
         <scene sceneID="Lk1-mZ-GyB">
@@ -587,20 +594,24 @@
                                     <action selector="favorite:" destination="15x-v9-DXg" eventType="touchUpInside" id="FjL-Dq-TYZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TvC-3J-jof">
-                                <rect key="frame" x="162" y="570" width="50" height="50"/>
-                                <state key="normal" image="newpage"/>
-                                <connections>
-                                    <segue destination="k7V-YG-Yyz" kind="show" id="RrY-gb-7Xy"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
                     </view>
-                    <navigationItem key="navigationItem" title="Moments" id="aN6-wd-ScQ"/>
+                    <navigationItem key="navigationItem" title="Moments" id="aN6-wd-ScQ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="axi-Gs-2ay">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TvC-3J-jof">
+                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="Add-a-button-icon"/>
+                                <connections>
+                                    <segue destination="k7V-YG-Yyz" kind="show" id="RrY-gb-7Xy"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="endDate" destination="RW3-Dw-ofm" id="FMf-Po-fhS"/>
                         <outlet property="startDate" destination="312-oE-xn8" id="Fd8-vy-Bff"/>
@@ -1112,7 +1123,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Add-a-button-icon" width="128" height="128"/>
         <image name="Favorite" width="128" height="128"/>
+        <image name="Today-1" width="25" height="25"/>
         <image name="album" width="25" height="25"/>
         <image name="calendar" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
@@ -1123,6 +1136,6 @@
         <image name="rightArrow" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mm9-Jz-635"/>
+        <segue reference="g0S-rU-vpO"/>
     </inferredMetricsTieBreakers>
 </document>
