@@ -40,6 +40,10 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     @IBOutlet weak var favouriteSetter: UIButton!
     @IBOutlet weak var addItemBar: UIToolbar!
     
+    @IBAction func cancelAddNewMoment(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func addItem(sender: AnyObject) {
         debug("[addItem] - +Item Button Pressed")
         if (addItemBar.hidden) {
