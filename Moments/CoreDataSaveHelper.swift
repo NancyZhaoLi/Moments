@@ -12,17 +12,13 @@ import CoreData
 
 
 class CoreDataSaveHelper {
-    
-    static var context: NSManagedObjectContext?
-    
-    init() {
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        CoreDataSaveHelper.context =  appDel.managedObjectContext
-    }
-    
+
     static func saveNewMomentToCoreData(moment:MomentEntry) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
         
-        let newMomentEntity = NSEntityDescription.insertNewObjectForEntityForName("Moment", inManagedObjectContext: context!) as! Moment
+        
+        let newMomentEntity = NSEntityDescription.insertNewObjectForEntityForName("Moment", inManagedObjectContext: context) as! Moment
         
         let backgroundColour: UIColor = moment.backgroundColour
         let date: NSDate  = moment.date
@@ -50,15 +46,27 @@ class CoreDataSaveHelper {
         
         // save it
         do{
-            try context!.save()
+            try context.save()
         } catch {
             print("ERROR: saving context to Moment")
         }
         
     }
-    
-    func saveTextItemToCoreData(textItem: TextItemEntry) {
+    		
+    static func saveTextItemToCoreData(textItem: TextItemEntry) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("textItem", inManagedObjectContext: context)
+        
+        var textItemMO = TextItem(entity: entity!, insertIntoManagedObjectContext: context)
+        textItemMO.id = NSNumber(longLong: textItem.id)
+        
+        
+        
+        
         
     }
+    
+    
     
 }
