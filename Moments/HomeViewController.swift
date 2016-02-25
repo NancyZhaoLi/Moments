@@ -11,7 +11,7 @@ import CoreData
 
 class HomeViewController: UIViewController {
     
-    var momentsMO = [NSManagedObject]()
+    var momentsMO = [Moment]()
     var moments = [MomentEntry]()
 
     override func viewDidLoad() {
@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
             if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
                 CoreDataSaveHelper.saveNewMomentToCoreData(moment)
                 moments.append(moment)
-                reloadMomentsMOFromCoreData()
+                getMomentsMOFromCoreData()
             }
         }
     }
@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
     
     func getMomentsFromCoreData(){
         
-        var momentsMO: [NSManagedObject] = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
+        getMomentsMOFromCoreData()
             
         for var i = 0; i < momentsMO.count; ++i {
             addMomentFromCoreData(momentsMO[i])
@@ -49,25 +49,15 @@ class HomeViewController: UIViewController {
         
     }
     
-    func reloadMomentsMOFromCoreData(){
-        
-        let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.returnsObjectsAsFaults = false
-        
-        do {
-            let results = try CoreDataFetchHelper.context!.executeFetchRequest(requestMoments) as? [NSManagedObject]
-            momentsMO = results!
-            
-        } catch {
-            fatalError("Failure to fetch context: \(error)")
-        }
+    func getMomentsMOFromCoreData(){
+        momentsMO = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
         
     }
     
-    func addMomentFromCoreData(momentMO: NSManagedObject) {
-        let id =  momentMO.valueForKey("id")?.longLongValue
-        let date = momentMO.valueForKey("date") as? NSDate
-        let title = momentMO.valueForKey("title") as? String
+    func addMomentFromCoreData(momentMO: Moment) {
+        let id =  momentMO.id?.longLongValue
+        let date = momentMO.date
+        let title = momentMO.title
         let moment = MomentEntry(id: id!, date: date!, title: title!)
         moments.append(moment)
         print("id: \(id!), date: \(date!), title: \(title!)")

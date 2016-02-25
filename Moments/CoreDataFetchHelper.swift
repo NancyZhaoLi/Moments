@@ -13,22 +13,18 @@ import CoreData
 
 class CoreDataFetchHelper {
     
-    static var context: NSManagedObjectContext?
-    
-    init() {
+    static func fetchMomentsMOFromCoreData() -> [Moment] {
+        
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        CoreDataFetchHelper.context =  appDel.managedObjectContext
-    }
-    
-    static func fetchMomentsMOFromCoreData() -> [NSManagedObject] {
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
         requestMoments.returnsObjectsAsFaults = false
         
         do {
-            let results = try context!.executeFetchRequest(requestMoments) as? [NSManagedObject]
+            let results = try context.executeFetchRequest(requestMoments) as! [Moment]
 
-            return results!
+            return results
         } catch {
             fatalError("Failure to fetch context: \(error)")
         }
