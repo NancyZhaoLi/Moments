@@ -149,6 +149,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="cd6-7q-mMo"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="homeView" destination="e13-7W-GB8" id="VUe-db-u8f"/>
+                        <outlet property="momentTableView" destination="esN-9B-b61" id="4ju-UU-3YW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbc-f1-qFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -355,6 +359,10 @@
                             <constraint firstItem="4Eb-qI-ZuZ" firstAttribute="leading" secondItem="Z6s-Yb-ai2" secondAttribute="leadingMargin" id="pYC-yI-1Nx"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dayView" destination="Z6s-Yb-ai2" id="ioy-L6-D6a"/>
+                        <outlet property="momentTableView" destination="V86-ou-8LK" id="bhz-BJ-fTX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lgt-Db-vgE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

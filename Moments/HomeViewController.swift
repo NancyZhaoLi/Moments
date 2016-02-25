@@ -11,6 +11,10 @@ import CoreData
 
 class HomeViewController: UIViewController, UITableViewDelegate {
     
+    
+    @IBOutlet var homeView: UIView!
+    @IBOutlet weak var momentTableView: UITableView!
+    
     var content = ["Rob", "K", "E"]
     var momentsMO = [Moment]()
     var moments = [MomentEntry]()
