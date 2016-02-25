@@ -286,7 +286,6 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="0D0-Y3-vBl"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="centerX" secondItem="qOK-9V-XWF" secondAttribute="centerX" id="3AR-ak-2mh"/>
@@ -353,7 +352,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4Eb-qI-ZuZ" firstAttribute="trailing" secondItem="Z6s-Yb-ai2" secondAttribute="trailingMargin" id="70n-wZ-cfa"/>
                             <constraint firstItem="V86-ou-8LK" firstAttribute="leading" secondItem="Z6s-Yb-ai2" secondAttribute="leadingMargin" id="7ap-iB-qzZ"/>

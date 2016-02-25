@@ -19,6 +19,7 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "calendarBG")!)
         
         monthLabel.text = CVDate(date: NSDate()).globalDescription
     }
