@@ -131,7 +131,7 @@ class NewMomentManager {
     
     func setIdSuffix() {
         if let maxIdInCD : Int64 = requestMaxOfIdGreaterThan(Int64(self.idPrefix + "0000")!, entity: "Moment") {
-            self.idSuffix = String(format: "%04lld", maxIdInCD)
+            self.idSuffix = String(format: "%04lld", maxIdInCD + 1)
         } else {
             self.idSuffix = "0000"
         }
@@ -149,12 +149,18 @@ class NewMomentManager {
         do {
             let results = try self.context!.executeFetchRequest(request)
             if results.count > 0 {
-                return results[0].longLongValue
+                let result = results[0].valueForKey("id")!.longLongValue
+                if entity == "Moment" {
+                    return result % Int64("10000")!
+                } else {
+                    return result % ItemType.modValue
+                }
             } else {
+                debug("[requestId] - no item")
                 return nil
             }
         } catch {
-            print("[getMaxId] - Fetching failed")
+            debug("[getMaxId] - Fetching failed")
         }
         
         return nil
@@ -162,8 +168,8 @@ class NewMomentManager {
     
     func saveMomentEntry() {
         debugBegin("saveMomentEntry")
-        setIdPrefix()
-        setIdSuffix()
+        debug("[saveMomentEntry] - prefix: " + self.idPrefix)
+        debug("[saveMomentEntry] - suffix: " + self.idSuffix)
         updateTitle()
         updateColour()
         self.moment = MomentEntry.init(id: getId(), date: self.momentDate, title: self.momentTitle)
@@ -208,7 +214,7 @@ class NewMomentManager {
     
     func getId() -> Int64 {
         let id = Int64(self.idPrefix + self.idSuffix)!
-        debugBegin("[getId] - id: " + String(id))
+        //debugBegin("[getId] - id: " + String(id))
         return id
     }
 

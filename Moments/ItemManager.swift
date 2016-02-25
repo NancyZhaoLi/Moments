@@ -54,8 +54,8 @@ class ItemManager {
     }
     
     func getMaxIdInCoreData() -> String {
-        if let maxIdInCD : Int64 = superManager!.requestMaxOfIdGreaterThan(Int64(self.idPrefix)!, entity: self.type.entity) {
-            return String(format: "%04lld", maxIdInCD)
+        if let maxIdInCD : Int64 = superManager!.requestMaxOfIdGreaterThan(self.getId(), entity: self.type.entity) {
+            return String(format: "%04lld", maxIdInCD + 1)
         } else {
             return "000"
         }
@@ -63,7 +63,6 @@ class ItemManager {
     
     func getId() -> Int64 {
         let id = Int64(self.idPrefix + self.idSuffix)!
-        debug("[getId] - id: " + String(id))
         return id
     }
     
