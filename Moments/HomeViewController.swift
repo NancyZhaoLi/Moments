@@ -41,11 +41,11 @@ class HomeViewController: UIViewController {
     
     func getMomentsFromCoreData(){
         
-            momentsMO = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
+        var momentsMO: [NSManagedObject] = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
             
-            for var i = 0; i < momentsMO.count; ++i {
-                addMomentFromCoreData(momentsMO[i])
-            }
+        for var i = 0; i < momentsMO.count; ++i {
+            addMomentFromCoreData(momentsMO[i])
+        }
         
     }
     
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
         requestMoments.returnsObjectsAsFaults = false
         
         do {
-            let results = try context!.executeFetchRequest(requestMoments) as? [NSManagedObject]
+            let results = try CoreDataFetchHelper.context!.executeFetchRequest(requestMoments) as? [NSManagedObject]
             momentsMO = results!
             
         } catch {

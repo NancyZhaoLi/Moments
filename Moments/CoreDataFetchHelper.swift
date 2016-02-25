@@ -20,13 +20,13 @@ class CoreDataFetchHelper {
         CoreDataFetchHelper.context =  appDel.managedObjectContext
     }
     
-    func fetchMomentsMOFromCoreData() -> [NSManagedObject] {
+    static func fetchMomentsMOFromCoreData() -> [NSManagedObject] {
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
         requestMoments.returnsObjectsAsFaults = false
         
         do {
-            let results = try CoreDataFetchHelper.context!.executeFetchRequest(requestMoments) as? [NSManagedObject]
+            let results = try context!.executeFetchRequest(requestMoments) as? [NSManagedObject]
 
             return results!
         } catch {
