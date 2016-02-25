@@ -62,6 +62,26 @@ class CoreDataFetchHelper {
         
         return nil
     }
-
     
+    static func deleteMomentGivenId(id: Int64) -> Bool {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "Moment")
+        request.predicate = NSPredicate(format: "id == %lld", id)
+        
+        do {
+            let results = try context.executeFetchRequest(request)
+            if results.count > 0 {
+                context.deleteObject(results[0] as! NSManagedObject)
+            } else {
+               return false
+            }
+        } catch {
+            print("[getMaxId] - Fetching failed")
+            return false
+        }
+        return false
+    }
+
 }

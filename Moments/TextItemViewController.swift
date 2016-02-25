@@ -33,7 +33,7 @@ class TextItemManager : ItemManager {
         super.debugPrefix = "[TextItemManager] - "
     }
     
-    func addText(textView: UITextView, location: CGPoint) {
+    func addText(textView: UITextView, location: CGPoint) -> TextItemViewController {
         let textItemView = UITextView(frame: CGRectMake(location.x, location.y, 120, 120))
         let textItemVC = TextItemViewController()
         
@@ -45,9 +45,18 @@ class TextItemManager : ItemManager {
         textItemVC.view = textItemView
         
         self.textItems.append(textItemVC)
-        super.canvas!.view.addSubview(textItemVC.view)
-        super.canvas!.addChildViewController(textItemVC)
+        return textItemVC
     }
+    
+    func loadText(textItem: TextItemEntry) -> TextItemViewController {
+        let textItemView = UITextView(frame: textItem.frame)
+        let textItemVC = TextItemViewController()
+        textItemView.text = textItem.content
+        
+        textItemVC.view = textItemView
+        return textItemVC
+    }
+    
     
     override func saveAllItemEntry() {
         var id = getId()

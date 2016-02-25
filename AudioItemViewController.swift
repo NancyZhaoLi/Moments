@@ -90,5 +90,9 @@ class AudioItemManager : ItemManager {
             }
         }
     }
+    
+    func loadAudio(audioItem: AudioItemEntry) -> AudioItemViewController {
+        return AudioItemViewController()
+    }
 
 }

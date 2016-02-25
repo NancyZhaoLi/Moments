@@ -30,6 +30,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     var savePageAccessed : Bool = false
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager = NewMomentManager()
+    var loadedMoment : MomentEntry?
     
     /*******************************************************************
      
@@ -103,7 +104,11 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
         super.viewDidLoad()
         
         print("New moment canvas page loaded")
-        manager.setCanvas(self)
+        if let moment = self.loadedMoment {
+            manager.loadCanvas(self, moment: moment)
+        } else {
+            manager.setCanvas(self)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -210,6 +215,34 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
 
     }
     
+    func loadText(textItem: TextItemViewController) {
+        self.view.addSubview(textItem.view)
+        self.addChildViewController(textItem)
+    }
+    
+    func loadImage(imageItem: ImageItemViewController) {
+        self.view.addSubview(imageItem.view)
+        self.addChildViewController(imageItem)
+    }
+    
+    func loadAudio(audioItem: AudioItemEntry) {
+        
+    }
+    
+    func loadVideo(videoItem: VideoItemEntry) {
+        
+    }
+    
+    func loadSticker(stickerItem: StickerItemEntry) {
+        
+    }
+    
+    func addNewViewController(vc: UIViewController) {
+        self.view.addSubview(vc.view)
+        self.addChildViewController(vc)
+    }
+    
+    
     /*******************************************************************
     
         DELEGATE FUNCTIONS
@@ -219,7 +252,8 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     // EditTextItemViewControllerDelegate functions
     func addText(controller: EditTextItemViewController, textView: UITextView) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        self.manager.addText(textView, location: self.touchLocation!)
+        let vc = self.manager.addText(textView, location: self.touchLocation!)
+        addNewViewController(vc)
         resetTouchMode()
     }
     
@@ -234,7 +268,8 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
         print("Image Selected")
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        self.manager.addImage(image, location: self.touchLocation!, editingInfo: editingInfo)
+        let vc = self.manager.addImage(image, location: self.touchLocation!, editingInfo: editingInfo)
+        addNewViewController(vc)
     }
     
     

@@ -29,4 +29,8 @@ class StickerItemManager : ItemManager {
         super.type = ItemType.Text
         super.debugPrefix = "[TextItemManager] - "
     }
+    
+    func loadSticker(stickerItem: StickerItemEntry) -> StickerItemViewController {
+        return StickerItemViewController()
+    }
 }

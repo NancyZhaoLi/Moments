@@ -56,4 +56,8 @@ class VideoItemManager : ItemManager {
             self.canvas!.addChildViewController(videoItemVC)
         }
     }
+    
+    func loadVideo(videoItem: VideoItemEntry) -> VideoItemViewController {
+        return VideoItemViewController()
+    }
 }

@@ -80,6 +80,20 @@ class ImageItemViewController: UIViewController {
         }
         self.view = imageView
     }
+    
+    func addImage(url: String, frame: CGRect) {
+        let imageView = ImageItemView(frame: frame)
+        
+        if let url: NSURL = NSURL(string: url) {
+            imageView.url = url.absoluteString
+            if let data = NSData(contentsOfURL: url) {
+                let image = UIImage(data: data)
+                imageView.image = image
+                self.view = imageView
+            }
+        }
+    }
+    
 }
 
 class ImageItemManager : ItemManager {
@@ -96,13 +110,20 @@ class ImageItemManager : ItemManager {
         
     }
     
-    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
+    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {
         var newImageVC = ImageItemViewController(manager: self)
         newImageVC.addImage(image, location: location, editingInfo: editingInfo)
             
         self.imageItems.append(newImageVC)
-        super.canvas!.view.addSubview(newImageVC.view)
-        super.canvas!.addChildViewController(newImageVC)
+        return newImageVC
+    }
+    
+    func loadImage(imageItem: ImageItemEntry) -> ImageItemViewController {
+        var newImageVC = ImageItemViewController(manager: self)
+        newImageVC.addImage(imageItem.content!, frame: imageItem.frame)
+        
+        self.imageItems.append(newImageVC)
+        return newImageVC
     }
     
     override func saveAllItemEntry() {
