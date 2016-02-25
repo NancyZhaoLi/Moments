@@ -12,6 +12,13 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
 
+    @IBAction func saveVideo(sender: UIButton) {
+        //call export func in videogen
+        
+        let alert = UIAlertController(title: "Save Video", message: "Your video has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
