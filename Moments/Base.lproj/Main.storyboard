@@ -1063,7 +1063,13 @@
                                             <rect key="frame" x="107" y="2" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="Text_Size_change"/>
+                                            <connections>
+                                                <action selector="changeFontSize:" destination="hv9-Kf-qPs" eventType="touchUpInside" id="1AH-wl-cZG"/>
+                                            </connections>
                                         </button>
+                                        <connections>
+                                            <action selector="changeFontSize:" destination="hv9-Kf-qPs" id="BXp-Jv-WWS"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GAX-5M-8RT"/>
                                     <barButtonItem style="plain" id="TLy-Xg-pPW">
@@ -1071,6 +1077,9 @@
                                             <rect key="frame" x="193" y="11" width="22" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="Text_Colour"/>
+                                            <connections>
+                                                <action selector="changeFontColour:" destination="hv9-Kf-qPs" eventType="touchUpInside" id="eR5-HY-8Lh"/>
+                                            </connections>
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Or8-iA-T6l"/>
@@ -1079,6 +1088,9 @@
                                             <rect key="frame" x="260" y="7" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Font" image="Editing-changing_Font"/>
+                                            <connections>
+                                                <action selector="changeFontName:" destination="hv9-Kf-qPs" eventType="touchUpInside" id="SaJ-yZ-zYc"/>
+                                            </connections>
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ya5-Yb-46c"/>

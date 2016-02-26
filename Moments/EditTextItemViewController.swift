@@ -32,14 +32,13 @@ class EditTextItemView: UITextView {
         } else {
             self.font = UIFont(name: "Arial", size: size)
         }
-
     }
 
 }
 
 
 
-class EditTextItemViewController: UIViewController, UITextViewDelegate {
+class EditTextItemViewController: UIViewController, UITextViewDelegate, ColourPickerViewControllerDelegate {
 
     var delegate : EditTextItemViewControllerDelegate?
     var text : String?
@@ -48,6 +47,17 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var editTextItemView: EditTextItemView!
     
+    @IBAction func changeFontSize(sender: AnyObject) {
+    }
+    @IBAction func changeFontColour(sender: AnyObject) {
+        print("colour change")
+        let colourPickerVC = storyboard?.instantiateViewControllerWithIdentifier("colourPicker") as! ColourPickerViewController
+        colourPickerVC.delegate = self
+        self.presentViewController(colourPickerVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func changeFontName(sender: AnyObject) {
+    }
     
     @IBAction func cancelAddText(sender: AnyObject) {
         if let delegate = self.delegate {
@@ -96,5 +106,17 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-
+    func selectColor(controller: ColourPickerViewController, colour: UIColor) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        editTextItemView.textColor = colour
+    }
+    
+    func currentColor() -> UIColor {
+        if let colour = editTextItemView.textColor {
+            print("current color is: " + String(colour))
+            return colour
+        }
+        
+        return UIColor.blackColor()
+    }
 }
