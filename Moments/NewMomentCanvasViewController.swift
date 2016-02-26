@@ -69,17 +69,22 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     @IBAction func setFav(sender: AnyObject) {
         debug("[otherOptions] - favourite Button pressed")
         if self.manager.setFavourite() {
-            //favouriteSetter.backgroundColor = UIColor.redColor()
-            let image = UIImage(named: "Favourite") as UIImage?
-            //favouriteSetter.backgroundColor = UIColor.redColor()
-            favouriteSetter.setBackgroundImage(image, forState: .Normal)
+            addToFavourite()
         } else {
-            //favouriteSetter.backgroundColor = UIColor.clearColor()
-            let image = UIImage(named: "FavouriteSelected") as UIImage?
-            //favouriteSetter.backgroundColor = UIColor.redColor()
-            favouriteSetter.setBackgroundImage(image, forState: .Normal)
+            removeFromFavourite()
         }
     }
+    
+    func addToFavourite(){
+        let image = UIImage(named: "FavouriteSelected") as UIImage?
+        favouriteSetter.setBackgroundImage(image, forState: .Normal)
+    }
+    
+    func removeFromFavourite() {
+        let image = UIImage(named: "Favourite") as UIImage?
+        favouriteSetter.setBackgroundImage(image, forState: .Normal)
+    }
+    
     
     
     @IBAction func goToSavePage(sender: AnyObject) {

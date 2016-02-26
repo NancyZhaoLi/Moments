@@ -75,15 +75,21 @@ class NewMomentManager {
         self.momentDate = moment.date
         self.momentTitle = moment.title
         self.momentFavourite = moment.favourite
+        
+        if self.momentFavourite {
+            self.canvas!.addToFavourite()
+        }
+        
         if let category = moment.category {
             self.momentCategory = category
         }
+   
         self.momentColour = moment.backgroundColour
         self.canvas!.view.backgroundColor = self.momentColour
         self.idPrefix = String(moment.id / Int64(10000))
         self.idSuffix = String(moment.id % Int64(10000))
         self.isNewMoment = false
-        
+
         initItemManagers()
         for textItem in moment.textItemEntries {
             debug("[loadCanvas] - textItem: " + String(textItem))
