@@ -25,6 +25,7 @@ class OtherCanvasOptionViewController: UIViewController {
         if segue.identifier == "showColourPicker" {
             let colourPicker = segue.destinationViewController as! ColourPickerViewController
             colourPicker.delegate = self.delegate as! ColourPickerViewControllerDelegate
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
