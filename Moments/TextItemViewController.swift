@@ -8,6 +8,13 @@
 
 import UIKit
 
+extension String {
+    var length: Int {
+        return characters.count
+    }
+}
+
+
 class TextItemViewController: UIViewController {
 
     var manager: TextItemManager?
@@ -35,13 +42,20 @@ class TextItemManager : ItemManager {
     
     func addText(textView: UITextView, location: CGPoint) -> TextItemViewController {
         debugBegin("addText")
-        let textItemView = UITextView(frame: CGRectMake(location.x, location.y, 120, 120))
+        
+        let width : CGFloat = textView.frame.width - 20 - location.x
+        var height : CGFloat = CGFloat(integerLiteral: 20)
+        if let text = textView.text {
+            height = ((CGFloat(text.length) / width) + 5) * 20
+        }
+        let textItemView = UITextView(frame: CGRectMake(location.x, location.y, width, height))
         let textItemVC = TextItemViewController()
         
         textItemView.textAlignment = textView.textAlignment
         textItemView.textColor = textView.textColor
         textItemView.backgroundColor = textView.backgroundColor
         textItemView.text = textView.text
+        textItemView.font = UIFont(name: textView.font!.fontName, size: textView.font!.pointSize + 5)
         
         textItemVC.view = textItemView
         
