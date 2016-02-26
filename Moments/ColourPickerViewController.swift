@@ -11,7 +11,8 @@ import SwiftHSVColorPicker
 
 
 protocol ColourPickerViewControllerDelegate {
-    func selectColor(controller: ColourPickerViewController, color: UIColor)
+    func selectColor(controller: ColourPickerViewController, colour: UIColor)
+    func currentColor(controller: ColourPickerViewController) -> UIColor
 }
 
 
@@ -23,12 +24,12 @@ class ColourPickerViewController: UIViewController {
     
     @IBAction func selectColour(sender: AnyObject) {
         if let delegate = self.delegate {
-            delegate.selectColor(self, color: self.colorPicker!.color)
+            delegate.selectColor(self, colour: self.colorPicker!.color)
         }
     }
     
     @IBAction func cancelColourPicking(sender: AnyObject) {
-        //self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -37,6 +38,7 @@ class ColourPickerViewController: UIViewController {
         let height = self.view.frame.height - 50
         self.colorPicker = SwiftHSVColorPicker(frame: CGRectMake(10,50,width,height))
         self.view.addSubview(self.colorPicker!)
+        self.colorPicker!.setViewColor(self.delegate!.currentColor(self))
     }
     
     override func didReceiveMemoryWarning() {
