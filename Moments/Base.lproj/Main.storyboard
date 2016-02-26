@@ -155,6 +155,7 @@
                     <connections>
                         <outlet property="homeView" destination="e13-7W-GB8" id="VUe-db-u8f"/>
                         <outlet property="momentTableView" destination="esN-9B-b61" id="4ju-UU-3YW"/>
+                        <segue destination="k7V-YG-Yyz" kind="presentation" identifier="editSavedMoment" id="iuc-Uf-mkk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbc-f1-qFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1124,6 +1125,6 @@
         <image name="view" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="g0S-rU-vpO"/>
+        <segue reference="iuc-Uf-mkk"/>
     </inferredMetricsTieBreakers>
 </document>
