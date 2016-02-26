@@ -38,7 +38,8 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         self.dayMomentTableView.showsVerticalScrollIndicator = false
         self.dayMomentTableView.backgroundColor = UIColor.clearColor()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
+        self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
 
     }
     
