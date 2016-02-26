@@ -161,8 +161,8 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showNewTextModal" {
-            let vc = segue.destinationViewController as! EditTextItemViewController
+        if segue.identifier == "showEditTextView" {
+            let vc = segue.destinationViewController as! UINavigationController
             vc.modalPresentationStyle = .OverCurrentContext
             vc.delegate = self
         } else if segue.identifier == "showOtherOptionPopover" {
@@ -218,7 +218,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
      ******************************************************************/
     
     func addText(){
-        self.performSegueWithIdentifier("showNewTextModal", sender: self)
+        self.performSegueWithIdentifier("showEditTextView", sender: self)
     }
     
     func addImage(){
