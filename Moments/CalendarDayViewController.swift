@@ -12,10 +12,10 @@ import CVCalendar
 class CalendarDayViewController: UIViewController {
     var date:NSDate?
     
+    @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet var dayView: UIView!
-    @IBOutlet weak var momentTableView: UITableView!
-
+    @IBOutlet weak var dayMomentTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
