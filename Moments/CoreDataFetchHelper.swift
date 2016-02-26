@@ -10,6 +10,20 @@ import Foundation
 import UIKit
 import CoreData
 
+extension NSDate {
+    var startOfDay: NSDate {
+        return NSCalendar.currentCalendar().startOfDayForDate(self)
+    }
+    
+    var endOfDay: NSDate {
+        let components = NSDateComponents()
+        components.day = 1
+        components.second = -1
+        return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: startOfDay, options: NSCalendarOptions())!
+    }
+}
+
+
 
 class CoreDataFetchHelper {
     
@@ -36,13 +50,26 @@ class CoreDataFetchHelper {
         
     }
     
+
+    
     static func fetchDayMomentsMOFromCoreData(date: NSDate) -> [Moment] {
+        print(date)
+        print(date.startOfDay)
+        print(date.endOfDay)
+        
+        let d = NSDate()
+        print(d)
+        print(d.startOfDay)
+        print(d.endOfDay)
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
+        
+        
+        
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        //requestMoments.predicate = NSPredicate(format: "date = %@", date)
+        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= date.endOfDay", date.startOfDay, date.endOfDay)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
