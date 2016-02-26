@@ -23,11 +23,20 @@ class CalendarDayViewController: UIViewController {
         // Do any additional setup after loading the view.
         print("Calendar day loaded")
         print("Day: \(date!)")
+        
+        updateDateLabel()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateDateLabel() {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMMM dd, YYYY"
+        let dateString = formatter.stringFromDate(date!)
+        dateLabel.text = dateString
     }
     
     /*
