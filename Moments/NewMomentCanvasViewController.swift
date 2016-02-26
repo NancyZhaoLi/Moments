@@ -111,7 +111,8 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(red: 255.0, green: 255.0, blue: 230, alpha: 0.8)
+        
+        self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(254/255.0), blue: CGFloat(223/255.0), alpha: 1.0)
         
         debug("[viewDidLoad] - loading start")
         if let moment = self.loadedMoment {

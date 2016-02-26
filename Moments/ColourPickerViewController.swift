@@ -35,8 +35,8 @@ class ColourPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let width = self.view.frame.width - 20
-        let height = self.view.frame.height - 50
-        self.colorPicker = SwiftHSVColorPicker(frame: CGRectMake(10,50,width,height))
+        let height = self.view.frame.height - 100
+        self.colorPicker = SwiftHSVColorPicker(frame: CGRectMake(10,100,width,height))
         self.view.addSubview(self.colorPicker!)
         self.colorPicker!.setViewColor(self.delegate!.currentColor())
     }
