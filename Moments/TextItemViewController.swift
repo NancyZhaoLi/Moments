@@ -53,7 +53,7 @@ class TextItemManager : ItemManager {
         
         textItemView.textAlignment = textView.textAlignment
         textItemView.textColor = textView.textColor
-        textItemView.backgroundColor = textView.backgroundColor
+        textItemView.backgroundColor = UIColor.clearColor()
         textItemView.text = textView.text
         textItemView.font = UIFont(name: textView.font!.fontName, size: textView.font!.pointSize + 5)
         
