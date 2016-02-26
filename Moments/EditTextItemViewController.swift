@@ -13,10 +13,16 @@ protocol EditTextItemViewControllerDelegate {
     func cancelAddTextItem(controller: EditTextItemViewController)
 }
 
+class EditTextItemView: UITextView {
+    
+}
+
+
 
 class EditTextItemViewController: UIViewController {
 
     var delegate : EditTextItemViewControllerDelegate?
+    var placeHolder: String = "Enter Your Text Here..."
     
     @IBAction func cancelAddText(sender: AnyObject) {
         if let delegate = self.delegate {
@@ -30,12 +36,15 @@ class EditTextItemViewController: UIViewController {
             delegate.addText(self, textView: textEditView)
         }
         
+        
     }
     
     @IBOutlet weak var textEditView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         print("New Text View Controller Loaded")
     }
 
