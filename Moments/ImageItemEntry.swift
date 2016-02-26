@@ -20,6 +20,14 @@ class ImageItemEntry {
         self.frame = frame
     }
     
+    init(imageItemMO: ImageItem) {
+        self.id = imageItemMO.id!.longLongValue
+        self.frame = CGRectFromString(imageItemMO.frame as! String)
+        self.content = imageItemMO.content
+        self.rotation = imageItemMO.rotation!.floatValue
+    }
+    
+    
     func setContent(content: String) {
         self.content = content
     }

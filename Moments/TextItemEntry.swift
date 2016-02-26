@@ -37,6 +37,14 @@ class TextItemEntry {
         self.id = id
         self.frame = frame
     }
+    
+    init(textItemMO: TextItem) {
+        self.id = textItemMO.id!.longLongValue
+        self.frame = CGRectFromString(textItemMO.frame as! String)
+        self.content = textItemMO.content
+        self.rotation = textItemMO.rotation!.floatValue
+    }
+    
   
     func setContent(content: String) {
         self.content = content

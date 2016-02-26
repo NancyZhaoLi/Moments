@@ -42,6 +42,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
                 CoreDataSaveHelper.saveNewMomentToCoreData(moment)
                 moments.append(moment)
                 getMomentsMOFromCoreData()
+                let indexPath = NSIndexPath(forRow: moments.count - 1, inSection: 0)
+                self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
             }
         }
     }
@@ -49,8 +52,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     func constructMomentTableView() {
         
         self.momentTableView.frame = CGRect(x: 40, y: 0, width: self.homeView.frame.width - 80, height: self.homeView.frame.height - 50)
-        
-        
     }
     
     func getMomentsFromCoreData(){
@@ -71,8 +72,19 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         let id =  momentMO.id?.longLongValue
         let date = momentMO.date
         let title = momentMO.title
-        let moment = MomentEntry(id: id!, date: date!, title: title!)
-        //moment.setBackgroundColour(momentMO.backgroundColour)
+        var moment = MomentEntry(id: id!, date: date!, title: title!)
+        
+    
+        for textItemMO in momentMO.containedTextItem! {
+            let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
+            moment.addTextItemEntry(textItem)
+        }
+        
+        for imageItemMO in momentMO.containedImageItem! {
+            let imageItem = ImageItemEntry(imageItemMO: imageItemMO as! ImageItem)
+            moment.addImageItemEntry(imageItem)
+        }
+        
         moments.append(moment)
         print("id: \(id!), date: \(date!), title: \(title!)")
     }
