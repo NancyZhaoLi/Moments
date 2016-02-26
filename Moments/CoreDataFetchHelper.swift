@@ -22,7 +22,6 @@ class CoreDataFetchHelper {
         let requestMoments = NSFetchRequest(entityName: "Moment")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
-        requestMoments.returnsObjectsAsFaults = false
         requestMoments.sortDescriptors = [sortDescriptor]
         requestMoments.returnsObjectsAsFaults = false
         requestMoments.fetchLimit = defaultFetchSize
@@ -30,6 +29,28 @@ class CoreDataFetchHelper {
         do {
             let results = try context.executeFetchRequest(requestMoments) as! [Moment]
 
+            return results
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+    static func fetchDayMomentsMOFromCoreData(date: NSDate) -> [Moment] {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestMoments = NSFetchRequest(entityName: "Moment")
+        //requestMoments.predicate = NSPredicate(format: "date = %@", date)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        
+        requestMoments.sortDescriptors = [sortDescriptor]
+        requestMoments.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(requestMoments) as! [Moment]
+            
             return results
         } catch {
             fatalError("Failure to fetch context: \(error)")
