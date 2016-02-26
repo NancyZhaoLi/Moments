@@ -602,7 +602,7 @@
                                 </connections>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
@@ -649,7 +649,7 @@
                                 <color key="backgroundColor" red="0.74806368459999995" green="0.99345012629999996" blue="0.6791862608" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
@@ -828,11 +828,18 @@
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YEW-em-rrD">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8NE-qu-TOK">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NE-qu-TOK">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">   Moments is the ultimate tool for combining and organizing the memories that you have recorded; It supports 4 multimedia types, provides 2 methods for creating a 'moment', and accommodates various organization methods. Capture your memories with Moments!</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">   Moments is the ultimate tool for combining and organizing the memories that you have recorded; It supports 4 multimedia types, provides 2 methods for creating a 'moment', and accommodates various organization methods. Capture your memories with Moments!</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="21" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="6" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -1034,7 +1041,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0N-6G-Qcx" customClass="EditTextItemView" customModule="Moments" customModuleProvider="target">
                                 <rect key="frame" x="20" y="64" width="335" height="559"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
@@ -1085,7 +1092,7 @@
                                 <color key="barTintColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="8he-9i-fNH" firstAttribute="top" secondItem="8VC-VO-dg4" secondAttribute="bottom" id="SuS-7O-bzR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8he-9i-fNH" secondAttribute="trailing" constant="-20" id="aHr-fO-maH"/>
@@ -1161,7 +1168,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JgN-1P-6va" firstAttribute="centerX" secondItem="9Jz-Y2-Bku" secondAttribute="centerX" id="2ow-wS-iD7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="JgN-1P-6va" secondAttribute="trailing" constant="-20" id="7nB-RJ-DPS"/>
