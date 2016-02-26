@@ -22,6 +22,7 @@ class CoreDataSaveHelper {
         var momentMO = Moment(entity: entity!, insertIntoManagedObjectContext: context)
         momentMO.backgroundColour = moment.backgroundColour
         momentMO.date = moment.date
+        print(moment.favourite)
         momentMO.favourite = NSNumber(bool: moment.favourite)
         momentMO.id = NSNumber(longLong: moment.id)
         momentMO.title = moment.title

@@ -91,6 +91,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         let date = momentMO.date
         let title = momentMO.title
         var moment = MomentEntry(id: id!, date: date!, title: title!)
+        moment.setFavourite(momentMO.favourite!.boolValue)
         
         for textItemMO in momentMO.containedTextItem! {
             let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
