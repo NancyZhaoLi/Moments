@@ -10,10 +10,10 @@ import UIKit
 
 class OtherCanvasOptionViewController: UIViewController {
 
+    var delegate: NewMomentCanvasViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,10 +21,13 @@ class OtherCanvasOptionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func setCanvasColour(sender: AnyObject) {
-        
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showColourPicker" {
+            let colourPicker = segue.destinationViewController as! ColourPickerViewController
+            colourPicker.delegate = self.delegate as! ColourPickerViewControllerDelegate
+        }
     }
+    
     /*
     // MARK: - Navigation
 

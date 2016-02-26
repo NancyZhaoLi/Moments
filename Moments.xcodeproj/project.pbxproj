@@ -63,6 +63,7 @@
 		D048BEF71C7DC10300BD3115 /* NewMomentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */; };
 		D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */; };
 		D05674021C7C601E002AEDB3 /* NewMomentSavePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */; };
+		D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */; };
 		DCA83739988F7ABCDC140EC4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7C33052FBC7C3E84D8CBFA /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -149,6 +150,7 @@
 		D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentManager.swift; sourceTree = "<group>"; };
 		D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemViewController.swift; sourceTree = "<group>"; };
 		D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentSavePageViewController.swift; sourceTree = "<group>"; };
+		D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourPickerViewController.swift; sourceTree = "<group>"; };
 		EA7C33052FBC7C3E84D8CBFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -209,6 +211,7 @@
 		7678347F1C7D14AF00FC1B96 /* NewMoment */ = {
 			isa = PBXGroup;
 			children = (
+				D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */,
 				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
 				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
 				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
@@ -571,6 +574,7 @@
 				766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */,
 				7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */,
 				760197E91C7E10AF00A7315A /* AudioItem+CoreDataProperties.swift in Sources */,
+				D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */,
 				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
 				D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */,
 				762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */,
