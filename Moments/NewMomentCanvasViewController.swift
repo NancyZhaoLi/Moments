@@ -31,7 +31,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager = NewMomentManager()
     var loadedMoment : MomentEntry?
-    var backgroundColor: UIColor = UIColor(red: 255.0, green: 255.0, blue: 230, alpha: 0.8)
+    var backgroundColour: UIColor = UIColor(red: 255.0, green: 255.0, blue: 230, alpha: 0.8)
     
     /*******************************************************************
      
@@ -195,6 +195,14 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     func loadMoment(moment: MomentEntry) {
         self.loadedMoment = moment
     }
+    
+    
+    func setCanvasBackground(controller: OtherCanvasOptionViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        let colourPickerVC = storyboard?.instantiateViewControllerWithIdentifier("colourPicker") as! ColourPickerViewController
+        colourPickerVC.delegate = self
+        self.presentViewController(colourPickerVC, animated: true, completion: nil)
+    }
     /*******************************************************************
      
         ADD ITEM FUNCTIONS
@@ -312,8 +320,13 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     
     
     // Functions for ColourPickerViewControllerDelegate
-    func selectColor(controller: ColourPickerViewController, color: UIColor) {
+    func selectColor(controller: ColourPickerViewController, colour: UIColor) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        self.backgroundColor = color
+        self.backgroundColour = colour
+        self.view.backgroundColor = colour
+    }
+    
+    func currentColor(controller: ColourPickerViewController) -> UIColor {
+        return self.backgroundColour
     }
 }
