@@ -69,7 +69,7 @@ class CoreDataFetchHelper {
         
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= date.endOfDay", date.startOfDay, date.endOfDay)
+        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@", date.startOfDay, date.endOfDay)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
