@@ -1,10 +1,22 @@
 Xin
 ------------------------------------------------------------------------------------------------
 1. Core Data creation for textItem - OKAY
-2. override UITextView for placeholder
+2. override UITextView for placeholder - OKAY
 3. Core Data creation for moment - OKAY
 4. testing audio and video for new moment
-5. add favourite into Core Data loading and saving
+5. add favourite into Core Data loading and saving - OKAY
+6. size change for text
+7. textItem should pop up the editTextItemView
+7. alignment for text
+8. image size to porportion
+9. textItem length and width calculation
+10. move
+11. resize
+12. rotate
+13. camera option for imageItem
+14. let see if we need to do layer ~
+
+15. Template mode
 
 
 ------------------------------------------------------------------------------------------------
