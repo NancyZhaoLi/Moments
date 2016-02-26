@@ -30,7 +30,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         self.momentTableView.showsVerticalScrollIndicator = false
         self.momentTableView.backgroundColor = UIColor.clearColor()
         
-        
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
 
     }
