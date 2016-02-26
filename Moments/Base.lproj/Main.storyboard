@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nl5-j9-0Gr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1889.5" y="-35.5"/>
+            <point key="canvasLocation" x="1870.5" y="-35.5"/>
         </scene>
         <!--Calendar Day View Controller-->
         <scene sceneID="YaT-Es-LI5">
@@ -368,11 +368,12 @@
                     <connections>
                         <outlet property="dateLabel" destination="Ol4-h1-kdf" id="gbL-Ci-wrF"/>
                         <outlet property="dayMomentTableView" destination="6lO-6M-tD8" id="mWq-lv-RBU"/>
+                        <segue destination="k7V-YG-Yyz" kind="presentation" identifier="editSavedMoment" id="sbR-Wt-alF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pB0-2w-Dfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2359.5" y="-61.5"/>
+            <point key="canvasLocation" x="2387.5" y="110.5"/>
         </scene>
         <!--New-->
         <scene sceneID="zVO-y4-4fk">
@@ -1172,6 +1173,6 @@
         <image name="view" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mm9-Jz-635"/>
+        <segue reference="sbR-Wt-alF"/>
     </inferredMetricsTieBreakers>
 </document>
