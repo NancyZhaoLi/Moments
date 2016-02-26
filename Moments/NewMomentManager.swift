@@ -79,6 +79,7 @@ class NewMomentManager {
             self.momentCategory = category
         }
         self.momentColour = moment.backgroundColour
+        self.canvas!.view.backgroundColor = self.momentColour
         self.idPrefix = String(moment.id / Int64(10000))
         self.idSuffix = String(moment.id % Int64(10000))
         self.isNewMoment = false
@@ -193,6 +194,7 @@ class NewMomentManager {
         }
         
         self.moment!.category = self.momentCategory
+        self.moment!.backgroundColour = self.canvas!.currentColor()
         
         self.textManager.notifySaveMoment()
         debug("[saveMomentEntry] - textManger notified")
