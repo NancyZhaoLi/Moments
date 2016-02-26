@@ -20,7 +20,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        constructMomentTableView()
         getMomentsFromCoreData()
         
         let cellNib = UINib(nibName: "MomentTableCell", bundle: NSBundle.mainBundle())
@@ -49,9 +48,12 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    func constructMomentTableView() {
-        
-        self.momentTableView.frame = CGRect(x: 40, y: 0, width: self.homeView.frame.width - 80, height: self.homeView.frame.height - 50)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editSavedMoment" {
+            let newMomentCanvasVC = segue.destinationViewController as!NewMomentCanvasViewController
+            let cell = sender as! MomentTableCell
+            newMomentCanvasVC.loadedMoment = cell.moment
+        }
     }
     
     func getMomentsFromCoreData(){
@@ -114,7 +116,12 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         return 120
     }
     
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
+        print("cell at \(indexPath.row) is clicked")
+        performSegueWithIdentifier("editSavedMoment", sender: cell)
+    }
 
 
 }
