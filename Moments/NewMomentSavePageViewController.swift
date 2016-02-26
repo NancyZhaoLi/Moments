@@ -40,6 +40,14 @@ class NewMomentSavePageViewController: UIViewController {
         self.canvas!.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    func setDefaultMomentTitle(title: String) {
+        momentTitleDisplay.placeholder = title
+    }
+    
+    func setDefaultMomentCategory(category: String) {
+        momentCategoryDisplay.placeholder = category
+    }
+    
     func setMomentTitle(title: String) {
         momentTitleDisplay.text = title
     }

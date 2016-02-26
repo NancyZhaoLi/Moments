@@ -106,8 +106,8 @@ class NewMomentManager {
     
     func setSavePage(savePage: NewMomentSavePageViewController) {
         self.savePage = savePage
-        self.savePage!.setMomentTitle(self.momentTitle)
-        self.savePage!.setMomentCategory(self.momentCategory.name)
+        self.savePage!.setDefaultMomentTitle(self.momentTitle)
+        self.savePage!.setDefaultMomentCategory(self.momentCategory.name)
     }
     
     func setFavourite() -> Bool {
