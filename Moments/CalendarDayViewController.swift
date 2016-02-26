@@ -56,7 +56,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     
     func getMomentsFromCoreData(){
         
-        getMomentsMOFromCoreData()
+        getDayMomentsMOFromCoreData()
         
         for var i = 0; i < momentsMO.count; ++i {
             addMomentFromCoreData(momentsMO[i])
@@ -64,8 +64,8 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         
     }
     
-    func getMomentsMOFromCoreData(){
-        momentsMO = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
+    func getDayMomentsMOFromCoreData(){
+        momentsMO = CoreDataFetchHelper.fetchDayMomentsMOFromCoreData(date!)
     }
     
     func addMomentFromCoreData(momentMO: Moment) {
