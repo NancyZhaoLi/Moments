@@ -1,9 +1,10 @@
 Xin
 ------------------------------------------------------------------------------------------------
-1. Core Data creation for textItem
+1. Core Data creation for textItem - OKAY
 2. override UITextView for placeholder
-3. Core Data creation for moment
+3. Core Data creation for moment - OKAY
 4. testing audio and video for new moment
+5. add favourite into Core Data loading and saving
 
 
 ------------------------------------------------------------------------------------------------

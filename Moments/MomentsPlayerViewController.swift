@@ -23,12 +23,17 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         
         self.webView.delegate = self
+        var url = "https://www.youtube.com/watch?v=Xd14xdd01L4"
         
-        let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
+        var htmlUrl = "<html><head><body style=\"(margin:0)\"><embed id=\"yt\" src=\"\(url)\" type=\"application/x-shockwave-flash\"width=\"\(self.webView.frame.width*3)\" height=\"\(self.webView.frame.height*3)\"></embed> </body></html>"
+        
+        webView.loadHTMLString(htmlUrl, baseURL: nil)
+        
+      /*  let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
 
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
         print(self.webView.frame.width)
-        print(self.webView.frame.height)
+        print(self.webView.frame.height)*/
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
     }
     
