@@ -22,7 +22,7 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.webView.delegate = self
+        self.webView.delegate = self
         
         let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
 
