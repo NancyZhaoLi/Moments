@@ -25,6 +25,15 @@ class EditTextItemView: UITextView {
         self.text = text
         self.textColor = UIColor.blackColor()
     }
+    
+    func setFontSize(size: CGFloat) {
+        if let name = self.font?.fontName {
+            self.font = UIFont(name: name, size: size)
+        } else {
+            self.font = UIFont(name: "Arial", size: size)
+        }
+
+    }
 
 }
 
@@ -61,6 +70,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         self.editTextItemView.delegate = self
+        self.editTextItemView.font = UIFont(name: "Arial", size: 30)
         if let text = self.text {
             self.editTextItemView.loadText(text)
         } else {
@@ -85,5 +95,6 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate {
             self.editTextItemView.loadPlaceHolder(placeHolder)
         }
     }
+    
 
 }

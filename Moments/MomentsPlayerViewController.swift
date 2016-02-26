@@ -25,9 +25,22 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
         self.webView.delegate = self
         var url = "https://www.youtube.com/watch?v=Xd14xdd01L4"
         
-        var htmlUrl = "<html><head><body style=\"(margin:0)\"><embed id=\"yt\" src=\"\(url)\" type=\"application/x-shockwave-flash\"width=\"\(self.webView.frame.width*3)\" height=\"\(self.webView.frame.height*3)\"></embed> </body></html>"
+        var htmlUrl = "<html><head><body style=\"(margin:0)\"><embed id=\"yt\" src=\"\(url)\" type=\"application/x-shockwave-flash\"width=\"1000\" height=\"1000\"></embed> </body></html>"
         
-        webView.loadHTMLString(htmlUrl, baseURL: nil)
+
+        
+        webView.loadHTMLString(htmlUrl, baseURL: NSBundle.mainBundle().bundleURL)
+        webView.scalesPageToFit = true
+        
+        
+        print("width: " + String(webView.frame.width))
+        print("height: " + String(webView.frame.width))
+        
+        for view in webView.subviews {
+            view.frame = CGRect(x: 0,y: 0,width: 400,height: 500)
+            print (view)
+        }
+
         
       /*  let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
 
