@@ -15,14 +15,30 @@ protocol EditTextItemViewControllerDelegate {
 
 class EditTextItemView: UITextView {
     
+    func loadPlaceHolder(placeHolder: String){
+        self.text = placeHolder
+        self.textColor = UIColor.lightGrayColor()
+    }
+    
+    
+    func loadText(text: String?) {
+        self.text = text
+        self.textColor = UIColor.blackColor()
+    }
+
 }
 
 
 
-class EditTextItemViewController: UIViewController {
+class EditTextItemViewController: UIViewController, UITextViewDelegate {
 
     var delegate : EditTextItemViewControllerDelegate?
-    var placeHolder: String = "Enter Your Text Here..."
+    var text : String?
+    var color: UIColor = UIColor.blackColor()
+    let placeHolder: String = "Enter Your Text Here..."
+    
+    @IBOutlet weak var editTextItemView: EditTextItemView!
+    
     
     @IBAction func cancelAddText(sender: AnyObject) {
         if let delegate = self.delegate {
@@ -35,21 +51,39 @@ class EditTextItemViewController: UIViewController {
         if let delegate = self.delegate {
             delegate.addText(self, textView: textEditView)
         }
-        
-        
     }
+    
+    
     
     @IBOutlet weak var textEditView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.editTextItemView.delegate = self
+        if let text = self.text {
+            self.editTextItemView.loadText(text)
+        } else {
+            self.editTextItemView.loadPlaceHolder(placeHolder)
+        }
         
         print("New Text View Controller Loaded")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            self.editTextItemView.loadText(nil)
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            self.editTextItemView.loadPlaceHolder(placeHolder)
+        }
     }
 
 }
