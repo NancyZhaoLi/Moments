@@ -80,7 +80,7 @@ class MomentTableCell: UITableViewCell {
         dayFmt.dateFormat = "dd"
         
         day.text = dayFmt.stringFromDate(momentInfo.date)
-        day.textColor = UIColor.grayColor()
+        day.textColor = UIColor.blackColor()
         day.frame = CGRect(x: 10, y: 25, width: 80, height: 30)
         day.font = UIFont(name: "Helvetica", size: 20.0)
         day.textAlignment = NSTextAlignment.Left
@@ -94,7 +94,7 @@ class MomentTableCell: UITableViewCell {
         let monthNum: String = monthFmt.stringFromDate(momentInfo.date)
         
         month.text = convertDayFromNumToShort(monthNum)
-        month.textColor = UIColor.grayColor()
+        month.textColor = UIColor.blackColor()
         month.frame = CGRect(x: 10, y: 55, width: 80, height: 25)
         month.font = UIFont(name: "Helvetica", size: 14.0)
         month.textAlignment = NSTextAlignment.Left
@@ -104,7 +104,7 @@ class MomentTableCell: UITableViewCell {
     func constructDaySuffix(momentInfo: MomentEntry) {
         
         daySuffix.text = getDaySuffix()
-        daySuffix.textColor = UIColor.grayColor()
+        daySuffix.textColor = UIColor.blackColor()
         daySuffix.frame = CGRect(x: 35, y: 33, width: 10, height: 10)
         daySuffix.font = UIFont(name: "Helvetica", size: 12.0)
         daySuffix.textAlignment = NSTextAlignment.Left

@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         self.momentTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.momentTableView.showsVerticalScrollIndicator = false
+        self.momentTableView.backgroundColor = UIColor.clearColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,6 +104,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         cell.frame.size.width = self.momentTableView.frame.width
         cell.moment = moments[indexPath.row]
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }
