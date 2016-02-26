@@ -47,6 +47,14 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editSavedMoment" {
+            let newMomentCanvasVC = segue.destinationViewController as!NewMomentCanvasViewController
+            let cell = sender as! MomentTableCell
+            newMomentCanvasVC.loadedMoment = cell.moment
+        }
+    }
+    
     func updateDateLabel() {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMMM dd, YYYY"
@@ -121,7 +129,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         let cell = self.dayMomentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
         //self.indexOfCellClicked = indexPath.row
-        //performSegueWithIdentifier("editSavedMoment", sender: cell)
+        performSegueWithIdentifier("editSavedMoment", sender: cell)
     }
 
     
