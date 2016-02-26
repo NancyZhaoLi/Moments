@@ -32,6 +32,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,7 +93,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         let title = momentMO.title
         var moment = MomentEntry(id: id!, date: date!, title: title!)
         
-    
         for textItemMO in momentMO.containedTextItem! {
             let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
             moment.addTextItemEntry(textItem)
@@ -130,9 +130,13 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
+        if (moments[indexPath.row].imageItemEntries.count > 0) {
+            return 185
+        }
         return 120
+        
     }
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell

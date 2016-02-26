@@ -24,15 +24,18 @@ class MomentTableCell: UITableViewCell {
     
     @IBOutlet weak var momentText: UILabel!
     
+    @IBOutlet weak var momentImage: UIImageView!
+    
+    var showOption: Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -45,25 +48,40 @@ class MomentTableCell: UITableViewCell {
     func constructMomentTableCell() {
         if let momentInfo = moment {
             
-            constructSquareImageView()
+            if (momentInfo.imageItemEntries.count > 0) {
+                showOption = 1
+            } else if (momentInfo.textItemEntries.count > 0) {
+                showOption = 2
+            } else {
+                showOption = 3
+            }
+            
+            constructSquareImageView(showOption!)
             constructLineImageView()
             
             constructDay(momentInfo)
             constructDaySuffix(momentInfo)
             constructMonth(momentInfo)
             constructTitle(momentInfo)
-            constructMomentText(momentInfo)
+            constructMoment(momentInfo)
             
             self.selectionStyle = UITableViewCellSelectionStyle.None
             
         }
     }
     
-    func constructSquareImageView() {
+    func constructSquareImageView(showOption: Int) {
         
-        squareImageView.image = UIImage(named: "square")
-        squareImageView.frame = CGRect(x: 60, y: 10, width: self.frame.width - 75 , height: 100)
-
+        if (showOption == 1) {
+            squareImageView.image = UIImage(named: "square")
+            squareImageView.frame = CGRect(x: 60, y: 10, width: self.frame.width - 75 , height: 170)
+            
+        } else {
+            squareImageView.image = UIImage(named: "square")
+            squareImageView.frame = CGRect(x: 60, y: 10, width: self.frame.width - 75 , height: 100)
+        }
+        
+        
     }
     
     func constructLineImageView() {
@@ -123,20 +141,30 @@ class MomentTableCell: UITableViewCell {
         
     }
     
-    func constructMomentText(momentInfo: MomentEntry) {
+    func constructMoment(momentInfo: MomentEntry) {
         
-        if (momentInfo.textItemEntries.count > 0) {
+        if (showOption == 1) {
+            
+            momentImage.image = momentInfo.imageItemEntries[0].image
+            momentImage.frame  = CGRect(x: 80, y: 42, width: self.frame.width - 105, height: 130)
+            
+        } else if (showOption == 2) {
+            
             momentText.text = momentInfo.textItemEntries[0].content
+            
+            momentText.textColor = UIColor.blackColor()
+            momentText.frame = CGRect(x: 80, y: 35, width: self.frame.width - 110, height: 50)
+            momentText.font = UIFont(name: "Helvetica", size: 15.0)!
+            momentText.textAlignment = NSTextAlignment.Left
+            momentText.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            momentText.numberOfLines = 0
+            
+            momentImage.image = nil
+            
         } else {
-            momentText.text = "I'm working on adding text item"
+            // TODO: add audio/video
+            momentImage.image = nil
         }
-        
-        momentText.textColor = UIColor.blackColor()
-        momentText.frame = CGRect(x: 80, y: 35, width: self.frame.width - 110, height: 50)
-        momentText.font = UIFont(name: "Helvetica", size: 15.0)!
-        momentText.textAlignment = NSTextAlignment.Left
-        momentText.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        momentText.numberOfLines = 0
         
     }
     
@@ -146,32 +174,32 @@ class MomentTableCell: UITableViewCell {
         
         switch monthNum {
             
-            case "01":
-                monthShort = "Jan"
-            case "02":
-                monthShort = "Feb"
-            case "03":
-                monthShort = "Mar"
-            case "04":
-                monthShort = "Apr"
-            case "05":
-                monthShort = "May"
-            case "06":
-                monthShort = "Jun"
-            case "07":
-                monthShort = "Jul"
-            case "08":
-                monthShort = "Aug"
-            case "09":
-                monthShort = "Sept"
-            case "10":
-                monthShort = "Oct"
-            case "11":
-                monthShort = "Nov"
-            case "12":
-                monthShort = "Dec"
-            default:
-                break
+        case "01":
+            monthShort = "Jan"
+        case "02":
+            monthShort = "Feb"
+        case "03":
+            monthShort = "Mar"
+        case "04":
+            monthShort = "Apr"
+        case "05":
+            monthShort = "May"
+        case "06":
+            monthShort = "Jun"
+        case "07":
+            monthShort = "Jul"
+        case "08":
+            monthShort = "Aug"
+        case "09":
+            monthShort = "Sept"
+        case "10":
+            monthShort = "Oct"
+        case "11":
+            monthShort = "Nov"
+        case "12":
+            monthShort = "Dec"
+        default:
+            break
         }
         
         return monthShort
@@ -185,14 +213,14 @@ class MomentTableCell: UITableViewCell {
         var suffix: String!
         
         switch dayNum {
-            case "01":
-                suffix = "st"
-            case "02":
-                suffix = "nd"
-            case "03":
-                suffix = "rd"
-            default:
-                suffix = "th"
+        case "01":
+            suffix = "st"
+        case "02":
+            suffix = "nd"
+        case "03":
+            suffix = "rd"
+        default:
+            suffix = "th"
         }
         
         return suffix

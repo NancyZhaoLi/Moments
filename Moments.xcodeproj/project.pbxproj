@@ -34,11 +34,11 @@
 		760593321C7BDBFB00A26DDF /* TextItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760593311C7BDBFB00A26DDF /* TextItemEntry.swift */; };
 		760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760593331C7BDC1D00A26DDF /* CategoryEntry.swift */; };
 		7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605EF051C77852A002FB013 /* CalendarViewController.swift */; };
-		760AA5CE1C7F6FAC001017ED /* MomentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760AA5CD1C7F6FAC001017ED /* MomentTableCell.swift */; };
 		760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760AA5D31C7F8E16001017ED /* MomentTableCell.xib */; };
 		762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763221C7D45FD00F417F0 /* ImageItemEntry.swift */; };
 		762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763241C7D463C00F417F0 /* AudioItemEntry.swift */; };
 		762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763261C7D464C00F417F0 /* VideoItemEntry.swift */; };
+		766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766306311C80003F00FA7726 /* MomentTableCell.swift */; };
 		7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */; };
 		769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F41C76AABE00FC883E /* AppDelegate.swift */; };
 		769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F61C76AABE00FC883E /* ViewController.swift */; };
@@ -111,11 +111,11 @@
 		760593311C7BDBFB00A26DDF /* TextItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemEntry.swift; sourceTree = "<group>"; };
 		760593331C7BDC1D00A26DDF /* CategoryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryEntry.swift; sourceTree = "<group>"; };
 		7605EF051C77852A002FB013 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		760AA5CD1C7F6FAC001017ED /* MomentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableCell.swift; sourceTree = "<group>"; };
 		760AA5D31C7F8E16001017ED /* MomentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentTableCell.xib; sourceTree = "<group>"; };
 		762763221C7D45FD00F417F0 /* ImageItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemEntry.swift; sourceTree = "<group>"; };
 		762763241C7D463C00F417F0 /* AudioItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioItemEntry.swift; sourceTree = "<group>"; };
 		762763261C7D464C00F417F0 /* VideoItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemEntry.swift; sourceTree = "<group>"; };
+		766306311C80003F00FA7726 /* MomentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableCell.swift; sourceTree = "<group>"; };
 		7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayViewController.swift; sourceTree = "<group>"; };
 		769DD7F11C76AABE00FC883E /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD7F41C76AABE00FC883E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -181,8 +181,8 @@
 		760AA5CC1C7F6F8A001017ED /* MomentTableCell */ = {
 			isa = PBXGroup;
 			children = (
-				760AA5CD1C7F6FAC001017ED /* MomentTableCell.swift */,
 				760AA5D31C7F8E16001017ED /* MomentTableCell.xib */,
+				766306311C80003F00FA7726 /* MomentTableCell.swift */,
 			);
 			name = MomentTableCell;
 			sourceTree = "<group>";
@@ -568,6 +568,7 @@
 				D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */,
 				7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */,
 				760197F11C7E10AF00A7315A /* TextItem+CoreDataProperties.swift in Sources */,
+				766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */,
 				7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */,
 				760197E91C7E10AF00A7315A /* AudioItem+CoreDataProperties.swift in Sources */,
 				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
@@ -605,7 +606,6 @@
 				760198041C7E796200A7315A /* CoreDataSaveHelper.swift in Sources */,
 				468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */,
 				760197EC1C7E10AF00A7315A /* Moment.swift in Sources */,
-				760AA5CE1C7F6FAC001017ED /* MomentTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

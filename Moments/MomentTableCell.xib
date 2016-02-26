@@ -43,7 +43,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oRX-by-9AG">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oRX-by-9AG">
                         <rect key="frame" x="78" y="58" width="109" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -57,12 +57,17 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ag5-WV-rsU">
+                        <rect key="frame" x="206" y="43" width="151" height="61"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="day" destination="VaG-CY-km3" id="RtN-GM-dOU"/>
                 <outlet property="daySuffix" destination="sRs-br-fzj" id="fNd-6u-io7"/>
                 <outlet property="lineImageView" destination="Z87-v5-AgL" id="bLU-ea-NLc"/>
+                <outlet property="momentImage" destination="ag5-WV-rsU" id="hz6-xF-hqn"/>
                 <outlet property="momentText" destination="oRX-by-9AG" id="Ec8-oj-OB4"/>
                 <outlet property="month" destination="mVa-qv-GQb" id="h3e-UD-OrC"/>
                 <outlet property="squareImageView" destination="F1H-QF-kRk" id="x9K-xi-AE2"/>
