@@ -22,6 +22,9 @@ class OtherCanvasOptionViewController: UIViewController {
     }
     
 
+    @IBAction func setCanvasColour(sender: AnyObject) {
+        
+    }
     /*
     // MARK: - Navigation
 
