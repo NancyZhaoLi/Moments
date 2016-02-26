@@ -12,7 +12,7 @@ import SwiftHSVColorPicker
 
 protocol ColourPickerViewControllerDelegate {
     func selectColor(controller: ColourPickerViewController, colour: UIColor)
-    func currentColor(controller: ColourPickerViewController) -> UIColor
+    func currentColor() -> UIColor
 }
 
 
@@ -38,7 +38,7 @@ class ColourPickerViewController: UIViewController {
         let height = self.view.frame.height - 50
         self.colorPicker = SwiftHSVColorPicker(frame: CGRectMake(10,50,width,height))
         self.view.addSubview(self.colorPicker!)
-        self.colorPicker!.setViewColor(self.delegate!.currentColor(self))
+        self.colorPicker!.setViewColor(self.delegate!.currentColor())
     }
     
     override func didReceiveMemoryWarning() {
