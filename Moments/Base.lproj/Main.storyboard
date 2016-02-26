@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -30,7 +29,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Sign Up">
-                                    <color key="titleColor" red="0.031372549019607843" green="0.64313725490196072" blue="0.70196078431372544" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gc0-bp-QIM"/>
@@ -54,6 +53,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzg-n6-a4v">
+                                <rect key="frame" x="47" y="109" width="283" height="112"/>
+                                <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="60"/>
+                                <color key="textColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbb-E1-Eh0">
                                 <rect key="frame" x="141" y="384" width="94" height="40"/>
                                 <constraints>
@@ -63,7 +68,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="tintColor" red="0.71764707569999997" green="0.95686280729999995" blue="0.21568629149999999" alpha="1" colorSpace="deviceRGB"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" red="0.031372549019607843" green="0.64313725490196072" blue="0.70196078431372544" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -74,12 +79,6 @@
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jeW-Zk-vIb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzg-n6-a4v">
-                                <rect key="frame" x="47" y="109" width="283" height="112"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
-                                <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -133,6 +132,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
+                                <rect key="frame" x="162" y="560" width="50" height="50"/>
+                                <state key="normal" image="AddButtonFinal"/>
+                                <connections>
+                                    <segue destination="k7V-YG-Yyz" kind="presentation" identifier="HomeToNewMoment" id="g0S-rU-vpO"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="esN-9B-b61">
                                 <rect key="frame" x="20" y="99" width="335" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -141,13 +147,6 @@
                                     <outlet property="delegate" destination="WXg-ml-XV5" id="y85-Q0-Gw8"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
-                                <rect key="frame" x="162" y="560" width="50" height="50"/>
-                                <state key="normal" image="AddButtonFinal"/>
-                                <connections>
-                                    <segue destination="k7V-YG-Yyz" kind="presentation" identifier="HomeToNewMoment" id="g0S-rU-vpO"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -213,6 +212,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-7a-InT">
+                                <rect key="frame" x="99" y="94" width="177" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="TSa-Cx-GwF"/>
+                                    <constraint firstAttribute="width" constant="177" id="Zn1-lK-o8a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j5x-kn-Yhv" customClass="CVCalendarMenuView" customModule="CVCalendar">
                                 <rect key="frame" x="20" y="158" width="335" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -277,16 +286,6 @@
                                     <segue destination="k7V-YG-Yyz" kind="presentation" identifier="CalenderToNewMoment" id="mm9-Jz-635"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-7a-InT">
-                                <rect key="frame" x="99" y="94" width="177" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="TSa-Cx-GwF"/>
-                                    <constraint firstAttribute="width" constant="177" id="Zn1-lK-o8a"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="0D0-Y3-vBl"/>
@@ -340,6 +339,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="February 25, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ol4-h1-kdf">
+                                <rect key="frame" x="20" y="72" width="335" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="dhV-bH-Mjz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6lO-6M-tD8">
                                 <rect key="frame" x="20" y="118" width="335" height="486"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -348,15 +356,6 @@
                                     <outlet property="delegate" destination="PN5-JF-Vf2" id="vNQ-bn-jlf"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="February 25, 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ol4-h1-kdf">
-                                <rect key="frame" x="20" y="72" width="335" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="dhV-bH-Mjz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <color key="textColor" red="0.0" green="0.60873252470000005" blue="0.62352941179999999" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -388,6 +387,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TX4-wp-8i0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="wWy-hc-7ji">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7ab-bq-xIl">
+                                            <rect key="frame" x="16" y="7" width="65" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Text"/>
+                                            <connections>
+                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="scJ-O0-Mna"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="Fog-qs-cU2">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3I0-xE-Epk">
+                                            <rect key="frame" x="91" y="7" width="65" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Image"/>
+                                            <connections>
+                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="mna-Kw-d2I"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="yRm-Tg-a7n">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wnQ-7x-aMa">
+                                            <rect key="frame" x="166" y="7" width="49" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Audio"/>
+                                            <connections>
+                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="HIL-IL-pBz"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="dwD-YF-jKA">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d9P-mP-yzH">
+                                            <rect key="frame" x="225" y="7" width="65" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Video"/>
+                                            <connections>
+                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="hPJ-GW-vOG"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="bjM-e1-PYk">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M5U-QG-WXo">
+                                            <rect key="frame" x="300" y="7" width="65" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Sticker"/>
+                                            <connections>
+                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="Hkh-Vl-yc7"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3VR-ni-llv">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
@@ -395,13 +449,10 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" id="xL5-yN-BhY">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1At-lW-NkO">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1At-lW-NkO">
                                             <rect key="frame" x="16" y="8" width="50" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="14"/>
-                                            <state key="normal" title="Cancel">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
+                                            <state key="normal" title="Cancel"/>
                                             <connections>
                                                 <action selector="cancelAddNewMoment:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="Tei-KR-vGt"/>
                                             </connections>
@@ -458,75 +509,13 @@
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vq0-nn-Sbt">
                                             <rect key="frame" x="324" y="7" width="35" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="Next">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
+                                            <state key="normal" title="Next"/>
                                             <connections>
                                                 <action selector="goToSavePage:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="V6F-0f-QAS"/>
                                             </connections>
                                         </button>
                                     </barButtonItem>
                                 </items>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
-                            </toolbar>
-                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TX4-wp-8i0">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" id="wWy-hc-7ji">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7ab-bq-xIl">
-                                            <rect key="frame" x="16" y="7" width="65" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Text"/>
-                                            <connections>
-                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="scJ-O0-Mna"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="Fog-qs-cU2">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3I0-xE-Epk">
-                                            <rect key="frame" x="91" y="7" width="65" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Image"/>
-                                            <connections>
-                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="mna-Kw-d2I"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="yRm-Tg-a7n">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wnQ-7x-aMa">
-                                            <rect key="frame" x="166" y="7" width="49" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Audio"/>
-                                            <connections>
-                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="HIL-IL-pBz"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="dwD-YF-jKA">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d9P-mP-yzH">
-                                            <rect key="frame" x="225" y="7" width="65" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Video"/>
-                                            <connections>
-                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="hPJ-GW-vOG"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="bjM-e1-PYk">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M5U-QG-WXo">
-                                            <rect key="frame" x="300" y="7" width="65" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Sticker"/>
-                                            <connections>
-                                                <action selector="selectTouchMode:" destination="k7V-YG-Yyz" eventType="touchUpInside" id="Hkh-Vl-yc7"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" red="0.20000000000000001" green="0.50588235294117645" blue="0.6588235294117647" alpha="1" colorSpace="deviceRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -596,7 +585,7 @@
                                 <rect key="frame" x="123" y="452" width="128" height="28"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Play Moments">
-                                    <color key="titleColor" red="0.0" green="0.60873252467105265" blue="0.62352941176470589" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="playMoments:" destination="15x-v9-DXg" eventType="touchUpInside" id="BpL-2W-wR7"/>
@@ -1104,70 +1093,45 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JgN-1P-6va">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <color key="barTintColor" red="0.031372549019607843" green="0.64313725490196072" blue="0.70196078431372544" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
                                     <navigationItem id="U6z-mM-Qwh">
-                                        <leftBarButtonItems>
-                                            <barButtonItem style="plain" id="QoZ-oh-GBI">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="At6-2R-sYt">
-                                                    <rect key="frame" x="16" y="7" width="50" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Back">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
-                                            </barButtonItem>
-                                            <barButtonItem title="Back" id="Iej-PW-VOb">
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="goBack:" destination="nYU-nk-Mw4" id="NIp-OW-pTi"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </leftBarButtonItems>
-                                        <rightBarButtonItems>
-                                            <barButtonItem style="plain" id="rO5-x9-ubN">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4Hg-b4-EwO">
-                                                    <rect key="frame" x="319" y="7" width="40" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="Save">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
-                                            </barButtonItem>
-                                            <barButtonItem title="Save" id="cSl-pA-aLP">
-                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <segue destination="e2J-qK-OTL" kind="unwind" identifier="saveNewMoment" unwindAction="unwindToHomeView:" id="NhL-Rm-WPr"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Iej-PW-VOb">
+                                            <color key="tintColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                            <connections>
+                                                <action selector="goBack:" destination="nYU-nk-Mw4" id="NIp-OW-pTi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="cSl-pA-aLP">
+                                            <color key="tintColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                            <connections>
+                                                <segue destination="e2J-qK-OTL" kind="unwind" identifier="saveNewMoment" unwindAction="unwindToHomeView:" id="NhL-Rm-WPr"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7KS-5Y-OtM">
-                                <rect key="frame" x="85" y="91" width="270" height="30"/>
+                                <rect key="frame" x="111" y="91" width="264" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtc-3z-ubu">
-                                <rect key="frame" x="20" y="91" width="65" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtc-3z-ubu">
+                                <rect key="frame" x="-1" y="95" width="112" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeO-qi-ctb">
+                                <rect key="frame" x="-1" y="146" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.76470595600000002" blue="0.62352943419999995" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LwG-1o-zGd">
-                                <rect key="frame" x="133" y="137" width="222" height="30"/>
+                                <rect key="frame" x="111" y="137" width="264" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeO-qi-ctb">
-                                <rect key="frame" x="20" y="137" width="105" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1209,6 +1173,6 @@
         <image name="view" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mm9-Jz-635"/>
+        <segue reference="sbR-Wt-alF"/>
     </inferredMetricsTieBreakers>
 </document>
