@@ -213,7 +213,6 @@
 		7678347F1C7D14AF00FC1B96 /* NewMoment */ = {
 			isa = PBXGroup;
 			children = (
-				766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */,
 				D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */,
 				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
 				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
@@ -224,6 +223,7 @@
 				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
 				D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */,
 				D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */,
+				766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */,
 				D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */,
 				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
 			);
