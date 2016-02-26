@@ -28,6 +28,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         self.momentTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.momentTableView.showsVerticalScrollIndicator = false
         self.momentTableView.backgroundColor = UIColor.clearColor()
+        
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
     }
 
     override func didReceiveMemoryWarning() {

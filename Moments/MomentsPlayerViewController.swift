@@ -22,13 +22,14 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.webView.delegate = self
+        //self.webView.delegate = self
         
         let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
 
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
         print(self.webView.frame.width)
         print(self.webView.frame.height)
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
     }
     
     override func didReceiveMemoryWarning() {

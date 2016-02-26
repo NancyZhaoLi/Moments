@@ -12,6 +12,7 @@
 		468BC2801C7A52BA00D93268 /* README - Core Data Entity  in Resources */ = {isa = PBXBuildFile; fileRef = 468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */; };
 		468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2811C7A81F800D93268 /* ImageItemViewController.swift */; };
 		468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2831C7A837500D93268 /* MainUIViewController.swift */; };
+		46EA01F21C7FCB66000B3154 /* bkg_09_september.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46EA01F11C7FCB66000B3154 /* bkg_09_september.jpg */; };
 		760197D61C7E0E2700A7315A /* StickerItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D51C7E0E2700A7315A /* StickerItemEntry.swift */; };
 		760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */; };
 		760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D81C7E10AF00A7315A /* VideoItem.swift */; };
@@ -88,6 +89,7 @@
 		468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README - Core Data Entity "; sourceTree = "<group>"; };
 		468BC2811C7A81F800D93268 /* ImageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemViewController.swift; sourceTree = "<group>"; };
 		468BC2831C7A837500D93268 /* MainUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
+		46EA01F11C7FCB66000B3154 /* bkg_09_september.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bkg_09_september.jpg; sourceTree = "<group>"; };
 		760197D51C7E0E2700A7315A /* StickerItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemEntry.swift; sourceTree = "<group>"; };
 		760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		760197D81C7E10AF00A7315A /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItem.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				767834821C7D151B00FC1B96 /* DataModel */,
 				767834831C7D152D00FC1B96 /* Others */,
 				769DD7F41C76AABE00FC883E /* AppDelegate.swift */,
+				46EA01F11C7FCB66000B3154 /* bkg_09_september.jpg */,
 				769DD7F61C76AABE00FC883E /* ViewController.swift */,
 				769DD7F81C76AABE00FC883E /* Main.storyboard */,
 				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
@@ -438,7 +441,7 @@
 				TargetAttributes = {
 					769DD7F01C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = A4782Z5W32;
+						DevelopmentTeam = ZZ9R9MP283;
 					};
 					769DD8071C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -482,6 +485,7 @@
 				D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */,
 				769DD7FF1C76AABE00FC883E /* Assets.xcassets in Resources */,
 				769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */,
+				46EA01F21C7FCB66000B3154 /* bkg_09_september.jpg in Resources */,
 				760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */,
 				D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */,
 			);
