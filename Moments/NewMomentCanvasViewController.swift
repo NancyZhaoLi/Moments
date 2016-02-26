@@ -11,6 +11,7 @@ import MediaPlayer
 import AVKit
 import AVFoundation
 import CoreData
+import SwiftHSVColorPicker
 
 enum TouchMode : String {
     case Text = "Text",
@@ -31,6 +32,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager = NewMomentManager()
     var loadedMoment : MomentEntry?
+    var backgroundColor: UIColor = UIColor(red: 255.0, green: 255.0, blue: 230, alpha: 0.8)
     
     /*******************************************************************
      
@@ -80,6 +82,13 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
             favouriteSetter.setBackgroundImage(image, forState: .Normal)
         }
     }
+    
+    @IBAction func setCanvasColour(sender: AnyObject) {
+        let colorPicker = SwiftHSVColorPicker(frame: CGRectMake(10,20,300,400))
+        self.view.addSubview(colorPicker)
+    }
+    
+    
     
     @IBAction func goToSavePage(sender: AnyObject) {
         if (savePageAccessed) {

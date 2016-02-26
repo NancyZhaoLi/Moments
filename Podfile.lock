@@ -1,13 +1,16 @@
 PODS:
   - CVCalendar (1.2.9)
   - Firebase (2.5.1)
+  - SwiftHSVColorPicker (1.0.7)
 
 DEPENDENCIES:
   - CVCalendar (~> 1.2.8)
   - Firebase (>= 2.5.0)
+  - SwiftHSVColorPicker
 
 SPEC CHECKSUMS:
   CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  SwiftHSVColorPicker: 062d8f3c18af9f5a3f5a63883511be9987ff00ab
 
 COCOAPODS: 0.39.0

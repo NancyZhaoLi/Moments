@@ -70,7 +70,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         self.editTextItemView.delegate = self
-        self.editTextItemView.font = UIFont(name: "Arial", size: 30)
+        self.editTextItemView.font = UIFont(name: "Helvetica", size: 25)
         if let text = self.text {
             self.editTextItemView.loadText(text)
         } else {
