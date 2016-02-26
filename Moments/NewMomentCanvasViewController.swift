@@ -42,6 +42,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     @IBOutlet weak var addItemBar: UIToolbar!
     
     @IBAction func cancelAddNewMoment(sender: AnyObject) {
+        debug("[cancelAddNewMoment] - cancel clicked")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -109,12 +110,14 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("New moment canvas page loaded")
+        debug("[viewDidLoad] - loading start")
         if let moment = self.loadedMoment {
             manager.loadCanvas(self, moment: moment)
         } else {
             manager.setCanvas(self)
         }
+        
+        debug("[viewDidLoad] - loading complete")
     }
     
     override func didReceiveMemoryWarning() {
@@ -184,7 +187,9 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
         self.touchMode = TouchMode.Default
     }
     
-    
+    func loadMoment(moment: MomentEntry) {
+        self.loadedMoment = moment
+    }
     /*******************************************************************
      
         ADD ITEM FUNCTIONS

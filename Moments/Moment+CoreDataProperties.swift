@@ -2,7 +2,7 @@
 //  Moment+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Yuning Xue on 2016-02-24.
+//  Created by Yuning Xue on 2016-02-25.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -21,9 +21,9 @@ extension Moment {
     @NSManaged var title: String?
     @NSManaged var containedAudioItem: NSSet?
     @NSManaged var containedImageItem: NSSet?
+    @NSManaged var containedStickerItem: NSSet?
     @NSManaged var containedTextItem: NSSet?
     @NSManaged var containedVideoItem: NSSet?
     @NSManaged var inCategory: Category?
-    @NSManaged var containedStickerItem: NSSet?
 
 }

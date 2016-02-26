@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     var momentsMO = [Moment]()
     var moments = [MomentEntry]()
+    var indexOfCellClicked: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,15 +41,26 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     @IBAction func unwindToHomeView(segue: UIStoryboardSegue) {
         if let NewMomentSavePageVC = segue.sourceViewController as? NewMomentSavePageViewController {
-            
-            if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
-                CoreDataSaveHelper.saveNewMomentToCoreData(moment)
-                moments.append(moment)
-                getMomentsMOFromCoreData()
-                let indexPath = NSIndexPath(forRow: moments.count - 1, inSection: 0)
-                self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+            if NewMomentSavePageVC.isNewMoment() {
+                if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
+                    CoreDataSaveHelper.saveNewMomentToCoreData(moment)
+                    moments.append(moment)
+                    getMomentsMOFromCoreData()
+                    let indexPath = NSIndexPath(forRow: moments.count - 1, inSection: 0)
+                    self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+                }
+            } else {
+                if let index = self.indexOfCellClicked {
+                    if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
+                        CoreDataSaveHelper.saveNewMomentToCoreData(moment)
+                        self.moments[index] = moment
+                        momentTableView.reloadData()
+                    }
+                }
+
             }
+
         }
     }
     
@@ -57,7 +69,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             let newMomentCanvasVC = segue.destinationViewController as!NewMomentCanvasViewController
             let cell = sender as! MomentTableCell
             newMomentCanvasVC.loadedMoment = cell.moment
-        }
+         }
     }
     
     func getMomentsFromCoreData(){
@@ -125,6 +137,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         let cell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
+        self.indexOfCellClicked = indexPath.row
         performSegueWithIdentifier("editSavedMoment", sender: cell)
     }
 

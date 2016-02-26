@@ -14,12 +14,18 @@ import CoreData
 class CoreDataFetchHelper {
     
     static func fetchMomentsMOFromCoreData() -> [Moment] {
+        let defaultFetchSize = 20
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        
         requestMoments.returnsObjectsAsFaults = false
+        requestMoments.sortDescriptors = [sortDescriptor]
+        requestMoments.returnsObjectsAsFaults = false
+        requestMoments.fetchLimit = defaultFetchSize
         
         do {
             let results = try context.executeFetchRequest(requestMoments) as! [Moment]
@@ -53,7 +59,6 @@ class CoreDataFetchHelper {
                     return result % ItemType.modValue
                 }
             } else {
-                print("[requestId] - no item")
                 return nil
             }
         } catch {
@@ -74,6 +79,7 @@ class CoreDataFetchHelper {
             let results = try context.executeFetchRequest(request)
             if results.count > 0 {
                 context.deleteObject(results[0] as! NSManagedObject)
+                return true
             } else {
                return false
             }

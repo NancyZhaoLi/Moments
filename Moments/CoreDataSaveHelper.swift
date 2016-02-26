@@ -96,7 +96,8 @@ class CoreDataSaveHelper {
         
         var imageItemMO = ImageItem(entity: entity!, insertIntoManagedObjectContext: context)
         imageItemMO.id = NSNumber(longLong: imageItem.id)
-        imageItemMO.content = imageItem.content
+        //imageItemMO.url = imageItem.url
+        imageItemMO.image = UIImagePNGRepresentation(imageItem.image)
         imageItemMO.frame = NSStringFromCGRect(imageItem.frame)
         imageItemMO.rotation = NSNumber(float: imageItem.rotation)
         

@@ -34,6 +34,7 @@ class TextItemManager : ItemManager {
     }
     
     func addText(textView: UITextView, location: CGPoint) -> TextItemViewController {
+        debugBegin("addText")
         let textItemView = UITextView(frame: CGRectMake(location.x, location.y, 120, 120))
         let textItemVC = TextItemViewController()
         
@@ -45,6 +46,7 @@ class TextItemManager : ItemManager {
         textItemVC.view = textItemView
         
         self.textItems.append(textItemVC)
+        debugEnd("addText")
         return textItemVC
     }
     
@@ -54,6 +56,7 @@ class TextItemManager : ItemManager {
         textItemView.text = textItem.content
         
         textItemVC.view = textItemView
+        self.textItems.append(textItemVC)
         return textItemVC
     }
     
@@ -61,7 +64,6 @@ class TextItemManager : ItemManager {
     override func saveAllItemEntry() {
         var id = getId()
         
-        debugBegin("saveAllItemEntry")
         for textItem in textItems {
             let view = textItem.view as! UITextView
             var textItemEntry = TextItemEntry(id: id, frame: view.frame)
@@ -70,8 +72,5 @@ class TextItemManager : ItemManager {
             
             id += 1
         }
-        
-        debug("[saveAllItemEntry] - max text id: " + String(id))
-        debugEnd("saveAllItemEntry")
     }
 }

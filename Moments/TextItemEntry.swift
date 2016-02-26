@@ -40,7 +40,7 @@ class TextItemEntry {
     
     init(textItemMO: TextItem) {
         self.id = textItemMO.id!.longLongValue
-        self.frame = CGRectFromString(textItemMO.frame as! String)
+        self.frame = CGRectFromString(textItemMO.frame!)
         self.content = textItemMO.content
         self.rotation = textItemMO.rotation!.floatValue
     }

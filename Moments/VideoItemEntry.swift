@@ -12,7 +12,7 @@ import UIKit
 class VideoItemEntry {
     let id: Int64
     var frame : CGRect
-    var content : String?
+    var url : NSURL?
     var rotation : Float = 0
     
     init(id: Int64, frame : CGRect) {
@@ -20,8 +20,8 @@ class VideoItemEntry {
         self.frame = frame
     }
     
-    func setContent(content: String) {
-        self.content = content
+    func setURL(url: NSURL) {
+        self.url = url
     }
     
     func setRotation(rotation : Float) {

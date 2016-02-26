@@ -55,6 +55,7 @@ class NewMomentManager {
     var idPrefix : String = ""
     var idSuffix : String = ""
     
+    var isNewMoment : Bool = true
     var testMode : Bool = true
     var debugPrefix : String = "[NewMomentManager] - "
 
@@ -80,9 +81,11 @@ class NewMomentManager {
         self.momentColour = moment.backgroundColour
         self.idPrefix = String(moment.id / Int64(10000))
         self.idSuffix = String(moment.id % Int64(10000))
+        self.isNewMoment = false
         
         initItemManagers()
         for textItem in moment.textItemEntries {
+            debug("[loadCanvas] - textItem: " + String(textItem))
             self.canvas!.addNewViewController (textManager.loadText(textItem))
         }
         
@@ -168,16 +171,15 @@ class NewMomentManager {
         updateTitle()
         updateColour()
         
-        if let moment = self.moment {
-            if (CoreDataFetchHelper.deleteMomentGivenId(moment.id)) {
+        if self.isNewMoment {
+            saveNewMoment()
+        } else {
+            if (CoreDataFetchHelper.deleteMomentGivenId(moment!.id)) {
                 saveNewMoment()
             } else {
                 debug("[saveMomentEntry] - could not delete old moment")
             }
-        } else {
-            saveNewMoment()
         }
-
     }
     
     func saveNewMoment() {
@@ -220,9 +222,10 @@ class NewMomentManager {
     }
 
     func addTextItemEntry(entry: TextItemEntry) {
-        debugBegin("addTextItemEntry")
+        //debugBegin("addTextItemEntry")
+        debug("[addTextItemEntry] - textItem: " + String(entry))
         self.moment!.addTextItemEntry(entry)
-        debugEnd("addTextItemEntry")
+        //debugEnd("addTextItemEntry")
     }
     
     func addImageItemEntry(entry: ImageItemEntry) {
@@ -247,6 +250,10 @@ class NewMomentManager {
         debugBegin("addStickerItemEntry")
         self.moment!.addStickerItemEntry(entry)
         debugEnd("addStickerItemEntry")
+    }
+    
+    func getIsNewMoment() -> Bool {
+        return self.isNewMoment
     }
     
     func debug (msg: String) {

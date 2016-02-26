@@ -10,7 +10,7 @@ import UIKit
 
 class ImageItemView: UIImageView {
     var lastLocation:CGPoint = CGPointMake(0,0)
-    var url : String?
+    var url : NSURL?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,25 +75,17 @@ class ImageItemViewController: UIViewController {
         imageView.image = image
         if let editInfo = editingInfo {
             if let url = editInfo[UIImagePickerControllerReferenceURL] as? NSURL {
-                imageView.url = url.absoluteString
+                imageView.url = url
             }
         }
         self.view = imageView
     }
     
-    func addImage(url: String, frame: CGRect) {
-        let imageView = ImageItemView(frame: frame)
-        
-        if let url: NSURL = NSURL(string: url) {
-            imageView.url = url.absoluteString
-            if let data = NSData(contentsOfURL: url) {
-                let image = UIImage(data: data)
-                imageView.image = image
-                self.view = imageView
-            }
-        }
+    func addImage(imageItem: ImageItemEntry) {
+        let imageView = ImageItemView(frame: imageItem.frame)
+        imageView.image = imageItem.image
+        self.view = imageView
     }
-    
 }
 
 class ImageItemManager : ItemManager {
@@ -111,6 +103,7 @@ class ImageItemManager : ItemManager {
     }
     
     func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {
+        debug("[addImage] - url: " + String(editingInfo![UIImagePickerControllerReferenceURL]))
         var newImageVC = ImageItemViewController(manager: self)
         newImageVC.addImage(image, location: location, editingInfo: editingInfo)
             
@@ -120,27 +113,23 @@ class ImageItemManager : ItemManager {
     
     func loadImage(imageItem: ImageItemEntry) -> ImageItemViewController {
         var newImageVC = ImageItemViewController(manager: self)
-        newImageVC.addImage(imageItem.content!, frame: imageItem.frame)
         
+        newImageVC.addImage(imageItem)
         self.imageItems.append(newImageVC)
         return newImageVC
     }
     
     override func saveAllItemEntry() {
-        debugBegin("saveAllItemEntry")
         var id = getId()
         
         for imageItem in imageItems {
             let view = imageItem.view as! ImageItemView
-            var imageItemEntry = ImageItemEntry(id: id, frame: view.frame)
-            imageItemEntry.setContent(view.url!)
+            let imageItemEntry = ImageItemEntry(id: id, frame: view.frame, image: view.image!)
+            //imageItemEntry.setURL(view.url!)
             
             self.superManager!.addImageItemEntry(imageItemEntry)
             id += 1
         }
-        
-        debug("[saveAllItemEntry] - max image id: " + String(id))
-        debugEnd("saveAllItemEntry")
     }
 }
 

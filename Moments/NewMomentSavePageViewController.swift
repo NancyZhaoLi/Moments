@@ -71,5 +71,9 @@ class NewMomentSavePageViewController: UIViewController {
             return self.momentTitleDisplay.placeholder!
         }
     }
+    
+    func isNewMoment() -> Bool {
+        return self.manager!.getIsNewMoment()
+    }
 
 }

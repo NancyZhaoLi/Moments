@@ -2,7 +2,7 @@
 //  AudioItem+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Yuning Xue on 2016-02-24.
+//  Created by Yuning Xue on 2016-02-25.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,10 +14,11 @@ import CoreData
 
 extension AudioItem {
 
-    @NSManaged var content: NSNumber?
-    @NSManaged var frame: NSObject?
+    @NSManaged var url: NSObject?
+    @NSManaged var frame: String?
     @NSManaged var id: NSNumber?
     @NSManaged var rotation: NSNumber?
+    @NSManaged var audio: NSObject?
     @NSManaged var inMoment: Moment?
 
 }
