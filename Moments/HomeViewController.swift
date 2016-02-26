@@ -44,9 +44,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             if NewMomentSavePageVC.isNewMoment() {
                 if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
                     CoreDataSaveHelper.saveNewMomentToCoreData(moment)
-                    moments.append(moment)
-                    getMomentsMOFromCoreData()
-                    let indexPath = NSIndexPath(forRow: moments.count - 1, inSection: 0)
+                    moments.insert(moment, atIndex: 0)
+                    //getMomentsMOFromCoreData()
+                    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                     self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
                 }

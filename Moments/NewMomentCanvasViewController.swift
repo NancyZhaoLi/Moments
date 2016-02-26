@@ -18,14 +18,14 @@ enum TouchMode : String {
          Audio = "Audio",
          Video = "Video",
          Sticker = "Sticker",
-         Default = "View"
+         View = "View"
 }
 
 class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, EditTextItemViewControllerDelegate, MPMediaPickerControllerDelegate {
     
     let testMode : Bool = true
     var touchLocation : CGPoint?
-    var touchMode : TouchMode = TouchMode.Default
+    var touchMode : TouchMode = TouchMode.View
     
     var savePageAccessed : Bool = false
     var savePage : NewMomentSavePageViewController?
@@ -184,7 +184,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     }
     
     func resetTouchMode(){
-        self.touchMode = TouchMode.Default
+        self.touchMode = TouchMode.View
     }
     
     func loadMoment(moment: MomentEntry) {
