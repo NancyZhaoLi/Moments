@@ -206,16 +206,7 @@ class NewMomentManager {
     
     
     func updateTitle() {
-        if let title = self.savePage!.momentTitleDisplay.text {
-            if title.isEmpty {
-                debug("[updateTitle] - empty text")
-            } else {
-                self.momentTitle = title
-            }
-        } else {
-            debug("[updateTitle] - nil text")
-
-        }
+        self.momentTitle = self.savePage!.getTitle()
     }
     
     func updateColour() -> Bool {

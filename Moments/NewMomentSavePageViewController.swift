@@ -59,5 +59,17 @@ class NewMomentSavePageViewController: UIViewController {
     func getMomentEntry() -> MomentEntry {
         return self.manager!.moment!
     }
+    
+    func getTitle() -> String {
+        if let title = self.momentTitleDisplay.text {
+            if title.isEmpty {
+                return self.momentTitleDisplay.placeholder!
+            }
+            return title
+        } else {
+            print("no title text")
+            return self.momentTitleDisplay.placeholder!
+        }
+    }
 
 }
