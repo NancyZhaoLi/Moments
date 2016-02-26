@@ -134,7 +134,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
                                 <rect key="frame" x="162" y="560" width="50" height="50"/>
-                                <state key="normal" image="Add-a-button-icon"/>
+                                <state key="normal" image="AddButtonFinal"/>
                                 <connections>
                                     <segue destination="k7V-YG-Yyz" kind="presentation" identifier="HomeToNewMoment" id="g0S-rU-vpO"/>
                                 </connections>
@@ -280,8 +280,8 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Sg-y0T">
-                                <rect key="frame" x="162" y="560" width="50" height="50"/>
-                                <state key="normal" image="Add-a-button-icon"/>
+                                <rect key="frame" x="162" y="565" width="50" height="50"/>
+                                <state key="normal" image="AddButtonFinal"/>
                                 <connections>
                                     <segue destination="k7V-YG-Yyz" kind="presentation" identifier="CalenderToNewMoment" id="mm9-Jz-635"/>
                                 </connections>
@@ -1106,7 +1106,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Add-a-button-icon" width="128" height="128"/>
+        <image name="AddButtonFinal" width="127" height="126"/>
         <image name="AddItem" width="25" height="25"/>
         <image name="Editing-changing_Font" width="512" height="512"/>
         <image name="Favourite" width="256" height="256"/>

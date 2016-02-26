@@ -65,6 +65,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.startDate.delegate = self
         self.endDate.delegate = self
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage3")!)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
