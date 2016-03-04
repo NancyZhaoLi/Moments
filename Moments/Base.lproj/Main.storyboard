@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -91,6 +92,81 @@
             </objects>
             <point key="canvasLocation" x="304.5" y="337.5"/>
         </scene>
+        <!--Category View Controller-->
+        <scene sceneID="puX-EU-3yu">
+            <objects>
+                <viewController id="lu1-WJ-L1u" customClass="CategoryViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZLK-Ga-H0S"/>
+                        <viewControllerLayoutGuide type="bottom" id="7kP-d2-lnE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MDk-XO-UCX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yp0-ag-mv8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <color key="backgroundColor" red="1" green="0.98095936923007243" blue="0.89982431628603277" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="y3i-lf-yIt">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="P1t-z7-evA">
+                                        <rect key="frame" x="0.0" y="64" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="lu1-WJ-L1u" id="9rd-4m-Zvu"/>
+                                    <outlet property="delegate" destination="lu1-WJ-L1u" id="QvQ-ww-A5Y"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TLT-Rz-mym">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Category" textAlignment="natural" minimumFontSize="17" id="B17-wO-5UV">
+                            <rect key="frame" x="8" y="7" width="218" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <connections>
+                                <outlet property="delegate" destination="lu1-WJ-L1u" id="jh2-Ip-bd6"/>
+                            </connections>
+                        </textField>
+                        <rightBarButtonItems>
+                            <barButtonItem image="home" id="rb3-6n-UFV">
+                                <connections>
+                                    <action selector="goBack:" destination="lu1-WJ-L1u" id="SBZ-5j-B7H"/>
+                                    <segue destination="cWj-dw-5lR" kind="unwind" unwindAction="unwindToHomeView:" id="ucp-vv-Kii"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" id="UFG-2I-Z5D">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rA5-hF-jpX">
+                                    <rect key="frame" x="232" y="7" width="83" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="CategoryCollection" destination="yp0-ag-mv8" id="t8I-In-tiv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n2m-cs-Lwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cWj-dw-5lR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3423.5" y="-1835.5"/>
+        </scene>
         <!--Home-->
         <scene sceneID="xq5-en-4BS">
             <objects>
@@ -110,9 +186,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VE9-jF-3NI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1460.5" y="-795.5"/>
+            <point key="canvasLocation" x="2272.5" y="-795.5"/>
         </scene>
-        <!--Home-->
+        <!--Moments-->
         <scene sceneID="IZ0-hl-mPs">
             <objects>
                 <viewController id="WXg-ml-XV5" customClass="HomeViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
@@ -142,7 +218,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.96619073275862055" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="cd6-7q-mMo"/>
+                    <navigationItem key="navigationItem" title="Moments" id="iIp-1l-LCR">
+                        <barButtonItem key="leftBarButtonItem" title="Categories" id="Pyc-iO-Vpn">
+                            <color key="tintColor" red="1" green="0.98459434619999997" blue="0.96111887240000005" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="k4o-hA-DFZ" kind="show" id="WVL-19-ray"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="homeView" destination="e13-7W-GB8" id="VUe-db-u8f"/>
@@ -152,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nbc-f1-qFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1889.5" y="-795.5"/>
+            <point key="canvasLocation" x="2701.5" y="-795.5"/>
         </scene>
         <!--MainUI View Controller-->
         <scene sceneID="3Kx-aV-Gor">
@@ -1300,6 +1383,25 @@
             </objects>
             <point key="canvasLocation" x="3337.5" y="1140.5"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oox-lp-PuH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k4o-hA-DFZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Yuo-Pm-8uX"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pdx-Wf-2RK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lu1-WJ-L1u" kind="relationship" relationship="rootViewController" id="C4R-4P-fmA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nQB-ig-wgj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2940" y="-1851"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AddItem" width="25" height="25"/>
@@ -1318,6 +1420,6 @@
         <image name="view" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mm9-Jz-635"/>
+        <segue reference="iuc-Uf-mkk"/>
     </inferredMetricsTieBreakers>
 </document>

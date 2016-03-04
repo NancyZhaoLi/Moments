@@ -13,11 +13,12 @@ class CategoryEntry {
     var colour: UIColor = UIColor.blueColor()
     var name: String
     
+    
     init() {
         self.colour = UIColor.blueColor()
         self.name = "Uncategorized"
     }
-    
+ 
     init(colour: UIColor, name: String) {
         self.colour = colour
         self.name = name
