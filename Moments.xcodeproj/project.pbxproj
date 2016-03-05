@@ -44,6 +44,7 @@
 		766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766306311C80003F00FA7726 /* MomentTableCell.swift */; };
 		766306341C809F3100FA7726 /* EditTextItemNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */; };
 		7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */; };
+		769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */; };
 		769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F41C76AABE00FC883E /* AppDelegate.swift */; };
 		769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F61C76AABE00FC883E /* ViewController.swift */; };
 		769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769DD7F81C76AABE00FC883E /* Main.storyboard */; };
@@ -126,6 +127,7 @@
 		766306311C80003F00FA7726 /* MomentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableCell.swift; sourceTree = "<group>"; };
 		766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemNavigationController.swift; sourceTree = "<group>"; };
 		7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayViewController.swift; sourceTree = "<group>"; };
+		769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		769DD7F11C76AABE00FC883E /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD7F41C76AABE00FC883E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		769DD7F61C76AABE00FC883E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +312,14 @@
 			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
+		769ABB591C8B89270049666F /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		769DD7E81C76AABE00FC883E = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +345,7 @@
 		769DD7F31C76AABE00FC883E /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				769ABB591C8B89270049666F /* Category */,
 				465012B21C8A3B3D00F7220D /* CategoryCollectionCell */,
 				760AA5CC1C7F6F8A001017ED /* MomentTableCell */,
 				767834881C7D3EC600FC1B96 /* CoreDataModel */,
@@ -612,6 +623,7 @@
 				D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */,
 				760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */,
 				760197E81C7E10AF00A7315A /* StickerItem.swift in Sources */,
+				769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */,
 				ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */,
 				760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */,
 				AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */,
