@@ -1061,7 +1061,13 @@
                             <outlet property="delegate" destination="TTt-zD-eGq" id="ta5-WC-bRo"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Categories" id="tJj-WS-7YP"/>
+                    <navigationItem key="navigationItem" title="Categories" id="tJj-WS-7YP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wwo-ZS-Lp9">
+                            <connections>
+                                <action selector="addNewCategory:" destination="TTt-zD-eGq" id="6y6-dN-4uf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="categoriesCollectionView" destination="J6E-zL-B39" id="O02-5e-rpL"/>
                         <segue destination="i4i-WV-26f" kind="show" identifier="categoryMoments" id="YDK-H9-w9U"/>
@@ -1267,7 +1273,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Helvetica">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="changeFontName:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="Kg6-rP-Zql"/>

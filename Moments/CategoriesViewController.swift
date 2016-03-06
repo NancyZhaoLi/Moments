@@ -98,6 +98,23 @@ class CategoriesViewController: UICollectionViewController {
     
     //collection view
     
+    
+    @IBAction func addNewCategory(sender: AnyObject) {
+        
+        let newCategory = CategoryEntry(colour: UIColor.blueColor(),name: "test")
+        categories.append(newCategory)
+        
+        let count = categories.count
+        let index = count > 0 ? count - 1 : 0
+        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        
+        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
+            }, completion: nil)
+
+        self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
+    }
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -124,3 +141,4 @@ class CategoriesViewController: UICollectionViewController {
     }
     
 }
+
