@@ -12,7 +12,7 @@ import UIKit
 class CategoryEntry {
     var colour: UIColor = UIColor.blueColor()
     var name: String
-    
+    var momentEntries = [MomentEntry]()
     
     init() {
         self.colour = UIColor.blueColor()
@@ -30,6 +30,10 @@ class CategoryEntry {
     
     func setName(name: String) {
         self.name = name
+    }
+    
+    func addMoment(moment: MomentEntry) {
+        momentEntries.append(moment)
     }
     
 }

@@ -53,20 +53,9 @@ class CoreDataFetchHelper {
 
     
     static func fetchDayMomentsMOFromCoreData(date: NSDate) -> [Moment] {
-        print(date)
-        print(date.startOfDay)
-        print(date.endOfDay)
-        
-        let d = NSDate()
-        print(d)
-        print(d.startOfDay)
-        print(d.endOfDay)
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
-        
-        
-        
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
         requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@", date.startOfDay, date.endOfDay)
@@ -77,6 +66,26 @@ class CoreDataFetchHelper {
         
         do {
             let results = try context.executeFetchRequest(requestMoments) as! [Moment]
+            
+            return results
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+    static func fetchCategoriesMOFromCoreData() -> [Category] {
+        let defaultFetchSize = 20
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestCategories = NSFetchRequest(entityName: "Category")
+        requestCategories.returnsObjectsAsFaults = false
+        requestCategories.fetchLimit = defaultFetchSize
+        
+        do {
+            let results = try context.executeFetchRequest(requestCategories) as! [Category]
             
             return results
         } catch {

@@ -45,6 +45,7 @@
 		766306341C809F3100FA7726 /* EditTextItemNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */; };
 		7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */; };
 		769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */; };
+		769ABB5D1C8BB7D90049666F /* CategoryMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB5C1C8BB7D90049666F /* CategoryMomentsViewController.swift */; };
 		769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F41C76AABE00FC883E /* AppDelegate.swift */; };
 		769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD7F61C76AABE00FC883E /* ViewController.swift */; };
 		769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769DD7F81C76AABE00FC883E /* Main.storyboard */; };
@@ -128,6 +129,7 @@
 		766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemNavigationController.swift; sourceTree = "<group>"; };
 		7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayViewController.swift; sourceTree = "<group>"; };
 		769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		769ABB5C1C8BB7D90049666F /* CategoryMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMomentsViewController.swift; sourceTree = "<group>"; };
 		769DD7F11C76AABE00FC883E /* Moments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD7F41C76AABE00FC883E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		769DD7F61C76AABE00FC883E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -193,8 +195,8 @@
 		465012B21C8A3B3D00F7220D /* CategoryCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
-				465012B31C8A3B8400F7220D /* CategoryViewCell.swift */,
 				465012B41C8A3B8400F7220D /* CategoryViewCell.xib */,
+				465012B31C8A3B8400F7220D /* CategoryViewCell.swift */,
 			);
 			name = CategoryCollectionCell;
 			sourceTree = "<group>";
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */,
+				769ABB5C1C8BB7D90049666F /* CategoryMomentsViewController.swift */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */,
 				762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */,
 				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,
+				769ABB5D1C8BB7D90049666F /* CategoryMomentsViewController.swift in Sources */,
 				D048BEF71C7DC10300BD3115 /* NewMomentManager.swift in Sources */,
 				760197ED1C7E10AF00A7315A /* ImageItem+CoreDataProperties.swift in Sources */,
 				465012B51C8A3B8400F7220D /* CategoryViewCell.swift in Sources */,

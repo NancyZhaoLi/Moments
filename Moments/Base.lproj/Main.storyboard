@@ -1031,41 +1031,29 @@
             </objects>
             <point key="canvasLocation" x="1406.5" y="2709.5"/>
         </scene>
-        <!--Categories View Controller-->
+        <!--Categories-->
         <scene sceneID="6L7-Tt-6dY">
             <objects>
                 <collectionViewController id="TTt-zD-eGq" customClass="CategoriesViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="J6E-zL-B39">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="D8G-Mh-B8g">
-                            <size key="itemSize" width="130" height="130"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.96619073280000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="D8G-Mh-B8g">
+                            <size key="itemSize" width="122" height="122"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="loQ-s5-3xV">
-                                <rect key="frame" x="0.0" y="64" width="130" height="130"/>
+                                <rect key="frame" x="0.0" y="64" width="122" height="122"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njo-2c-6NM">
-                                            <rect key="frame" x="2" y="2" width="126" height="126"/>
-                                            <color key="backgroundColor" red="0.36470588240000001" green="0.76078431369999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        </view>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="njo-2c-6NM" secondAttribute="trailing" constant="2" id="ATC-gb-Vcg"/>
-                                    <constraint firstItem="njo-2c-6NM" firstAttribute="leading" secondItem="loQ-s5-3xV" secondAttribute="leading" constant="2" id="UAl-UU-d5G"/>
-                                    <constraint firstItem="njo-2c-6NM" firstAttribute="top" secondItem="loQ-s5-3xV" secondAttribute="top" constant="2" id="nnJ-d2-PNX"/>
-                                    <constraint firstAttribute="bottom" secondItem="njo-2c-6NM" secondAttribute="bottom" constant="2" id="zv4-Zl-m2D"/>
-                                </constraints>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -1073,19 +1061,20 @@
                             <outlet property="delegate" destination="TTt-zD-eGq" id="ta5-WC-bRo"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="tJj-WS-7YP"/>
+                    <navigationItem key="navigationItem" title="Categories" id="tJj-WS-7YP"/>
                     <connections>
-                        <segue destination="i4i-WV-26f" kind="show" id="YDK-H9-w9U"/>
+                        <outlet property="categoriesCollectionView" destination="J6E-zL-B39" id="O02-5e-rpL"/>
+                        <segue destination="i4i-WV-26f" kind="show" identifier="categoryMoments" id="YDK-H9-w9U"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ah8-U8-9X7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1870.5" y="734.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Category Moments View Controller-->
         <scene sceneID="NjT-kv-6Ze">
             <objects>
-                <viewController id="i4i-WV-26f" sceneMemberID="viewController">
+                <viewController id="i4i-WV-26f" customClass="CategoryMomentsViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wWk-uz-Mla"/>
                         <viewControllerLayoutGuide type="bottom" id="MTT-Cl-1Zr"/>
@@ -1511,6 +1500,6 @@
         <image name="view" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iuc-Uf-mkk"/>
+        <segue reference="mm9-Jz-635"/>
     </inferredMetricsTieBreakers>
 </document>
