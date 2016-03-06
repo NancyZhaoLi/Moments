@@ -66,6 +66,7 @@ class CategoriesViewController: UICollectionViewController {
         }
     }
     
+    
     func getCategoriesFromCoreData(){
         
         getCategoriesMOFromCoreData()
@@ -98,7 +99,7 @@ class CategoriesViewController: UICollectionViewController {
     
     //collection view
     
-    
+    /*
     @IBAction func addNewCategory(sender: AnyObject) {
         
         let newCategory = CategoryEntry(colour: UIColor.blueColor(),name: "test")
@@ -114,6 +115,7 @@ class CategoriesViewController: UICollectionViewController {
 
         self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
     }
+*/
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1

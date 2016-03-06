@@ -41,8 +41,11 @@
 		762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763221C7D45FD00F417F0 /* ImageItemEntry.swift */; };
 		762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763241C7D463C00F417F0 /* AudioItemEntry.swift */; };
 		762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763261C7D464C00F417F0 /* VideoItemEntry.swift */; };
+		764BF99D1C8CD2B100776AAB /* CategoryPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BF99C1C8CD2B100776AAB /* CategoryPresentationController.swift */; };
+		764BF99F1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BF99E1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift */; };
 		766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766306311C80003F00FA7726 /* MomentTableCell.swift */; };
 		766306341C809F3100FA7726 /* EditTextItemNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */; };
+		7674B9571C8CD4E000BC1592 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7674B9561C8CD4E000BC1592 /* NewCategoryViewController.swift */; };
 		7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */; };
 		769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */; };
 		769ABB5D1C8BB7D90049666F /* CategoryMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769ABB5C1C8BB7D90049666F /* CategoryMomentsViewController.swift */; };
@@ -125,8 +128,11 @@
 		762763221C7D45FD00F417F0 /* ImageItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemEntry.swift; sourceTree = "<group>"; };
 		762763241C7D463C00F417F0 /* AudioItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioItemEntry.swift; sourceTree = "<group>"; };
 		762763261C7D464C00F417F0 /* VideoItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemEntry.swift; sourceTree = "<group>"; };
+		764BF99C1C8CD2B100776AAB /* CategoryPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPresentationController.swift; sourceTree = "<group>"; };
+		764BF99E1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPresentationAnimationController.swift; sourceTree = "<group>"; };
 		766306311C80003F00FA7726 /* MomentTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableCell.swift; sourceTree = "<group>"; };
 		766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemNavigationController.swift; sourceTree = "<group>"; };
+		7674B9561C8CD4E000BC1592 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		7678347B1C7D0A1000FC1B96 /* CalendarDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarDayViewController.swift; sourceTree = "<group>"; };
 		769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		769ABB5C1C8BB7D90049666F /* CategoryMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMomentsViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +325,9 @@
 			children = (
 				769ABB5A1C8B893C0049666F /* CategoriesViewController.swift */,
 				769ABB5C1C8BB7D90049666F /* CategoryMomentsViewController.swift */,
+				764BF99C1C8CD2B100776AAB /* CategoryPresentationController.swift */,
+				764BF99E1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift */,
+				7674B9561C8CD4E000BC1592 /* NewCategoryViewController.swift */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -602,6 +611,7 @@
 				760197F21C7E10AF00A7315A /* TextItem.swift in Sources */,
 				760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */,
 				760197EF1C7E10AF00A7315A /* Category+CoreDataProperties.swift in Sources */,
+				764BF99D1C8CD2B100776AAB /* CategoryPresentationController.swift in Sources */,
 				D048BEF51C7DAE4500BD3115 /* StickerItemViewController.swift in Sources */,
 				D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */,
 				7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */,
@@ -623,6 +633,7 @@
 				46119D351C76CC3A00DB5F12 /* UserSettingViewController.swift in Sources */,
 				760197EB1C7E10AF00A7315A /* Moment+CoreDataProperties.swift in Sources */,
 				760197E71C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift in Sources */,
+				764BF99F1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift in Sources */,
 				D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */,
 				760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */,
 				760197E81C7E10AF00A7315A /* StickerItem.swift in Sources */,
@@ -638,6 +649,7 @@
 				465012B51C8A3B8400F7220D /* CategoryViewCell.swift in Sources */,
 				760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */,
 				769DD7FD1C76AABE00FC883E /* Moments.xcdatamodeld in Sources */,
+				7674B9571C8CD4E000BC1592 /* NewCategoryViewController.swift in Sources */,
 				760197F01C7E10AF00A7315A /* Category.swift in Sources */,
 				769DD7F71C76AABE00FC883E /* ViewController.swift in Sources */,
 				AD5D2BE31C7EBDE9008D608B /* VideoGeneration.swift in Sources */,
