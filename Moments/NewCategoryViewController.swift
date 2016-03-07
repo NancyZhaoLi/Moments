@@ -9,9 +9,11 @@
 import UIKit
 
 
-class NewCategoryViewController: UIViewController, UIViewControllerTransitioningDelegate {
+class NewCategoryViewController: UIViewController, UIViewControllerTransitioningDelegate, ColourPickerViewControllerDelegate {
     
     @IBOutlet weak var categoryName: UITextField!
+
+    @IBOutlet weak var categoryColour: UIButton!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,12 +54,39 @@ class NewCategoryViewController: UIViewController, UIViewControllerTransitioning
         return CategoryPresentationAnimationController()
     }
     
-    func getCategoryEntry() -> CategoryEntry {
-        let name = categoryName.text!
-        let colour = UIColor.redColor()
-        
-        return CategoryEntry(colour: colour, name: name)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "pickCategoryColour" {
+            let colourPickerVC = segue.destinationViewController as! ColourPickerViewController
+            colourPickerVC.delegate = self
+        }
     }
     
+    func getCategoryEntry() -> CategoryEntry {
+        let name = categoryName.text!
+        if let colour = categoryColour.backgroundColor {
+            return CategoryEntry(colour: colour, name: name)
+        }
+        
+        return CategoryEntry(colour: UIColor.whiteColor(), name: name)
+    }
+    
+    
+    
+    // ColourPickerViewController Delegate
+    func selectColor(controller: ColourPickerViewController, colour: UIColor) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        categoryColour.backgroundColor = colour
+        categoryColour.setTitle("", forState: .Normal)
+    }
+    
+    func currentColor() -> UIColor {
+        if let colour = categoryColour.backgroundColor {
+            print("current color is: " + String(colour))
+            return colour
+        }
+        
+        return UIColor.whiteColor()
+    }
+
 }
 
