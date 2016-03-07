@@ -242,31 +242,18 @@
 			isa = PBXGroup;
 			children = (
 				46119D321C76CC1B00DB5F12 /* HomeViewController.swift */,
-				760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */,
-				760198031C7E796200A7315A /* CoreDataSaveHelper.swift */,
 				465012B71C8A3DD000F7220D /* CategoryViewController.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
 		};
-		7678347F1C7D14AF00FC1B96 /* NewMoment */ = {
+		7678347F1C7D14AF00FC1B96 /* NewMoment_Manager */ = {
 			isa = PBXGroup;
 			children = (
-				D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */,
 				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
-				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
-				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
-				D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */,
 				D048BEEE1C7DA99A00BD3115 /* ItemManager.swift */,
-				D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */,
-				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
-				D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */,
-				D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */,
-				766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */,
-				D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */,
-				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
 			);
-			name = NewMoment;
+			name = NewMoment_Manager;
 			sourceTree = "<group>";
 		};
 		767834801C7D14E100FC1B96 /* Settings */ = {
@@ -370,22 +357,22 @@
 		769DD7F31C76AABE00FC883E /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				AD25BC851C8E31F1006DA556 /* TableCells */,
 				4683B74B1C8D04A00087109D /* Font */,
 				769ABB591C8B89270049666F /* Category */,
-				465012B21C8A3B3D00F7220D /* CategoryCollectionCell */,
-				760AA5CC1C7F6F8A001017ED /* MomentTableCell */,
 				767834881C7D3EC600FC1B96 /* CoreDataModel */,
+				AD25BC841C8E31BD006DA556 /* CoreDataHelpers */,
+				AD25BC881C8E32D7006DA556 /* ComponentVC */,
 				7678347E1C7D14A000FC1B96 /* Home */,
 				7678347D1C7D147800FC1B96 /* Calendar */,
-				7678347F1C7D14AF00FC1B96 /* NewMoment */,
+				AD25BC871C8E327D006DA556 /* NewMoment */,
 				767834811C7D14FD00FC1B96 /* MomentsMode */,
 				767834801C7D14E100FC1B96 /* Settings */,
-				767834821C7D151B00FC1B96 /* DataModel */,
 				767834831C7D152D00FC1B96 /* Others */,
 				769DD7F41C76AABE00FC883E /* AppDelegate.swift */,
 				46EA01F11C7FCB66000B3154 /* bkg_09_september.jpg */,
-				769DD7F61C76AABE00FC883E /* ViewController.swift */,
 				769DD7F81C76AABE00FC883E /* Main.storyboard */,
+				769DD7F61C76AABE00FC883E /* ViewController.swift */,
 				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
 				769DD7FE1C76AABE00FC883E /* Assets.xcassets */,
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
@@ -420,6 +407,75 @@
 				BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AD25BC821C8E3134006DA556 /* NewMoment_OtherVC */ = {
+			isa = PBXGroup;
+			children = (
+				D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */,
+				766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */,
+			);
+			name = NewMoment_OtherVC;
+			sourceTree = "<group>";
+		};
+		AD25BC831C8E316C006DA556 /* NewMoment_VC */ = {
+			isa = PBXGroup;
+			children = (
+				AD25BC821C8E3134006DA556 /* NewMoment_OtherVC */,
+				AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */,
+				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
+				D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */,
+				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
+			);
+			name = NewMoment_VC;
+			sourceTree = "<group>";
+		};
+		AD25BC841C8E31BD006DA556 /* CoreDataHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				767834821C7D151B00FC1B96 /* DataModel */,
+				760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */,
+				760198031C7E796200A7315A /* CoreDataSaveHelper.swift */,
+			);
+			name = CoreDataHelpers;
+			sourceTree = "<group>";
+		};
+		AD25BC851C8E31F1006DA556 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				760AA5CC1C7F6F8A001017ED /* MomentTableCell */,
+				465012B21C8A3B3D00F7220D /* CategoryCollectionCell */,
+			);
+			name = TableCells;
+			sourceTree = "<group>";
+		};
+		AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */ = {
+			isa = PBXGroup;
+			children = (
+				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
+				D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */,
+				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
+				D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */,
+				D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */,
+			);
+			name = NewMoment_ItemVC;
+			sourceTree = "<group>";
+		};
+		AD25BC871C8E327D006DA556 /* NewMoment */ = {
+			isa = PBXGroup;
+			children = (
+				AD25BC831C8E316C006DA556 /* NewMoment_VC */,
+				7678347F1C7D14AF00FC1B96 /* NewMoment_Manager */,
+			);
+			name = NewMoment;
+			sourceTree = "<group>";
+		};
+		AD25BC881C8E32D7006DA556 /* ComponentVC */ = {
+			isa = PBXGroup;
+			children = (
+				D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */,
+			);
+			name = ComponentVC;
 			sourceTree = "<group>";
 		};
 		F12AE0561ECDFDBB824A7069 /* Frameworks */ = {
