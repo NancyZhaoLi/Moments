@@ -22,12 +22,14 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
         super.viewDidLoad()
         self.manager!.setSavePage(self)
         
-        categoryList.delegate = self
         displayCategories()
+        
+        self.categoryList.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.categoryList.showsVerticalScrollIndicator = false
+        self.categoryList.backgroundColor = UIColor.clearColor()
     }
     
     func displayCategories() {
-        self.categories = [CategoryEntry]()
         let categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
     
         for categoryMO in categoriesMO {
@@ -37,7 +39,6 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
         }
         
         print("number of categories: " + String(categories.count))
-        categoryList.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
