@@ -112,7 +112,7 @@ class EditTextItemSettingViewController : UIViewController, ColourPickerViewCont
         }
         
         return UIColor.blackColor()
-    }
+    }  
     
 
     
