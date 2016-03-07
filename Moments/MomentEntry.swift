@@ -30,21 +30,20 @@ class MomentEntry {
     }
     
     init(momentMO: Moment) {
-        
         self.id =  (momentMO.id?.longLongValue)!
         self.date = momentMO.date!
         self.title = momentMO.title!
 
-        self.setFavourite(momentMO.favourite!.boolValue)
+        self.favourite = momentMO.favourite!.boolValue
         
         for textItemMO in momentMO.containedTextItem! {
             let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
-            self.addTextItemEntry(textItem)
+            addTextItemEntry(textItem)
         }
         
         for imageItemMO in momentMO.containedImageItem! {
             let imageItem = ImageItemEntry(imageItemMO: imageItemMO as! ImageItem)
-            self.addImageItemEntry(imageItem)
+            addImageItemEntry(imageItem)
         }
         
     }

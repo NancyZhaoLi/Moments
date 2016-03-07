@@ -75,28 +75,13 @@ class CategoriesViewController: UICollectionViewController {
         getCategoriesMOFromCoreData()
         
         for var i = 0; i < categoriesMO.count; ++i {
-            addCategoryFromCoreData(categoriesMO[i])
+            categories.append(CategoryEntry(categoryMO: categoriesMO[i]))
         }
         
     }
     
     func getCategoriesMOFromCoreData(){
         categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
-    }
-    
-    func addCategoryFromCoreData(categoryMO: Category) {
-        let colour =  categoryMO.colour as! UIColor
-        let name = categoryMO.name
-        var category = CategoryEntry(colour: colour, name: name!)
-        
-        for momentMO in categoryMO.containedMoment! {
-            let moment = MomentEntry(momentMO: momentMO as! Moment)
-            category.addMoment(moment)
-            
-        }
-        
-        categories.append(category)
-
     }
     
     

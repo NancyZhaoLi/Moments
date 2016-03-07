@@ -74,7 +74,7 @@ class NewCategoryViewController: UIViewController, UIViewControllerTransitioning
     
     // ColourPickerViewController Delegate
     func selectColor(controller: ColourPickerViewController, colour: UIColor) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismissViewControllerAnimated(false, completion: nil)
         categoryColour.backgroundColor = colour
         categoryColour.setTitle("", forState: .Normal)
     }

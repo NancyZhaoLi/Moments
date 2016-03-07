@@ -18,6 +18,17 @@ class CategoryEntry {
         self.colour = UIColor.blueColor()
         self.name = "Uncategorized"
     }
+    
+    init(categoryMO: Category) {
+        self.colour = categoryMO.colour as! UIColor
+        self.name = categoryMO.name!
+        
+        for momentMO in categoryMO.containedMoment! {
+            let moment = MomentEntry(momentMO: momentMO as! Moment)
+            addMoment(moment)
+        }
+    }
+    
  
     init(colour: UIColor, name: String) {
         self.colour = colour

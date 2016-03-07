@@ -73,38 +73,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     func getMomentsFromCoreData(){
-        
         getMomentsMOFromCoreData()
-            
-        for var i = 0; i < momentsMO.count; ++i {
-            addMomentFromCoreData(momentsMO[i])
+        for momentMO in momentsMO {
+            moments.append(MomentEntry(momentMO: momentMO))
         }
-        
     }
     
     func getMomentsMOFromCoreData(){
         momentsMO = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
-    }
-    
-    func addMomentFromCoreData(momentMO: Moment) {
-        let id =  momentMO.id?.longLongValue
-        let date = momentMO.date
-        let title = momentMO.title
-        var moment = MomentEntry(id: id!, date: date!, title: title!)
-        moment.setFavourite(momentMO.favourite!.boolValue)
-        
-        for textItemMO in momentMO.containedTextItem! {
-            let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
-            moment.addTextItemEntry(textItem)
-        }
-        
-        for imageItemMO in momentMO.containedImageItem! {
-            let imageItem = ImageItemEntry(imageItemMO: imageItemMO as! ImageItem)
-            moment.addImageItemEntry(imageItem)
-        }
-        
-        moments.append(moment)
-        print("id: \(id!), date: \(date!), title: \(title!)")
     }
     
     // moments table
