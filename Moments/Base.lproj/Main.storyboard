@@ -635,6 +635,61 @@
             </objects>
             <point key="canvasLocation" x="3449.5" y="352.5"/>
         </scene>
+        <!--New Category View Controller-->
+        <scene sceneID="YPl-Zz-tRA">
+            <objects>
+                <viewController id="H9W-QE-Brr" customClass="NewCategoryViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KRX-7S-JN6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tcs-We-mEF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lKl-F0-4jj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fs-RF-rfh">
+                                <rect key="frame" x="226" y="28" width="32" height="30"/>
+                                <state key="normal" title="save"/>
+                                <connections>
+                                    <segue destination="ngL-KI-gWs" kind="unwind" unwindAction="unwindToCategoriesView:" id="0Jc-GM-KNB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAV-Ip-Dxc">
+                                <rect key="frame" x="20" y="28" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelNewCategory:" destination="H9W-QE-Brr" eventType="touchUpInside" id="Wf9-ix-xl3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ed-LK-eXO">
+                                <rect key="frame" x="20" y="86" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Colour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5i-kP-1pF">
+                                <rect key="frame" x="20" y="147" width="51" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ydr-NR-qZm">
+                                <rect key="frame" x="89" y="86" width="169" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="categoryName" destination="ydr-NR-qZm" id="fHj-eZ-UEU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nLq-DE-jzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ngL-KI-gWs" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1870.5" y="1498.5"/>
+        </scene>
         <!--Moments-->
         <scene sceneID="kQG-kR-We8">
             <objects>
@@ -699,7 +754,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJt-kv-I3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1893.5" y="1868.5"/>
+            <point key="canvasLocation" x="1870.5" y="2216.5"/>
         </scene>
         <!--Moments Player-->
         <scene sceneID="TPp-F6-RyP">
@@ -743,7 +798,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBI-IK-2b7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2381.5" y="1868.5"/>
+            <point key="canvasLocation" x="2319.5" y="2216.5"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="ojW-qZ-aJu">
@@ -895,7 +950,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKu-yo-Jgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1881.5" y="2717.5"/>
+            <point key="canvasLocation" x="1899.5" y="3031.5"/>
         </scene>
         <!--About Us-->
         <scene sceneID="26q-2e-Bqd">
@@ -935,7 +990,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kIv-jU-0LA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2364.5" y="2725.5"/>
+            <point key="canvasLocation" x="2372.5" y="3031.5"/>
         </scene>
         <!--colourPicker-->
         <scene sceneID="2fE-We-Bjx">
@@ -1006,7 +1061,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rg-3d-jiS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1429.5" y="1868.5"/>
+            <point key="canvasLocation" x="1417.5" y="2216.5"/>
         </scene>
         <!--Settings-->
         <scene sceneID="PUX-e3-gv4">
@@ -1029,7 +1084,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUp-aP-3dH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1406.5" y="2709.5"/>
+            <point key="canvasLocation" x="1406.5" y="3031.5"/>
         </scene>
         <!--Categories-->
         <scene sceneID="6L7-Tt-6dY">
@@ -1064,7 +1119,7 @@
                     <navigationItem key="navigationItem" title="Categories" id="tJj-WS-7YP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wwo-ZS-Lp9">
                             <connections>
-                                <action selector="addNewCategory:" destination="TTt-zD-eGq" id="6y6-dN-4uf"/>
+                                <segue destination="H9W-QE-Brr" kind="presentation" id="OOa-uh-Mb6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -111,5 +111,24 @@ class CoreDataSaveHelper {
         return imageItemMO
 
     }
+    
+    static func saveCategoryToCoreData(category: CategoryEntry) {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
+        
+        
+        var categoryMO = Category(entity: entity!, insertIntoManagedObjectContext: context)
+        categoryMO.colour = category.colour
+        categoryMO.name = category.name
+        
+        do{
+            try context.save()
+        } catch {
+            print("ERROR: saving context to Category")
+        }
+        
+    }
 }
 
