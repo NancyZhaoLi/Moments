@@ -20,9 +20,7 @@ class CategoriesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        testing()
-        
-        //getCategoriesFromCoreData()
+        getCategoriesFromCoreData()
         
         let cellNib = UINib(nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         categoriesCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryViewCell")
@@ -36,26 +34,31 @@ class CategoriesViewController: UICollectionViewController {
         layout.itemSize = CGSize(width: width!, height: width!)
     }
     
-    func testing() {
-        let cell1 = CategoryEntry(colour: UIColor.redColor(),name: "flower")
-        let cell2 = CategoryEntry(colour: UIColor.blueColor(), name: "animal")
-        let cell3 = CategoryEntry(colour: UIColor.yellowColor(),name: "favourite")
-        let cell4 = CategoryEntry(colour: UIColor.redColor(),name: "work")
-        let cell5 = CategoryEntry(colour: UIColor.blueColor(), name: "study")
-        let cell6 = CategoryEntry(colour: UIColor.yellowColor(),name: "play")
-        
-        categories.append(cell1)
-        categories.append(cell2)
-        categories.append(cell3)
-        categories.append(cell4)
-        categories.append(cell5)
-        categories.append(cell6)
-        
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func unwindToCategoriesView(segue: UIStoryboardSegue) {
+        
+        if let newCategoryVC = segue.sourceViewController as? NewCategoryViewController {
+                if let category: CategoryEntry = newCategoryVC.getCategoryEntry() {
+                    CoreDataSaveHelper.saveCategoryToCoreData(category)
+                    categories.append(category)
+                    
+                    let count = categories.count
+                    let index = count > 0 ? count - 1 : 0
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    
+                    UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+                        self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
+                        }, completion: nil)
+                    
+                    self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
+
+                }
+            
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -98,24 +101,6 @@ class CategoriesViewController: UICollectionViewController {
     
     
     //collection view
-    
-    /*
-    @IBAction func addNewCategory(sender: AnyObject) {
-        
-        let newCategory = CategoryEntry(colour: UIColor.blueColor(),name: "test")
-        categories.append(newCategory)
-        
-        let count = categories.count
-        let index = count > 0 ? count - 1 : 0
-        let indexPath = NSIndexPath(forRow: index, inSection: 0)
-        
-        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
-            }, completion: nil)
-
-        self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
-    }
-*/
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1

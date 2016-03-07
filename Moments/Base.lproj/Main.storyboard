@@ -650,6 +650,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fs-RF-rfh">
                                 <rect key="frame" x="226" y="28" width="32" height="30"/>
                                 <state key="normal" title="save"/>
+                                <connections>
+                                    <segue destination="ngL-KI-gWs" kind="unwind" unwindAction="unwindToCategoriesView:" id="0Jc-GM-KNB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAV-Ip-Dxc">
                                 <rect key="frame" x="20" y="28" width="48" height="30"/>
@@ -678,8 +681,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="categoryName" destination="ydr-NR-qZm" id="fHj-eZ-UEU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLq-DE-jzg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ngL-KI-gWs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1870.5" y="1498.5"/>
         </scene>

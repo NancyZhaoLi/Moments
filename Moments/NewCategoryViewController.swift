@@ -11,6 +11,8 @@ import UIKit
 
 class NewCategoryViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    @IBOutlet weak var categoryName: UITextField!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.transitioningDelegate = self
@@ -48,6 +50,13 @@ class NewCategoryViewController: UIViewController, UIViewControllerTransitioning
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController)-> UIViewControllerAnimatedTransitioning? {
         return CategoryPresentationAnimationController()
+    }
+    
+    func getCategoryEntry() -> CategoryEntry {
+        let name = categoryName.text!
+        let colour = UIColor.redColor()
+        
+        return CategoryEntry(colour: colour, name: name)
     }
     
 }
