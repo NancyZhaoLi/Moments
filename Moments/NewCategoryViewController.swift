@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol NewCategoryViewControllerDelegate {
+    func newCategory(controller: NewCategoryViewController, category: CategoryEntry)
+}
 
 class NewCategoryViewController: UIViewController, UIViewControllerTransitioningDelegate, ColourPickerViewControllerDelegate {
+    
+    var delegate: NewCategoryViewControllerDelegate?
     
     @IBOutlet weak var categoryName: UITextField!
 
@@ -38,6 +43,11 @@ class NewCategoryViewController: UIViewController, UIViewControllerTransitioning
         view.layer.shadowOpacity = 0.5
     }
     
+    @IBAction func saveCategory(sender: AnyObject) {
+        if let delegate = self.delegate {
+            delegate.newCategory(self, category: getCategoryEntry())
+        }
+    }
     @IBAction func cancelNewCategory(sender: AnyObject) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }

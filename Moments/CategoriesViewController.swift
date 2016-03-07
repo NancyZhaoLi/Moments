@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesViewController: UICollectionViewController {
+class CategoriesViewController: UICollectionViewController, NewCategoryViewControllerDelegate {
     
     @IBOutlet var categoriesCollectionView: UICollectionView!
     
@@ -39,45 +39,23 @@ class CategoriesViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func unwindToCategoriesView(segue: UIStoryboardSegue) {
-        
-        if let newCategoryVC = segue.sourceViewController as? NewCategoryViewController {
-                if let category: CategoryEntry = newCategoryVC.getCategoryEntry() {
-                    CoreDataSaveHelper.saveCategoryToCoreData(category)
-                    categories.append(category)
-                    
-                    let count = categories.count
-                    let index = count > 0 ? count - 1 : 0
-                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                    
-                    UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-                        self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
-                        }, completion: nil)
-                    
-                    self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
 
-                }
-            
-        }
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "categoryMoments" {
             let categoryMomentsVC = segue.destinationViewController as! CategoryMomentsViewController
             categoryMomentsVC.category = sender as? CategoryEntry
-
+        } else if segue.identifier == "newCategory" {
+            let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
+            newCategoryVC.delegate = self
         }
     }
     
-    
     func getCategoriesFromCoreData(){
-        
         getCategoriesMOFromCoreData()
-        
         for var i = 0; i < categoriesMO.count; ++i {
             categories.append(CategoryEntry(categoryMO: categoriesMO[i]))
         }
-        
     }
     
     func getCategoriesMOFromCoreData(){
@@ -111,6 +89,28 @@ class CategoriesViewController: UICollectionViewController {
         performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
         
     }
+    
+    
+    
+    // NewCategoryViewController Delegate
+    func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+        CoreDataSaveHelper.saveCategoryToCoreData(category)
+        categories.append(category)
+        
+        let count = categories.count
+        let index = count > 0 ? count - 1 : 0
+        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        
+        /*UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
+            self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
+            }, completion: nil)*/
+        self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
+        self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
+    
+    }
+
     
 }
 

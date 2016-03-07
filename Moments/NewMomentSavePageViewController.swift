@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewMomentSavePageViewController: UIViewController, UITableViewDelegate {
+class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIViewControllerTransitioningDelegate, NewCategoryViewControllerDelegate {
     
     var canvas : NewMomentCanvasViewController?
     var manager : NewMomentManager?
@@ -17,10 +17,6 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var momentTitleDisplay: UITextField!
     @IBOutlet weak var categoryList: UITableView!
-    
-    @IBAction func newCategory(sender: AnyObject) {
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +40,6 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate {
         categoryList.reloadData()
     }
     
-    
-    func addCategoryToTable(category: CategoryEntry) {
-        
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,6 +48,9 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "saveNewMoment"{
             self.manager!.saveMomentEntry()
+        } else if segue.identifier == "newCategory" {
+            let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
+            newCategoryVC.delegate = self
         }
     }
     
@@ -109,7 +103,12 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate {
     
     
     
-    // Category List
+    func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
+        controller.dismissViewControllerAnimated(false, completion: nil)
+        
+    }
+    
+    // Category List - UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
