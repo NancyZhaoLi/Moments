@@ -1240,10 +1240,10 @@
             </objects>
             <point key="canvasLocation" x="2802" y="1141"/>
         </scene>
-        <!--Edit Text Setting View Controller-->
+        <!--Edit Text Item Setting View Controller-->
         <scene sceneID="JtT-xl-xsc">
             <objects>
-                <viewController id="IsI-BD-Jt6" customClass="EditTextSettingViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IsI-BD-Jt6" customClass="EditTextItemSettingViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G7i-H0-ChG"/>
                         <viewControllerLayoutGuide type="bottom" id="niH-Hf-os3"/>
@@ -1333,7 +1333,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="setTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="X2F-aL-Q5t"/>
+                                    <action selector="changeTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="fkX-d0-vPp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvr-5S-xwH">
@@ -1342,7 +1342,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="setTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="ahH-Sv-rqD"/>
+                                    <action selector="changeTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="FnA-Iq-8ko"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgi-hn-ahV">
@@ -1351,7 +1351,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="setTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="Qdx-MS-caf"/>
+                                    <action selector="changeTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="LUM-XI-T8U"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgB-j1-WAa">
@@ -1360,7 +1360,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="setTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="9EH-rf-Dem"/>
+                                    <action selector="changeTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="gwY-aW-HI6"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alignment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-ic-4Zx">

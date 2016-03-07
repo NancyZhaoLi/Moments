@@ -15,7 +15,6 @@
 		468BC2801C7A52BA00D93268 /* README - Core Data Entity  in Resources */ = {isa = PBXBuildFile; fileRef = 468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */; };
 		468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2811C7A81F800D93268 /* ImageItemViewController.swift */; };
 		468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2831C7A837500D93268 /* MainUIViewController.swift */; };
-		46EA01F21C7FCB66000B3154 /* bkg_09_september.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46EA01F11C7FCB66000B3154 /* bkg_09_september.jpg */; };
 		760197D61C7E0E2700A7315A /* StickerItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D51C7E0E2700A7315A /* StickerItemEntry.swift */; };
 		760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */; };
 		760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D81C7E10AF00A7315A /* VideoItem.swift */; };
@@ -58,6 +57,7 @@
 		769DD80D1C76AABE00FC883E /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD80C1C76AABE00FC883E /* MomentsTests.swift */; };
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
 		AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */; };
+		AD25BC8A1C8E33D3006DA556 /* EditTextItemSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25BC891C8E33D3006DA556 /* EditTextItemSettingViewController.swift */; };
 		AD5D2BE31C7EBDE9008D608B /* VideoGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */; };
 		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
@@ -105,7 +105,6 @@
 		468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README - Core Data Entity "; sourceTree = "<group>"; };
 		468BC2811C7A81F800D93268 /* ImageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemViewController.swift; sourceTree = "<group>"; };
 		468BC2831C7A837500D93268 /* MainUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
-		46EA01F11C7FCB66000B3154 /* bkg_09_september.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bkg_09_september.jpg; sourceTree = "<group>"; };
 		760197D51C7E0E2700A7315A /* StickerItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemEntry.swift; sourceTree = "<group>"; };
 		760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		760197D81C7E10AF00A7315A /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItem.swift; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 		769DD8191C76AABE00FC883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsPlayerViewController.swift; sourceTree = "<group>"; };
 		AD081AEB1C7D91A70084B286 /* moments.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = moments.mp4; sourceTree = "<group>"; };
+		AD25BC891C8E33D3006DA556 /* EditTextItemSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemSettingViewController.swift; sourceTree = "<group>"; };
 		AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGeneration.swift; sourceTree = "<group>"; };
 		ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentCanvasViewController.swift; sourceTree = "<group>"; };
 		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
@@ -370,7 +370,6 @@
 				767834801C7D14E100FC1B96 /* Settings */,
 				767834831C7D152D00FC1B96 /* Others */,
 				769DD7F41C76AABE00FC883E /* AppDelegate.swift */,
-				46EA01F11C7FCB66000B3154 /* bkg_09_september.jpg */,
 				769DD7F81C76AABE00FC883E /* Main.storyboard */,
 				769DD7F61C76AABE00FC883E /* ViewController.swift */,
 				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
@@ -412,8 +411,10 @@
 		AD25BC821C8E3134006DA556 /* NewMoment_OtherVC */ = {
 			isa = PBXGroup;
 			children = (
+				AD25BC891C8E33D3006DA556 /* EditTextItemSettingViewController.swift */,
 				D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */,
 				766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */,
+				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
 			);
 			name = NewMoment_OtherVC;
 			sourceTree = "<group>";
@@ -425,7 +426,6 @@
 				AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */,
 				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
 				D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */,
-				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
 			);
 			name = NewMoment_VC;
 			sourceTree = "<group>";
@@ -602,7 +602,6 @@
 				D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */,
 				769DD7FF1C76AABE00FC883E /* Assets.xcassets in Resources */,
 				769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */,
-				46EA01F21C7FCB66000B3154 /* bkg_09_september.jpg in Resources */,
 				760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */,
 				D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */,
 			);
@@ -686,6 +685,7 @@
 				D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */,
 				7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */,
 				760197F11C7E10AF00A7315A /* TextItem+CoreDataProperties.swift in Sources */,
+				AD25BC8A1C8E33D3006DA556 /* EditTextItemSettingViewController.swift in Sources */,
 				766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */,
 				7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */,
 				760197E91C7E10AF00A7315A /* AudioItem+CoreDataProperties.swift in Sources */,

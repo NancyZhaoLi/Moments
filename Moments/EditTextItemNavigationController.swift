@@ -16,6 +16,8 @@ class EditTextItemNavigationController : UINavigationController {
         
         let rootVC = super.topViewController as! EditTextItemViewController
         rootVC.delegate = self.delegate as! EditTextItemViewControllerDelegate
+        let settingVC = super.viewControllers[1] as! EditTextItemSettingViewController
+        settingVC.parentVC = rootVC
     }
     
 }
