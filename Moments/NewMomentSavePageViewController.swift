@@ -103,14 +103,25 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
     
     
     
+    // NewCategoryViewController Delegate
     func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
-        controller.dismissViewControllerAnimated(false, completion: nil)
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+        CoreDataSaveHelper.saveCategoryToCoreData(category)
+        categories.append(category)
+        
+        let count = categories.count
+        let index = count > 0 ? count - 1 : 0
+        let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        self.categoryList.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
     }
+
     
     // Category List - UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("category count: " + String(categories.count))
         return categories.count
     }
     

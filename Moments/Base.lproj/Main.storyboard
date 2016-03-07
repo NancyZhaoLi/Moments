@@ -1491,7 +1491,6 @@
                                     <color key="titleColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="newCategory:" destination="nYU-nk-Mw4" eventType="touchUpInside" id="6Ll-b2-srf"/>
                                     <segue destination="H9W-QE-Brr" kind="presentation" identifier="newCategory" id="haS-47-5Rl"/>
                                 </connections>
                             </button>
