@@ -96,6 +96,9 @@
 		465012B31C8A3B8400F7220D /* CategoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		465012B41C8A3B8400F7220D /* CategoryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryViewCell.xib; sourceTree = "<group>"; };
 		465012B71C8A3DD000F7220D /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		4683B74A1C8D04950087109D /* 53b17843aa57d.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 53b17843aa57d.ttf; sourceTree = "<group>"; };
+		4683B74C1C8D04B30087109D /* 53b17843a99c4.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 53b17843a99c4.ttf; sourceTree = "<group>"; };
+		4683B74D1C8D056D0087109D /* 53b3a2daaf08f.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 53b3a2daaf08f.ttf; sourceTree = "<group>"; };
 		468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README - Core Data Entity "; sourceTree = "<group>"; };
 		468BC2811C7A81F800D93268 /* ImageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemViewController.swift; sourceTree = "<group>"; };
 		468BC2831C7A837500D93268 /* MainUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +202,16 @@
 				465012B31C8A3B8400F7220D /* CategoryViewCell.swift */,
 			);
 			name = CategoryCollectionCell;
+			sourceTree = "<group>";
+		};
+		4683B74B1C8D04A00087109D /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				4683B74D1C8D056D0087109D /* 53b3a2daaf08f.ttf */,
+				4683B74C1C8D04B30087109D /* 53b17843a99c4.ttf */,
+				4683B74A1C8D04950087109D /* 53b17843aa57d.ttf */,
+			);
+			name = Font;
 			sourceTree = "<group>";
 		};
 		760AA5CC1C7F6F8A001017ED /* MomentTableCell */ = {
@@ -348,6 +361,7 @@
 		769DD7F31C76AABE00FC883E /* Moments */ = {
 			isa = PBXGroup;
 			children = (
+				4683B74B1C8D04A00087109D /* Font */,
 				769ABB591C8B89270049666F /* Category */,
 				465012B21C8A3B3D00F7220D /* CategoryCollectionCell */,
 				760AA5CC1C7F6F8A001017ED /* MomentTableCell */,
