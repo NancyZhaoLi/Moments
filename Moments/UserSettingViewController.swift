@@ -23,15 +23,24 @@ class UserSettingViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*@IBAction func Logout(sender: AnyObject) {
-        ref.unauth()
-        self.dismissViewControllerAnimated(true, completion: nil)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+         print("Selected row = \(indexPath.section)")
+        print("Selected row = \(indexPath.row)")
+        if indexPath.section == 2 && indexPath.row == 0 {
+             let alertController = UIAlertController(title: "Rate Us!", message: "\nAre you enjoying our app? Please rate us in the app store!\n\nElse if you know of ways we can make our app better, please send us feedback so we can improve the experience for you!\n\nThanks!\nThe Moments Team", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "Rate on iTunes", style: .Default, handler: { (action: UIAlertAction) in
+                print("RateUs.RateUs_Tapped")
+                print("Send to iTunes")
+                UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/app/id1091182456")!)
+            }))
+            alertController.addAction(UIAlertAction(title: "No, Thanks!", style: .Default, handler: { (action: UIAlertAction) in
+                print("RateUs.Cancel_Tapped")
+            }))
+             presentViewController(alertController, animated: true, completion: nil)
         
-    }*/
-    
+        }
+    }
     
     // MARK: - Navigation
 
