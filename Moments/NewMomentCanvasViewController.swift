@@ -140,6 +140,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
         if (touches.isEmpty) {
             debug("[touchesBegan] - no touch")
         } else {
+            debug("[touchesBegan] - begin")
             let touch = touches.first!
             self.touchLocation = touch.locationInView(touch.view)
             switch (self.touchMode) {
@@ -218,7 +219,9 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
      ******************************************************************/
     
     func addText(){
+        debug("[addText] - begin")
         self.performSegueWithIdentifier("showEditTextView", sender: self)
+        debug("[addText] - end")
     }
     
     func addImage(){

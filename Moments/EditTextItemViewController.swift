@@ -36,14 +36,84 @@ class EditTextItemView: UITextView {
 
 }
 
-class EditTextItemViewController: UIViewController, UITextViewDelegate, UINavigationBarDelegate {
+/* To dos
+1. Change initial textViewBackgroundColour
+
+
+*/
+
+
+class EditTextItemViewController: UIViewController, UITextViewDelegate, UINavigationBarDelegate,  TextSettingViewControllerDelegate {
     
     var delegate : EditTextItemViewControllerDelegate?
-    var text : String?
-    var color: UIColor = UIColor.blackColor()
-    let placeHolder: String = "Enter Your Text Here..."
+    internal var text : String {
+        get {
+            return self.text
+        }
+        set(text) {
+            self.text = text
+        }
+    }
+    internal var textColour: UIColor {
+        get {
+            return self.textColour
+        }
+        set(colour) {
+            self.textColour = colour
+            // If colour is too light, change the background colour
+        }
+    }
+    internal var textFont: UIFont {
+        get {
+            return self.textFont
+        }
+        set(textFont) {
+            self.textFont = textFont
+        }
+    }
+    internal var textAlignment: NSTextAlignment {
+        get {
+            return self.textAlignment
+        }
+        set(textAlignment) {
+            self.textAlignment = textAlignment
+        }
+    }
+
+    internal var textViewBackgroundColour: UIColor {
+        get {
+            return self.textViewBackgroundColour
+        }
+        set(backgroundColour) {
+            self.textViewBackgroundColour = backgroundColour
+        }
+    }
+    internal static let placeHolder: String = "Enter Your Text Here..."
     
     @IBOutlet weak var editTextItemView: EditTextItemView!
+    
+    convenience init() {
+        self.init(initialText: EditTextItemViewController.placeHolder)
+    }
+    
+    init(initialText: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.text = initialText
+        self.textColour = UIColor.blackColor()
+        self.textAlignment = .Left
+        self.textFont = UIFont(name: "Helvetical Neue", size: 30)!
+        self.textViewBackgroundColour = UIColor.whiteColor()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("New Text View Controller Loaded")
+    }
     
     
     @IBAction func cancelAddText(sender: AnyObject) {
@@ -59,24 +129,18 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //self.editTextItemView.delegate = self
-        self.editTextItemView.font = UIFont(name: "Helvetica", size: 25)
-        if let text = self.text {
-            self.editTextItemView.loadText(text)
-        } else {
-            self.editTextItemView.loadPlaceHolder(placeHolder)
-        }
-        
-        print("New Text View Controller Loaded")
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showTextSettings" {
+            let settingVC = segue.destinationViewController as! TextSettingViewController
+            settingVC.delegate = self
+        }
+    }
+    
+    // Function for placeholder text
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.textColor == UIColor.lightGrayColor() {
             self.editTextItemView.loadText(nil)
@@ -85,14 +149,18 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text.isEmpty {
-            self.editTextItemView.loadPlaceHolder(placeHolder)
+            self.editTextItemView.loadPlaceHolder(EditTextItemViewController.placeHolder)
         }
     }
     
-    func changeTextItemSetting(controller: EditTextItemSettingViewController) {
-        editTextItemView.textColor = controller.getColour()
-        let newFont = UIFont(name: controller.getFontName(), size: controller.getFontSize())
+    // TextSettingViewController delegate
+    
+    func changeTextItemSetting(controller: TextSettingViewController) {
+        editTextItemView.textColor = controller.getTextColour()
+        let newFont =
         editTextItemView.font = newFont
     }
+    
+    
 }
 

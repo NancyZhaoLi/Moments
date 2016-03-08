@@ -13,11 +13,10 @@ class EditTextItemNavigationController : UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("EditTextItemNavigationController begin loading")
         let rootVC = super.topViewController as! EditTextItemViewController
         rootVC.delegate = self.delegate as! EditTextItemViewControllerDelegate
-        let settingVC = super.viewControllers[1] as! EditTextItemSettingViewController
-        settingVC.parentVC = rootVC
+        print(super.viewControllers)
     }
     
 }
