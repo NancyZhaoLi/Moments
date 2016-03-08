@@ -157,8 +157,8 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     
     func changeTextItemSetting(controller: TextSettingViewController) {
         editTextItemView.textColor = controller.getTextColour()
-        let newFont =
-        editTextItemView.font = newFont
+        //let newFont =
+        //editTextItemView.font = newFont
     }
     
     
