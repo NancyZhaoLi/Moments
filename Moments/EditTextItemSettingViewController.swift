@@ -58,7 +58,10 @@ class EditTextItemSettingViewController : UIViewController, ColourPickerViewCont
             let names = UIFont.fontNamesForFamilyName(familyName)
             for name in names {
                 if name.componentsSeparatedByString("-").count == 1 {
-                    if name == textFont.titleLabel!.text! {
+                    //Monica changed this:
+                    //from : if name == textFont.titleLabel!.text! {
+                    //to : if name == textFontName.titleLabel!.text! {
+                    if name == textFontName.titleLabel!.text! {
                         self.selectedIndex = fontData.count
                     }
                     fontData.append(name)
@@ -86,7 +89,10 @@ class EditTextItemSettingViewController : UIViewController, ColourPickerViewCont
     }
     
     func getFontSize() -> CGFloat {
-        
+        //Moncia changed this because it must return a value:
+        //From:
+        //To: return 1.0
+        return 1.0
     }
     
     func getFontName() -> String {
@@ -133,7 +139,10 @@ class EditTextItemSettingViewController : UIViewController, ColourPickerViewCont
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textFont.setTitle(fontData[row], forState: UIControlState.Normal)
+        //Monica changed this:
+        //From:textFont.setTitle(fontData[row], forState: UIControlState.Normal)
+        //To:textFontName.setTitle(fontData[row], forState: UIControlState.Normal)
+        textFontName.setTitle(fontData[row], forState: UIControlState.Normal)
         self.selectedIndex = row
         pickerView.removeFromSuperview()
     }
