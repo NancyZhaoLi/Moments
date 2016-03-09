@@ -10,22 +10,22 @@ import Foundation
 import UIKit
 
 protocol TextSettingViewControllerDelegate {
-    var textColour: UIColor { get set }
-    var textFont: UIFont { get set }
-    var textAlignment: NSTextAlignment { get set }
-    func changeTextItemSetting(controller: TextSettingViewController)
+    func changeTextColour(colour: UIColor)
+    func changeTextFont(font: UIFont)
+    func changeTextAlignment(alignment: NSTextAlignment)
+    var textColour: UIColor { get }
+    var textFont: UIFont { get }
+    var textAlignment: NSTextAlignment { get }
 }
 
 class TextSettingViewController : UIViewController, ColourPickerViewControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var delegate : TextSettingViewControllerDelegate?
-    var fontData : [String] = [String]()
+    private var fontData : [String] = [String]()
+    private var selectedFontIndex : Int = 0
+    private var textAlignment: NSTextAlignment = .Left
+    private var previousSelectedTextAlignmentButton: UIButton?
     
-    //var textSize : Int?
-    //var textColour: UIColor?
-    //var textFont: String?
-    var textAlignment: NSTextAlignment?
-    var previousSelectedTextAlignmentButton: UIButton?
     @IBOutlet weak var textColour: UIButton!
     @IBOutlet weak var textFontSize: UILabel!
     @IBOutlet weak var textFontName: UIButton!
@@ -33,8 +33,10 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     @IBOutlet weak var alignCenter: UIButton!
     @IBOutlet weak var alignRight: UIButton!
     @IBOutlet weak var alignJustified: UIButton!
+    @IBOutlet weak var textFontSizeSlider: UISlider!
 
-    @IBAction func changeFontSize(sender: AnyObject) {
+    @IBAction func changeFontSize(sender: UISlider) {
+        changeFontSize(sender.value)
     }
     
     @IBAction func changeFontColour(sender: AnyObject) {
@@ -54,11 +56,9 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         self.view.addSubview(fontNamePicker)
     }
     
-    
     @IBAction func changeTextAlignmentToLeft(sender: AnyObject) {
         self.textAlignment = .Left
         setButtonSelected(alignLeft)
-
     }
     @IBAction func changeTextAlignmentToCenter(sender: AnyObject) {
         self.textAlignment = .Center
@@ -73,21 +73,6 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         setButtonSelected(alignJustified)
     }
     
-    func unsetButtonSelected(button: UIButton?) {
-        if let button = button {
-            button.setTitle(button.titleLabel?.text, forState: UIControlState.Normal)
-        }
-    }
-    
-    func setButtonSelected(button: UIButton) {
-        unsetButtonSelected(self.previousSelectedTextAlignmentButton)
-        button.setTitle(button.titleLabel?.text, forState: UIControlState.Selected)
-        self.previousSelectedTextAlignmentButton = button
-    }
-
-    
-    var selectedFontIndex : Int = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -101,35 +86,33 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
             }
         }
         
-    }
-    
-    override func viewDidAppear(animated: Bool) {
         if let delegate = self.delegate {
-            let textColour = delegate.textColour
-            self.textColour.backgroundColor = textColour
+            self.textColour.backgroundColor = delegate.textColour
             
             let textFont = delegate.textFont
             setFontName(textFont.fontName)
             setFontSize(textFont.pointSize)
-            
+            setTextAlignment(delegate.textAlignment)
         } else {
             print("delegate not set!!!")
         }
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        print("disappear")
+        if let delegate = self.delegate {
+            delegate.changeTextColour(getTextColour())
+            delegate.changeTextFont(getTextFont())
+            delegate.changeTextAlignment(self.textAlignment)
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    override func viewDidDisappear(animated: Bool) {
-        if let delegate = self.delegate {
-            delegate.changeTextItemSetting(self)
-        }
-    }
     
-    
-    func setFontName(fontName: String) {
+    // Private Setter Functions
+    private func setFontName(fontName: String) {
         self.textFontName.setTitle(fontName, forState: UIControlState.Normal)
         for var index = 0; index < fontData.count; ++index {
             if fontData[index] == fontName {
@@ -139,15 +122,22 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         }
     }
     
-    func setFontSize(fontSize: CGFloat) {
-        let fontSize = String(Int(fontSize))
-        self.textFontSize.text = fontSize
-        // move slider
+    private func setFontSize(fontSize: CGFloat) {
+        let fontSize = Float(fontSize)
+        self.changeFontSize(fontSize)
+    }
+    
+    private func setTextAlignment(alignment: NSTextAlignment) {
+        print("alignment: " + String(alignment))
+        if alignment == .Left { changeTextAlignmentToLeft(self) }
+        else if alignment == .Center { changeTextAlignmentToCenter(self) }
+        else if alignment == .Right { changeTextAlignmentToRight(self) }
+        else { changeTextAlignmentToJustified(self) }
     }
     
     
-    // Getter function
-    func getTextColour() -> UIColor {
+    // Internal Getter Functions
+    private func getTextColour() -> UIColor {
         if let colour = textColour.backgroundColor {
             return colour
         }
@@ -155,34 +145,53 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         return UIColor.blackColor()
     }
     
-    func getFont() -> UIFont {
+    private func getTextFont() -> UIFont {
         return UIFont(name: getFontName(), size: getFontSize())!
     }
     
-    internal func getFontSize() -> CGFloat {
+    // Private Helper Functions
+    private func getFontSize() -> CGFloat {
         if let size = Int(self.textFontSize.text!) {
             return CGFloat(integerLiteral: size)
         }
         return CGFloat(30)
     }
     
-    internal func getFontName() -> String {
+    private func getFontName() -> String {
         if let label = textFontName.titleLabel?.text {
             return label
         }
-        
         return "Helvetica"
     }
     
-    func getTextAlignment() -> NSTextAlignment {
-        return .Left
+    private func unsetButtonSelected(button: UIButton?) {
+        if let button = button {
+            //button.setTitle(button.titleLabel?.text, forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            button.backgroundColor = UIColor.clearColor()
+        }
     }
     
+    private func setButtonSelected(button: UIButton) {
+        unsetButtonSelected(self.previousSelectedTextAlignmentButton)
+        //button.setTitle(button.titleLabel?.text, forState: UIControlState.Selected)
+        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.backgroundColor = UIColor.blueColor()
+        self.previousSelectedTextAlignmentButton = button
+    }
+    
+    private func changeFontSize(curValue: Float) {
+        textFontSize.text = String(Int(curValue))
+        let moveLeft = CGFloat(41 + (curValue/(textFontSizeSlider.maximumValue - textFontSizeSlider.minimumValue)) * 283)
+        print("move left: " + String(moveLeft))
+        textFontSize.frame = CGRectMake(moveLeft, 158, 21, 21)
+    }
     
     // Colour Picker Delegate
     func selectColor(controller: ColourPickerViewController, colour: UIColor) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         textColour.backgroundColor = colour
+        print(colour)
     }
     
     func currentColor() -> UIColor {
@@ -193,9 +202,7 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         
         return UIColor.blackColor()
     }     
-    
 
-    
     // Picker Data Source
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -204,9 +211,7 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return fontData.count
     }
-    
-    
-    
+
     // Picker Delegate
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return fontData[row]

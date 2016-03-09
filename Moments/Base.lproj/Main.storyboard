@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -1337,7 +1337,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXs-OU-Yb8">
-                                <rect key="frame" x="20" y="327" width="335" height="35"/>
+                                <rect key="frame" x="20" y="326" width="335" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Helvetica">
@@ -1354,21 +1354,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkq-fs-zeg">
-                                <rect key="frame" x="20" y="227" width="335" height="35"/>
+                                <rect key="frame" x="20" y="226" width="335" height="35"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="changeFontColour:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="yyn-zV-7Hq"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="5" maxValue="70" translatesAutoresizingMaskIntoConstraints="NO" id="jeL-AF-Arp">
-                                <rect key="frame" x="41" y="127" width="283" height="31"/>
-                                <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="changeFontSize:" destination="IsI-BD-Jt6" eventType="valueChanged" id="3GI-NU-hg4"/>
-                                </connections>
-                            </slider>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fa7-JA-H6F">
                                 <rect key="frame" x="20" y="114" width="335" height="3"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1391,30 +1383,30 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvr-5S-xwH">
-                                <rect key="frame" x="196" y="428" width="68" height="30"/>
+                                <rect key="frame" x="191" y="428" width="68" height="30"/>
                                 <state key="normal" title="Right">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="FnA-Iq-8ko"/>
+                                    <action selector="changeTextAlignmentToRight:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="Qms-hS-laY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgi-hn-ahV">
-                                <rect key="frame" x="108" y="428" width="68" height="30"/>
+                                <rect key="frame" x="104" y="428" width="68" height="30"/>
                                 <state key="normal" title="Center">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="LUM-XI-T8U"/>
+                                    <action selector="changeTextAlignmentToCenter:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="N0z-Y2-Si2"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgB-j1-WAa">
-                                <rect key="frame" x="287" y="428" width="68" height="30"/>
+                                <rect key="frame" x="274" y="428" width="68" height="30"/>
                                 <state key="normal" title="Justified">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="changeTextAlignment:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="gwY-aW-HI6"/>
+                                    <action selector="changeTextAlignmentToJustified:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="yyL-oF-w62"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alignment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-ic-4Zx">
@@ -1427,6 +1419,14 @@
                                 <rect key="frame" x="20" y="414" width="335" height="3"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="5" maxValue="70" translatesAutoresizingMaskIntoConstraints="NO" id="jeL-AF-Arp">
+                                <rect key="frame" x="41" y="127" width="283" height="31"/>
+                                <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="changeFontSize:" destination="IsI-BD-Jt6" eventType="valueChanged" id="5c0-ge-MF9"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1442,6 +1442,7 @@
                         <outlet property="textColour" destination="Vkq-fs-zeg" id="AE0-k3-7yp"/>
                         <outlet property="textFontName" destination="kXs-OU-Yb8" id="BBV-32-2ax"/>
                         <outlet property="textFontSize" destination="Hgs-G2-87D" id="Yq8-8g-5Ql"/>
+                        <outlet property="textFontSizeSlider" destination="jeL-AF-Arp" id="uog-ZI-x3k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrV-bp-bEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
