@@ -27,13 +27,14 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     private var previousSelectedTextAlignmentButton: UIButton?
     
     @IBOutlet weak var textColour: UIButton!
-    @IBOutlet weak var textFontSize: UILabel!
+    var textFontSize: UILabel?
     @IBOutlet weak var textFontName: UIButton!
     @IBOutlet weak var alignLeft: UIButton!
     @IBOutlet weak var alignCenter: UIButton!
     @IBOutlet weak var alignRight: UIButton!
     @IBOutlet weak var alignJustified: UIButton!
     @IBOutlet weak var textFontSizeSlider: UISlider!
+    var sliderRange : Float?
 
     @IBAction func changeFontSize(sender: UISlider) {
         changeFontSize(sender.value)
@@ -75,6 +76,7 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UISetup()
         
         let fontFamilyNames = UIFont.familyNames()
         for familyName in fontFamilyNames {
@@ -88,7 +90,6 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         
         if let delegate = self.delegate {
             self.textColour.backgroundColor = delegate.textColour
-            
             let textFont = delegate.textFont
             setFontName(textFont.fontName)
             setFontSize(textFont.pointSize)
@@ -150,8 +151,14 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     }
     
     // Private Helper Functions
+    private func UISetup() {
+        self.sliderRange = self.textFontSizeSlider.maximumValue - self.textFontSizeSlider.minimumValue
+        self.textFontSize = UILabel(frame: CGRectMake(0, 158, 21, 21))
+        self.view.addSubview(self.textFontSize!)
+    }
+    
     private func getFontSize() -> CGFloat {
-        if let size = Int(self.textFontSize.text!) {
+        if let size = Int(self.textFontSize!.text!) {
             return CGFloat(integerLiteral: size)
         }
         return CGFloat(30)
@@ -181,10 +188,12 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     }
     
     private func changeFontSize(curValue: Float) {
-        textFontSize.text = String(Int(curValue))
-        let moveLeft = CGFloat(41 + (curValue/(textFontSizeSlider.maximumValue - textFontSizeSlider.minimumValue)) * 283)
-        print("move left: " + String(moveLeft))
-        textFontSize.frame = CGRectMake(moveLeft, 158, 21, 21)
+        if let textFontSize = self.textFontSize {
+            textFontSize.text = String(Int(curValue))
+            let moveLeft = textFontSizeSlider.frame.origin.x - 21.0 + CGFloat((curValue/self.sliderRange!)) * textFontSizeSlider.frame.size.width
+            print("move left: " + String(moveLeft))
+            textFontSize.frame = CGRectMake(moveLeft, 158, 21, 21)
+        }
     }
     
     // Colour Picker Delegate

@@ -1347,12 +1347,6 @@
                                     <action selector="changeFontName:" destination="IsI-BD-Jt6" eventType="touchUpInside" id="Kg6-rP-Zql"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgs-G2-87D">
-                                <rect key="frame" x="124" y="158" width="21" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkq-fs-zeg">
                                 <rect key="frame" x="20" y="226" width="335" height="35"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1420,7 +1414,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="5" maxValue="70" translatesAutoresizingMaskIntoConstraints="NO" id="jeL-AF-Arp">
-                                <rect key="frame" x="41" y="127" width="283" height="31"/>
+                                <rect key="frame" x="41" y="126" width="283" height="31"/>
                                 <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -1441,7 +1435,6 @@
                         <outlet property="alignRight" destination="zvr-5S-xwH" id="1QP-v9-Dny"/>
                         <outlet property="textColour" destination="Vkq-fs-zeg" id="AE0-k3-7yp"/>
                         <outlet property="textFontName" destination="kXs-OU-Yb8" id="BBV-32-2ax"/>
-                        <outlet property="textFontSize" destination="Hgs-G2-87D" id="Yq8-8g-5Ql"/>
                         <outlet property="textFontSizeSlider" destination="jeL-AF-Arp" id="uog-ZI-x3k"/>
                     </connections>
                 </viewController>
