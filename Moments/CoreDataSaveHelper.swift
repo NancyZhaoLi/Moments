@@ -76,10 +76,10 @@ class CoreDataSaveHelper {
         
         var textItemMO = TextItem(entity: entity!, insertIntoManagedObjectContext: context)
         textItemMO.id = NSNumber(longLong: textItem.id)
-        textItemMO.content = textItem.content
-        textItemMO.frame = NSStringFromCGRect(textItem.frame)
-        textItemMO.rotation = NSNumber(float: textItem.rotation)
-        //textItemMO.otherAttribute = textItem.otherAttribute
+        textItemMO.content = textItem.getContent()
+        textItemMO.frame = NSStringFromCGRect(textItem.getFrame())
+        textItemMO.rotation = NSNumber(float: textItem.getRotation())
+        textItemMO.otherAttribute = NSKeyedArchiver.archivedDataWithRootObject(textItem.getOtherAttribute())
         
         do {
             try context.save()

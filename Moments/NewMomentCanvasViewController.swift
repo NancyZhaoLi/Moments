@@ -219,9 +219,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
      ******************************************************************/
     
     func addText(){
-        debug("[addText] - begin")
         self.performSegueWithIdentifier("showEditTextView", sender: self)
-        debug("[addText] - end")
     }
     
     func addImage(){
@@ -249,6 +247,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     func addSticker() {
 
     }
+    
     
     func loadText(textItem: TextItemViewController) {
         self.view.addSubview(textItem.view)
@@ -285,9 +284,9 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
      ******************************************************************/
      
     // EditTextItemViewControllerDelegate functions
-    func addText(controller: EditTextItemViewController, textView: UITextView) {
+    func addText(controller: EditTextItemViewController, text: String, textColour: UIColor, textFont: UIFont, textAlignment: NSTextAlignment) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        let vc = self.manager.addText(textView, location: self.touchLocation!)
+        let vc = self.manager.addText(text, textColour: textColour, textFont: textFont, textAlignment:textAlignment, location: self.touchLocation!)
         addNewViewController(vc)
         resetTouchMode()
     }

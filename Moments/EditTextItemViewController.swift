@@ -9,7 +9,7 @@
 import UIKit
 
 protocol EditTextItemViewControllerDelegate {
-    func addText(controller: EditTextItemViewController, textView: UITextView)
+    func addText(controller: EditTextItemViewController, text: String, textColour: UIColor, textFont: UIFont, textAlignment: NSTextAlignment)
     func cancelAddTextItem(controller: EditTextItemViewController)
 }
 
@@ -36,8 +36,8 @@ class EditTextItemView: UITextView {
 
 class EditTextItemViewController: UIViewController, UITextViewDelegate, UINavigationBarDelegate,  TextSettingViewControllerDelegate {
     
-    var delegate : EditTextItemViewControllerDelegate?
-    var text : String = EditTextItemViewController.placeHolder
+    var delegate: EditTextItemViewControllerDelegate?
+    var text: String = EditTextItemViewController.placeHolder
     var textColour: UIColor = UIColor.blackColor()
     var textFont: UIFont = UIFont(name: "Helvetica Neue", size: 30)!
     var textAlignment: NSTextAlignment = .Left
@@ -50,7 +50,6 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     override func viewDidLoad() {
         super.viewDidLoad()
         print("New Text View Controller Loaded")
-        
         
         if self.text == EditTextItemViewController.placeHolder {
             editTextItemView.loadPlaceHolder(self.text)
@@ -72,7 +71,19 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     
     @IBAction func addText(sender: AnyObject) {
         if let delegate = self.delegate {
-            delegate.addText(self, textView: editTextItemView)
+            self.text = self.editTextItemView.text
+            if self.text == EditTextItemViewController.placeHolder {
+                self.text = "You didn't write anything..."
+            }
+            delegate.addText(self, text: self.text,
+                textColour: self.textColour, textFont: self.textFont,
+                textAlignment: self.textAlignment)
+        }
+    }
+    
+    @IBAction func unwindToEditText(sender: UIStoryboardSegue) {
+        if let navigationController = self.navigationController {
+            navigationController.popViewControllerAnimated(true)
         }
     }
     
@@ -118,5 +129,6 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
             self.editTextItemView.loadPlaceHolder(EditTextItemViewController.placeHolder)
         }
     }
+
 }
 

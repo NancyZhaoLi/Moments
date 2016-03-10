@@ -36,28 +36,3 @@ class VideoItemViewController: UIViewController {
     */
 
 }
-
-class VideoItemManager : ItemManager {
-    
-    override init() {
-        super.init()
-        self.type = ItemType.Audio
-        self.debugPrefix = "[VideoItemManager] -"
-    }
-    
-    func addVideo(video: MPMediaItem, location: CGPoint) {
-        if let url = video.assetURL {
-            let videoPlayer = AVPlayer(URL: url)
-            let videoItemVC = AVPlayerViewController()
-            videoItemVC.player = videoPlayer
-            
-            videoItemVC.view.frame = CGRectMake(location.x, location.y, 100, 80)
-            self.canvas!.view.addSubview(videoItemVC.view)
-            self.canvas!.addChildViewController(videoItemVC)
-        }
-    }
-    
-    func loadVideo(videoItem: VideoItemEntry) -> VideoItemViewController {
-        return VideoItemViewController()
-    }
-}

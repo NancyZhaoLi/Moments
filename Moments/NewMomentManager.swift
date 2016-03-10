@@ -134,6 +134,10 @@ class NewMomentManager {
         self.stickerManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
     }
     
+    func addText(text: String, textColour: UIColor, textFont: UIFont, textAlignment: NSTextAlignment, location: CGPoint) -> TextItemViewController {
+        return self.textManager.addText(text, textColour: textColour, textFont: textFont, textAlignment: textAlignment, location: location)
+    }
+    
     func addText(textView: UITextView, location: CGPoint) -> TextItemViewController {
         return self.textManager.addText(textView, location: location)
     }
@@ -172,9 +176,6 @@ class NewMomentManager {
     
     
     func saveMomentEntry() {
-        debugBegin("saveMomentEntry")
-        debug("[saveMomentEntry] - prefix: " + self.idPrefix)
-        debug("[saveMomentEntry] - suffix: " + self.idSuffix)
         updateTitle()
         updateColour()
         
@@ -203,13 +204,9 @@ class NewMomentManager {
         self.moment!.backgroundColour = self.canvas!.currentColor()
         
         self.textManager.notifySaveMoment()
-        debug("[saveMomentEntry] - textManger notified")
         self.imageManager.notifySaveMoment()
-        debug("[saveMomentEntry] - imageManger notified")
         self.audioManager.notifySaveMoment()
-        debug("[saveMomentEntry] - audioManger notified")
         self.videoManager.notifySaveMoment()
-        debug("[saveMomentEntry] - videoManger notified")
         self.stickerManager.notifySaveMoment()
         debugEnd("saveMomentEntry")
     }
@@ -230,10 +227,7 @@ class NewMomentManager {
     }
 
     func addTextItemEntry(entry: TextItemEntry) {
-        //debugBegin("addTextItemEntry")
-        debug("[addTextItemEntry] - textItem: " + String(entry))
         self.moment!.addTextItemEntry(entry)
-        //debugEnd("addTextItemEntry")
     }
     
     func addImageItemEntry(entry: ImageItemEntry) {

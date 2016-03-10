@@ -64,6 +64,11 @@
 		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */; };
+		D044B90F1C90D8D300BDF7AD /* TextItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044B90E1C90D8D300BDF7AD /* TextItemManager.swift */; };
+		D044B9111C90D91300BDF7AD /* ImageItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044B9101C90D91300BDF7AD /* ImageItemManager.swift */; };
+		D044B9141C90D97F00BDF7AD /* AudioItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044B9131C90D97F00BDF7AD /* AudioItemManager.swift */; };
+		D044B9161C90D9AA00BDF7AD /* VideoItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044B9151C90D9AA00BDF7AD /* VideoItemManager.swift */; };
+		D044B9181C90D9F400BDF7AD /* StickerItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044B9171C90D9F400BDF7AD /* StickerItemManager.swift */; };
 		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
 		D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */ = {isa = PBXBuildFile; fileRef = D045946F1C7AACCD00A1AD12 /* REAME - Agenda */; };
 		D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */; };
@@ -165,6 +170,11 @@
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioItemViewController.swift; path = ../AudioItemViewController.swift; sourceTree = "<group>"; };
+		D044B90E1C90D8D300BDF7AD /* TextItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemManager.swift; sourceTree = "<group>"; };
+		D044B9101C90D91300BDF7AD /* ImageItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemManager.swift; sourceTree = "<group>"; };
+		D044B9131C90D97F00BDF7AD /* AudioItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioItemManager.swift; sourceTree = "<group>"; };
+		D044B9151C90D9AA00BDF7AD /* VideoItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemManager.swift; sourceTree = "<group>"; };
+		D044B9171C90D9F400BDF7AD /* StickerItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemManager.swift; sourceTree = "<group>"; };
 		D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Core Data Tutorial"; sourceTree = "<group>"; };
 		D045946F1C7AACCD00A1AD12 /* REAME - Agenda */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Agenda"; sourceTree = "<group>"; };
 		D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherCanvasOptionViewController.swift; sourceTree = "<group>"; };
@@ -255,8 +265,8 @@
 		7678347F1C7D14AF00FC1B96 /* NewMoment_Manager */ = {
 			isa = PBXGroup;
 			children = (
+				D044B9121C90D95000BDF7AD /* NewMoment_ItemManger */,
 				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
-				D048BEEE1C7DA99A00BD3115 /* ItemManager.swift */,
 			);
 			name = NewMoment_Manager;
 			sourceTree = "<group>";
@@ -458,11 +468,11 @@
 		AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */ = {
 			isa = PBXGroup;
 			children = (
-				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
 				D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */,
 				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
 				D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */,
 				D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */,
+				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
 			);
 			name = NewMoment_ItemVC;
 			sourceTree = "<group>";
@@ -482,6 +492,19 @@
 				D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */,
 			);
 			name = ComponentVC;
+			sourceTree = "<group>";
+		};
+		D044B9121C90D95000BDF7AD /* NewMoment_ItemManger */ = {
+			isa = PBXGroup;
+			children = (
+				D048BEEE1C7DA99A00BD3115 /* ItemManager.swift */,
+				D044B90E1C90D8D300BDF7AD /* TextItemManager.swift */,
+				D044B9101C90D91300BDF7AD /* ImageItemManager.swift */,
+				D044B9131C90D97F00BDF7AD /* AudioItemManager.swift */,
+				D044B9151C90D9AA00BDF7AD /* VideoItemManager.swift */,
+				D044B9171C90D9F400BDF7AD /* StickerItemManager.swift */,
+			);
+			name = NewMoment_ItemManger;
 			sourceTree = "<group>";
 		};
 		F12AE0561ECDFDBB824A7069 /* Frameworks */ = {
@@ -684,6 +707,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */,
+				D044B9141C90D97F00BDF7AD /* AudioItemManager.swift in Sources */,
 				760197F21C7E10AF00A7315A /* TextItem.swift in Sources */,
 				760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */,
 				760197EF1C7E10AF00A7315A /* Category+CoreDataProperties.swift in Sources */,
@@ -696,6 +720,7 @@
 				766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */,
 				46412CB01C8E5A1C002F117A /* feedbackViewController.swift in Sources */,
 				7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */,
+				D044B9111C90D91300BDF7AD /* ImageItemManager.swift in Sources */,
 				760197E91C7E10AF00A7315A /* AudioItem+CoreDataProperties.swift in Sources */,
 				D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */,
 				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
@@ -704,6 +729,7 @@
 				468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */,
 				760197EE1C7E10AF00A7315A /* ImageItem.swift in Sources */,
 				762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */,
+				D044B9161C90D9AA00BDF7AD /* VideoItemManager.swift in Sources */,
 				760197EA1C7E10AF00A7315A /* AudioItem.swift in Sources */,
 				465012B81C8A3DD000F7220D /* CategoryViewController.swift in Sources */,
 				D048BEEB1C7D971800BD3115 /* VideoItemViewController.swift in Sources */,
@@ -722,7 +748,9 @@
 				762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */,
 				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,
 				769ABB5D1C8BB7D90049666F /* CategoryMomentsViewController.swift in Sources */,
+				D044B90F1C90D8D300BDF7AD /* TextItemManager.swift in Sources */,
 				D048BEF71C7DC10300BD3115 /* NewMomentManager.swift in Sources */,
+				D044B9181C90D9F400BDF7AD /* StickerItemManager.swift in Sources */,
 				760197ED1C7E10AF00A7315A /* ImageItem+CoreDataProperties.swift in Sources */,
 				465012B51C8A3B8400F7220D /* CategoryViewCell.swift in Sources */,
 				760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */,

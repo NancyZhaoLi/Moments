@@ -73,7 +73,7 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         self.textAlignment = .Justified
         setButtonSelected(alignJustified)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         UISetup()
@@ -99,12 +99,15 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        print("disappear")
-        if let delegate = self.delegate {
-            delegate.changeTextColour(getTextColour())
-            delegate.changeTextFont(getTextFont())
-            delegate.changeTextAlignment(self.textAlignment)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("segue")
+        if segue.identifier == "unwindToEditText" {
+            print("unwind")
+            if let delegate = self.delegate {
+                delegate.changeTextColour(getTextColour())
+                delegate.changeTextFont(getTextFont())
+                delegate.changeTextAlignment(self.textAlignment)
+            }
         }
     }
     

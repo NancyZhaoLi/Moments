@@ -1427,6 +1427,13 @@
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="nxN-0y-cdA"/>
                     </toolbarItems>
+                    <navigationItem key="navigationItem" id="Mrd-4m-sZ9">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="gwo-dG-fho">
+                            <connections>
+                                <segue destination="svR-t9-tXQ" kind="unwind" identifier="unwindToEditText" unwindAction="unwindToEditText:" id="55r-w4-dP9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="alignCenter" destination="zgi-hn-ahV" id="VWR-Uk-0pt"/>
@@ -1439,6 +1446,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrV-bp-bEt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="svR-t9-tXQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4969.5" y="1167.5"/>
         </scene>
@@ -1673,7 +1681,7 @@
         <image name="view" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mm9-Jz-635"/>
+        <segue reference="iuc-Uf-mkk"/>
         <segue reference="haS-47-5Rl"/>
     </inferredMetricsTieBreakers>
 </document>

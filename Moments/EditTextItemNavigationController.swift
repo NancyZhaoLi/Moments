@@ -16,7 +16,5 @@ class EditTextItemNavigationController : UINavigationController {
         print("EditTextItemNavigationController begin loading")
         let rootVC = super.topViewController as! EditTextItemViewController
         rootVC.delegate = self.delegate as! EditTextItemViewControllerDelegate
-        print(super.viewControllers)
     }
-    
 }

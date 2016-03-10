@@ -65,34 +65,3 @@ class AudioItemViewController: UIViewController {
     }
 }
 
-class AudioItemManager : ItemManager {
-
-    override init() {
-        super.init()
-        self.type = ItemType.Audio
-        self.debugPrefix = "[AudioItemManager] -"
-    }
-    
-    func addAudio(audio: MPMediaItem) {
-        let debugPrefix = "[addAudio] - "
-        
-        if let url = audio.assetURL {
-            do {
-                let audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                if let audioItemVC = super.canvas!.storyboard?.instantiateViewControllerWithIdentifier("audioPlayer") as? AudioItemViewController {
-                    audioItemVC.player = audioPlayer
-                
-                    super.canvas!.view.addSubview(audioItemVC.view)
-                    super.canvas!.addChildViewController(audioItemVC)
-                }
-            } catch {
-                debug(debugPrefix + "audio player cannot be created")
-            }
-        }
-    }
-    
-    func loadAudio(audioItem: AudioItemEntry) -> AudioItemViewController {
-        return AudioItemViewController()
-    }
-
-}

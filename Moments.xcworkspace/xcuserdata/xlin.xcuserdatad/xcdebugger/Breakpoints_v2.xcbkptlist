@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Moments/EditTextItemViewController.swift"
-            timestampString = "479218872.618583"
+            timestampString = "479257333.984435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "changeTextColour(_:)"
             landmarkType = "5">
          </BreakpointContent>
