@@ -115,8 +115,6 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
         
         debug("[viewDidLoad] - loading start")
@@ -125,9 +123,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
         } else {
             manager.setCanvas(self)
         }
-        
 
-        
         debug("[viewDidLoad] - loading complete")
     }
     

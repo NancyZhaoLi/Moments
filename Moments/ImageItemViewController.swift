@@ -26,24 +26,22 @@ class ImageItemView: UIImageView {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("start")
-        self.superview?.bringSubviewToFront(self)
-        lastLocation = self.center
+        
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("moved")
-    }
-    func detectTouch(recognizer:UIPanGestureRecognizer){
-        print("detect")
-       let translation = recognizer.translationInView(self.superview!)
-        self.center = CGPointMake(lastLocation.x + translation.x, lastLocation.y + translation.y)
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
     }
 }
 
 class ImageItemViewController: UIViewController {
     
-    var manager: ImageItemManager?
+    var manager: ImageItemManager!
+    
+    let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
+    let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
+    let rotateRec: UIRotationGestureRecognizer = UIRotationGestureRecognizer()
+    let panRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +51,7 @@ class ImageItemViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    convenience init() {
-        self.init(manager: nil)
-    }
-    
-    init(manager: ImageItemManager?) {
+    init(manager: ImageItemManager) {
         super.init(nibName: nil, bundle: nil)
         self.manager = manager
     }
@@ -67,7 +61,6 @@ class ImageItemViewController: UIViewController {
     }
     
     func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
-        
         let imageSize: CGFloat = 200.0
         let frame = CGRectMake(location.x, location.y, imageSize, imageSize)
         let imageView = ImageItemView(frame: frame)
@@ -79,6 +72,19 @@ class ImageItemViewController: UIViewController {
             }
         }
         self.view = imageView
+        
+        tapRec.addTarget(self, action: "tappedView")
+        pinchRec.addTarget(self, action: "pinchedView:")
+        rotateRec.addTarget(self, action: "rotatedView:")
+        panRec.addTarget(self, action: "draggedView:")
+        
+        self.view.addGestureRecognizer(tapRec)
+        self.view.addGestureRecognizer(pinchRec)
+        self.view.addGestureRecognizer(rotateRec)
+        self.view.addGestureRecognizer(panRec)
+        
+        self.view.userInteractionEnabled = true
+        self.view.multipleTouchEnabled = true
     }
     
     func addImage(imageItem: ImageItemEntry) {
@@ -86,5 +92,48 @@ class ImageItemViewController: UIViewController {
         imageView.image = imageItem.image
         self.view = imageView
     }
+    
+    func tappedView() {
+        print("tapped")
+    }
+    
+    func pinchedView(sender: UIPinchGestureRecognizer) {
+        print("pinched")
+        self.view.bringSubviewToFront(self.view)
+        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+        sender.scale = 1.0
+    }
+    
+    func rotatedView(sender: UIRotationGestureRecognizer) {
+        print("rotate")
+        
+        /*
+        var lastRotation = CGFloat()
+        self.view.bringSubviewToFront(self.view)
+        if (sender.state == UIGestureRecognizerState.Ended) {
+            lastRotation = 0.0;
+        }
+        
+        let rotation = 0.0 - (lastRotation - sender.rotation)
+        var point = rotateRec.locationInView(self.view)
+        let currentTrans = sender.view!.transform
+        let newTrans = CGAffineTransformRotate(currentTrans, rotation)
+        sender.view!.transform = newTrans
+        lastRotation = sender.rotation*/
+    }
+    
+    func draggedView(sender: UIPanGestureRecognizer) {
+        print("dragged")
+        
+        let parentView = self.manager!.canvas!.view
+        if let senderView = sender.view {
+            parentView.bringSubviewToFront(senderView)
+            let translation = sender.translationInView(parentView)
+            senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
+            sender.setTranslation(CGPointZero, inView: parentView)
+            parentView.sendSubviewToBack(senderView)
+        }
+    }
+    
 }
 
