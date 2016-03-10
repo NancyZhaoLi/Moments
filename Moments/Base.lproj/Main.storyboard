@@ -976,56 +976,103 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="p1" translatesAutoresizingMaskIntoConstraints="NO" id="w1C-Xe-4zj">
-                                <rect key="frame" x="34" y="119" width="111" height="111"/>
+                                <rect key="frame" x="20" y="126" width="150" height="150"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="p2" translatesAutoresizingMaskIntoConstraints="NO" id="HFc-H7-ZUq">
-                                <rect key="frame" x="233" y="119" width="111" height="111"/>
+                                <rect key="frame" x="205" y="126" width="150" height="150"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="p3" translatesAutoresizingMaskIntoConstraints="NO" id="dh5-2A-GRc">
-                                <rect key="frame" x="34" y="371" width="111" height="111"/>
+                                <rect key="frame" x="20" y="371" width="150" height="150"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="p4" translatesAutoresizingMaskIntoConstraints="NO" id="yas-kn-lNR">
-                                <rect key="frame" x="233" y="371" width="111" height="111"/>
+                                <rect key="frame" x="205" y="371" width="150" height="150"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nancy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2n-mK-pAL">
-                                <rect key="frame" x="65" y="461" width="49" height="21"/>
+                                <rect key="frame" x="71" y="494" width="49" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Monica" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-iP-4G0">
-                                <rect key="frame" x="260" y="460" width="56" height="21"/>
+                                <rect key="frame" x="252" y="494" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Emily" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nv-3Z-zkA">
-                                <rect key="frame" x="268" y="209" width="41" height="21"/>
+                                <rect key="frame" x="260" y="250" width="41" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Xin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xad-Oo-PnA">
-                                <rect key="frame" x="77" y="208" width="25" height="21"/>
+                                <rect key="frame" x="83" y="249" width="25" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EJ-qF-jNg">
-                                <rect key="frame" x="54" y="490" width="25" height="25"/>
+                                <rect key="frame" x="52" y="540" width="25" height="25"/>
                                 <state key="normal" image="github_f"/>
+                                <connections>
+                                    <action selector="nancylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="bpp-Zs-uzp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3g-Vh-uA6">
-                                <rect key="frame" x="102" y="490" width="25" height="25"/>
+                                <rect key="frame" x="112" y="540" width="25" height="25"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" image="linkdin_f"/>
                                 <connections>
-                                    <action selector="monicalink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="LyA-Mx-BN8"/>
+                                    <action selector="nancylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="hEe-NG-cZe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBB-8L-NaR">
+                                <rect key="frame" x="112" y="284" width="25" height="25"/>
+                                <state key="normal" image="linkdin_f"/>
+                                <connections>
+                                    <action selector="xinlink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="Rio-gZ-XAO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfT-Ey-En2">
+                                <rect key="frame" x="52" y="284" width="25" height="25"/>
+                                <state key="normal" image="github_f"/>
+                                <connections>
+                                    <action selector="xinlink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="RPJ-us-BdV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSD-oC-TMa">
+                                <rect key="frame" x="236" y="284" width="25" height="25"/>
+                                <state key="normal" image="github_f"/>
+                                <connections>
+                                    <action selector="emilylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="AeW-aB-s9u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAb-Fh-Qyf">
+                                <rect key="frame" x="299" y="284" width="25" height="25"/>
+                                <state key="normal" image="linkdin_f"/>
+                                <connections>
+                                    <action selector="emilylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="Nds-Zn-jhb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k30-Vg-mOu">
+                                <rect key="frame" x="236" y="540" width="25" height="25"/>
+                                <state key="normal" image="github_f"/>
+                                <connections>
+                                    <action selector="monicalink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="z6a-PB-vpP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-fW-iEi">
+                                <rect key="frame" x="299" y="540" width="25" height="25"/>
+                                <state key="normal" image="twitter_f"/>
+                                <connections>
+                                    <action selector="monicalink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="iKz-Fa-pyc"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.21176470588235294" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TGO-dI-quQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1712,6 +1759,7 @@
         <image name="p4" width="379" height="669"/>
         <image name="personal_icon" width="25" height="25"/>
         <image name="rightArrow" width="64" height="64"/>
+        <image name="twitter_f" width="50" height="41"/>
         <image name="view" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
