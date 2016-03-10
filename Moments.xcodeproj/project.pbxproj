@@ -17,6 +17,7 @@
 		468BC2801C7A52BA00D93268 /* README - Core Data Entity  in Resources */ = {isa = PBXBuildFile; fileRef = 468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */; };
 		468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2811C7A81F800D93268 /* ImageItemViewController.swift */; };
 		468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2831C7A837500D93268 /* MainUIViewController.swift */; };
+		46E642A31C92007C00A1CA17 /* aboutusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A21C92007C00A1CA17 /* aboutusViewController.swift */; };
 		760197D61C7E0E2700A7315A /* StickerItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D51C7E0E2700A7315A /* StickerItemEntry.swift */; };
 		760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */; };
 		760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D81C7E10AF00A7315A /* VideoItem.swift */; };
@@ -114,6 +115,7 @@
 		468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "README - Core Data Entity "; sourceTree = "<group>"; };
 		468BC2811C7A81F800D93268 /* ImageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemViewController.swift; sourceTree = "<group>"; };
 		468BC2831C7A837500D93268 /* MainUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
+		46E642A21C92007C00A1CA17 /* aboutusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = aboutusViewController.swift; path = ../aboutusViewController.swift; sourceTree = "<group>"; };
 		760197D51C7E0E2700A7315A /* StickerItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemEntry.swift; sourceTree = "<group>"; };
 		760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		760197D81C7E10AF00A7315A /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItem.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
+				46E642A21C92007C00A1CA17 /* aboutusViewController.swift */,
 				46412CAF1C8E5A1C002F117A /* feedbackViewController.swift */,
 			);
 			name = Settings;
@@ -712,6 +715,7 @@
 				760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */,
 				760197EF1C7E10AF00A7315A /* Category+CoreDataProperties.swift in Sources */,
 				764BF99D1C8CD2B100776AAB /* CategoryPresentationController.swift in Sources */,
+				46E642A31C92007C00A1CA17 /* aboutusViewController.swift in Sources */,
 				D048BEF51C7DAE4500BD3115 /* StickerItemViewController.swift in Sources */,
 				D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */,
 				7678347C1C7D0A1000FC1B96 /* CalendarDayViewController.swift in Sources */,
