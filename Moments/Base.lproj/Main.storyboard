@@ -171,7 +171,13 @@
         <scene sceneID="xq5-en-4BS">
             <objects>
                 <navigationController id="oNx-hh-lDb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home" id="t1U-SB-8jX"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="t1U-SB-8jX">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Cl-zk-TXR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -266,7 +272,13 @@
         <scene sceneID="mBk-TW-gg8">
             <objects>
                 <navigationController id="2B5-k5-ieF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" id="19U-9p-dg2"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" id="19U-9p-dg2">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KgY-br-Awq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1192,7 +1204,13 @@
         <scene sceneID="Zls-lE-Xeu">
             <objects>
                 <navigationController id="13C-R7-3PP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Moments" image="album" id="Jlg-iw-KDM"/>
+                    <tabBarItem key="tabBarItem" title="Moments" image="album" id="Jlg-iw-KDM">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fUp-ID-g1D">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1213,7 +1231,13 @@
         <scene sceneID="PUX-e3-gv4">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="65P-m8-DGI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="personal_icon" id="pF0-tb-cu9"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="personal_icon" id="pF0-tb-cu9">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AHa-gw-7jU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1732,7 +1756,13 @@
         <scene sceneID="wm8-LL-Kcm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T7w-z8-luF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Category" image="AddItem" id="z2O-73-pgZ"/>
+                    <tabBarItem key="tabBarItem" title="Category" image="AddItem" id="z2O-73-pgZ">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZpV-GD-P2f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
