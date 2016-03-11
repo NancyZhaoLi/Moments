@@ -117,7 +117,7 @@ class privacyViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    @IBAction func ResetPasswordForUser(sender: AnyObject) {
+   /* @IBAction func ResetPasswordForUser(sender: AnyObject) {
         self.sendPasswordResetForUser()
         
     }
@@ -134,7 +134,11 @@ class privacyViewController: UIViewController, UITextFieldDelegate {
         )
     
     
-    }
+    }*/
+    
+    
+    
+    
         // close keyboard when touches began
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
