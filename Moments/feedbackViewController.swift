@@ -121,6 +121,9 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         self.content.delegate = self
         self.subject.delegate = self
         
+       print( self.view.backgroundColor?.CGColor)
+        //print(self.backg)
+        
         // Do any additional setup after loading the view.
     }
     
