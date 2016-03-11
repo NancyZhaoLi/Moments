@@ -1015,7 +1015,7 @@
                                 <rect key="frame" x="52" y="540" width="25" height="25"/>
                                 <state key="normal" image="github_f"/>
                                 <connections>
-                                    <action selector="nancylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="bpp-Zs-uzp"/>
+                                    <action selector="nancylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="Tyc-ps-swr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3g-Vh-uA6">
@@ -1091,34 +1091,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Give Us Feedback!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-C4-kMj">
-                                <rect key="frame" x="115" y="93" width="144" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="91" y="96" width="193" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <color key="textColor" red="0.68972540483139677" green="0.95050053703716719" blue="0.96792868589743586" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZq-VN-TuR">
-                                <rect key="frame" x="162" y="532" width="51" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Send">
-                                    <color key="titleColor" red="0.2330929487" green="0.085136285229999997" blue="0.030143902760000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendEmail:" destination="vni-8G-5uD" eventType="touchUpInside" id="qkz-0h-Jra"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eeh-rx-oYt">
                                 <rect key="frame" x="37" y="234" width="307" height="257"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.63555282057648821" green="0.92832262544714539" blue="0.95518476621417792" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.2330929487" green="0.085136285229999997" blue="0.030143902760000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rb-0H-Ici">
                                 <rect key="frame" x="37" y="169" width="307" height="30"/>
+                                <color key="backgroundColor" red="0.61124116579336774" green="0.89281171515528424" blue="0.9186463046757164" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.2330929487" green="0.085136285229999997" blue="0.030143902760000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZq-VN-TuR">
+                                <rect key="frame" x="159" y="527" width="57" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Send!">
+                                    <color key="titleColor" red="0.6897254048" green="0.95050053700000003" blue="0.96792868590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendEmail:" destination="vni-8G-5uD" eventType="touchUpInside" id="qkz-0h-Jra"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.98095936920000004" blue="0.89982431630000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="content" destination="eeh-rx-oYt" id="UCd-t8-BhD"/>

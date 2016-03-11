@@ -25,7 +25,7 @@ class UserSettingViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-         print("Selected row = \(indexPath.section)")
+         print("Selected session = \(indexPath.section)")
         print("Selected row = \(indexPath.row)")
         if indexPath.section == 2 && indexPath.row == 0 {
              let alertController = UIAlertController(title: "Rate Us!", message: "\nAre you enjoying our app? Please rate us in the app store!\n\nElse if you know of ways we can make our app better, please send us feedback so we can improve the experience for you!\n\nThanks!\nThe Moments Team", preferredStyle: .Alert)
