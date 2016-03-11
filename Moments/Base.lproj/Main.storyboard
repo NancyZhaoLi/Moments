@@ -1104,15 +1104,15 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eeh-rx-oYt">
                                 <rect key="frame" x="37" y="234" width="307" height="257"/>
-                                <color key="backgroundColor" red="0.63555282057648821" green="0.92832262544714539" blue="0.95518476621417792" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.2330929487" green="0.085136285229999997" blue="0.030143902760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.32456507119919253" green="0.36715549522309215" blue="0.42495640082956254" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.75113711604487865" green="0.9707060176761152" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rb-0H-Ici">
                                 <rect key="frame" x="37" y="169" width="307" height="30"/>
-                                <color key="backgroundColor" red="0.61124116579336774" green="0.89281171515528424" blue="0.9186463046757164" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.2330929487" green="0.085136285229999997" blue="0.030143902760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.32456507119919253" green="0.36715549522309215" blue="0.42495640082956254" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.72513349439310759" green="0.97020815004879657" blue="0.97287660254615371" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
