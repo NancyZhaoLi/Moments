@@ -21,6 +21,7 @@
 		46E642A51C9338F600A1CA17 /* privacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A41C9338F600A1CA17 /* privacyViewController.swift */; };
 		46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */; };
 		46E642A91C93AADC00A1CA17 /* personalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */; };
+		46E642AB1C93B78300A1CA17 /* accountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */; };
 		760197D61C7E0E2700A7315A /* StickerItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D51C7E0E2700A7315A /* StickerItemEntry.swift */; };
 		760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */; };
 		760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D81C7E10AF00A7315A /* VideoItem.swift */; };
@@ -122,6 +123,7 @@
 		46E642A41C9338F600A1CA17 /* privacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = privacyViewController.swift; sourceTree = "<group>"; };
 		46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetpasswordViewController.swift; sourceTree = "<group>"; };
 		46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalSettingViewController.swift; sourceTree = "<group>"; };
+		46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accountSettingViewController.swift; sourceTree = "<group>"; };
 		760197D51C7E0E2700A7315A /* StickerItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemEntry.swift; sourceTree = "<group>"; };
 		760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		760197D81C7E10AF00A7315A /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItem.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
 				46E642A41C9338F600A1CA17 /* privacyViewController.swift */,
 				46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */,
+				46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */,
 				46E642A21C92007C00A1CA17 /* aboutusViewController.swift */,
 				46412CAF1C8E5A1C002F117A /* feedbackViewController.swift */,
 			);
@@ -770,6 +773,7 @@
 				46E642A91C93AADC00A1CA17 /* personalSettingViewController.swift in Sources */,
 				760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */,
 				769DD7FD1C76AABE00FC883E /* Moments.xcdatamodeld in Sources */,
+				46E642AB1C93B78300A1CA17 /* accountSettingViewController.swift in Sources */,
 				7674B9571C8CD4E000BC1592 /* NewCategoryViewController.swift in Sources */,
 				46E642A51C9338F600A1CA17 /* privacyViewController.swift in Sources */,
 				760197F01C7E10AF00A7315A /* Category.swift in Sources */,

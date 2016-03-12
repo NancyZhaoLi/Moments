@@ -23,7 +23,7 @@ class personalSettingViewController: UITableViewController  {
     }
     
 
-    @IBOutlet weak var tableview: UITableViewCell!
+   
     
     
     
