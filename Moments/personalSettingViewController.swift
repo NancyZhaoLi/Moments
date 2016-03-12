@@ -10,11 +10,20 @@ import UIKit
 import Firebase
 class personalSettingViewController: UITableViewController  {
 
+    
+    
+    let ref = Firebase(url: "https://momentsxmen.firebaseio.com/")
+    
+    @IBOutlet weak var useremail: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: CGFloat(0.2), green: CGFloat(0.211765), blue: CGFloat(0.286275), alpha: 1.0)
+        if ref.authData != nil {
 
-        // Do any additional setup after loading the view.
+        self.useremail.text = ref.authData.providerData["email"] as? String
+        
+        }
     }
 
     override func didReceiveMemoryWarning() {
