@@ -841,14 +841,26 @@
                         <sections>
                             <tableViewSection headerTitle="Personal Settings" id="Qrm-iQ-c94">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="pj9-Yc-WdM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ag0-Wb-zh4" style="IBUITableViewCellStyleDefault" id="pj9-Yc-WdM">
                                         <rect key="frame" x="0.0" y="113.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pj9-Yc-WdM" id="PDG-Yd-Cx7">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Account Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ag0-Wb-zh4">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="textColor" red="0.45066028959999999" green="0.92932351209999997" blue="0.99190469459999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30192412063735791" green="0.29684633277734612" blue="0.37682291666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="Viu-B8-4y2" kind="show" id="0f8-hH-xr5"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="FGc-yN-4PH">
                                         <rect key="frame" x="0.0" y="157.5" width="375" height="44"/>
@@ -999,6 +1011,67 @@
             </objects>
             <point key="canvasLocation" x="1899.5" y="3031.5"/>
         </scene>
+        <!--Personal Setting View Controller-->
+        <scene sceneID="sEo-ci-ZwF">
+            <objects>
+                <tableViewController id="Viu-B8-4y2" customClass="personalSettingViewController" customModule="Moments" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="dZa-2L-Nt3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="Tmh-9f-zAe">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="7fv-6I-m7e" style="IBUITableViewCellStyleDefault" id="bFG-Y8-jGJ">
+                                        <rect key="frame" x="0.0" y="99" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bFG-Y8-jGJ" id="nAX-EY-jWh">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7fv-6I-m7e">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.53802545079999997" green="0.91544575579999998" blue="0.92151206640000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.30192412060000001" green="0.2968463328" blue="0.37682291670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yP4-MC-iNF" style="IBUITableViewCellStyleDefault" id="87z-HX-ROf">
+                                        <rect key="frame" x="0.0" y="143" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="87z-HX-ROf" id="BNJ-OH-YAb">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="UserEmail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yP4-MC-iNF">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.53802545079999997" green="0.91544575579999998" blue="0.92151206640000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.30192412060000001" green="0.2968463328" blue="0.37682291670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Viu-B8-4y2" id="fDe-v6-8E8"/>
+                            <outlet property="delegate" destination="Viu-B8-4y2" id="UVX-Tq-Q9X"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="nNb-bI-C7R"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hEN-xI-hbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870.5" y="3876.5"/>
+        </scene>
         <!--Privacy View Controller-->
         <scene sceneID="Oqg-bW-syK">
             <objects>
@@ -1065,7 +1138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgI-xw-LCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2440.5" y="3783.5"/>
+            <point key="canvasLocation" x="4064.5" y="3783.5"/>
         </scene>
         <!--Aboutus View Controller-->
         <scene sceneID="vab-vb-TAo">
@@ -1203,6 +1276,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eeh-rx-oYt">
                                 <rect key="frame" x="37" y="234" width="307" height="257"/>
                                 <color key="backgroundColor" red="0.32456507119919253" green="0.36715549522309215" blue="0.42495640082956254" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.75658121359999997" green="1" blue="0.9504005418" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.75113711604487865" green="0.9707060176761152" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1210,6 +1284,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rb-0H-Ici">
                                 <rect key="frame" x="37" y="169" width="307" height="30"/>
                                 <color key="backgroundColor" red="0.32456507119919253" green="0.36715549522309215" blue="0.42495640082956254" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.75658121359999997" green="1" blue="0.9504005418" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.72513349439310759" green="0.97020815004879657" blue="0.97287660254615371" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
