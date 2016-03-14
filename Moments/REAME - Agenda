@@ -1,25 +1,34 @@
 Xin
 ------------------------------------------------------------------------------------------------
-1. Core Data creation for textItem - OKAY
-2. override UITextView for placeholder - OKAY
-3. Core Data creation for moment - OKAY
-4. testing audio and video for new moment
-5. add favourite into Core Data loading and saving - OKAY
-6. size change for text - OKAY
-7. textItem should pop up the editTextItemView - OKAY with bug(attribute did not seem to be set)
-7. alignment for text - OKAY
-8. image size to porportion
-9. textItem length and width calculation
-10. move - OKAY for text and image
-11. resize
-12. rotate
-13. camera option for imageItem
-14. let see if we need to do layer ~
+- Core Data creation for textItem - OKAY
+- override UITextView for placeholder - OKAY
+- Core Data creation for moment - OKAY
+- testing audio and video for new moment
+- add favourite into Core Data loading and saving - OKAY
+- size change for text - OKAY
+- textItem should pop up the editTextItemView - OKAY
+- alignment for text - OKAY
+- move - OKAY for text and image
+- resize - OKAY for text and image
+- rotate
+- camera option for imageItem
+- Template mode
+- Font for text - OKAY
 
-15. Template mode  
-16. Make sure all dragged item goes on top and when tapped?
-18. TextAttribute debug (cannot load from core Data)
-19. Font for text - OKAY with bug (the scroller looks ugly and I might need to turn off auto turnoff and the name seem weird and uneccessary for some?)
+
+
+BUGS to fix
+1. Image should be be porportionate to their original image size.
+2. Textitem width and height calculation should reflect its size better
+3. Slower the rate of pinching
+4. When dragging item, they should be at the top of all items
+5. Default Category of UnXXX when creating memory or previously selected category
+6. EditTextItem view should come down a bit
+7. Only allow movement and gesture recognition if it is in hand-mode?
+8. Save the order of the items in the superview
+9. Wait 3 seconds before dismiss the scroll view for font selection
+10. Font list seems off and there are new fonts
+11. Algorithm for size text of slider if off
 
 ------------------------------------------------------------------------------------------------
 
@@ -38,6 +47,10 @@ Emily
 
 Monica
 ------------------------------------------------------------------------------------------------
-
+1. Change eye icon to hand icon for New moment
+2. New Icons for the type of media to add in new moment
+3. accounting setting table bar should be updated for username and useremail
+4. rate us - deal with app store
+5. trash
 
 ------------------------------------------------------------------------------------------------

@@ -312,6 +312,11 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         print("Video or audio selected")
         mediaPicker.dismissViewControllerAnimated(true, completion: nil)
+        print("Media item collection count: " + String(mediaItemCollection.count))
+        print("Media item collection items: " + String(mediaItemCollection.items))
+        print("Media item collection type: " + String(mediaItemCollection.mediaTypes))
+        
+        
         if let mediaItem: MPMediaItem = mediaItemCollection.representativeItem {
             debug("[mediaPicker] - " + String(mediaItem))
             self.manager.addMediaItem(mediaItem, location: self.touchLocation!)

@@ -149,8 +149,8 @@ class NewMomentManager {
         //} else if mediaItem.valueForProperty("MPMediaItemPropertyMediaType") as! String == MPMediaType.AnyVideo {
         //    self.videoManager.addVideo(mediaItem, location: location)
         //} else {
-            debug("[addMediaItem] - file not audio or video")
-            debug("mediaType: " + String(mediaItem.valueForProperty("MPMediaItemPropertyMediaType")))
+            //debug("[addMediaItem] - file not audio or video")
+            //debug("mediaType: " + String(mediaItem.valueForProperty("MPMediaItemPropertyMediaType")))
         //}
     }
     

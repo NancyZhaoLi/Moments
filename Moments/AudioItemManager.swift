@@ -21,8 +21,10 @@ class AudioItemManager : ItemManager {
     
     func addAudio(audio: MPMediaItem) {
         let debugPrefix = "[addAudio] - "
-        
-        if let url = audio.assetURL {
+        //if let url: NSURL = audio.valueForProperty("MPMediaItemPropertyAssetURL") as! NSURL {
+            //let url = NSURL(fileURLWithPath: stringURL)
+            let url = audio.valueForProperty("MPMediaItemPropertyAssetURL") as! NSURL
+            print("url" + String(url))
             do {
                 let audioPlayer = try AVAudioPlayer(contentsOfURL: url)
                 if let audioItemVC = super.canvas!.storyboard?.instantiateViewControllerWithIdentifier("audioPlayer") as? AudioItemViewController {
@@ -34,7 +36,9 @@ class AudioItemManager : ItemManager {
             } catch {
                 debug(debugPrefix + "audio player cannot be created")
             }
-        }
+        //} else {
+       //     debug(debugPrefix + " audio string url not found")
+        //}
     }
     
     func loadAudio(audioItem: AudioItemEntry) -> AudioItemViewController {
