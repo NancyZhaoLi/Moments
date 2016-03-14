@@ -9,7 +9,7 @@
 import UIKit
 
 protocol EditTextItemViewControllerDelegate {
-    func addText(controller: EditTextItemViewController, text: String, textColour: UIColor, textFont: UIFont, textAlignment: NSTextAlignment)
+    func addText(controller: EditTextItemViewController, text: String, textAttribute: TextItemOtherAttribute)
     func cancelAddTextItem(controller: EditTextItemViewController)
 }
 
@@ -75,9 +75,9 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
             if self.text == EditTextItemViewController.placeHolder {
                 self.text = "You didn't write anything..."
             }
-            delegate.addText(self, text: self.text,
-                textColour: self.textColour, textFont: self.textFont,
-                textAlignment: self.textAlignment)
+            let textAttribute = TextItemOtherAttribute(colour: self.textColour, font: self.textFont, alignment: self.textAlignment)
+            
+            delegate.addText(self, text: self.text, textAttribute: textAttribute)
         }
     }
     
@@ -96,6 +96,13 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
             let textSettingVC = segue.destinationViewController as! TextSettingViewController
             textSettingVC.delegate = self
         }
+    }
+    
+    func changeTextAndAttribute(text: String, textAttribute: TextItemOtherAttribute) {
+        self.text = text
+        self.textColour = textAttribute.colour
+        self.textFont = textAttribute.font
+        self.textAlignment = textAttribute.alignment
     }
     
     // Functions for TextSettingViewController Delegate

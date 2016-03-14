@@ -134,12 +134,8 @@ class NewMomentManager {
         self.stickerManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
     }
     
-    func addText(text: String, textColour: UIColor, textFont: UIFont, textAlignment: NSTextAlignment, location: CGPoint) -> TextItemViewController {
-        return self.textManager.addText(text, textColour: textColour, textFont: textFont, textAlignment: textAlignment, location: location)
-    }
-    
-    func addText(textView: UITextView, location: CGPoint) -> TextItemViewController {
-        return self.textManager.addText(textView, location: location)
+    func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
+        return self.textManager.addText(text, location: location, textAttribute: textAttribute)
     }
     
     func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {

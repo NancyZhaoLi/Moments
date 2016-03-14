@@ -37,11 +37,13 @@ class ImageItemView: UIImageView {
 class ImageItemViewController: UIViewController {
     
     var manager: ImageItemManager!
+    var parentView: UIView?
     
     let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
     let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
     let rotateRec: UIRotationGestureRecognizer = UIRotationGestureRecognizer()
     let panRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +56,27 @@ class ImageItemViewController: UIViewController {
     init(manager: ImageItemManager) {
         super.init(nibName: nil, bundle: nil)
         self.manager = manager
+        if setupParentView() {
+            print("parentView setup successful in initializing imageItemViewController")
+        } else {
+            print("parentView setup failed in initializing imageItemViewController")
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    
+    func setupParentView() -> Bool {
+        if let canvas = self.manager.canvas {
+            if let view = canvas.view {
+                self.parentView = view
+                return true
+            }
+        }
+        
+        return false
     }
     
     func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
@@ -72,7 +91,17 @@ class ImageItemViewController: UIViewController {
             }
         }
         self.view = imageView
-        
+        setupGestureRecognizer()
+    }
+    
+    func addImage(imageItem: ImageItemEntry) {
+        let imageView = ImageItemView(frame: imageItem.frame)
+        imageView.image = imageItem.image
+        self.view = imageView
+        setupGestureRecognizer()
+    }
+    
+    func setupGestureRecognizer() {
         tapRec.addTarget(self, action: "tappedView")
         pinchRec.addTarget(self, action: "pinchedView:")
         rotateRec.addTarget(self, action: "rotatedView:")
@@ -86,13 +115,7 @@ class ImageItemViewController: UIViewController {
         self.view.userInteractionEnabled = true
         self.view.multipleTouchEnabled = true
     }
-    
-    func addImage(imageItem: ImageItemEntry) {
-        let imageView = ImageItemView(frame: imageItem.frame)
-        imageView.image = imageItem.image
-        self.view = imageView
-    }
-    
+
     func tappedView() {
         print("tapped")
     }
@@ -125,15 +148,18 @@ class ImageItemViewController: UIViewController {
     func draggedView(sender: UIPanGestureRecognizer) {
         print("dragged")
         
-        let parentView = self.manager!.canvas!.view
-        if let senderView = sender.view {
-            parentView.bringSubviewToFront(senderView)
-            let translation = sender.translationInView(parentView)
-            senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
-            sender.setTranslation(CGPointZero, inView: parentView)
-            parentView.sendSubviewToBack(senderView)
+        if self.parentView == nil {
+            setupParentView()
+        }
+        if let parentView = self.parentView {
+            if let senderView = sender.view {
+                parentView.bringSubviewToFront(senderView)
+                let translation = sender.translationInView(parentView)
+                senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
+                sender.setTranslation(CGPointZero, inView: parentView)
+                parentView.sendSubviewToBack(senderView)
+            }
         }
     }
-    
 }
 

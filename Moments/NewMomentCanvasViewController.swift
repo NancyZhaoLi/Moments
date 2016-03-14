@@ -159,9 +159,9 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEditTextView" {
-            let vc = segue.destinationViewController as! UINavigationController
+            let vc = segue.destinationViewController as! EditTextItemNavigationController
             vc.modalPresentationStyle = .OverCurrentContext
-            vc.delegate = self
+            vc.viewDelegate = self
         } else if segue.identifier == "showOtherOptionPopover" {
             print("OtherOptionPopover segue begin")
             let vc = segue.destinationViewController as! OtherCanvasOptionViewController
@@ -280,9 +280,10 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
      ******************************************************************/
      
     // EditTextItemViewControllerDelegate functions
-    func addText(controller: EditTextItemViewController, text: String, textColour: UIColor, textFont: UIFont, textAlignment: NSTextAlignment) {
+    func addText(controller: EditTextItemViewController, text: String, textAttribute: TextItemOtherAttribute) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        let vc = self.manager.addText(text, textColour: textColour, textFont: textFont, textAlignment:textAlignment, location: self.touchLocation!)
+        let vc = self.manager.addText(text, location: self.touchLocation!, textAttribute: textAttribute)
+        
         addNewViewController(vc)
         resetTouchMode()
     }

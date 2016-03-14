@@ -19,46 +19,25 @@ class TextItemManager : ItemManager {
         super.debugPrefix = "[TextItemManager] - "
     }
     
-    func addText(textView: UITextView, location: CGPoint) -> TextItemViewController {
-        return addText(textView.text, textColour: textView.textColor!, textFont: textView.font!, textAlignment: textView.textAlignment, location: location)
-    }
-    
-    func addText(text: String, textColour: UIColor, textFont: UIFont, textAlignment: NSTextAlignment, location: CGPoint) -> TextItemViewController {
+    func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
         debugBegin("addText")
         
-        let width : CGFloat = UIScreen.mainScreen().bounds.size.width - 20 - location.x
-        var height : CGFloat = ((CGFloat(text.length) / width) + 5) * 20
-        let textItemView = UITextView(frame: CGRectMake(location.x, location.y, width, height))
-        let textItemVC = TextItemViewController()
-        
-        textItemView.text = text
-        textItemView.textColor = textColour
-        textItemView.font = textFont
-        textItemView.textAlignment = textAlignment
-        textItemView.backgroundColor = UIColor.clearColor()
-        
-        textItemVC.view = textItemView
-        self.textItems.append(textItemVC)
+        let newTextVC = TextItemViewController(manager: self)
+        newTextVC.addText(text, location: location, textAttribute: textAttribute)
+        self.textItems.append(newTextVC)
         
         debugEnd("[addText]")
-        return textItemVC
+        return newTextVC
         
     }
     
     func loadText(textItem: TextItemEntry) -> TextItemViewController {
-        let textItemView = UITextView(frame: textItem.getFrame())
-        let textItemVC = TextItemViewController()
-        textItemView.text = textItem.getContent()
-        textItemView.textColor = textItem.getTextColour()
-        textItemView.font = textItem.getTextFont()
-        textItemView.textAlignment = textItem.getTextAlignment()
-        textItemView.backgroundColor = UIColor.clearColor()
+        let newTextVC = TextItemViewController(manager: self)
+        newTextVC.addText(textItem)
+        self.textItems.append(newTextVC)
         
-        textItemVC.view = textItemView
-        self.textItems.append(textItemVC)
-        return textItemVC
+        return newTextVC
     }
-    
     
     override func saveAllItemEntry() {
         var id = getId()
@@ -68,8 +47,8 @@ class TextItemManager : ItemManager {
             var textItemEntry = TextItemEntry(id: id, frame: view.frame)
             textItemEntry.setContent(view.text)
             textItemEntry.setOtherAttribute(view.textColor!, font: view.font!, alignment: view.textAlignment)
-            super.superManager?.addTextItemEntry(textItemEntry)
             
+            super.superManager!.addTextItemEntry(textItemEntry)
             id += 1
         }
     }

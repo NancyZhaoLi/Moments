@@ -24,8 +24,7 @@ class ImageItemManager : ItemManager {
     }
     
     func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {
-        debug("[addImage] - url: " + String(editingInfo![UIImagePickerControllerReferenceURL]))
-        var newImageVC = ImageItemViewController(manager: self)
+        let newImageVC = ImageItemViewController(manager: self)
         newImageVC.addImage(image, location: location, editingInfo: editingInfo)
         
         self.imageItems.append(newImageVC)
@@ -46,7 +45,6 @@ class ImageItemManager : ItemManager {
         for imageItem in imageItems {
             let view = imageItem.view as! ImageItemView
             let imageItemEntry = ImageItemEntry(id: id, frame: view.frame, image: view.image!)
-            //imageItemEntry.setURL(view.url!)
             
             self.superManager!.addImageItemEntry(imageItemEntry)
             id += 1

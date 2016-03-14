@@ -79,9 +79,6 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
         //momentCategoryDisplay.text = category
     }
     
-    
-    
-    
     func getMomentEntry() -> MomentEntry {
         return self.manager!.moment!
     }
@@ -101,8 +98,6 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
     func isNewMoment() -> Bool {
         return self.manager!.getIsNewMoment()
     }
-    
-    
     
     // NewCategoryViewController Delegate
     func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {

@@ -11,10 +11,16 @@ import UIKit
 
 class EditTextItemNavigationController : UINavigationController {
     
+    var viewDelegate: EditTextItemViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("EditTextItemNavigationController begin loading")
         let rootVC = super.topViewController as! EditTextItemViewController
-        rootVC.delegate = self.delegate as! EditTextItemViewControllerDelegate
+        if let delegate = self.viewDelegate {
+            rootVC.delegate = delegate
+        } else {
+            print("delegate for EditTextItemViewController not passed")
+        }
     }
 }
