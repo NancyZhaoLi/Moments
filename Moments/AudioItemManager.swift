@@ -21,6 +21,7 @@ class AudioItemManager : ItemManager {
     
     func addAudio(audio: MPMediaItem) {
         let debugPrefix = "[addAudio] - "
+        print(audio.valueForProperty("MPMediaItemPropertyAssetURL"))
         //if let url: NSURL = audio.valueForProperty("MPMediaItemPropertyAssetURL") as! NSURL {
             //let url = NSURL(fileURLWithPath: stringURL)
             let url = audio.valueForProperty("MPMediaItemPropertyAssetURL") as! NSURL

@@ -21,7 +21,7 @@ enum TouchMode : String {
          View = "View"
 }
 
-class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, EditTextItemViewControllerDelegate, MPMediaPickerControllerDelegate, ColourPickerViewControllerDelegate {
+class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, EditTextItemViewControllerDelegate, MPMediaPickerControllerDelegate, ColourPickerViewControllerDelegate, AudioRecoderViewControllerDelegate {
     
     let testMode : Bool = true
     var touchLocation : CGPoint?
@@ -163,7 +163,6 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
             vc.modalPresentationStyle = .OverCurrentContext
             vc.viewDelegate = self
         } else if segue.identifier == "showOtherOptionPopover" {
-            print("OtherOptionPopover segue begin")
             let vc = segue.destinationViewController as! OtherCanvasOptionViewController
             vc.delegate = self
             let popoverVC = vc.popoverPresentationController
@@ -173,6 +172,12 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
             self.savePage = segue.destinationViewController as! NewMomentSavePageViewController
             self.savePage!.canvas = self
             self.savePage!.manager = self.manager
+        } else if segue.identifier == "newAudioRecording" {
+            let vc = segue.destinationViewController as! AudioRecorderViewController
+            vc.delegate = self
+            let popoverVC = vc.popoverPresentationController
+            popoverVC?.delegate = self
+            popoverVC?.sourceRect = CGRectMake(20,20,0,0)
         }
     }
     
@@ -227,10 +232,12 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     }
     
     func addAudio(){
-        let audio = MPMediaPickerController(mediaTypes: .AnyAudio)
-        audio.delegate = self
-        audio.allowsPickingMultipleItems = false
-        self.presentViewController(audio, animated: true, completion: nil)
+        self.performSegueWithIdentifier("newAudioRecording", sender: self)
+        //let audio = MPMediaPickerController(mediaTypes: .AnyAudio)
+        //audio.delegate = self
+        //audio.allowsPickingMultipleItems = false
+        //audio.showsCloudItems = false
+        //self.presentViewController(audio, animated: true, completion: nil)
     }
     
     func addVideo(){
@@ -339,5 +346,13 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     
     func currentColor() -> UIColor {
         return self.view.backgroundColor!
+    }
+    
+    // Functions for AudioRecorderViewController Delegate
+    func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    func cancelRecording(controller: AudioRecorderViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
