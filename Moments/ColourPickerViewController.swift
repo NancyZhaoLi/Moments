@@ -9,7 +9,12 @@
 import UIKit
 import SwiftHSVColorPicker
 
-let barColour = UIColor(red: 8/255.0, green: 164/255.0, blue: 179/255.0, alpha: 1.0)
+extension UIColor {
+    static func customGreenColor() -> UIColor {
+        return UIColor(red: 8/255.0, green: 164/255.0, blue: 179/255.0, alpha: 1.0)
+    }
+}
+
 let windowHeight = UIScreen.mainScreen().bounds.height
 let windowWidth = UIScreen.mainScreen().bounds.width
 
@@ -75,7 +80,7 @@ class ColourPickerViewController: UIViewController {
         navItem.rightBarButtonItem = rightBarButton
         
         let navBar = UINavigationBar(frame: CGRectMake(0,20,windowWidth, 44))
-        navBar.barTintColor = barColour
+        navBar.barTintColor = UIColor.customGreenColor()
         navBar.pushNavigationItem(navItem, animated: false)
 
         self.view.addSubview(navBar)

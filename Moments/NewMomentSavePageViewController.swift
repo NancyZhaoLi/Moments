@@ -18,6 +18,11 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
     @IBOutlet weak var momentTitleDisplay: UITextField!
     @IBOutlet weak var categoryList: UITableView!
     
+    @IBAction func newCategory(sender: AnyObject) {
+        let newCategoryVC = NewCategoryViewController(delegate: self)
+        presentViewController(newCategoryVC, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.manager!.setSavePage(self)

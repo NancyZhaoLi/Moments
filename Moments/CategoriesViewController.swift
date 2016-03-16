@@ -112,5 +112,10 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     }
 
     
+    @IBAction func newCategory(sender: AnyObject) {
+        let newCategoryVC = NewCategoryViewController(delegate: self)
+        presentViewController(newCategoryVC, animated: true, completion: nil)
+    }
+    
 }
 
