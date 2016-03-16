@@ -24,6 +24,17 @@ class AudioItemViewController: UIViewController {
     @IBOutlet weak var playOrPauseButton: UIButton!
     @IBOutlet weak var progBar: UIProgressView!
     @IBOutlet weak var stopButton: UIButton!
+    
+    /*init(manager: AudioItemManager, location: CGPoint) {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.manager = manager
+        initView(location)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }*/
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +45,17 @@ class AudioItemViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func initView(location: CGPoint) {
+        self.view = UIView(frame: CGRectMake(location.x, location.y, 30,30))
+        let playButton = UIButton(frame: CGRectMake(0,0,30,30))
+        playButton.setBackgroundImage(UIImage(named: ""), forState: .Normal)
+        //playButton.addTarget(self, action: "play:", forControlEvents: <#T##UIControlEvents#>)
+        
+        
+        self.view.addSubview(playButton)
     }
     
     func setupGestureRecognizer() {
@@ -118,7 +140,6 @@ class AudioItemViewController: UIViewController {
             }
         }
     }
-    
     
 }
 

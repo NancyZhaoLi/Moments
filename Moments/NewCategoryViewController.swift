@@ -41,6 +41,8 @@ class NewCategoryViewController: UIViewController, UIViewControllerTransitioning
         view.layer.shadowOffset = CGSizeMake(0, 0)
         view.layer.shadowRadius = 10
         view.layer.shadowOpacity = 0.5
+        
+        self.categoryColour.addTarget(self, action: "pickCategoryColour", forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     @IBAction func saveCategory(sender: AnyObject) {
@@ -52,6 +54,11 @@ class NewCategoryViewController: UIViewController, UIViewControllerTransitioning
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
    
+    func pickCategoryColour() {
+        let colourPickerVC: ColourPickerViewController = ColourPickerViewController(initialColour: categoryColour.backgroundColor, delegate: self)
+        self.presentViewController(colourPickerVC, animated: true, completion: nil)
+    }
+    
     func presentationControllerForPresentedViewController(presented: UIViewController,
         presentingViewController presenting: UIViewController,
         sourceViewController source: UIViewController) -> UIPresentationController? {

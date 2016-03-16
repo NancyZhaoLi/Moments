@@ -21,7 +21,14 @@ enum TouchMode : String {
          View = "View"
 }
 
-class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, EditTextItemViewControllerDelegate, MPMediaPickerControllerDelegate, ColourPickerViewControllerDelegate, AudioRecoderViewControllerDelegate {
+class NewMomentCanvasViewController: UIViewController,
+    UIPopoverPresentationControllerDelegate,
+    UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate,
+    EditTextItemViewControllerDelegate,
+    MPMediaPickerControllerDelegate,
+    ColourPickerViewControllerDelegate,
+    AudioRecoderViewControllerDelegate {
     
     let testMode : Bool = true
     var touchLocation : CGPoint?
@@ -208,8 +215,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     
     func setCanvasBackground(controller: OtherCanvasOptionViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        let colourPickerVC = storyboard?.instantiateViewControllerWithIdentifier("colourPicker") as! ColourPickerViewController
-        colourPickerVC.delegate = self
+        let colourPickerVC: ColourPickerViewController = ColourPickerViewController(initialColour: self.view.backgroundColor, delegate: self)
         self.presentViewController(colourPickerVC, animated: true, completion: nil)
     }
     

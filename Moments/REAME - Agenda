@@ -3,18 +3,20 @@ Xin
 - Core Data creation for textItem - OKAY
 - override UITextView for placeholder - OKAY
 - Core Data creation for moment - OKAY
-- testing audio and video for new moment
 - add favourite into Core Data loading and saving - OKAY
 - size change for text - OKAY
 - textItem should pop up the editTextItemView - OKAY
 - alignment for text - OKAY
-- move - OKAY for text and image
-- resize - OKAY for text and image
+- move - OKAY for text and image and audio
+- resize - OKAY for text and image and audio
 - rotate
 - camera option for imageItem
 - Template mode
 - Font for text - OKAY
-
+- Recording - OKAY
+- Audio Playback - OKAY
+- Video Recording -
+- Video Playback -
 
 
 BUGS to fix
@@ -29,6 +31,7 @@ BUGS to fix
 9. Wait 3 seconds before dismiss the scroll view for font selection
 10. Font list seems off and there are new fonts
 11. Algorithm for size text of slider if off
+12. Change label and state when the recording is finished playing (AudioItemVC)
 
 ------------------------------------------------------------------------------------------------
 

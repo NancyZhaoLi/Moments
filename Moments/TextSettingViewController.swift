@@ -42,8 +42,7 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     
     @IBAction func changeFontColour(sender: AnyObject) {
         print("colour change")
-        let colourPickerVC = storyboard?.instantiateViewControllerWithIdentifier("colourPicker") as! ColourPickerViewController
-        colourPickerVC.delegate = self
+        let colourPickerVC: ColourPickerViewController = ColourPickerViewController(initialColour: self.textColour.backgroundColor, delegate: self)
         self.presentViewController(colourPickerVC, animated: true, completion: nil)
     }
     
