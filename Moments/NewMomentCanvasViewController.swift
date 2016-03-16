@@ -233,11 +233,6 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     
     func addAudio(){
         self.performSegueWithIdentifier("newAudioRecording", sender: self)
-        //let audio = MPMediaPickerController(mediaTypes: .AnyAudio)
-        //audio.delegate = self
-        //audio.allowsPickingMultipleItems = false
-        //audio.showsCloudItems = false
-        //self.presentViewController(audio, animated: true, completion: nil)
     }
     
     func addVideo(){
@@ -351,6 +346,7 @@ class NewMomentCanvasViewController: UIViewController,UIPopoverPresentationContr
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
         controller.dismissViewControllerAnimated(true, completion: nil)
+        self.manager.addAudio(url, location: self.touchLocation!)
     }
     func cancelRecording(controller: AudioRecorderViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)

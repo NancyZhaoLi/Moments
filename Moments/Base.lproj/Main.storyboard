@@ -1592,8 +1592,6 @@
                                 <rect key="frame" x="8" y="30" width="30" height="30"/>
                                 <state key="normal" title="Play"/>
                                 <connections>
-                                    <action selector="pause:" destination="wSC-hV-IPB" eventType="touchUpInside" id="HeR-n2-MHW"/>
-                                    <action selector="play:" destination="wSC-hV-IPB" eventType="touchUpInside" id="okI-D1-WSi"/>
                                     <action selector="playOrPause:" destination="wSC-hV-IPB" eventType="touchUpInside" id="SIB-sX-tqw"/>
                                 </connections>
                             </button>
@@ -1678,6 +1676,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="220" height="150"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="220" height="150"/>
                     <connections>

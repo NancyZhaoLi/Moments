@@ -142,6 +142,10 @@ class NewMomentManager {
         return self.imageManager.addImage(image, location: location, editingInfo: editingInfo)
     }
     
+    func addAudio(audioURL: NSURL, location: CGPoint) {
+        self.audioManager.addAudio(audioURL, location: location)
+    }
+    
     func addMediaItem(mediaItem: MPMediaItem, location: CGPoint) {
         debug("[addMediaItem] called")
         //if mediaItem.mediaType == MPMediaType.AnyAudio {
