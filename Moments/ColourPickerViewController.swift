@@ -65,13 +65,13 @@ class ColourPickerViewController: UIViewController {
         let cancelButton = UIButton(frame: CGRectMake(0,3,60,37))
         let selectButton = UIButton(frame: CGRectMake(windowWidth - 58,3,55,37))
         
-        cancelButton.addTarget(self, action: "cancelColourPicking", forControlEvents: UIControlEvents.TouchUpInside)
-        cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
-        cancelButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        cancelButton.addTarget(self, action: "cancelColourPicking", forControlEvents: .TouchUpInside)
+        cancelButton.setTitle("Cancel", forState: .Normal)
+        cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
-        selectButton.addTarget(self, action: "selectColour", forControlEvents: UIControlEvents.TouchUpInside)
-        selectButton.setTitle("Select", forState: UIControlState.Normal)
-        selectButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        selectButton.addTarget(self, action: "selectColour", forControlEvents: .TouchUpInside)
+        selectButton.setTitle("Select", forState: .Normal)
+        selectButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     
         let leftBarButton = UIBarButtonItem(customView: cancelButton)
         let rightBarButton = UIBarButtonItem(customView: selectButton)

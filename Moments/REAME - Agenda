@@ -33,7 +33,8 @@ TEST - Wait 2 seconds before dismiss the scroll view for font selection
 - Font list seems off and there are new fonts
 - Algorithm for size text of slider if off
 - Change label and state when the recording is finished playing (AudioItemVC)
-TEST - Bound the top of where you drag things to or when created
+TEST - Bound the top of where you drag things to
+- Bounding when pinching/resize simply length/width
 
 ------------------------------------------------------------------------------------------------
 

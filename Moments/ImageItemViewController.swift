@@ -99,8 +99,8 @@ class ImageItemViewController: UIViewController {
     func pinchedView(sender: UIPinchGestureRecognizer) {
         print("pinched")
         parentView.bringSubviewToFront(self.view)
-        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-        sender.scale = 0.5
+        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale * 0.5, sender.scale * 0.5)
+        sender.scale = 1.0
     }
     
     func rotatedView(sender: UIRotationGestureRecognizer) {

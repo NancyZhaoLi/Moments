@@ -251,7 +251,7 @@ class NewMomentManager {
         }
         
         self.moment!.category = self.momentCategory
-        self.moment!.backgroundColour = self.canvas!.currentColor()
+        self.moment!.backgroundColour = self.canvas!.view.backgroundColor!
     
         for v in self.canvas!.view.subviews {
             print(v)

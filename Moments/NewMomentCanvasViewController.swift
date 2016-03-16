@@ -28,7 +28,7 @@ class NewMomentCanvasViewController: UIViewController,
     EditTextItemViewControllerDelegate,
     MPMediaPickerControllerDelegate,
     ColourPickerViewControllerDelegate,
-    AudioRecoderViewControllerDelegate {
+    AudioRecorderViewControllerDelegate {
     
     let testMode : Bool = true
     var touchLocation : CGPoint?
@@ -243,6 +243,8 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addAudio(){
+        let audioRecorder = AudioRecorderViewController(sourceView: self.view, delegate: self)
+        
         self.performSegueWithIdentifier("newAudioRecording", sender: self)
     }
     
@@ -356,17 +358,11 @@ class NewMomentCanvasViewController: UIViewController,
         controller.dismissViewControllerAnimated(true, completion: nil)
         self.view.backgroundColor = colour
     }
-    
-    func currentColor() -> UIColor {
-        return self.view.backgroundColor!
-    }
+
     
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         self.manager.addAudio(url, location: self.touchLocation!)
-    }
-    func cancelRecording(controller: AudioRecorderViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

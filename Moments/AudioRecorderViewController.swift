@@ -9,9 +9,8 @@
 import UIKit
 import AVFoundation
 
-protocol AudioRecoderViewControllerDelegate {
+protocol AudioRecorderViewControllerDelegate {
     func saveRecording(controller: AudioRecorderViewController, url: NSURL)
-    func cancelRecording(controller: AudioRecorderViewController)
 }
 
 class AudioRecorderViewController: UIViewController {
@@ -23,96 +22,161 @@ class AudioRecorderViewController: UIViewController {
         AVSampleRateKey : 44100.0
     ]
     
-    var recorder: AVAudioRecorder?
-    var recordingSession: AVAudioSession?
+    var recorder: AVAudioRecorder!
+    var recordingSession: AVAudioSession!
 
-    var haveRecorded: Bool = false
+    var haveRecorded: Bool! = false
     var timer: NSTimer?
-    var delegate: AudioRecoderViewControllerDelegate?
+    var delegate: AudioRecorderViewControllerDelegate?
     
-    @IBOutlet weak var startOrPauseButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var timeLabel: UILabel!
+    var startOrPauseButton: UIButton!
+    var stopButton: UIButton!
+    var timeLabel: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    convenience init() {
+        self.init(sourceView: nil, delegate: nil)
+    }
+
+    convenience required init?(coder aDecoder: NSCoder) {
+        self.init()
+    }
+    
+    init(sourceView: UIView?, delegate: AudioRecorderViewControllerDelegate?) {
+        self.haveRecorded = false
+        super.init(nibName: nil, bundle: nil)
+        self.delegate = delegate
         
+        initRecordingSession()
+        initUI()
+        
+        self.modalPresentationStyle = .Popover
+        if let popover = self.popoverPresentationController {
+            popover.delegate = self.delegate as? UIPopoverPresentationControllerDelegate
+            if let sourceView = sourceView {
+                popover.sourceView = sourceView
+                popover.sourceRect = CGRectMake(CGRectGetMidX(sourceView.frame),CGRectGetMidY(sourceView.frame),0,0)
+            }
+            self.preferredContentSize = self.view.frame.size
+        }
+    }
+    
+    func initRecordingSession() {
         self.recordingSession = AVAudioSession.sharedInstance()
         
         do {
-            try self.recordingSession!.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try self.recordingSession!.setActive(true)
-            self.recordingSession!.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
+            try self.recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try self.recordingSession.setActive(true)
+            self.recordingSession.requestRecordPermission() { [unowned self] (allowed: Bool) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     if allowed {
-                        self.initialize()
+                        self.initRecorder()
                     } else {
-                        // failed to record!
+                        print("Error - [AudioRecorderViewController] - fail to begin recordSession")
+                        self.cancelRecording()
                     }
                 }
             }
         } catch {
-            // failed to record!
-        }
-        
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func startOrPause(sender: AnyObject) {
-        if self.recorder!.recording {
-            pause()
-        } else {
-            if !haveRecorded {
-                haveRecorded = true
-                stopButton.enabled = true
-            }
-            start()
+            print("Error - [AudioRecorderViewController] - fail to begin recordSession")
+            self.cancelRecording()
         }
     }
     
-    @IBAction func stop(sender: AnyObject) {
-        stopButton.enabled = false
-        self.recorder!.stop()
-        haveRecorded = false
-        self.startOrPauseButton.setTitle("Start", forState: UIControlState.Normal)
-        self.timer!.invalidate()
-    }
-    
-    @IBAction func saveRecording(sender: AnyObject) {
-        if let delegate = self.delegate {
-            delegate.saveRecording(self, url: self.recorder!.url)
-        }
-    }
-    
-    @IBAction func cancelRecording(sender: AnyObject) {
-        if let delegate = self.delegate {
-            delegate.cancelRecording(self)
-        }
-    }
-    
-    func initialize() {
+    func initRecorder() {
         let audioFilename: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
         let audioURL: NSURL = NSURL(fileURLWithPath: audioFilename).URLByAppendingPathComponent("recording.m4a")
         
         do {
             self.recorder = try AVAudioRecorder(URL: audioURL, settings: AudioRecorderViewController.recorderSetting)
-            
         } catch {
             let nserror = error as NSError
             NSLog("Recorder failed to be created \(nserror)")
             abort()
         }
-        self.stopButton.enabled = false
-        if self.recorder!.prepareToRecord() {
-            print("prepareToRecord success")
-        } else {
-            print("prepareToRecord failed")
+
+        if self.recorder.prepareToRecord() {
+            print("Error - [AudioRecordingViewController] - failed to prepare recorder")
+            self.cancelRecording()
         }
+    }
+    
+    func initUI() {
+        self.view = UIView(frame: CGRectMake(0,0,220, 150))
+        self.view.backgroundColor = UIColor.whiteColor()
+        
+        let cancelButton = UIButton(frame: CGRectMake(0,3, 60, 37))
+        cancelButton.addTarget(self, action: "cancelRecording", forControlEvents: .TouchUpInside)
+        cancelButton.setTitle("Cancel", forState: .Normal)
+        cancelButton.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
+        
+        let saveButton = UIButton(frame: CGRectMake(self.view.frame.width - 50,3,50,37))
+        saveButton.addTarget(self, action: "saveRecording", forControlEvents: .TouchUpInside)
+        saveButton.setTitle("Save", forState: .Normal)
+        saveButton.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
+    
+        startOrPauseButton = UIButton(frame: CGRectMake(45,20,60,37))
+        startOrPauseButton.setTitle("Start", forState: UIControlState.Normal)
+        startOrPauseButton.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
+        startOrPauseButton.addTarget(self, action: "startOrPause", forControlEvents: .TouchUpInside)
+        
+        stopButton = UIButton(frame: CGRectMake(self.view.frame.width - 96, 20,50,37))
+        stopButton.setTitle("Stop", forState: .Normal)
+        stopButton.addTarget(self, action: "stop", forControlEvents: .TouchUpInside)
+        stopButton.enabled = false
+        stopButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
+
+        
+        timeLabel = UILabel(frame: CGRectMake(0,0,50,37))
+        timeLabel.center = CGPoint(x: self.view.frame.width/2.0, y: 100.0)
+        timeLabel.text = "0.0"
+        timeLabel.textColor = UIColor.customGreenColor()
+
+        self.view.addSubview(cancelButton)
+        self.view.addSubview(saveButton)
+        self.view.addSubview(startOrPauseButton)
+        self.view.addSubview(stopButton)
+        self.view.addSubview(timeLabel)
+
+    }
+    
+    func startOrPause() {
+        if self.recorder!.recording {
+            pause()
+        } else {
+            start()
+            if !haveRecorded {
+                haveRecorded = true
+            }
+        }
+    }
+    
+    func stop() {
+        haveRecorded = false
+        stopButton.enabled = false
+        stopButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        startOrPauseButton.setTitle("Start", forState: .Normal)
+        self.recorder!.stop()
+        self.timer!.invalidate()
+    }
+    
+    func saveRecording() {
+        if let delegate = self.delegate {
+            delegate.saveRecording(self, url: self.recorder!.url)
+        }
+    }
+    
+    func cancelRecording() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.removeFromParentViewController()
     }
     
     func updateTime() {
