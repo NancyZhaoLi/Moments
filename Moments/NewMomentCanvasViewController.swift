@@ -92,8 +92,6 @@ class NewMomentCanvasViewController: UIViewController,
         favouriteSetter.setBackgroundImage(image, forState: .Normal)
     }
     
-    
-    
     @IBAction func goToSavePage(sender: AnyObject) {
         if (savePageAccessed) {
             print("presentView")
@@ -114,6 +112,11 @@ class NewMomentCanvasViewController: UIViewController,
         addItemBar.hidden = true
     }
     
+    @IBOutlet weak var otherOptions: UIButton!
+    
+    @IBAction func otherOptions(sender: AnyObject) {
+        presentViewController(OtherCanvasOptionViewController(sourceView:self.otherOptions, delegate: self), animated: true, completion: nil)
+    }
     /*******************************************************************
      
         OVERRIDDEN UIVIEWCONTROLLER FUNCTIONS
@@ -214,7 +217,6 @@ class NewMomentCanvasViewController: UIViewController,
     
     
     func setCanvasBackground(controller: OtherCanvasOptionViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
         let colourPickerVC: ColourPickerViewController = ColourPickerViewController(initialColour: self.view.backgroundColor, delegate: self)
         self.presentViewController(colourPickerVC, animated: true, completion: nil)
     }
