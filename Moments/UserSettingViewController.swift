@@ -32,7 +32,9 @@ class UserSettingViewController: UITableViewController {
              let alertController = UIAlertController(title: "Rate Us!", message: "\nAre you enjoying our app? Please rate us in the app store!\n\nElse if you know of ways we can make our app better, please send us feedback so we can improve the experience for you!\n\nThanks!\nThe Moments Team", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "Rate on iTunes", style: .Default, handler: { (action: UIAlertAction) in
                 print("RateUs.RateUs_Tapped")
+
                 print("Send to iTunes Minica")
+
                 
                 //let delayTime = dispatch_time(DISPATCH_TIME_NOW, <#T##delta: Int64##Int64#>)
                 dispatch_after( 5000000000, dispatch_get_main_queue()){
