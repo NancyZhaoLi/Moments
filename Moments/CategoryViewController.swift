@@ -9,6 +9,14 @@
 import UIKit
 import CoreData
 
+
+
+struct sticker {
+    var image : UIImage
+    var name : String
+
+}
+
 class CategoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var CategoryCollection: UICollectionView!
@@ -21,7 +29,9 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     //--------------------all necessary variables for data model ------------------
-    private var searches = [CategoryEntry]() //current container, this will be changed when user search new category
+    //private var searches = [CategoryEntry]() //current container, this will be changed when user search new category
+      private var searches = [sticker]()
+    
     
     var home = [Category]()  //read from core data
     var mainpage = [CategoryEntry]() // store all categories into mainpage,
@@ -30,16 +40,20 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
   //==============================================================================
     
     //----------------all testing purposes variables-----------------
-    var cell1 = CategoryEntry(colour: UIColor.redColor(),name: "flower")
-    var cell2 = CategoryEntry(colour: UIColor.blueColor(), name: "asdf")
-    var cell3 = CategoryEntry(colour: UIColor.yellowColor(),name: "favourite")
+   // var cell1 = CategoryEntry(colour: UIColor.redColor(),name: "flower")
+   // var cell2 = CategoryEntry(colour: UIColor.blueColor(), name: "asdf")
+   // var cell3 = CategoryEntry(colour: UIColor.yellowColor(),name: "favourite")
+    
+    var cell1  = sticker(image : UIImage(named: "sticker-1.png")! , name: "stick1")
+   var cell2  = sticker(image : UIImage(named: "sticker-2.png")! , name: "stick1")
+    var cell3  = sticker(image : UIImage(named: "sticker-3.png")! , name: "stick1")
     
     
+    //private var cells = [CategoryEntry]()
+    private var cells = [sticker]()
     
-    private var cells = [CategoryEntry]()
-    
-    
-    func addCells(cell: CategoryEntry ){
+   // func addCells(cell: CategoryEntry ){
+    func addCells(cell: sticker ){
         print("adding new cell")
         cells.append(cell)
         
@@ -169,12 +183,13 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
         let cellCollNib = UINib (nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         CategoryCollection.registerNib(cellCollNib, forCellWithReuseIdentifier: reuseIdentifier)
         
-        getCategoriesFromCoreData()
+        //getCategoriesFromCoreData()
         
-        for var i = 0 ; i < home.count; ++i {
+       /* for var i = 0 ; i < home.count; ++i {
             addCategoryFromCoreData(home[i])
            
-        }
+        }*/
+        
         
        // searches = mainpage   // so for searches hould contain all categories, but not moments
        
@@ -218,7 +233,7 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
         
         print("cell's lable is " + cell.name.text!)
        
-        cell.setCellName(searches[indexPath.row].name)
+        //cell.setCellName(searches[indexPath.row].name)
         
         //cell.name.backgroundColor = UIColor.whiteColor()
         //cell.name.textColor = UIColor.blackColor()
@@ -231,12 +246,14 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
         //here i should change lable to categories's name
         //cell = searches[indexPath.row]
         
-        if let theLabel = cell.viewWithTag(100) as? UILabel {
+       /* if let theLabel = cell.viewWithTag(100) as? UILabel {
             theLabel.text = searches[indexPath.row].name
-        }
+        }*/
         
         
-        cell.backgroundColor = searches[indexPath.row].colour
+        cell.setCellName( searches[indexPath.row].name)
+        cell.imageItem.image = searches[indexPath.row].image
+       // cell.backgroundColor = searches[indexPath.row].colour
         
         return cell
         
@@ -277,12 +294,12 @@ extension CategoryViewController : UITextFieldDelegate {
         //var item = categorEntry()
         
         //First need to clear all searches[categoryEntity]
-        for item in mainpage {
+      /*  for item in mainpage {
             if item.name == searchTerm {
                 searches.append(item)
             }
         }
-        
+     */
     }
     
     
