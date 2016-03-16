@@ -192,8 +192,7 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
     private func changeFontSize(curValue: Float) {
         if let textFontSize = self.textFontSize {
             textFontSize.text = String(Int(curValue))
-            let moveLeft = textFontSizeSlider.frame.origin.x - 21.0 + CGFloat((curValue/self.sliderRange!)) * textFontSizeSlider.frame.size.width
-            print("move left: " + String(moveLeft))
+            let moveLeft: CGFloat = textFontSizeSlider.frame.origin.x - 21.0 + CGFloat((curValue/self.sliderRange!)) * textFontSizeSlider.frame.size.width
             textFontSize.frame = CGRectMake(moveLeft, 158, 21, 21)
         }
     }
@@ -234,6 +233,9 @@ class TextSettingViewController : UIViewController, ColourPickerViewControllerDe
         //To:textFontName.setTitle(fontData[row], forState: UIControlState.Normal)
         textFontName.setTitle(fontData[row], forState: UIControlState.Normal)
         self.selectedFontIndex = row
+        
+        sleep(2)
+        
         pickerView.removeFromSuperview()
     }
     

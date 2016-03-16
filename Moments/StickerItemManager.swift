@@ -11,6 +11,7 @@ import UIKit
 
 class StickerItemManager : ItemManager {
     
+    var stickerItems : [StickerItemViewController] = [StickerItemViewController]()
     
     override init() {
         super.init()
@@ -21,4 +22,11 @@ class StickerItemManager : ItemManager {
     func loadSticker(stickerItem: StickerItemEntry) -> StickerItemViewController {
         return StickerItemViewController()
     }
+    
+    override func setEditMode(editMode: Bool) {
+        for textItem in stickerItems {
+            textItem.view.userInteractionEnabled = editMode
+        }
+    }
+    
 }

@@ -10,7 +10,6 @@ import UIKit
 
 protocol EditTextItemViewControllerDelegate {
     func addText(controller: EditTextItemViewController, text: String, textAttribute: TextItemOtherAttribute)
-    func cancelAddTextItem(controller: EditTextItemViewController)
 }
 
 class EditTextItemView: UITextView {
@@ -26,13 +25,6 @@ class EditTextItemView: UITextView {
     }
     
 }
-
-/* To dos
-1. Change initial textViewBackgroundColour
-
-
-*/
-
 
 class EditTextItemViewController: UIViewController, UITextViewDelegate, UINavigationBarDelegate,  TextSettingViewControllerDelegate {
     
@@ -64,9 +56,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     }
     
     @IBAction func cancelAddText(sender: AnyObject) {
-        if let delegate = self.delegate {
-            delegate.cancelAddTextItem(self)
-        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func addText(sender: AnyObject) {

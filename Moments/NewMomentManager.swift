@@ -59,8 +59,6 @@ class NewMomentManager {
     var testMode : Bool = true
     var debugPrefix : String = "[NewMomentManager] - "
 
-    
-    
     func setCanvas(canvas: NewMomentCanvasViewController) {
         self.canvas = canvas
         setIdPrefix()
@@ -144,18 +142,6 @@ class NewMomentManager {
     
     func addAudio(audioURL: NSURL, location: CGPoint) {
         self.audioManager.addAudio(audioURL, location: location)
-    }
-    
-    func addMediaItem(mediaItem: MPMediaItem, location: CGPoint) {
-        debug("[addMediaItem] called")
-        //if mediaItem.mediaType == MPMediaType.AnyAudio {
-            self.audioManager.addAudio(mediaItem)
-        //} else if mediaItem.valueForProperty("MPMediaItemPropertyMediaType") as! String == MPMediaType.AnyVideo {
-        //    self.videoManager.addVideo(mediaItem, location: location)
-        //} else {
-            //debug("[addMediaItem] - file not audio or video")
-            //debug("mediaType: " + String(mediaItem.valueForProperty("MPMediaItemPropertyMediaType")))
-        //}
     }
     
     func setDefaultTitle() {
@@ -276,4 +262,12 @@ class NewMomentManager {
         }
     }
     
+    func setEditMode(editMode: Bool) {
+        textManager.setEditMode(editMode)
+        imageManager.setEditMode(editMode)
+        audioManager.setEditMode(editMode)
+        videoManager.setEditMode(editMode)
+        stickerManager.setEditMode(editMode)
+    }
+
 }

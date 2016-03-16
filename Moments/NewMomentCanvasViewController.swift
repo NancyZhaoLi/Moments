@@ -49,12 +49,10 @@ class NewMomentCanvasViewController: UIViewController,
     @IBOutlet weak var addItemBar: UIToolbar!
     
     @IBAction func cancelAddNewMoment(sender: AnyObject) {
-        debug("[cancelAddNewMoment] - cancel clicked")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func addItem(sender: AnyObject) {
-        debug("[addItem] - +Item Button Pressed")
         if (addItemBar.hidden) {
             displayAddItemBar()
         } else {
@@ -63,18 +61,18 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     @IBAction func selectTouchMode(sender: AnyObject) {
-        debug("[selectTouchMode] - one of the add type selected")
         if let title = sender.currentTitle {
             self.touchMode = TouchMode(rawValue: title!)!
-            debug("[selectTouchMode] - mode selected: " + String(self.touchMode))
             if (title == "View" && !(addItemBar.hidden)) {
                 hideAddItemBar()
+                self.manager.setEditMode(true)
+            } else if (title != "View") {
+                self.manager.setEditMode(false)
             }
         }
     }
     
     @IBAction func setFav(sender: AnyObject) {
-        debug("[otherOptions] - favourite Button pressed")
         if self.manager.setFavourite() {
             addToFavourite()
         } else {
@@ -94,21 +92,17 @@ class NewMomentCanvasViewController: UIViewController,
     
     @IBAction func goToSavePage(sender: AnyObject) {
         if (savePageAccessed) {
-            print("presentView")
             presentViewController(self.savePage!, animated: true, completion: nil)
         } else {
-            print("performSegue")
             performSegueWithIdentifier("newMomentToSavePageSegue", sender: self)
         }
     }
     
     func displayAddItemBar() {
-        debug("[displayAddItemBar] - display bar")
         addItemBar.hidden = false
     }
     
     func hideAddItemBar() {
-        debug("[hideAddItemBar] - hide bar")
         addItemBar.hidden = true
     }
     
@@ -172,14 +166,9 @@ class NewMomentCanvasViewController: UIViewController,
             let vc = segue.destinationViewController as! EditTextItemNavigationController
             vc.modalPresentationStyle = .OverCurrentContext
             vc.viewDelegate = self
-        } else if segue.identifier == "showOtherOptionPopover" {
-            let vc = segue.destinationViewController as! OtherCanvasOptionViewController
-            vc.delegate = self
-            let popoverVC = vc.popoverPresentationController
-            popoverVC?.delegate = self
         } else if segue.identifier == "newMomentToSavePageSegue" {
             savePageAccessed = true
-            self.savePage = segue.destinationViewController as! NewMomentSavePageViewController
+            self.savePage = segue.destinationViewController as? NewMomentSavePageViewController
             self.savePage!.canvas = self
             self.savePage!.manager = self.manager
         } else if segue.identifier == "newAudioRecording" {
@@ -329,7 +318,7 @@ class NewMomentCanvasViewController: UIViewController,
         
         if let mediaItem: MPMediaItem = mediaItemCollection.representativeItem {
             debug("[mediaPicker] - " + String(mediaItem))
-            self.manager.addMediaItem(mediaItem, location: self.touchLocation!)
+            //self.manager.addMediaItem(mediaItem, location: self.touchLocation!)
         } else {
             debug("[mediaPicker] - mediaItem not found")
         }

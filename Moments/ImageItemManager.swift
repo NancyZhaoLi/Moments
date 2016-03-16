@@ -36,6 +36,7 @@ class ImageItemManager : ItemManager {
         
         newImageVC.addImage(imageItem)
         self.imageItems.append(newImageVC)
+        
         return newImageVC
     }
     
@@ -43,11 +44,17 @@ class ImageItemManager : ItemManager {
         var id = getId()
         
         for imageItem in imageItems {
-            let view = imageItem.view as! ImageItemView
+            let view = imageItem.view as! UIImageView
             let imageItemEntry = ImageItemEntry(id: id, frame: view.frame, image: view.image!)
             
             self.superManager!.addImageItemEntry(imageItemEntry)
             id += 1
+        }
+    }
+    
+    override func setEditMode(editMode: Bool) {
+        for imageItem in imageItems {
+            imageItem.view.userInteractionEnabled = editMode
         }
     }
 }

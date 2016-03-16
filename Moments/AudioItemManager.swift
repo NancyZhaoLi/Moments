@@ -13,6 +13,8 @@ import MediaPlayer
 
 class AudioItemManager : ItemManager {
     
+    var audioItems : [AudioItemViewController] = [AudioItemViewController]()
+    
     override init() {
         super.init()
         self.type = ItemType.Audio
@@ -35,31 +37,30 @@ class AudioItemManager : ItemManager {
         }
     }
     
-    func addAudio(audio: MPMediaItem) {
-        let debugPrefix = "[addAudio] - "
-        print(audio.valueForProperty("MPMediaItemPropertyAssetURL"))
-        //if let url: NSURL = audio.valueForProperty("MPMediaItemPropertyAssetURL") as! NSURL {
-            //let url = NSURL(fileURLWithPath: stringURL)
-            let url = audio.valueForProperty("MPMediaItemPropertyAssetURL") as! NSURL
-            print("url" + String(url))
-            do {
-                let audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-                if let audioItemVC = super.canvas!.storyboard?.instantiateViewControllerWithIdentifier("audioPlayer") as? AudioItemViewController {
-                    audioItemVC.player = audioPlayer
-                    
-                    super.canvas!.view.addSubview(audioItemVC.view)
-                    super.canvas!.addChildViewController(audioItemVC)
-                }
-            } catch {
-                debug(debugPrefix + "audio player cannot be created")
-            }
-        //} else {
-       //     debug(debugPrefix + " audio string url not found")
-        //}
-    }
-    
     func loadAudio(audioItem: AudioItemEntry) -> AudioItemViewController {
-        return AudioItemViewController()
+        let newAudioVC = AudioItemViewController(manager: self)
+        newAudioVC.addAudio(audioItem)
+        self.audioItems.append(newAudioVC)
+        
+        return newAudioVC
+    }
+
+    override func saveAllItemEntry() {
+        var id = getId()
+        
+        for audioItem in audioItems {
+            let view = audioItem.view
+            var audioItemEntry = AudioItemEntry(id: id, frame: view.frame)
+
+            super.superManager!.addAudioItemEntry(audioItemEntry)
+            id += 1
+        }
     }
     
+    override func setEditMode(editMode: Bool) {
+        for audioItem in audioItems {
+            audioItem.view.userInteractionEnabled = editMode
+        }
+    }
+
 }

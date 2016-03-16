@@ -20,15 +20,11 @@ class TextItemManager : ItemManager {
     }
     
     func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
-        debugBegin("addText")
-        
         let newTextVC = TextItemViewController(manager: self)
         newTextVC.addText(text, location: location, textAttribute: textAttribute)
         self.textItems.append(newTextVC)
         
-        debugEnd("[addText]")
         return newTextVC
-        
     }
     
     func loadText(textItem: TextItemEntry) -> TextItemViewController {
@@ -50,6 +46,12 @@ class TextItemManager : ItemManager {
             
             super.superManager!.addTextItemEntry(textItemEntry)
             id += 1
+        }
+    }
+    
+    override func setEditMode(editMode: Bool) {
+        for textItem in textItems {
+            textItem.view.userInteractionEnabled = editMode
         }
     }
 }

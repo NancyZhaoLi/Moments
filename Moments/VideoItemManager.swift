@@ -15,6 +15,8 @@ import AVFoundation
 
 class VideoItemManager : ItemManager {
     
+    var videoItems : [VideoItemViewController] = [VideoItemViewController]()
+    
     override init() {
         super.init()
         self.type = ItemType.Audio
@@ -36,4 +38,15 @@ class VideoItemManager : ItemManager {
     func loadVideo(videoItem: VideoItemEntry) -> VideoItemViewController {
         return VideoItemViewController()
     }
+    
+    override func saveAllItemEntry() {
+
+    }
+    
+    override func setEditMode(editMode: Bool) {
+        for videoItem in videoItems {
+            videoItem.view.userInteractionEnabled = editMode
+        }
+    }
+    
 }

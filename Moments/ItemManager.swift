@@ -89,4 +89,8 @@ class ItemManager {
             print(self.debugPrefix + "[" + fn + "] - end")
         }
     }
+    
+    func setEditMode(editMode: Bool) {
+        
+    }
 }

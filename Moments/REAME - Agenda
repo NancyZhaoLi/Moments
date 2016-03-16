@@ -1,37 +1,39 @@
 Xin
 ------------------------------------------------------------------------------------------------
-- Core Data creation for textItem - OKAY
-- override UITextView for placeholder - OKAY
-- Core Data creation for moment - OKAY
-- add favourite into Core Data loading and saving - OKAY
-- size change for text - OKAY
-- textItem should pop up the editTextItemView - OKAY
-- alignment for text - OKAY
+OKAY - Core Data creation for textItem
+OKAY - override UITextView for placeholder
+OKAY - Core Data creation for moment
+OKAY - add favourite into Core Data loading and saving
+OKAY - size change for text
+OKAY - textItem should pop up the editTextItemView
+OKAY - alignment for text
 - move - OKAY for text and image and audio
 - resize - OKAY for text and image and audio
 - rotate
 - camera option for imageItem
 - Template mode
-- Font for text - OKAY
-- Recording - OKAY
-- Audio Playback - OKAY
-- Video Recording -
-- Video Playback -
-
+OKAY - Attribute for text
+OKAY - Recording
+OKAY - Audio Playback
+- Audio saving/fetching
+- Video Recording
+- Video Playback
+- Delete Item
 
 BUGS to fix
-1. Image should be be porportionate to their original image size.
-2. Textitem width and height calculation should reflect its size better
-3. Slower the rate of pinching
-4. When dragging item, they should be at the top of all items
-5. Default Category of UnXXX when creating memory or previously selected category
-6. EditTextItem view should come down a bit
-7. Only allow movement and gesture recognition if it is in hand-mode?
-8. Save the order of the items in the superview
-9. Wait 3 seconds before dismiss the scroll view for font selection
-10. Font list seems off and there are new fonts
-11. Algorithm for size text of slider if off
-12. Change label and state when the recording is finished playing (AudioItemVC)
+OKAY - Image should be be porportionate to their original image size.
+- Textitem width and height calculation should reflect its size better
+TEST - Slower the rate of pinching
+OKAY - When dragging item, they should be at the top of all items
+- Default Category of UnXXX when creating memory or previously selected category
+- EditTextItem view should come down a bit
+- Only allow movement and gesture recognition if it is in hand-mode?
+- Save the order of the items in the superview
+TEST - Wait 2 seconds before dismiss the scroll view for font selection
+- Font list seems off and there are new fonts
+- Algorithm for size text of slider if off
+- Change label and state when the recording is finished playing (AudioItemVC)
+- Bound the top of where you drag things to or when created
 
 ------------------------------------------------------------------------------------------------
 
