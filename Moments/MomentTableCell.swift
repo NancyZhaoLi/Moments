@@ -150,7 +150,7 @@ class MomentTableCell: UITableViewCell {
             
         } else if (showOption == 2) {
             
-            momentText.text = momentInfo.textItemEntries[0].getContent()
+            momentText.text = momentInfo.textItemEntries[0].content
             
             momentText.textColor = UIColor.blackColor()
             momentText.frame = CGRect(x: 80, y: 35, width: self.frame.width - 110, height: 50)

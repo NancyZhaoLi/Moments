@@ -36,13 +36,13 @@ extension NSDate {
 
 class NewMomentManager {
     
-    private var canvas : NewMomentCanvasViewController?
+    var canvas : NewMomentCanvasViewController?
     private var savePage : NewMomentSavePageViewController?
-    private var textManager : TextItemManager = TextItemManager()
+    /*private var textManager : TextItemManager = TextItemManager()
     private var imageManager : ImageItemManager = ImageItemManager()
     private var audioManager : AudioItemManager = AudioItemManager()
     private var videoManager : VideoItemManager = VideoItemManager()
-    private var stickerManager : StickerItemManager = StickerItemManager()
+    private var stickerManager : StickerItemManager = StickerItemManager()*/
     
     
     // Moment Entry Data
@@ -63,9 +63,14 @@ class NewMomentManager {
         self.canvas = canvas
         setIdPrefix()
         setIdSuffix()
-        initItemManagers()
+        //initItemManagers()
         setDefaultTitle()
     }
+    
+    /*********************************************************************************
+     
+        LOADING FROM PAST MOMENTS
+     *********************************************************************************/
     
     func loadCanvas(canvas: NewMomentCanvasViewController, moment: MomentEntry) {
         self.canvas = canvas
@@ -88,29 +93,102 @@ class NewMomentManager {
         self.idSuffix = String(moment.id % Int64(10000))
         self.isNewMoment = false
 
-        initItemManagers()
+        //initItemManagers()
         for textItem in moment.textItemEntries {
-            debug("[loadCanvas] - textItem: " + String(textItem))
-            self.canvas!.addNewViewController (textManager.loadText(textItem))
+            print(textItem)
+            self.canvas!.addNewViewController(loadText(textItem), zPosition: textItem.zPosition)
         }
         
         for imageItem in moment.imageItemEntries {
-            self.canvas!.addNewViewController(imageManager.loadImage(imageItem))
+            print(imageItem)
+            self.canvas!.addNewViewController(loadImage(imageItem), zPosition: imageItem.zPosition)
         }
         
         for audioItem in moment.audioItemEntries {
-            self.canvas!.addNewViewController(audioManager.loadAudio(audioItem))
+            self.canvas!.addNewViewController(loadAudio(audioItem), zPosition: audioItem.zPosition)
         }
         
         for videoItem in moment.videoItemEntries {
-            self.canvas!.addNewViewController(videoManager.loadVideo(videoItem))
+            self.canvas!.addNewViewController(loadVideo(videoItem))
         }
         
         for stickerItem in moment.stickerItemEntries {
-            self.canvas!.addNewViewController(stickerManager.loadSticker(stickerItem))
+            self.canvas!.addNewViewController(loadSticker(stickerItem))
+        }
+        
+        self.canvas!.enableUserInteraction()
+    }
+
+    
+    func loadText(textItem: TextItemEntry) -> TextItemViewController {
+        let newTextVC = TextItemViewController(manager: self)
+        newTextVC.addText(textItem)
+        
+        return newTextVC
+    }
+    
+    func loadImage(imageItem: ImageItemEntry) -> ImageItemViewController {
+        let newImageVC = ImageItemViewController(manager: self)
+        newImageVC.addImage(imageItem)
+        
+        return newImageVC
+    }
+    
+    func loadAudio(audioItem: AudioItemEntry) -> AudioItemViewController {
+        let newAudioVC = AudioItemViewController(manager: self)
+        newAudioVC.addAudio(audioItem)
+        
+        return newAudioVC
+    }
+    
+    func loadVideo(videoItem: VideoItemEntry) -> VideoItemViewController {
+        return VideoItemViewController()
+    }
+    
+    func loadSticker(stickerItem: StickerItemEntry) -> StickerItemViewController {
+        return StickerItemViewController()
+    }
+    
+    
+    /*********************************************************************************
+     
+     NEW MOMENT ELEMENTS
+     
+     *********************************************************************************/
+    
+    func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
+        let newTextVC = TextItemViewController(manager: self)
+        newTextVC.addText(text, location: location, textAttribute: textAttribute)
+            
+        return newTextVC
+    }
+    
+    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {
+        let newImageVC = ImageItemViewController(manager: self)
+        newImageVC.addImage(image, location: location, editingInfo: editingInfo)
+        
+        return newImageVC
+    }
+    
+    func addAudio(audioURL: NSURL, location: CGPoint) {
+        do {
+            let audioPlayer = try AVAudioPlayer(contentsOfURL: audioURL)
+            if let audioItemVC: AudioItemViewController = canvas!.storyboard?.instantiateViewControllerWithIdentifier("audioPlayer") as? AudioItemViewController {
+                audioItemVC.player = audioPlayer
+                audioItemVC.manager = self
+                audioItemVC.view.center = location
+                
+                canvas!.view.addSubview(audioItemVC.view)
+                canvas!.addChildViewController(audioItemVC)
+            }
+        } catch {
+            debug(debugPrefix + "audio player cannot be created")
         }
     }
 
+    
+    
+    
     
     func setSavePage(savePage: NewMomentSavePageViewController) {
         self.savePage = savePage
@@ -123,26 +201,7 @@ class NewMomentManager {
         
         return self.momentFavourite
     }
-    
-    func initItemManagers(){
-        self.textManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
-        self.imageManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
-        self.audioManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
-        self.videoManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
-        self.stickerManager.setCanvasAndManager(self.canvas!, manager: self, idPrefix: self.idPrefix)
-    }
-    
-    func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
-        return self.textManager.addText(text, location: location, textAttribute: textAttribute)
-    }
-    
-    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {
-        return self.imageManager.addImage(image, location: location, editingInfo: editingInfo)
-    }
-    
-    func addAudio(audioURL: NSURL, location: CGPoint) {
-        self.audioManager.addAudio(audioURL, location: location)
-    }
+
     
     func setDefaultTitle() {
         self.momentTitle = "Moment - " + self.momentDate.day + "/" + self.momentDate.month + "/" + self.momentDate.longYear
@@ -160,7 +219,12 @@ class NewMomentManager {
         }
     }
     
-    
+    /*********************************************************************************
+     
+     SAVING TO COREDATA
+     
+     *********************************************************************************/
+
     func saveMomentEntry() {
         updateTitle()
         updateColour()
@@ -188,12 +252,23 @@ class NewMomentManager {
         
         self.moment!.category = self.momentCategory
         self.moment!.backgroundColour = self.canvas!.currentColor()
+    
+        for v in self.canvas!.view.subviews {
+            print(v)
+        }
         
-        self.textManager.notifySaveMoment()
-        self.imageManager.notifySaveMoment()
-        self.audioManager.notifySaveMoment()
-        self.videoManager.notifySaveMoment()
-        self.stickerManager.notifySaveMoment()
+        
+        for var zPosition = 0; zPosition < self.canvas!.view.subviews.count; zPosition++ {
+            let view = self.canvas!.view.subviews[zPosition]
+            if let view = view as? UITextView {
+                let entry = TextItemEntry(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition)
+                self.moment!.addItemEntry(entry)
+            } else if let view = view as? UIImageView {
+                let imageItemEntry = ImageItemEntry(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
+                self.moment!.addItemEntry(imageItemEntry)
+            }
+        }
+
         debugEnd("saveMomentEntry")
     }
     
@@ -212,16 +287,7 @@ class NewMomentManager {
         return id
     }
 
-    func addTextItemEntry(entry: TextItemEntry) {
-        self.moment!.addTextItemEntry(entry)
-    }
-    
-    func addImageItemEntry(entry: ImageItemEntry) {
-        debugBegin("addImageItemEntry")
-        self.moment!.addImageItemEntry(entry)
-        debugEnd("addImageItemEntry")
-    }
-    
+/*
     func addAudioItemEntry(entry: AudioItemEntry) {
         debugBegin("addAudioItemEntry")
         self.moment!.addAudioItemEntry(entry)
@@ -238,7 +304,7 @@ class NewMomentManager {
         debugBegin("addStickerItemEntry")
         self.moment!.addStickerItemEntry(entry)
         debugEnd("addStickerItemEntry")
-    }
+    }*/
     
     func getIsNewMoment() -> Bool {
         return self.isNewMoment
@@ -260,14 +326,6 @@ class NewMomentManager {
         if (self.testMode) {
             print(self.debugPrefix + "[" + fn + "] - end")
         }
-    }
-    
-    func setEditMode(editMode: Bool) {
-        textManager.setEditMode(editMode)
-        imageManager.setEditMode(editMode)
-        audioManager.setEditMode(editMode)
-        videoManager.setEditMode(editMode)
-        stickerManager.setEditMode(editMode)
     }
 
 }

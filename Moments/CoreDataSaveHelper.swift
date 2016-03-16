@@ -74,12 +74,11 @@ class CoreDataSaveHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("TextItem", inManagedObjectContext: context)
         
-        var textItemMO = TextItem(entity: entity!, insertIntoManagedObjectContext: context)
-        textItemMO.id = NSNumber(longLong: textItem.id)
-        textItemMO.content = textItem.getContent()
-        textItemMO.frame = NSStringFromCGRect(textItem.getFrame())
-        textItemMO.rotation = NSNumber(float: textItem.getRotation())
-        textItemMO.otherAttribute = NSKeyedArchiver.archivedDataWithRootObject(textItem.getOtherAttribute())
+        let textItemMO = TextItem(entity: entity!, insertIntoManagedObjectContext: context)
+        textItemMO.content = textItem.content
+        textItemMO.frame = NSStringFromCGRect(textItem.frame)
+        textItemMO.rotation = NSNumber(float: textItem.rotation)
+        textItemMO.otherAttribute = NSKeyedArchiver.archivedDataWithRootObject(textItem.otherAttribute)
         
         do {
             try context.save()
@@ -95,9 +94,8 @@ class CoreDataSaveHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("ImageItem", inManagedObjectContext: context)
         
-        var imageItemMO = ImageItem(entity: entity!, insertIntoManagedObjectContext: context)
-        imageItemMO.id = NSNumber(longLong: imageItem.id)
-        //imageItemMO.url = imageItem.url
+        let imageItemMO = ImageItem(entity: entity!, insertIntoManagedObjectContext: context)
+
         imageItemMO.image = UIImagePNGRepresentation(imageItem.image)
         imageItemMO.frame = NSStringFromCGRect(imageItem.frame)
         imageItemMO.rotation = NSNumber(float: imageItem.rotation)
@@ -119,7 +117,7 @@ class CoreDataSaveHelper {
         let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
         
         
-        var categoryMO = Category(entity: entity!, insertIntoManagedObjectContext: context)
+        let categoryMO = Category(entity: entity!, insertIntoManagedObjectContext: context)
         categoryMO.colour = category.colour
         categoryMO.name = category.name
         

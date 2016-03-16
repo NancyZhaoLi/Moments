@@ -110,11 +110,11 @@ class CoreDataFetchHelper {
             let results = try context.executeFetchRequest(request)
             if results.count > 0 {
                 let result = results[0].valueForKey("id")!.longLongValue
-                if entity == "Moment" {
+                //if entity == "Moment" {
                     return result % Int64("10000")!
-                } else {
-                    return result % ItemType.modValue
-                }
+                //} else {
+                //    return result % ItemType.modValue
+                //}
             } else {
                 return nil
             }

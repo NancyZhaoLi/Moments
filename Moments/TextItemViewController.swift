@@ -17,7 +17,7 @@ extension String {
 
 class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate {
 
-    var manager: TextItemManager!
+    var manager: NewMomentManager!
     var parentView: UIView!
     var editViewNavController: EditTextItemNavigationController!
     
@@ -30,14 +30,14 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     convenience init() {
-        self.init(manager: TextItemManager())
+        self.init(manager: NewMomentManager())
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: TextItemManager) {
+    init(manager: NewMomentManager) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
@@ -77,9 +77,11 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
 
     func addText(textItem: TextItemEntry) {
-        let textItemView = UITextView(frame: textItem.getFrame())
-        let text = textItem.getContent()
+        let textItemView = UITextView(frame: textItem.frame)
+        let text = textItem.content
         let textAttribute = TextItemOtherAttribute(colour: textItem.getTextColour(), font: textItem.getTextFont(), alignment: textItem.getTextAlignment())
+        let zPosition = textItem.zPosition
+        textItemView.layer.zPosition = CGFloat(zPosition)
 
         initEditTextItemViewController(text, textAttribute: textAttribute)
         initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
@@ -172,7 +174,10 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     func draggedView(sender: UIPanGestureRecognizer) {
         if let senderView = sender.view {
             parentView.bringSubviewToFront(senderView)
-            let translation = sender.translationInView(parentView)
+            var translation = sender.translationInView(parentView)
+            if senderView.frame.minY + translation.y <= 60 {
+                translation.y = 60 - senderView.frame.minY
+            }
             senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
             sender.setTranslation(CGPointZero, inView: parentView)
         }

@@ -10,23 +10,22 @@ import Foundation
 import UIKit
 
 class AudioItemEntry {
-    let id: Int64
-    var frame : CGRect
+    let frame : CGRect!
     var url : NSURL?
-    var rotation : Float = 0
-    
-    init(id: Int64, frame : CGRect) {
-        self.id = id
+    let persistentID: Int64!
+    let zPosition: Int!
+
+    init(frame : CGRect, persistentID: Int64, zPosition: Int) {
         self.frame = frame
+        self.persistentID = persistentID
+        self.zPosition = zPosition
     }
     
-    func setURL(url: NSURL) {
-        self.url = url
+    init(audioItemMO: AudioItem) {
+        self.frame = CGRectFromString(audioItemMO.frame!)
+        self.url =  audioItemMO.url as? NSURL
+        self.persistentID = audioItemMO.persistentID!.longLongValue
+        self.zPosition = audioItemMO.zPosition!.integerValue
     }
-    
-    func setRotation(rotation : Float) {
-        self.rotation = rotation
-    }
-    
     
 }

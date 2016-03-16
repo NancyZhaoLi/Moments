@@ -10,39 +10,22 @@ import Foundation
 import UIKit
 
 class ImageItemEntry {
-    let id: Int64
-    var frame : CGRect
-    var url : NSURL?
-    var rotation : Float = 0
-    var image: UIImage
+    let frame : CGRect!
+    let image: UIImage!
+    let rotation : Float!
+    let zPosition: Int!
     
-    init(id: Int64, frame : CGRect, image: UIImage) {
-        self.id = id
+    init(frame : CGRect, image: UIImage, rotation: Float, zPosition: Int) {
         self.frame = frame
         self.image = image
+        self.rotation = rotation
+        self.zPosition = zPosition
     }
     
     init(imageItemMO: ImageItem) {
-        self.id = imageItemMO.id!.longLongValue
         self.frame = CGRectFromString(imageItemMO.frame!)
-        //self.url = imageItemMO.url as! NSURL
         self.rotation = imageItemMO.rotation!.floatValue
-        if let data = imageItemMO.image {
-            self.image = UIImage(data: data)!
-        } else {
-            print("fail to get image from ImageItem")
-        }
         self.image = UIImage(data: imageItemMO.image!)!
+        self.zPosition = imageItemMO.zPosition!.integerValue
     }
-    
-    
-    func setURL(url: NSURL) {
-        self.url = url
-    }
-    
-    func setRotation(rotation : Float) {
-        self.rotation = rotation
-    }
-    
-    
 }

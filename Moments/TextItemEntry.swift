@@ -37,6 +37,7 @@ class TextItemOtherAttribute: NSObject, NSCoding {
             let font = aDecoder.decodeObjectForKey("font") as? UIFont,
             let intAlignment = aDecoder.decodeObjectForKey("alignment") as? Int
         else {
+            print("nothing")
             return nil
         }
         
@@ -53,22 +54,26 @@ class TextItemOtherAttribute: NSObject, NSCoding {
 }
 
 class TextItemEntry {
-    let id: Int64
-    private var frame : CGRect
-    private var content : String?
-    private var rotation : Float = 0
-    private var otherAttribute : TextItemOtherAttribute = TextItemOtherAttribute()
+    let content : String!
+    let frame : CGRect!
+    var otherAttribute : TextItemOtherAttribute!
+    let rotation : Float!
+    let zPosition: Int!
 
-    init(id: Int64, frame : CGRect) {
-        self.id = id
+    init(content: String, frame : CGRect, otherAttribute: TextItemOtherAttribute, rotation: Float, zPosition: Int) {
+        self.content = content
         self.frame = frame
+        self.otherAttribute = otherAttribute
+        self.rotation = rotation
+        self.zPosition = zPosition
     }
     
     init(textItemMO: TextItem) {
-        self.id = textItemMO.id!.longLongValue
-        self.frame = CGRectFromString(textItemMO.frame!)
         self.content = textItemMO.content
+        self.frame = CGRectFromString(textItemMO.frame!)
         self.rotation = textItemMO.rotation!.floatValue
+        self.otherAttribute = TextItemOtherAttribute()
+        self.zPosition = textItemMO.zPosition!.integerValue
         
         if let data = textItemMO.otherAttribute as? NSData {
             if let attribute = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? TextItemOtherAttribute  {
@@ -80,38 +85,10 @@ class TextItemEntry {
         } else {
             print("cannot convert to NSData")
         }
-    }
-    
-  
-    func setContent(content: String) {
-        self.content = content
-    }
-  
-    func setRotation(rotation : Float) {
-        self.rotation = rotation
-    }
-  
-    func setOtherAttribute(colour: UIColor, font: UIFont, alignment: NSTextAlignment) {
-        self.otherAttribute.colour = colour
-        self.otherAttribute.font = font
-        self.otherAttribute.alignment = alignment
+        
+        
     }
 
-    func getFrame() -> CGRect {
-        return self.frame
-    }
-    
-    func getContent() -> String {
-        if let content = self.content {
-            return content
-        }
-        
-        return ""
-    }
-    
-    func getRotation() -> Float {
-        return self.rotation
-    }
     
     func getTextColour() -> UIColor {
         return self.otherAttribute.colour
@@ -123,10 +100,6 @@ class TextItemEntry {
     
     func getTextAlignment() -> NSTextAlignment {
         return self.otherAttribute.alignment
-    }
-    
-    func getOtherAttribute() -> TextItemOtherAttribute {
-        return self.otherAttribute
     }
     
 }

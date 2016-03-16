@@ -15,7 +15,7 @@ class AudioItemViewController: UIViewController {
     var player: AVAudioPlayer?
     var havePlayed: Bool = false
     var timer: NSTimer!
-    var manager: AudioItemManager!
+    var manager: NewMomentManager!
     var parentView: UIView!
     
     @IBOutlet weak var playOrPauseButton: UIButton!
@@ -31,14 +31,14 @@ class AudioItemViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(manager: AudioItemManager())
+        self.init(manager: NewMomentManager())
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: AudioItemManager) {
+    init(manager: NewMomentManager) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager

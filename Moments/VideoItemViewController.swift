@@ -13,7 +13,7 @@ import AVFoundation
 
 class VideoItemViewController: UIViewController {
 
-    var manager: AudioItemManager!
+    var manager: NewMomentManager!
     var parentView: UIView!
     
     override func viewDidLoad() {
@@ -25,14 +25,14 @@ class VideoItemViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(manager: AudioItemManager())
+        self.init(manager: NewMomentManager())
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: AudioItemManager) {
+    init(manager: NewMomentManager) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager

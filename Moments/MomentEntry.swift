@@ -30,7 +30,7 @@ class MomentEntry {
     }
     
     init(momentMO: Moment) {
-        self.id =  (momentMO.id?.longLongValue)!
+        self.id =  momentMO.id!.longLongValue
         self.date = momentMO.date!
         self.title = momentMO.title!
 
@@ -38,14 +38,13 @@ class MomentEntry {
         
         for textItemMO in momentMO.containedTextItem! {
             let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
-            addTextItemEntry(textItem)
+            addItemEntry(textItem)
         }
         
         for imageItemMO in momentMO.containedImageItem! {
             let imageItem = ImageItemEntry(imageItemMO: imageItemMO as! ImageItem)
-            addImageItemEntry(imageItem)
+            addItemEntry(imageItem)
         }
-        
     }
   
     func setBackgroundColour(colour: UIColor) {
@@ -56,23 +55,23 @@ class MomentEntry {
         self.favourite = favourite
     }
     
-    func addTextItemEntry(text: TextItemEntry) {
+    func addItemEntry(text: TextItemEntry) {
         textItemEntries.append(text)
     }
     
-    func addImageItemEntry(image: ImageItemEntry) {
+    func addItemEntry(image: ImageItemEntry) {
         imageItemEntries.append(image)
     }
     
-    func addAudioItemEntry(audio: AudioItemEntry) {
+    func addItemEntry(audio: AudioItemEntry) {
         audioItemEntries.append(audio)
     }
     
-    func addVideoItemEntry(video: VideoItemEntry) {
+    func addItemEntry(video: VideoItemEntry) {
         videoItemEntries.append(video)
     }
     
-    func addStickerItemEntry(sticker: StickerItemEntry) {
+    func addItemEntry(sticker: StickerItemEntry) {
         stickerItemEntries.append(sticker)
     }
     

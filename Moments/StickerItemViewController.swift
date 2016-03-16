@@ -10,7 +10,7 @@ import UIKit
 
 class StickerItemViewController: UIViewController {
     
-    var manager: StickerItemManager!
+    var manager: NewMomentManager!
     var parentView: UIView!
     
     override func viewDidLoad() {
@@ -22,14 +22,14 @@ class StickerItemViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(manager: StickerItemManager())
+        self.init(manager: NewMomentManager())
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: StickerItemManager) {
+    init(manager: NewMomentManager) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager

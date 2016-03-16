@@ -10,7 +10,7 @@ import UIKit
 
 class ImageItemViewController: UIViewController {
     
-    var manager: ImageItemManager!
+    var manager: NewMomentManager!
     var parentView: UIView!
 
     override func viewDidLoad() {
@@ -22,14 +22,14 @@ class ImageItemViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(manager: ImageItemManager())
+        self.init(manager: NewMomentManager())
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: ImageItemManager) {
+    init(manager: NewMomentManager) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
@@ -66,6 +66,8 @@ class ImageItemViewController: UIViewController {
     func addImage(imageItem: ImageItemEntry) {
         let imageView =  UIImageView(frame: imageItem.frame)
         imageView.image = imageItem.image
+        imageView.layer.zPosition = CGFloat(imageItem.zPosition)
+        
         self.view = imageView
         initGestureRecognizer()
     }
@@ -122,7 +124,10 @@ class ImageItemViewController: UIViewController {
     func draggedView(sender: UIPanGestureRecognizer) {
         if let senderView = sender.view {
             parentView.bringSubviewToFront(senderView)
-            let translation = sender.translationInView(parentView)
+            var translation = sender.translationInView(parentView)
+            if senderView.frame.minY + translation.y <= 65 {
+                translation.y = 65 - senderView.frame.minY
+            }
             senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
             sender.setTranslation(CGPointZero, inView: parentView)
         }

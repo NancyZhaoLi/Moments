@@ -26,14 +26,14 @@ OKAY - Image should be be porportionate to their original image size.
 TEST - Slower the rate of pinching
 OKAY - When dragging item, they should be at the top of all items
 - Default Category of UnXXX when creating memory or previously selected category
-- EditTextItem view should come down a bit
-- Only allow movement and gesture recognition if it is in hand-mode?
-- Save the order of the items in the superview
+OKAY - EditTextItem view should come down a bit
+OKAY - Only allow movement and gesture recognition if it is in hand-mode?
+OKAY - Save the order of the items in the superview
 TEST - Wait 2 seconds before dismiss the scroll view for font selection
 - Font list seems off and there are new fonts
 - Algorithm for size text of slider if off
 - Change label and state when the recording is finished playing (AudioItemVC)
-- Bound the top of where you drag things to or when created
+TEST - Bound the top of where you drag things to or when created
 
 ------------------------------------------------------------------------------------------------
 

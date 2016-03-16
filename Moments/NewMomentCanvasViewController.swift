@@ -61,13 +61,14 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     @IBAction func selectTouchMode(sender: AnyObject) {
+        print("touch")
         if let title = sender.currentTitle {
             self.touchMode = TouchMode(rawValue: title!)!
             if (title == "View" && !(addItemBar.hidden)) {
                 hideAddItemBar()
-                self.manager.setEditMode(true)
+                enableUserInteraction()
             } else if (title != "View") {
-                self.manager.setEditMode(false)
+                disableUserInteraction()
             }
         }
     }
@@ -105,6 +106,19 @@ class NewMomentCanvasViewController: UIViewController,
     func hideAddItemBar() {
         addItemBar.hidden = true
     }
+    
+    func enableUserInteraction() {
+        for vc in self.childViewControllers {
+            vc.view.userInteractionEnabled = true
+        }
+    }
+    
+    func disableUserInteraction() {
+        for vc in self.childViewControllers {
+            vc.view.userInteractionEnabled = false
+        }
+    }
+    
     
     @IBOutlet weak var otherOptions: UIButton!
     
@@ -269,6 +283,13 @@ class NewMomentCanvasViewController: UIViewController,
     func addNewViewController(vc: UIViewController) {
         self.view.addSubview(vc.view)
         self.addChildViewController(vc)
+    }
+    
+    func addNewViewController(vc: UIViewController, zPosition: Int) {
+        self.view.insertSubview(vc.view, atIndex: zPosition)
+        vc.view.layer.zPosition = 0.0
+        self.addChildViewController(vc)
+
     }
     
     
