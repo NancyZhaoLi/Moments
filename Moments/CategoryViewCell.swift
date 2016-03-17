@@ -14,6 +14,7 @@ class CategoryViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageItem: UIImageView!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,7 +28,6 @@ class CategoryViewCell: UICollectionViewCell {
     
     func constructCategoryCell() {
         if let categoryInfo = category {
-            
             constructName(categoryInfo)
             constructImageItem(categoryInfo)
             
@@ -38,9 +38,10 @@ class CategoryViewCell: UICollectionViewCell {
     func constructName(categoryInfo: CategoryEntry) {
         
         name.text = categoryInfo.name
-        name.textColor = UIColor.blackColor()
-        name.frame = CGRect(x: 0, y: 10, width: self.frame.width, height: 30)
-        name.font = UIFont(name: "Helvetica", size: 15.0)
+        name.textColor = UIColor(white: 0.0, alpha: 0.7)
+        name.backgroundColor = UIColor.clearColor()
+        name.frame = CGRect(x: 0, y: 46, width: self.frame.width, height: 30)
+        name.font = UIFont(name: "Helvetica-Bold", size: 15.0)
         name.textAlignment = NSTextAlignment.Center
         name.lineBreakMode = NSLineBreakMode.ByWordWrapping
         name.numberOfLines = 0
@@ -50,7 +51,7 @@ class CategoryViewCell: UICollectionViewCell {
     func constructImageItem(categoryInfo: CategoryEntry) {
         
         imageItem.backgroundColor = categoryInfo.colour
-        imageItem.frame = CGRect(x: 20, y: 40, width: self.frame.width - 40, height: self.frame.width - 40)
+        imageItem.frame = CGRect(x: 20, y: 20, width: self.frame.width - 40, height: self.frame.width - 40)
         
     }
     
