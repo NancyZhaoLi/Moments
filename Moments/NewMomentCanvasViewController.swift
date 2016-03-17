@@ -53,11 +53,14 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     @IBAction func addItem(sender: AnyObject) {
-        if (addItemBar.hidden) {
+        /*if (addItemBar.hidden) {
             displayAddItemBar()
         } else {
             hideAddItemBar()
-        }
+        }*/
+        var addItemPopover = NewItemViewController()
+        presentViewController(addItemPopover, animated: true, completion: nil)
+        
     }
     
     @IBAction func selectTouchMode(sender: AnyObject) {
