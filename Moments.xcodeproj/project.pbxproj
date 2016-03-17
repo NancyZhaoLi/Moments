@@ -76,7 +76,6 @@
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */; };
 		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
-		D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */ = {isa = PBXBuildFile; fileRef = D045946F1C7AACCD00A1AD12 /* REAME - Agenda */; };
 		D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */; };
 		D048BEEB1C7D971800BD3115 /* VideoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */; };
 		D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */; };
@@ -187,7 +186,6 @@
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioItemViewController.swift; path = ../AudioItemViewController.swift; sourceTree = "<group>"; };
 		D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Core Data Tutorial"; sourceTree = "<group>"; };
-		D045946F1C7AACCD00A1AD12 /* REAME - Agenda */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Agenda"; sourceTree = "<group>"; };
 		D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherCanvasOptionViewController.swift; sourceTree = "<group>"; };
 		D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemViewController.swift; sourceTree = "<group>"; };
 		D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemViewController.swift; sourceTree = "<group>"; };
@@ -332,7 +330,6 @@
 			isa = PBXGroup;
 			children = (
 				D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */,
-				D045946F1C7AACCD00A1AD12 /* REAME - Agenda */,
 				468BC27F1C7A52BA00D93268 /* README - Core Data Entity  */,
 			);
 			name = Others;
@@ -645,7 +642,6 @@
 				769DD8021C76AABE00FC883E /* LaunchScreen.storyboard in Resources */,
 				468BC2801C7A52BA00D93268 /* README - Core Data Entity  in Resources */,
 				463467061C9B3A59003361EE /* StickerViewCell.xib in Resources */,
-				D04594701C7AACCD00A1AD12 /* REAME - Agenda in Resources */,
 				769DD7FF1C76AABE00FC883E /* Assets.xcassets in Resources */,
 				769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */,
 				760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */,
