@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
-
+/*
 
 struct sticker {
     var image : UIImage
     var name : String
 
 }
+
 
 class CategoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -71,7 +72,7 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
     //---------------------This function can be put into other places----------------
     
     //this will be later put in CoreDataFetchHelper
-    func fetchCategoriesFromCoreData() -> [Category] {
+   /* func fetchCategoriesFromCoreData() -> [Category] {
         let defaultFetchSize = 20
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -101,7 +102,7 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
             fatalError("Failure to fetch context: \(error)")
         }
         
-    }
+    }*/
 
     //==============================================================================
     
@@ -110,14 +111,15 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
     
     
     //-----------------read data and store-----------------------------------------
-    func getCategoriesFromCoreData(){
+   /* func getCategoriesFromCoreData(){
         home = fetchCategoriesFromCoreData()
         print("printing home")
         print(home)
         //mainpage = CoreDataFetchHelper.fetchCategorysFromCoreData()
         
         
-    }
+    }*/
+    /*
     
     func addCategoryFromCoreData(cat : Category){
         
@@ -151,7 +153,8 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
         
         
         
-    }
+    }*/
+    
     
 
     //==============================================================================
@@ -231,7 +234,7 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let cell = CategoryCollection.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CategoryViewCell
         
-        print("cell's lable is " + cell.name.text!)
+        //print("cell's lable is " + cell.name.text!)
        
         //cell.setCellName(searches[indexPath.row].name)
         
@@ -251,7 +254,7 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
         }*/
         
         
-        cell.setCellName( searches[indexPath.row].name)
+        //cell.setCellName( searches[indexPath.row].name)
         cell.imageItem.image = searches[indexPath.row].image
        // cell.backgroundColor = searches[indexPath.row].colour
         
@@ -288,6 +291,7 @@ class CategoryViewController: UIViewController, UICollectionViewDataSource, UICo
 
 
 // Search Function
+/*
 extension CategoryViewController : UITextFieldDelegate {
     
     func searchCategory(searchTerm: String) -> Void{
@@ -339,14 +343,15 @@ extension CategoryViewController : UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+
     
     
     
     
     
     
-    
-}
+}*/
+
 
 
 
@@ -408,7 +413,7 @@ completion:nil];
 
 ---------------------------------------------------------*/
 
-
+*/
 
 
 

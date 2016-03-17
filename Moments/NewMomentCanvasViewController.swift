@@ -176,10 +176,12 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showEditTextView" {
+        if segue.identifier == "addText" {
             let vc = segue.destinationViewController as! EditTextItemNavigationController
             vc.modalPresentationStyle = .OverCurrentContext
             vc.viewDelegate = self
+        } else if segue.identifier == "addSticker" {
+            
         } else if segue.identifier == "newMomentToSavePageSegue" {
             savePageAccessed = true
             self.savePage = segue.destinationViewController as? NewMomentSavePageViewController
@@ -231,7 +233,7 @@ class NewMomentCanvasViewController: UIViewController,
      ******************************************************************/
     
     func addText(){
-        self.performSegueWithIdentifier("showEditTextView", sender: self)
+        self.performSegueWithIdentifier("addText", sender: self)
     }
     
     func addImage(){
@@ -256,7 +258,7 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addSticker() {
-
+        self.performSegueWithIdentifier("addSticker", sender: self)
     }
     
     
