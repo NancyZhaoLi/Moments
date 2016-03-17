@@ -1,0 +1,69 @@
+Xin
+------------------------------------------------------------------------------------------------
+---------------- TEMPLATE MODE --------------------------------------------------
+
+
+---------------- NEW ITEM POPOVER ------------------------------------------------
+  - Button
+    - Location and Layout
+    - Image
+    - Segue
+  - Animation
+---------------- NEW MOMENT SAVE PAGE ---------------------------------------------
+BUG - Default Category
+- UI Change?
+---------------- NEW MOMENT CANVAS - CORE DATA ------------------------------------
+TEST - text
+TEST - image
+- Audio
+- Video
+- Sticker
+---------------- NEW MOMENT CANVAS - ADD ITEM -------------------------------------
+BUG - Text Item
+  BUG - Slider for text size is off
+  BUG - Better width and height calculation algorithm
+  BUG - Font list seems duplicated or off
+  TEST BUG - 2s delay after selecting the font from scroller
+- Image Item
+  - Camera option
+    - Override picker and add button?
+  - Incoportate sticker in image?
+- Audio Item
+  - Recorder
+  - Player
+    BUG - Change label and state when the recording is finished playing (AudioItemVC)
+- Video Item
+  - Camera
+  - File?
+  - Player
+- Sticker Item
+
+
+---------------- NEW MOMENT CANVAS - GESTURE --------------------------------------
+TEST BUG - Always go on top of other things
+- Tap
+  TEST - text
+- Long Press to delete
+  - All Item
+- Rotation
+  - text
+  - image
+- Drag
+  BUG - bound the top
+  TEST - text
+  TEST - image
+  - audio
+  - video
+  - sticker
+- Pinch
+  TEST BUG - rate of pinch
+  BUG - bound the top
+  - Text
+    TEST - Scale both width and height
+    - Scale width only
+    - Scale height only
+  TEST Image
+  - Audio
+  - Video
+  - Sticker
+------------------------------------------------------------------------------------------------
