@@ -12,15 +12,6 @@ import AVKit
 import AVFoundation
 import CoreData
 
-enum TouchMode : String {
-    case Text = "Text",
-         Image = "Image",
-         Audio = "Audio",
-         Video = "Video",
-         Sticker = "Sticker",
-         View = "View"
-}
-
 class NewMomentCanvasViewController: UIViewController,
     UIPopoverPresentationControllerDelegate,
     UINavigationControllerDelegate,
@@ -37,48 +28,95 @@ class NewMomentCanvasViewController: UIViewController,
     var addItemPopover: NewItemViewController?
     var center: CGPoint = CGPointMake(windowWidth/2.0, windowHeight/2.0)
     
+    var nextButton: UIButton! = UIButton()
+    var viewButton: UIButton! = UIButton()
+    var favouriteButton: UIButton! = UIButton()
+    var settingButton: UIButton! = UIButton()
+    
     /*******************************************************************
      
-        IBOUTLET AND IBACTION
+        OVERRIDDEN UIVIEWCONTROLLER FUNCTIONS
      
      ******************************************************************/
     
-    @IBOutlet weak var favouriteSetter: UIButton!
-    var nextButton: UIButton! = UIButton()
-    
-    @IBAction func cancelAddNewMoment(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.removeFromParentViewController()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = UIColor.customBackgroundColor()
+        
+        if let moment = self.loadedMoment {
+            manager.loadCanvas(self, moment: moment)
+        } else {
+            manager.setCanvas(self)
+        }
+        
+        initUI()
     }
     
-    @IBAction func addItem(sender: AnyObject) {
+    func initUI() {
+        addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
+        
+        let cancelButton = UIButton(frame: CGRectMake(0,3,60,37))
+        cancelButton.addTarget(self, action: "cancelAddNewMoment", forControlEvents: .TouchUpInside)
+        cancelButton.setTitle("Cancel", forState: .Normal)
+        cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        nextButton = UIButton(frame: CGRectMake(windowWidth - 58,3,55,37))
+        nextButton.addTarget(self, action: "goToSavePage", forControlEvents: .TouchUpInside)
+        nextButton.setTitle("Next", forState: .Normal)
+        nextButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        let addButton = UIButton(frame: CGRectMake(0,0,40,40))
+        addButton.center = CGPointMake(20 + (windowWidth-40)/8, 30)
+        addButton.setBackgroundImage(UIImage(named: "add_icon.png")!, forState: .Normal)
+        addButton.addTarget(self, action: "addItem", forControlEvents: .TouchUpInside)
+        
+        viewButton = UIButton(frame: CGRectMake(0,0,40,40))
+        viewButton.center = CGPointMake(20 + (windowWidth-40) * 3/8, 30)
+        cancelViewMode()
+        
+        settingButton = UIButton(frame: CGRectMake(0,0,40,40))
+        settingButton.center = CGPointMake(20 + (windowWidth-40) * 5/8, 30)
+        settingButton.setBackgroundImage(UIImage(named: "setting_icon.png")!, forState: .Normal)
+        settingButton.addTarget(self, action: "setting", forControlEvents: .TouchUpInside)
+        
+        favouriteButton = UIButton(frame: CGRectMake(0,0,40,40))
+        favouriteButton.center = CGPointMake(20 + (windowWidth-40) * 7/8, 30)
+        cancelFavourite()
+        
+        let toolBar = UIToolbar(frame: CGRectMake(0,windowHeight - 60, windowWidth, 60))
+        toolBar.barTintColor = UIColor.customBlueColor()
+        toolBar.opaque = true
+        toolBar.addSubview(addButton)
+        toolBar.addSubview(viewButton)
+        toolBar.addSubview(settingButton)
+        toolBar.addSubview(favouriteButton)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: nextButton)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
+        self.view.addSubview(toolBar)
+    }
+    
+    
+    func addItem() {
         if let popover = self.addItemPopover {
             presentViewController(popover, animated: true, completion: nil)
         }
     }
     
-    @IBAction func selectTouchMode(sender: AnyObject) {
+    func cancelViewMode() {
+        viewButton.setBackgroundImage(UIImage(named: "view_close_icon.png")!, forState: .Normal)
+        viewButton.removeTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
+        viewButton.addTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
         enableUserInteraction()
     }
     
-    @IBAction func setFav(sender: AnyObject) {
-        if self.manager.setFavourite() {
-            addToFavourite()
-        } else {
-            removeFromFavourite()
-        }
+    func selectViewMode() {
+        viewButton.setBackgroundImage(UIImage(named: "view_open_icon.png")!, forState: .Normal)
+        viewButton.removeTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
+        viewButton.addTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
+        disableUserInteraction()
     }
-    
-    func addToFavourite(){
-        let image = UIImage(named: "FavouriteSelected") as UIImage?
-        favouriteSetter.setBackgroundImage(image, forState: .Normal)
-    }
-    
-    func removeFromFavourite() {
-        let image = UIImage(named: "Favourite") as UIImage?
-        favouriteSetter.setBackgroundImage(image, forState: .Normal)
-    }
-    
+
     func enableUserInteraction() {
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = true
@@ -91,44 +129,33 @@ class NewMomentCanvasViewController: UIViewController,
         }
     }
     
-    
-    @IBOutlet weak var otherOptions: UIButton!
-    
-    @IBAction func otherOptions(sender: AnyObject) {
-        presentViewController(OtherCanvasOptionViewController(sourceView:self.otherOptions, delegate: self), animated: true, completion: nil)
+    func cancelFavourite() {
+        favouriteButton.setBackgroundImage(UIImage(named: "favourite_unselected_icon.png")!, forState: .Normal)
+        favouriteButton.removeTarget(self, action: "cancelFavourite", forControlEvents: .TouchUpInside)
+        favouriteButton.addTarget(self, action: "selectFavourite", forControlEvents: .TouchUpInside)
+        self.manager.setFavourite()
     }
     
-    /*******************************************************************
-     
-        OVERRIDDEN UIVIEWCONTROLLER FUNCTIONS
-     
-     ******************************************************************/
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
-        
-        if let moment = self.loadedMoment {
-            manager.loadCanvas(self, moment: moment)
-        } else {
-            manager.setCanvas(self)
-        }
-        self.addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
-        
-        nextButton = UIButton(frame: CGRectMake(windowWidth - 58,3,55,37))
-        nextButton.addTarget(self, action: "goToSavePage", forControlEvents: .TouchUpInside)
-        nextButton.setTitle("Next", forState: .Normal)
-        nextButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: nextButton)
+    func selectFavourite() {
+        favouriteButton.setBackgroundImage(UIImage(named: "favourite_selected_icon.png")!, forState: .Normal)
+        favouriteButton.removeTarget(self, action: "selectFavourite", forControlEvents: .TouchUpInside)
+        favouriteButton.addTarget(self, action: "cancelFavourite", forControlEvents: .TouchUpInside)
+        self.manager.setFavourite()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.navigationController?.toolbarHidden = false
+    func setting() {
+        presentViewController(OtherCanvasOptionViewController(sourceView:settingButton, delegate: self), animated: true, completion: nil)
+    }
+    
+    func cancelAddNewMoment() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.removeFromParentViewController()
+        self.removeFromParentViewController()
     }
     
     func goToSavePage() {
-        performSegueWithIdentifier("newMomentToSavePageSegue", sender: self)
+        performSegueWithIdentifier("showSavePage", sender: self)
     }
     
     func loadSavePage() {
@@ -151,7 +178,7 @@ class NewMomentCanvasViewController: UIViewController,
             vc.viewDelegate = self
         } else if segue.identifier == "addSticker" {
             
-        } else if segue.identifier == "newMomentToSavePageSegue" {
+        } else if segue.identifier == "showSavePage" {
             self.savePage = segue.destinationViewController as? NewMomentSavePageViewController
             self.savePage!.canvas = self
             self.savePage!.manager = self.manager

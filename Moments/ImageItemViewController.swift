@@ -55,8 +55,9 @@ class ImageItemViewController: UIViewController {
             resizeRatio = imageMaxDimension/defaultMaxDimension
         }
         
-        let frame = CGRectMake(location.x, location.y, image.size.width/resizeRatio, image.size.height/resizeRatio)
+        let frame = CGRectMake(0,0, image.size.width/resizeRatio, image.size.height/resizeRatio)
         let imageView = UIImageView(frame: frame)
+        imageView.center = location
         
         imageView.image = image
         self.view = imageView

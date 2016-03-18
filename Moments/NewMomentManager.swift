@@ -38,12 +38,6 @@ class NewMomentManager {
     
     var canvas : NewMomentCanvasViewController?
     private var savePage : NewMomentSavePageViewController?
-    /*private var textManager : TextItemManager = TextItemManager()
-    private var imageManager : ImageItemManager = ImageItemManager()
-    private var audioManager : AudioItemManager = AudioItemManager()
-    private var videoManager : VideoItemManager = VideoItemManager()
-    private var stickerManager : StickerItemManager = StickerItemManager()*/
-    
     
     // Moment Entry Data
     var moment : MomentEntry?
@@ -79,7 +73,7 @@ class NewMomentManager {
         self.momentFavourite = moment.favourite
         
         if self.momentFavourite {
-            self.canvas!.addToFavourite()
+            self.canvas!.selectFavourite()
         }
         
         if let category = moment.category {
@@ -184,10 +178,6 @@ class NewMomentManager {
         }
     }
 
-    
-    
-    
-    
     func setSavePage(savePage: NewMomentSavePageViewController) {
         self.savePage = savePage
         self.savePage!.setDefaultMomentTitle(self.momentTitle)

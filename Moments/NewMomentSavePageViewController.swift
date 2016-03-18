@@ -41,10 +41,6 @@ class NewMomentSavePageViewController: UIViewController,
 
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.navigationController?.toolbarHidden = true
-    }
-    
     func displayCategories() {
         let categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
     

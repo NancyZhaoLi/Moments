@@ -1,8 +1,8 @@
 //
-//  NewItemPopoverViewController.swift
+//  NewItemViewController.swift
 //  Moments
 //
-//  Created by Mengyi LUO on 2016-03-17.
+//  Created by Xin Lin on 2016-03-17.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
@@ -19,7 +19,6 @@ protocol NewItemViewControllerDelegate {
     func addVideoFromCamera()
     func addVideoFromYoutube()
 }
-
 
 struct ItemType {
     var name: String
@@ -157,60 +156,13 @@ class NewItemViewController: UIViewController,
         }
     }
     
-    func addGoBackButton(view: UIView) {
-        let goBackButton = newButton(ItemType.goBack(), center: CGPointMake(width/2.0, height/2.0))
-        view.addSubview(goBackButton)
-    }
-    
-    func addDismissButton(view: UIView) {
-        let goBackToRootViewButton = newButton(ItemType.dismiss(), center: CGPointMake(width/2.0, height/2.0))
-        view.addSubview(goBackToRootViewButton)
-    }
-    
-    func addMoreItemsButton(view: UIView) {
-        let moreItems = ItemType.moreItems()
-        let moreItemsButton = newButton(moreItems, center: calCenter(userShortcut.count, total: userShortcut.count + 1))
-        view.addSubview(moreItemsButton)
-    }
-    
-    func calCenter(index: Int, total: Int) -> CGPoint {
-        let center = CGPointMake(width/2.0, height/2.0)
-        let radius: CGFloat = 120.0
-        let radian: CGFloat = (360.0 - (360.0/CGFloat(total) * CGFloat(index)) - 90.0) * CGFloat(M_PI) / 180.0
-        print(radian)
-        print(cos(radian))
-        let newX: CGFloat = radius * cos(radian) + center.x
-        let newY: CGFloat = radius * sin(radian) + center.y
-
-        return CGPointMake(newX, newY)
-    }
-    
     func initAnimation(sourceView: UIView?) {
         self.transitioningDelegate = self
         self.modalPresentationStyle = .Custom
     }
     
-    func presentationControllerForPresentedViewController(presented: UIViewController,
-        presentingViewController presenting: UIViewController,
-        sourceViewController source: UIViewController) -> UIPresentationController? {
-            
-            return CategoryPresentationController(presentedViewController: presented,
-                presentingViewController: presenting)
-    }
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController)-> UIViewControllerAnimatedTransitioning? {
-        return CategoryPresentationAnimationController()
-    }
-
-    func newButton(item: ItemType, center: CGPoint) -> UIButton {
-        let button = UIButton(frame: CGRectMake(0,0,80,80))
-        button.center = center
-        button.setImage(item.image, forState: .Normal)
-        button.addTarget(self, action: item.action, forControlEvents: .TouchUpInside)
-        
-        return button
-    }
-
+    // Button Target Functions
     func goBack() {
         self.view = rootView
     }
@@ -225,7 +177,7 @@ class NewItemViewController: UIViewController,
     }
     
     func addText() {
-        //self.dismiss()
+        self.dismiss()
         self.delegate?.addText()
     }
     
@@ -264,10 +216,57 @@ class NewItemViewController: UIViewController,
         self.delegate?.addVideoFromYoutube()
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first {
-           //print(touch.locationInView(self.view))
-        }
+
+    // Private Init Helper Functions
+    func newButton(item: ItemType, center: CGPoint) -> UIButton {
+        let button = UIButton(frame: CGRectMake(0,0,80,80))
+        button.center = center
+        button.setImage(item.image, forState: .Normal)
+        button.addTarget(self, action: item.action, forControlEvents: .TouchUpInside)
+        
+        return button
+    }
+    
+    private func addGoBackButton(view: UIView) {
+        let goBackButton = newButton(ItemType.goBack(), center: CGPointMake(width/2.0, height/2.0))
+        view.addSubview(goBackButton)
+    }
+    
+    private func addDismissButton(view: UIView) {
+        let goBackToRootViewButton = newButton(ItemType.dismiss(), center: CGPointMake(width/2.0, height/2.0))
+        view.addSubview(goBackToRootViewButton)
+    }
+    
+    private func addMoreItemsButton(view: UIView) {
+        let moreItems = ItemType.moreItems()
+        let moreItemsButton = newButton(moreItems, center: calCenter(userShortcut.count, total: userShortcut.count + 1))
+        view.addSubview(moreItemsButton)
+    }
+    
+    private func calCenter(index: Int, total: Int) -> CGPoint {
+        let center = CGPointMake(width/2.0, height/2.0)
+        let radius: CGFloat = 120.0
+        let radian: CGFloat = (360.0 - (360.0/CGFloat(total) * CGFloat(index)) - 90.0) * CGFloat(M_PI) / 180.0
+        print(radian)
+        print(cos(radian))
+        let newX: CGFloat = radius * cos(radian) + center.x
+        let newY: CGFloat = radius * sin(radian) + center.y
+        
+        return CGPointMake(newX, newY)
+    }
+    
+    
+    // Animation
+    func presentationControllerForPresentedViewController(presented: UIViewController,
+        presentingViewController presenting: UIViewController,
+        sourceViewController source: UIViewController) -> UIPresentationController? {
+            
+            return CategoryPresentationController(presentedViewController: presented,
+                presentingViewController: presenting)
+    }
+    
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController)-> UIViewControllerAnimatedTransitioning? {
+        return CategoryPresentationAnimationController()
     }
 
 }

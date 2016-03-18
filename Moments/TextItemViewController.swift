@@ -71,7 +71,8 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         let width : CGFloat = UIScreen.mainScreen().bounds.size.width - 20 - location.x
         let height : CGFloat = ((CGFloat(text.length) / width) + 5) * 20
         
-        let textItemView = UITextView(frame: CGRectMake(location.x, location.y, width, height))
+        let textItemView = UITextView(frame: CGRectMake(0,0, width, height))
+        textItemView.center = location
         
         initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
     }
