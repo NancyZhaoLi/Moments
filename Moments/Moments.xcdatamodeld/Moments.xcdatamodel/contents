@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
     <entity name="AudioItem" representedClassName=".AudioItem" syncable="YES">
         <attribute name="frame" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="persistentID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -10,7 +10,7 @@
     <entity name="Category" representedClassName=".Category" syncable="YES">
         <attribute name="colour" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="containedMoment" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="Moment" inverseName="inCategory" inverseEntity="Moment" syncable="YES"/>
+        <relationship name="containedMoment" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Moment" inverseName="inCategory" inverseEntity="Moment" syncable="YES"/>
     </entity>
     <entity name="ImageItem" representedClassName=".ImageItem" syncable="YES">
         <attribute name="frame" optional="YES" attributeType="String" syncable="YES"/>

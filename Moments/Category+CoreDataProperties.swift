@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Xin Lin on 2016-03-16.
+//  Created by Mengyi LUO on 2016-03-17.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,6 @@ extension Category {
 
     @NSManaged var colour: NSObject?
     @NSManaged var name: String?
-    @NSManaged var containedMoment: NSOrderedSet?
+    @NSManaged var containedMoment: NSSet?
 
 }
