@@ -29,26 +29,14 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
         
 
         
-        webView.loadHTMLString(htmlUrl, baseURL: NSBundle.mainBundle().bundleURL)
-        webView.scalesPageToFit = true
-        
-        
-        print("width: " + String(webView.frame.width))
-        print("height: " + String(webView.frame.width))
-        
-        for view in webView.subviews {
-            view.frame = CGRect(x: 0,y: 0,width: 400,height: 500)
-            print (view)
-        }
+      //  webView.loadHTMLString(htmlUrl, baseURL: NSBundle.mainBundle().bundleURL)
+      //  webView.scalesPageToFit = true
 
         
-      /*  let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
+        let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
 
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
-        print(self.webView.frame.width)
-        print(self.webView.frame.height)*/
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
-    }
+  }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
