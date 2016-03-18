@@ -212,25 +212,26 @@ class NewMomentCanvasViewController: UIViewController,
         self.presentViewController(image, animated: true, completion: nil)
     }
     
-    func addImage(){
-        let image = UIImagePickerController()
-        image.delegate = self
-        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        image.allowsEditing = true
-        self.presentViewController(image, animated: true, completion: nil)
-    }
-    
-    func addAudio(){
+    func addAudioFromRecorder(){
         let audioRecorder = AudioRecorderViewController(sourceView: self.view, delegate: self)
         
         self.performSegueWithIdentifier("newAudioRecording", sender: self)
     }
+
+    func addAudioFromMusic() {
+        
+    }
+
     
-    func addVideo(){
+    func addVideoFromCamera(){
         let video = MPMediaPickerController(mediaTypes: .AnyVideo)
         video.delegate = self
         video.allowsPickingMultipleItems = false
         self.presentViewController(video, animated: true, completion: nil)
+    }
+    
+    func addVideoFromYoutube() {
+    
     }
     
     func addSticker() {
