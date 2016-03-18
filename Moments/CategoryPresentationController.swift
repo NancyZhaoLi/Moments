@@ -58,7 +58,7 @@ class CategoryPresentationController: UIPresentationController {
         
         if let containerView = containerView {
             
-            return containerView.bounds.insetBy(dx: 30, dy: 200)
+            return containerView.bounds.insetBy(dx: 20, dy: 20)
         }
         return CGRect()
     }

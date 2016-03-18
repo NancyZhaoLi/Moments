@@ -2,23 +2,23 @@
 //  NewCategoryViewController.swift
 //  Moments
 //
-//  Created by Yuning Xue on 2016-03-06.
+//  Created by Xin Lin on 2016-03-06.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
 import UIKit
+import SwiftHSVColorPicker
 
 protocol NewCategoryViewControllerDelegate {
     func newCategory(controller: NewCategoryViewController, category: CategoryEntry)
 }
 
 class NewCategoryViewController: UIViewController,
-    UIViewControllerTransitioningDelegate,
-    ColourPickerViewControllerDelegate {
+    UIViewControllerTransitioningDelegate {
     
     var delegate: NewCategoryViewControllerDelegate?
     var categoryName: UITextField!
-    var categoryColour: UIButton!
+    var categoryColour: SwiftHSVColorPicker!
 
     convenience init() {
         self.init(delegate: nil)
@@ -39,7 +39,7 @@ class NewCategoryViewController: UIViewController,
     }
     
     func initUI() {
-        self.view = UIView(frame: CGRectMake(0,20,windowWidth-40, 230))
+        self.view = UIView(frame: CGRectMake(0,0,windowWidth-20, windowHeight))
         self.view.backgroundColor = UIColor.whiteColor()
         self.view.layer.cornerRadius = 20.0
         self.view.layer.shadowColor = UIColor.blackColor().CGColor
@@ -65,15 +65,19 @@ class NewCategoryViewController: UIViewController,
         colourLabel.text = "Colour"
         colourLabel.textColor = UIColor.customGreenColor()
         
-        self.categoryName = UITextField(frame: CGRectMake(90,85,210,30))
+        self.categoryName = UITextField(frame: CGRectMake(90,85,230,30))
         self.categoryName.layer.cornerRadius = 8.0
         self.categoryName.layer.borderWidth = 1.0
         self.categoryName.layer.borderColor = UIColor.customGreenColor().CGColor
         
-        self.categoryColour = UIButton(frame: CGRectMake(90,145,210,30))
+        /*self.categoryColour = UIButton(frame: CGRectMake(90,145,210,30))
         self.categoryColour.setTitle("Pick Colour", forState: .Normal)
         self.categoryColour.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
         self.categoryColour.addTarget(self, action: "pickCategoryColour", forControlEvents: .TouchUpInside)
+        */
+
+        categoryColour = SwiftHSVColorPicker(frame: CGRectMake(20,200,self.view.frame.width - 65, self.view.frame.height - 200))
+        categoryColour.setViewColor(UIColor.customGreenColor())
         
         self.view.addSubview(cancelButton)
         self.view.addSubview(saveButton)
@@ -91,11 +95,6 @@ class NewCategoryViewController: UIViewController,
     
     func cancelNewCategory() {
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func pickCategoryColour() {
-        let colourPickerVC: ColourPickerViewController = ColourPickerViewController(initialColour: categoryColour.backgroundColor, delegate: self)
-        self.presentViewController(colourPickerVC, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -117,20 +116,11 @@ class NewCategoryViewController: UIViewController,
     
     func getCategoryEntry() -> CategoryEntry {
         let name = categoryName.text!
-        if let colour = categoryColour.backgroundColor {
+        if let colour = categoryColour.color {
             return CategoryEntry(colour: colour, name: name)
         }
         
         return CategoryEntry(colour: UIColor.whiteColor(), name: name)
-    }
-    
-    
-    
-    // ColourPickerViewController Delegate
-    func selectColor(controller: ColourPickerViewController, colour: UIColor) {
-        controller.dismissViewControllerAnimated(false, completion: nil)
-        self.categoryColour.backgroundColor = colour
-        self.categoryColour.setTitle("", forState: .Normal)
     }
 
 }
