@@ -28,39 +28,33 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     }
     
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout ()
-    let cellSpacing : CGFloat = 10
+    let cellSpacing : CGFloat = 3
     let cellsPerRow : CGFloat = 3
-    
-    
   
+   private var cells = [sticker]()
 
     private var searches = [sticker]()
-    
-    
-    var cell1  = sticker(image : UIImage(named: "sticker-1.png")! , name: "stick1")
-    var cell2  = sticker(image : UIImage(named: "sticker-2.png")! , name: "stick1")
-    var cell3  = sticker(image : UIImage(named: "sticker-3.png")! , name: "stick1")
-    
-    private var cells = [sticker]()
-    
     func addCells(cell: sticker ){
         print("adding new cell")
         cells.append(cell)
         
     }
     
-    
-
-   
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.stickerCollection.delegate = self
        // self.stickerCollection.dataSource = self
         
-        addCells(cell1)
-        addCells(cell2)
-        addCells(cell3)
+        for i  in 1 ... 16 {
+            
+            let name : String = "sticker-" + String(i) + ".png"
+            let pic = sticker(image: UIImage(named: name)!, name: "sticker")
+            addCells(pic)
+            
+        
+        }
         
         
         let cellCollNib = UINib (nibName: "StickerViewCell", bundle: NSBundle.mainBundle())
@@ -74,6 +68,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     }
     override func viewDidAppear(animated: Bool) {
         let cellSize = (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow ) - (cellSpacing)
+        //layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
         layout.itemSize = CGSize(width: cellSize, height: cellSize)
         layout.minimumInteritemSpacing = cellSpacing
         layout.minimumLineSpacing = cellSpacing
@@ -107,8 +102,9 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
         let cell = stickerCollection.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! StickerViewCell
          var imageView : UIImageView
-        imageView = UIImageView (frame: CGRectMake(0,0, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
-       
+        //???????????????
+        imageView = UIImageView (frame: CGRectMake(5,5, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing ), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
+       //???????????????
      
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         imageView.image = searches[indexPath.row].image
