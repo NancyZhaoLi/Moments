@@ -14,7 +14,22 @@ import MediaPlayer
 import CoreMedia
 
 class VideoGeneration {
-    //TODO take in a vector of videos/audios and download
+    func getImages(start : NSDate, end : NSDate) ->[ImageItem]{
+        //retrieve from coredata
+            return []
+    }
+    
+    func getVideos(start : NSDate, end : NSDate) ->[VideoItem]{
+        //retrieve from coredata
+        return []
+    }
+    
+    func imagesToVideo(images: [ImageItem])-> AVAsset {
+        let vid = AVAsset.init()
+        return vid
+    }
+    
+    
     func combineVideo(firstAsset : AVAsset?, secondAsset : AVAsset?, audioAsset : AVAsset?){
         // 1 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.
         let mixComposition = AVMutableComposition()
