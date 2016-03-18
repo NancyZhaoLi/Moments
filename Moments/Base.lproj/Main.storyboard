@@ -520,12 +520,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="V27-DJ-l5Y"/>
                     <connections>
-                        <segue destination="mZL-Qg-8cL" kind="presentation" identifier="addText" id="pzf-nU-6nD"/>
                         <segue destination="T3x-sH-vyh" kind="popoverPresentation" identifier="newAudioRecording" popoverAnchorView="Nge-Yx-e4c" id="0Xb-gx-p6J">
                             <popoverArrowDirection key="popoverArrowDirection"/>
                         </segue>
                         <segue destination="lu1-WJ-L1u" kind="show" identifier="addSticker" id="rUK-hJ-Vwy"/>
                         <segue destination="nYU-nk-Mw4" kind="show" identifier="showSavePage" id="yAh-x9-sgo"/>
+                        <segue destination="hv9-Kf-qPs" kind="show" identifier="addText" id="RoP-UC-qNd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q2H-cO-x1Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1680,7 +1680,7 @@
                             </connections>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eKF-gJ-t9h">
-                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <rect key="frame" x="113" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Settings">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1733,6 +1733,17 @@
                                 <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ld-cA-NiL">
+                                <rect key="frame" x="20" y="597" width="335" height="50"/>
+                                <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="New Category">
+                                    <color key="titleColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="newCategory:" destination="nYU-nk-Mw4" eventType="touchUpInside" id="1DD-ZU-fhw"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wvc-Ya-f3e">
                                 <rect key="frame" x="20" y="177" width="335" height="422"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1751,17 +1762,6 @@
                                     <outlet property="delegate" destination="nYU-nk-Mw4" id="hzB-FT-jbE"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ld-cA-NiL">
-                                <rect key="frame" x="20" y="597" width="335" height="50"/>
-                                <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="New Category">
-                                    <color key="titleColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="newCategory:" destination="nYU-nk-Mw4" eventType="touchUpInside" id="1DD-ZU-fhw"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1916,5 +1916,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="c0A-Oc-VLe"/>
+        <segue reference="RoP-UC-qNd"/>
     </inferredMetricsTieBreakers>
 </document>

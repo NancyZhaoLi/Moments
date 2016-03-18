@@ -247,8 +247,7 @@ class NewItemViewController: UIViewController,
         let center = CGPointMake(width/2.0, height/2.0)
         let radius: CGFloat = 120.0
         let radian: CGFloat = (360.0 - (360.0/CGFloat(total) * CGFloat(index)) - 90.0) * CGFloat(M_PI) / 180.0
-        print(radian)
-        print(cos(radian))
+
         let newX: CGFloat = radius * cos(radian) + center.x
         let newY: CGFloat = radius * sin(radian) + center.y
         

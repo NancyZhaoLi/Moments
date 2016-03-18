@@ -136,7 +136,6 @@ class NewMomentCanvasViewController: UIViewController,
         self.manager.setFavourite()
     }
     
-    
     func selectFavourite() {
         favouriteButton.setBackgroundImage(UIImage(named: "favourite_selected_icon.png")!, forState: .Normal)
         favouriteButton.removeTarget(self, action: "selectFavourite", forControlEvents: .TouchUpInside)
@@ -161,9 +160,6 @@ class NewMomentCanvasViewController: UIViewController,
     func loadSavePage() {
         if let navController = self.navigationController {
             navController.pushViewController(savePage!, animated: true)
-            print("push view")
-        } else {
-            print("no navController")
         }
     }
     
@@ -173,9 +169,8 @@ class NewMomentCanvasViewController: UIViewController,
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addText" {
-            let vc = segue.destinationViewController as! EditTextItemNavigationController
-            vc.modalPresentationStyle = .OverCurrentContext
-            vc.viewDelegate = self
+            let vc = segue.destinationViewController as! EditTextItemViewController
+            vc.delegate = self
         } else if segue.identifier == "addSticker" {
             
         } else if segue.identifier == "showSavePage" {
@@ -220,7 +215,6 @@ class NewMomentCanvasViewController: UIViewController,
      ******************************************************************/
     
     func addText() {
-        self.dismissViewControllerAnimated(true, completion: nil)
         self.performSegueWithIdentifier("addText", sender: self)
     }
     
@@ -299,7 +293,6 @@ class NewMomentCanvasViewController: UIViewController,
         self.addChildViewController(vc)
     }
     
-    
     /*******************************************************************
     
         DELEGATE FUNCTIONS
@@ -308,6 +301,7 @@ class NewMomentCanvasViewController: UIViewController,
      
     // EditTextItemViewControllerDelegate functions
     func addText(controller: EditTextItemViewController, text: String, textAttribute: TextItemOtherAttribute) {
+        print("1")
         addNewViewController(self.manager.addText(text, location: self.center, textAttribute: textAttribute))
     }
     
