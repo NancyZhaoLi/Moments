@@ -11,6 +11,9 @@ import UIKit
 class MomentsViewController: UIViewController, UITextFieldDelegate {
 
     var fav = false;
+    var start = NSDate().dateByAddingTimeInterval(-60*60*24*60);
+    var end = NSDate();
+    
     
     @IBOutlet weak var startDate: UITextField!
 
@@ -52,6 +55,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         timeFormatter.dateStyle = .MediumStyle
         timeFormatter.timeStyle = .NoStyle
         startDate.text = "Start Date: " + timeFormatter.stringFromDate(sender.date)
+        start = sender.date
     }
     
     func handleEndDatePicker(sender: UIDatePicker){
@@ -59,15 +63,13 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         timeFormatter.dateStyle = .MediumStyle
         timeFormatter.timeStyle = .NoStyle
         endDate.text = "End Date: " + timeFormatter.stringFromDate(sender.date)
+        end = sender.date
     }
     
     override func viewDidLoad(){
         super.viewDidLoad()
         self.startDate.delegate = self
         self.endDate.delegate = self
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage3")!)
-        
-        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
