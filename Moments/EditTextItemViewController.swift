@@ -60,7 +60,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     }
     
     @IBAction func addText(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popToRootViewControllerAnimated(true)
         if let delegate = self.delegate {
             self.text = self.editTextItemView.text
             if self.text == EditTextItemViewController.placeHolder {
@@ -70,6 +70,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
             
             delegate.addText(self, text: self.text, textAttribute: textAttribute)
         }
+        
     }
     
     @IBAction func unwindToEditText(sender: UIStoryboardSegue) {
