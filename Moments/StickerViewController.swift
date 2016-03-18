@@ -16,7 +16,7 @@ import UIKit
     }
 
 
-class StickerViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate  {
+class StickerViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     private let reuseIdentifier = "StickerViewCell"
     
@@ -27,6 +27,9 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
     }
     
+    let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout ()
+    let cellSpacing : CGFloat = 10
+    let cellsPerRow : CGFloat = 3
     
     
   
@@ -62,11 +65,21 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
         let cellCollNib = UINib (nibName: "StickerViewCell", bundle: NSBundle.mainBundle())
         stickerCollection.registerNib(cellCollNib, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        
 
 
           searches = cells
         // Do any additional setup after loading the view.
     }
+    override func viewDidAppear(animated: Bool) {
+        let cellSize = (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow ) - (cellSpacing)
+        layout.itemSize = CGSize(width: cellSize, height: cellSize)
+        layout.minimumInteritemSpacing = cellSpacing
+        layout.minimumLineSpacing = cellSpacing
+        stickerCollection.collectionViewLayout = layout
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,30 +106,15 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = stickerCollection.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! StickerViewCell
-      // let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! StickerViewCell
+         var imageView : UIImageView
+        imageView = UIImageView (frame: CGRectMake(0,0, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
+       
+     
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
+        imageView.image = searches[indexPath.row].image
+        cell.addSubview(imageView)
         
-       // print("cell's lable is " + cell.name.text!)
-        
-        //cell.setCellName(searches[indexPath.row].name)
-        
-        //cell.name.backgroundColor = UIColor.whiteColor()
-        //cell.name.textColor = UIColor.blackColor()
-        //cell.name.font = UIFont (name: "HelveticaNeue-UltraLight", size: 350)
-        //cell.frame.size.width = self.TestCollection.frame.width/3
-        //cell.backgroundColor = UIColor.yellowColor()
-        // cell.imageItem.setimage()
-        //searches or cells
-        //cell class unfinished
-        //here i should change lable to categories's name
-        //cell = searches[indexPath.row]
-        
-        /* if let theLabel = cell.viewWithTag(100) as? UILabel {
-        theLabel.text = searches[indexPath.row].name
-        }*/
-        
-        
-        //cell.setCellName( searches[indexPath.row].name)
-       cell.imageItem.image = searches[indexPath.row].image
+      // cell.imageItem.image = searches[indexPath.row].image
         // cell.backgroundColor = searches[indexPath.row].colour
         
         return cell
@@ -124,7 +122,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     }
     
     
-    
+   /*
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let picDimension = self.view.frame.size.width / 4.0
         return CGSizeMake(picDimension, picDimension)
@@ -134,7 +132,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         let leftRightInset = self.view.frame.size.width / 14.0
         return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
     }
-    
+    */
 
     /*
     // MARK: - Navigation
