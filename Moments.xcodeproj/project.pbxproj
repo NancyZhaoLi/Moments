@@ -14,7 +14,7 @@
 		463467001C9B12E0003361EE /* StickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463466FF1C9B12E0003361EE /* StickerViewController.swift */; };
 		463467061C9B3A59003361EE /* StickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463467051C9B3A59003361EE /* StickerViewCell.xib */; };
 		463467081C9B4DB6003361EE /* NewMomentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463467071C9B4DB6003361EE /* NewMomentNavigationController.swift */; };
-		4634670A1C9B50C0003361EE /* NewItemPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463467091C9B50C0003361EE /* NewItemPopoverViewController.swift */; };
+		4634670A1C9B50C0003361EE /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463467091C9B50C0003361EE /* NewItemViewController.swift */; };
 		46412CB01C8E5A1C002F117A /* feedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46412CAF1C8E5A1C002F117A /* feedbackViewController.swift */; };
 		46412CB21C8E5A37002F117A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46412CB11C8E5A37002F117A /* MessageUI.framework */; };
 		465012B51C8A3B8400F7220D /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465012B31C8A3B8400F7220D /* CategoryViewCell.swift */; };
@@ -112,7 +112,7 @@
 		463466FF1C9B12E0003361EE /* StickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerViewController.swift; sourceTree = "<group>"; };
 		463467051C9B3A59003361EE /* StickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StickerViewCell.xib; sourceTree = "<group>"; };
 		463467071C9B4DB6003361EE /* NewMomentNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentNavigationController.swift; sourceTree = "<group>"; };
-		463467091C9B50C0003361EE /* NewItemPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemPopoverViewController.swift; sourceTree = "<group>"; };
+		463467091C9B50C0003361EE /* NewItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
 		46412CAF1C8E5A1C002F117A /* feedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedbackViewController.swift; sourceTree = "<group>"; };
 		46412CB11C8E5A37002F117A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		465012B31C8A3B8400F7220D /* CategoryViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 			children = (
 				AD25BC821C8E3134006DA556 /* NewMoment_OtherVC */,
 				AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */,
-				463467091C9B50C0003361EE /* NewItemPopoverViewController.swift */,
+				463467091C9B50C0003361EE /* NewItemViewController.swift */,
 				463467071C9B4DB6003361EE /* NewMomentNavigationController.swift */,
 				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
 				D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */,
@@ -762,7 +762,7 @@
 				762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */,
 				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,
 				769ABB5D1C8BB7D90049666F /* CategoryMomentsViewController.swift in Sources */,
-				4634670A1C9B50C0003361EE /* NewItemPopoverViewController.swift in Sources */,
+				4634670A1C9B50C0003361EE /* NewItemViewController.swift in Sources */,
 				463466F91C97A832003361EE /* AudioRecorderViewController.swift in Sources */,
 				D048BEF71C7DC10300BD3115 /* NewMomentManager.swift in Sources */,
 				760197ED1C7E10AF00A7315A /* ImageItem+CoreDataProperties.swift in Sources */,
