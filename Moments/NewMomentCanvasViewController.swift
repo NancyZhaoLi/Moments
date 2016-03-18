@@ -39,6 +39,7 @@ class NewMomentCanvasViewController: UIViewController,
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager = NewMomentManager()
     var loadedMoment : MomentEntry?
+    var addItemPopover: NewItemViewController?
     
     /*******************************************************************
      
@@ -54,13 +55,12 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     @IBAction func addItem(sender: AnyObject) {
-        /*if (addItemBar.hidden) {
-            displayAddItemBar()
-        } else {
-            hideAddItemBar()
-        }*/
-        var addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
-        presentViewController(addItemPopover, animated: true, completion: nil)
+        if let popover = self.addItemPopover {
+            presentViewController(popover, animated: true, completion: nil)
+        }
+        
+
+
         
     }
     
@@ -145,6 +145,7 @@ class NewMomentCanvasViewController: UIViewController,
         } else {
             manager.setCanvas(self)
         }
+        self.addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
 
         debug("[viewDidLoad] - loading complete")
     }
@@ -236,14 +237,23 @@ class NewMomentCanvasViewController: UIViewController,
      
      ******************************************************************/
     
-    func addText(sender: NewItemViewController){
-        sender.dismissViewControllerAnimated(true, completion: nil)
-        //sender.removeFromParentViewController()
+    func addText() {
         self.performSegueWithIdentifier("addText", sender: self)
     }
     
-    func addText() {
-        self.performSegueWithIdentifier("addText", sender: self)
+    func addImageFromGallery() {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        image.allowsEditing = true
+        self.presentViewController(image, animated: true, completion: nil)
+    }
+    
+    func addImageFromCamera() {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.Camera
+        self.presentViewController(image, animated: true, completion: nil)
     }
     
     func addImage(){
@@ -321,6 +331,7 @@ class NewMomentCanvasViewController: UIViewController,
         addNewViewController(vc)
         resetTouchMode()
     }
+    
     
     func cancelAddTextItem(controller: EditTextItemViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)

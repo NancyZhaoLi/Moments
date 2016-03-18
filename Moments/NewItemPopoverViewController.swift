@@ -9,11 +9,14 @@
 import UIKit
 
 protocol NewItemViewControllerDelegate {
-    func addText(sender: NewItemViewController)
+    func addText()
+    func addImageFromGallery()
+    func addImageFromCamera()
+    func addSticker()
 }
 
 
-class NewImageViewController: UIView {
+class NewImageView: UIView {
     
     var back: UIButton!
     var camera: UIButton!
@@ -31,6 +34,7 @@ class NewImageViewController: UIView {
     
     init(frame: CGRect, viewController: NewItemViewController) {
         super.init(frame: frame)
+        self.viewController = viewController
         
         initView()
         initButton()
@@ -51,32 +55,14 @@ class NewImageViewController: UIView {
         
         back = viewController.newButton(backImage, center: CGPointMake(width/2.0, height/2.0), actionName: "goBack")
         camera = viewController.newButton(cameraImage, center: CGPointMake(width/2.0, height/2.0 - 60), actionName: "addImageFromCamera")
-        gallery = viewController.newButton(galleryImage, center: CGPointMake(width/2.0 - 30, height/2.0 + 60), actionName: "addImageFromGallery")
-        sticker = viewController.newButton(stickerImage, center: CGPointMake(width/2.0 + 30, height/2.0 + 60), actionName: "addSticker")
+        gallery = viewController.newButton(galleryImage, center: CGPointMake(width/2.0 - 60, height/2.0 + 60), actionName: "addImageFromGallery")
+        sticker = viewController.newButton(stickerImage, center: CGPointMake(width/2.0 + 60, height/2.0 + 60), actionName: "addSticker")
         
         self.addSubview(back)
         self.addSubview(camera)
         self.addSubview(gallery)
         self.addSubview(sticker)
     }
-    
-    
-    func addImageFromCamera() {
-        
-    }
-    
-    func addImageFromGallery() {
-        
-    }
-    
-    func addSticker() {
-        
-    }
-    
-    func goBack() {
-        
-    }
-    
 }
 
 class NewItemView: UIView {
@@ -121,9 +107,9 @@ class NewItemView: UIView {
         
         back = viewController.newButton(backImage, center: CGPointMake(width/2.0, height/2.0), actionName: "goBack")
         text = viewController.newButton(textImage, center: CGPointMake(width/2.0 - 60, height/2.0 - 60), actionName: "addText")
-        image = viewController.newButton(imageImage, center: CGPointMake(width/2.0 + 60, height/2.0 - 60), actionName: "addImage")
-        audio = viewController.newButton(audioImage, center: CGPointMake(width/2.0 - 60, height/2.0 + 60), actionName: "addAudio")
-        video = viewController.newButton(videoImage, center: CGPointMake(width/2.0 + 60, height/2.0 + 60), actionName: "addVideo")
+        image = viewController.newButton(imageImage, center: CGPointMake(width/2.0 + 60, height/2.0 - 60), actionName: "goToImageView")
+        audio = viewController.newButton(audioImage, center: CGPointMake(width/2.0 - 60, height/2.0 + 60), actionName: "goToAudioView")
+        video = viewController.newButton(videoImage, center: CGPointMake(width/2.0 + 60, height/2.0 + 60), actionName: "goToVideoView")
         
         self.addSubview(back)
         self.addSubview(text)
@@ -140,7 +126,9 @@ class NewItemViewController: UIViewController,
     UIViewControllerTransitioningDelegate {
 
     var delegate: NewItemViewControllerDelegate?
-    var views: [UIView] = [UIView]()
+    var views: [UIView]! = [UIView]()
+    var rootView: NewItemView!
+    var imageView: NewImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -173,6 +161,8 @@ class NewItemViewController: UIViewController,
         self.views.append(self.view)
         self.preferredContentSize = self.view.frame.size
         self.view.backgroundColor = UIColor.clearColor()
+        
+        self.imageView = NewImageView(frame: self.view.frame, viewController: self)
     }
     
     func initAnimation(sourceView: UIView?) {
@@ -205,24 +195,39 @@ class NewItemViewController: UIViewController,
         if self.views.count == 1 {
             dismiss()
         } else {
-            self.view = self.views.first
-            self.views.removeLast()
+            self.view = rootView as UIView
         }
     }
     
     func addText() {
-        self.delegate?.addText(self)
+        self.dismiss()
+        self.delegate?.addText()
     }
     
-    func addImage() {
-        print("add image")
+    func goToImageView() {
+        self.view = imageView
     }
     
-    func addAudio() {
+    func addImageFromCamera() {
+        self.dismiss()
+        self.delegate?.addImageFromCamera()
+    }
+    
+    func addImageFromGallery() {
+        self.dismiss()
+        self.delegate?.addImageFromGallery()
+    }
+    
+    func addSticker() {
+        self.dismiss()
+        self.delegate?.addSticker()
+    }
+    
+    func goToAudioView() {
         print("add audio")
     }
     
-    func addVideo() {
+    func goToVideoView() {
         print("add video")
     }
     
