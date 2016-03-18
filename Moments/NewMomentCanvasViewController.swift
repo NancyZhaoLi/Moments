@@ -31,15 +31,11 @@ class NewMomentCanvasViewController: UIViewController,
     AudioRecorderViewControllerDelegate,
     NewItemViewControllerDelegate {
     
-    let testMode : Bool = true
-    var touchLocation : CGPoint?
-    var touchMode : TouchMode = TouchMode.View
-    
-    var savePageAccessed : Bool = false
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager = NewMomentManager()
     var loadedMoment : MomentEntry?
     var addItemPopover: NewItemViewController?
+    var center: CGPoint = CGPointMake(windowWidth/2.0, windowHeight/2.0)
     
     /*******************************************************************
      
@@ -48,33 +44,21 @@ class NewMomentCanvasViewController: UIViewController,
      ******************************************************************/
     
     @IBOutlet weak var favouriteSetter: UIButton!
-    @IBOutlet weak var addItemBar: UIToolbar!
+    var nextButton: UIButton! = UIButton()
     
     @IBAction func cancelAddNewMoment(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        self.removeFromParentViewController()
     }
     
     @IBAction func addItem(sender: AnyObject) {
         if let popover = self.addItemPopover {
             presentViewController(popover, animated: true, completion: nil)
         }
-        
-
-
-        
     }
     
     @IBAction func selectTouchMode(sender: AnyObject) {
-        print("touch")
-        if let title = sender.currentTitle {
-            self.touchMode = TouchMode(rawValue: title!)!
-            if (title == "View" && !(addItemBar.hidden)) {
-                hideAddItemBar()
-                enableUserInteraction()
-            } else if (title != "View") {
-                disableUserInteraction()
-            }
-        }
+        enableUserInteraction()
     }
     
     @IBAction func setFav(sender: AnyObject) {
@@ -95,22 +79,6 @@ class NewMomentCanvasViewController: UIViewController,
         favouriteSetter.setBackgroundImage(image, forState: .Normal)
     }
     
-    @IBAction func goToSavePage(sender: AnyObject) {
-        if (savePageAccessed) {
-            presentViewController(self.savePage!, animated: true, completion: nil)
-        } else {
-            performSegueWithIdentifier("newMomentToSavePageSegue", sender: self)
-        }
-    }
-    
-    func displayAddItemBar() {
-        addItemBar.hidden = false
-    }
-    
-    func hideAddItemBar() {
-        addItemBar.hidden = true
-    }
-    
     func enableUserInteraction() {
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = true
@@ -129,6 +97,7 @@ class NewMomentCanvasViewController: UIViewController,
     @IBAction func otherOptions(sender: AnyObject) {
         presentViewController(OtherCanvasOptionViewController(sourceView:self.otherOptions, delegate: self), animated: true, completion: nil)
     }
+    
     /*******************************************************************
      
         OVERRIDDEN UIVIEWCONTROLLER FUNCTIONS
@@ -139,47 +108,42 @@ class NewMomentCanvasViewController: UIViewController,
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
         
-        debug("[viewDidLoad] - loading start")
         if let moment = self.loadedMoment {
             manager.loadCanvas(self, moment: moment)
         } else {
             manager.setCanvas(self)
         }
         self.addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
-
-        debug("[viewDidLoad] - loading complete")
+        
+        nextButton = UIButton(frame: CGRectMake(windowWidth - 58,3,55,37))
+        nextButton.addTarget(self, action: "goToSavePage", forControlEvents: .TouchUpInside)
+        nextButton.setTitle("Next", forState: .Normal)
+        nextButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: nextButton)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.toolbarHidden = false
+    }
+    
+    func goToSavePage() {
+        performSegueWithIdentifier("newMomentToSavePageSegue", sender: self)
+    }
+    
+    func loadSavePage() {
+        if let navController = self.navigationController {
+            navController.pushViewController(savePage!, animated: true)
+            print("push view")
+        } else {
+            print("no navController")
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if (touches.isEmpty) {
-            debug("[touchesBegan] - no touch")
-        } else {
-            debug("[touchesBegan] - begin")
-            let touch = touches.first!
-            self.touchLocation = touch.locationInView(touch.view)
-            switch (self.touchMode) {
-                case .Text:
-                    addText()
-                case .Image:
-                    addImage()
-                case .Audio:
-                    addAudio()
-                case .Video:
-                    addVideo()
-                case .Sticker:
-                    addSticker()
-                default:
-                    break
-            }
-        }
-        resetTouchMode()
-    }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addText" {
             let vc = segue.destinationViewController as! EditTextItemNavigationController
@@ -188,10 +152,11 @@ class NewMomentCanvasViewController: UIViewController,
         } else if segue.identifier == "addSticker" {
             
         } else if segue.identifier == "newMomentToSavePageSegue" {
-            savePageAccessed = true
             self.savePage = segue.destinationViewController as? NewMomentSavePageViewController
             self.savePage!.canvas = self
             self.savePage!.manager = self.manager
+            nextButton.removeTarget(self, action: "goToSavePage", forControlEvents: .TouchUpInside)
+            nextButton.addTarget(self, action: "loadSavePage", forControlEvents: .TouchUpInside)
         } else if segue.identifier == "newAudioRecording" {
             let vc = segue.destinationViewController as! AudioRecorderViewController
             vc.delegate = self
@@ -211,16 +176,6 @@ class NewMomentCanvasViewController: UIViewController,
         self.savePage!.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func debug(msg: String) {
-        if (self.testMode) {
-            print("[NewMomentCanvasViewController] - " + msg)
-        }
-    }
-    
-    func resetTouchMode(){
-        self.touchMode = TouchMode.View
-    }
-    
     func loadMoment(moment: MomentEntry) {
         self.loadedMoment = moment
     }
@@ -238,6 +193,7 @@ class NewMomentCanvasViewController: UIViewController,
      ******************************************************************/
     
     func addText() {
+        self.dismissViewControllerAnimated(true, completion: nil)
         self.performSegueWithIdentifier("addText", sender: self)
     }
     
@@ -313,7 +269,6 @@ class NewMomentCanvasViewController: UIViewController,
         self.view.insertSubview(vc.view, atIndex: zPosition)
         vc.view.layer.zPosition = 0.0
         self.addChildViewController(vc)
-
     }
     
     
@@ -325,17 +280,11 @@ class NewMomentCanvasViewController: UIViewController,
      
     // EditTextItemViewControllerDelegate functions
     func addText(controller: EditTextItemViewController, text: String, textAttribute: TextItemOtherAttribute) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        let vc = self.manager.addText(text, location: self.touchLocation!, textAttribute: textAttribute)
-        
-        addNewViewController(vc)
-        resetTouchMode()
+        addNewViewController(self.manager.addText(text, location: self.center, textAttribute: textAttribute))
     }
     
-    
     func cancelAddTextItem(controller: EditTextItemViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        resetTouchMode()
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -344,10 +293,9 @@ class NewMomentCanvasViewController: UIViewController,
         print("Image Selected")
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        let vc = self.manager.addImage(image, location: self.touchLocation!, editingInfo: editingInfo)
+        let vc = self.manager.addImage(image, location: self.center, editingInfo: editingInfo)
         addNewViewController(vc)
     }
-    
     
     // Functions for MPMediaPickerControllerDelegate
     func mediaPickerDidCancel(mediaPicker: MPMediaPickerController) {
@@ -360,21 +308,12 @@ class NewMomentCanvasViewController: UIViewController,
         print("Media item collection count: " + String(mediaItemCollection.count))
         print("Media item collection items: " + String(mediaItemCollection.items))
         print("Media item collection type: " + String(mediaItemCollection.mediaTypes))
-        
-        
-        if let mediaItem: MPMediaItem = mediaItemCollection.representativeItem {
-            debug("[mediaPicker] - " + String(mediaItem))
-            //self.manager.addMediaItem(mediaItem, location: self.touchLocation!)
-        } else {
-            debug("[mediaPicker] - mediaItem not found")
-        }
     }
     
     // Functions for UIPresentationControllerDelegate
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }
-    
     
     // Functions for ColourPickerViewControllerDelegate
     func selectColor(controller: ColourPickerViewController, colour: UIColor) {
@@ -386,6 +325,6 @@ class NewMomentCanvasViewController: UIViewController,
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        self.manager.addAudio(url, location: self.touchLocation!)
+        self.manager.addAudio(url, location: self.center)
     }
 }

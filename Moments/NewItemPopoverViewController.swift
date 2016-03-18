@@ -200,7 +200,7 @@ class NewItemViewController: UIViewController,
     }
     
     func addText() {
-        self.dismiss()
+        //self.dismiss()
         self.delegate?.addText()
     }
     

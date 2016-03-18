@@ -8,7 +8,11 @@
 
 import UIKit
 
-class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIViewControllerTransitioningDelegate, NewCategoryViewControllerDelegate {
+class NewMomentSavePageViewController: UIViewController,
+    UITableViewDelegate,
+    UIViewControllerTransitioningDelegate,
+    NewCategoryViewControllerDelegate,
+    UITextFieldDelegate {
     
     var canvas : NewMomentCanvasViewController?
     var manager : NewMomentManager?
@@ -22,16 +26,23 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
         let newCategoryVC = NewCategoryViewController(delegate: self)
         presentViewController(newCategoryVC, animated: true, completion: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.manager!.setSavePage(self)
+        self.momentTitleDisplay.delegate = self
         
         displayCategories()
         
         self.categoryList.separatorStyle = UITableViewCellSeparatorStyle.None
         self.categoryList.showsVerticalScrollIndicator = false
         self.categoryList.backgroundColor = UIColor.clearColor()
+        
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.toolbarHidden = true
     }
     
     func displayCategories() {
@@ -48,7 +59,6 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -60,12 +70,8 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
         }
     }
     
-    @IBAction func goBack(sender: AnyObject) {
-        self.canvas!.backFromSavePage()
-    }
-    
-    func comeFromFirstView() {
-        self.canvas!.dismissViewControllerAnimated(true, completion: nil)
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     func setDefaultMomentTitle(title: String) {
@@ -145,5 +151,11 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
             self.selectedCell = cell
             self.manager!.momentCategory = cell.textLabel!.text!
         }
+    }
+    
+    // UITextField Delegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

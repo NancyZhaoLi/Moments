@@ -60,6 +60,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     }
     
     @IBAction func addText(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
         if let delegate = self.delegate {
             self.text = self.editTextItemView.text
             if self.text == EditTextItemViewController.placeHolder {

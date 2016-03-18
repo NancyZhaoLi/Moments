@@ -63,7 +63,6 @@ class NewMomentManager {
         self.canvas = canvas
         setIdPrefix()
         setIdSuffix()
-        //initItemManagers()
         setDefaultTitle()
     }
     
@@ -93,7 +92,6 @@ class NewMomentManager {
         self.idSuffix = String(moment.id % Int64(10000))
         self.isNewMoment = false
 
-        //initItemManagers()
         for textItem in moment.textItemEntries {
             print(textItem)
             self.canvas!.addNewViewController(loadText(textItem), zPosition: textItem.zPosition)
