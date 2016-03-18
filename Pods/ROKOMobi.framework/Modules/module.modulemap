@@ -1,0 +1,6 @@
+framework module ROKOMobi {
+  umbrella header "ROKOMobi.h"
+
+  export *
+  module * { export * }
+}
