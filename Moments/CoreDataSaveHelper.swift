@@ -31,6 +31,7 @@ class CoreDataSaveHelper {
         momentMO.containedTextItem = NSSet()
         momentMO.containedVideoItem = NSSet()
         momentMO.containedStickerItem = NSSet()
+        momentMO.inCategory = CoreDataFetchHelper.fetchCategoryGivenName(moment.category!)
         
         let containedAudioItem = momentMO.mutableSetValueForKey("containedAudioItem")
         let containedImageItem = momentMO.mutableSetValueForKey("containedImageItem")

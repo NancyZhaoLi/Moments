@@ -143,6 +143,7 @@ class NewMomentSavePageViewController: UIViewController, UITableViewDelegate,UIV
             cell.backgroundColor = UIColor.blueColor()
             cell.textLabel?.textColor = UIColor.whiteColor()
             self.selectedCell = cell
+            self.manager!.momentCategory = cell.textLabel!.text!
         }
     }
 }

@@ -460,9 +460,9 @@
 		AD25BC831C8E316C006DA556 /* NewMoment_VC */ = {
 			isa = PBXGroup;
 			children = (
-				463467091C9B50C0003361EE /* NewItemPopoverViewController.swift */,
 				AD25BC821C8E3134006DA556 /* NewMoment_OtherVC */,
 				AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */,
+				463467091C9B50C0003361EE /* NewItemPopoverViewController.swift */,
 				463467071C9B4DB6003361EE /* NewMomentNavigationController.swift */,
 				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
 				D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */,

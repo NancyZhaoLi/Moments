@@ -94,6 +94,28 @@ class CoreDataFetchHelper {
         
     }
     
+    static func fetchCategoryGivenName(name: String) -> Category {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        print(name)
+        
+        let requestCategory = NSFetchRequest(entityName: "Category")
+        //requestCategory.predicate = NSPredicate(format: "name = %@", name)
+        requestCategory.returnsObjectsAsFaults = false
+        requestCategory.fetchLimit = 1
+        
+        do {
+            let result = try context.executeFetchRequest(requestCategory)[0] as! Category
+            
+            return result
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+    
     static func requestMaxOfIdGreaterThan(minimum: Int64, entity: String) -> Int64? {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
@@ -146,5 +168,7 @@ class CoreDataFetchHelper {
         }
         return false
     }
+    
+
 
 }

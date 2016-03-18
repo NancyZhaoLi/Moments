@@ -50,7 +50,7 @@ class NewMomentManager {
     var momentDate : NSDate = NSDate()
     var momentTitle : String = ""
     var momentFavourite : Bool = false
-    var momentCategory : CategoryEntry = CategoryEntry()
+    var momentCategory : String = "Uncategorized"
     var momentColour : UIColor = UIColor.whiteColor()
     var idPrefix : String = ""
     var idSuffix : String = ""
@@ -193,7 +193,7 @@ class NewMomentManager {
     func setSavePage(savePage: NewMomentSavePageViewController) {
         self.savePage = savePage
         self.savePage!.setDefaultMomentTitle(self.momentTitle)
-        self.savePage!.setDefaultMomentCategory(self.momentCategory.name)
+        self.savePage!.setDefaultMomentCategory(self.momentCategory)
     }
     
     func setFavourite() -> Bool {
@@ -252,11 +252,6 @@ class NewMomentManager {
         
         self.moment!.category = self.momentCategory
         self.moment!.backgroundColour = self.canvas!.view.backgroundColor!
-    
-        for v in self.canvas!.view.subviews {
-            print(v)
-        }
-        
         
         for var zPosition = 0; zPosition < self.canvas!.view.subviews.count; zPosition++ {
             let view = self.canvas!.view.subviews[zPosition]
@@ -272,6 +267,10 @@ class NewMomentManager {
         debugEnd("saveMomentEntry")
     }
     
+    
+    func selectedCategoryName() -> String {
+        return self.savePage!.selectedCell!.textLabel!.text!
+    }
     
     func updateTitle() {
         self.momentTitle = self.savePage!.getTitle()
