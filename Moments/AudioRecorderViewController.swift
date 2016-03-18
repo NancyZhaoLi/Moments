@@ -55,8 +55,8 @@ class AudioRecorderViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
         
-        initRecordingSession()
         initUI()
+        initRecordingSession()
         
         self.modalPresentationStyle = .Popover
         if let popover = self.popoverPresentationController {
@@ -113,22 +113,18 @@ class AudioRecorderViewController: UIViewController {
         self.view = UIView(frame: CGRectMake(0,0,220, 150))
         self.view.backgroundColor = UIColor.whiteColor()
         
-        let cancelButton = UIButton(frame: CGRectMake(0,3, 60, 37))
-        cancelButton.addTarget(self, action: "cancelRecording", forControlEvents: .TouchUpInside)
-        cancelButton.setTitle("Cancel", forState: .Normal)
-        cancelButton.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
-        
-        let saveButton = UIButton(frame: CGRectMake(self.view.frame.width - 50,3,50,37))
+        let saveButton = UIButton(frame: CGRectMake(self.view.frame.width - 50,0,50,37))
         saveButton.addTarget(self, action: "saveRecording", forControlEvents: .TouchUpInside)
         saveButton.setTitle("Save", forState: .Normal)
-        saveButton.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
+        saveButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     
-        startOrPauseButton = UIButton(frame: CGRectMake(45,20,60,37))
+        startOrPauseButton = UIButton(frame: CGRectMake(0,0,100,100))
+        startOrPauseButton.center = CGPointMake(windowWidth/2.0, windowHeight/3.0)
         startOrPauseButton.setTitle("Start", forState: UIControlState.Normal)
         startOrPauseButton.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
         startOrPauseButton.addTarget(self, action: "startOrPause", forControlEvents: .TouchUpInside)
         
-        stopButton = UIButton(frame: CGRectMake(self.view.frame.width - 96, 20,50,37))
+        stopButton = UIButton(frame: CGRectMake(self.view.frame.width - 96, 70,50,37))
         stopButton.setTitle("Stop", forState: .Normal)
         stopButton.addTarget(self, action: "stop", forControlEvents: .TouchUpInside)
         stopButton.enabled = false
@@ -140,8 +136,7 @@ class AudioRecorderViewController: UIViewController {
         timeLabel.text = "0.0"
         timeLabel.textColor = UIColor.customGreenColor()
 
-        self.view.addSubview(cancelButton)
-        self.view.addSubview(saveButton)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         self.view.addSubview(startOrPauseButton)
         self.view.addSubview(stopButton)
         self.view.addSubview(timeLabel)
@@ -157,6 +152,13 @@ class AudioRecorderViewController: UIViewController {
                 haveRecorded = true
             }
         }
+    }
+
+    
+    func pause() {
+        self.startOrPauseButton.setTitle("Resume", forState: UIControlState.Normal)
+        self.recorder!.pause()
+        self.timer!.invalidate()
     }
     
     func stop() {
@@ -175,8 +177,12 @@ class AudioRecorderViewController: UIViewController {
     }
     
     func cancelRecording() {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        self.removeFromParentViewController()
+        if let navController = self.navigationController {
+            navController.popViewControllerAnimated(true)
+        } else {
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.removeFromParentViewController()
+        }
     }
     
     func updateTime() {
@@ -184,11 +190,7 @@ class AudioRecorderViewController: UIViewController {
         self.timeLabel.text = String(currentTime)
     }
     
-    func pause() {
-        self.startOrPauseButton.setTitle("Resume", forState: UIControlState.Normal)
-        self.recorder!.pause()
-        self.timer!.invalidate()
-    }
+
     
     func start() {
         self.startOrPauseButton.setTitle("Pause", forState: UIControlState.Normal)

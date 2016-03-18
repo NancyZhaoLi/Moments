@@ -235,8 +235,13 @@ class NewMomentCanvasViewController: UIViewController,
     
     func addAudioFromRecorder(){
         let audioRecorder = AudioRecorderViewController(sourceView: self.view, delegate: self)
+        if let navController = self.navigationController {
+            navController.pushViewController(audioRecorder, animated: true)
+        } else {
+            presentViewController(audioRecorder, animated: true, completion: nil)
+        }
         
-        self.performSegueWithIdentifier("newAudioRecording", sender: self)
+        //self.performSegueWithIdentifier("newAudioRecording", sender: self)
     }
 
     func addAudioFromMusic() {
