@@ -50,7 +50,8 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editSavedMoment" {
-            let newMomentCanvasVC = segue.destinationViewController as!NewMomentCanvasViewController
+            let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
+            let newMomentCanvasVC = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
             let cell = sender as! MomentTableCell
             newMomentCanvasVC.loadedMoment = cell.moment
         }

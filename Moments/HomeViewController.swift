@@ -66,9 +66,10 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editSavedMoment" {
-            let newMomentCanvasVC = segue.destinationViewController as!NewMomentCanvasViewController
+            let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
             let cell = sender as! MomentTableCell
-            newMomentCanvasVC.loadedMoment = cell.moment
+            let vc = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
+            vc.loadedMoment = cell.moment
          }
     }
     
