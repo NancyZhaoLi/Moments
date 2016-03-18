@@ -513,8 +513,8 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TX4-wp-8i0">
-                                <rect key="frame" x="0.0" y="182" width="375" height="44"/>
+                            <toolbar clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TX4-wp-8i0">
+                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" id="wWy-hc-7ji">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7ab-bq-xIl">
