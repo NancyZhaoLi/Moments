@@ -28,7 +28,8 @@ class NewMomentCanvasViewController: UIViewController,
     EditTextItemViewControllerDelegate,
     MPMediaPickerControllerDelegate,
     ColourPickerViewControllerDelegate,
-    AudioRecorderViewControllerDelegate {
+    AudioRecorderViewControllerDelegate,
+    NewItemViewControllerDelegate {
     
     let testMode : Bool = true
     var touchLocation : CGPoint?
@@ -58,7 +59,7 @@ class NewMomentCanvasViewController: UIViewController,
         } else {
             hideAddItemBar()
         }*/
-        var addItemPopover = NewItemViewController()
+        var addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
         presentViewController(addItemPopover, animated: true, completion: nil)
         
     }
@@ -235,7 +236,13 @@ class NewMomentCanvasViewController: UIViewController,
      
      ******************************************************************/
     
-    func addText(){
+    func addText(sender: NewItemViewController){
+        sender.dismissViewControllerAnimated(true, completion: nil)
+        //sender.removeFromParentViewController()
+        self.performSegueWithIdentifier("addText", sender: self)
+    }
+    
+    func addText() {
         self.performSegueWithIdentifier("addText", sender: self)
     }
     
