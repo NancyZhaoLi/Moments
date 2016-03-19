@@ -30,6 +30,8 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout ()
     let cellSpacing : CGFloat = 3
     let cellsPerRow : CGFloat = 3
+    let toolBarHeight : CGFloat = 50
+    let iconSize : CGFloat = 30
   
    private var cells = [sticker]()
 
@@ -62,17 +64,36 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
         
 
-
+          initLayout()
+          initToolBar()
           searches = cells
         // Do any additional setup after loading the view.
     }
-    override func viewDidAppear(animated: Bool) {
+    //override func viewDidAppear(animated: Bool) {
+    func initLayout(){
         let cellSize = (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow ) - (cellSpacing)
         //layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
         layout.itemSize = CGSize(width: cellSize, height: cellSize)
         layout.minimumInteritemSpacing = cellSpacing
         layout.minimumLineSpacing = cellSpacing
         stickerCollection.collectionViewLayout = layout
+    }
+    func initToolBar(){
+        var toolBar = UIToolbar(frame: CGRectMake(0,windowHeight - toolBarHeight, windowWidth, toolBarHeight))
+        toolBar.barTintColor = UIColor.customBlueColor()
+        toolBar.opaque = true
+        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "donePressed")
+        var cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelPressed")
+        var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        
+        //toolBar.addSubview(addButton)
+        //toolBar.addSubview(viewButton)
+        //toolBar.addSubview(settingButton)
+        //toolBar.addSubview(favouriteButton)
+        self.view.addSubview(toolBar)
+    
     }
     
 
@@ -103,7 +124,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         let cell = stickerCollection.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! StickerViewCell
          var imageView : UIImageView
         //???????????????
-        imageView = UIImageView (frame: CGRectMake(5,5, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing ), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
+        imageView = UIImageView (frame: CGRectMake(0,0, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing ), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
        //???????????????
      
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
