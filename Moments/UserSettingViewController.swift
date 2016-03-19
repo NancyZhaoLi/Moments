@@ -16,6 +16,7 @@ class UserSettingViewController: UITableViewController {
         super.viewDidLoad()
  //self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(224/255.0), alpha: 1.0)
         self.view.backgroundColor = UIColor(red: CGFloat(0.2), green: CGFloat(0.211765), blue: CGFloat(0.286275), alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor =  UIColor.whiteColor()
         // Do any additional setup after loading the view.
         print("user loaded")
     }
