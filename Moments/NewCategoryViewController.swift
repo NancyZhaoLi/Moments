@@ -69,12 +69,6 @@ class NewCategoryViewController: UIViewController,
         self.categoryName.layer.cornerRadius = 8.0
         self.categoryName.layer.borderWidth = 1.0
         self.categoryName.layer.borderColor = UIColor.customGreenColor().CGColor
-        
-        /*self.categoryColour = UIButton(frame: CGRectMake(90,145,210,30))
-        self.categoryColour.setTitle("Pick Colour", forState: .Normal)
-        self.categoryColour.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
-        self.categoryColour.addTarget(self, action: "pickCategoryColour", forControlEvents: .TouchUpInside)
-        */
 
         categoryColour = SwiftHSVColorPicker(frame: CGRectMake(20,200,self.view.frame.width - 65, self.view.frame.height - 200))
         categoryColour.setViewColor(UIColor.customGreenColor())
@@ -120,7 +114,7 @@ class NewCategoryViewController: UIViewController,
             return CategoryEntry(colour: colour, name: name)
         }
         
-        return CategoryEntry(colour: UIColor.whiteColor(), name: name)
+        return CategoryEntry(colour: UIColor.customBlueColor(), name: name)
     }
 
 }

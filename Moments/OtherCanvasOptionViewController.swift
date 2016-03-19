@@ -27,10 +27,18 @@ class OtherCanvasOptionViewController: UIViewController {
             popover.permittedArrowDirections = .Any
             if let sourceView = sourceView {
                 popover.sourceView = sourceView
-                popover.sourceRect = CGRectMake(sourceView.frame.width/2.0,25,0,0)
+                popover.sourceRect = CGRectMake(sourceView.frame.width/2.0,0,0,0)
             }
             self.preferredContentSize = self.view.frame.size
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
     convenience required init?(coder aDecoder: NSCoder) {
@@ -42,28 +50,16 @@ class OtherCanvasOptionViewController: UIViewController {
         self.view.bounds = self.view.frame
         self.view.backgroundColor = UIColor.whiteColor()
         
-        let background = UIButton(frame: CGRectMake(0,0,120,30))
+        let background = ButtonHelper.textButton("Background", frame: self.view.frame, target: self, action: "setCanvasBackground")
         background.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
-        background.setTitle("Backgound", forState: .Normal)
-        background.addTarget(self, action: "setCanvasBackground", forControlEvents: .TouchUpInside)
-        
         self.view.addSubview(background)
     }
     
     func setCanvasBackground() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+        self.removeFromParentViewController()
         if let delegate = self.delegate {
-            self.dismissViewControllerAnimated(false, completion: nil)
             delegate.setCanvasBackground(self)
-        } else {
-            self.dismissViewControllerAnimated(false, completion: nil)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

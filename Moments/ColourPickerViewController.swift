@@ -68,28 +68,24 @@ class ColourPickerViewController: UIViewController {
     }
     
     func initNavigationButtons() {
-        let cancelButton = UIButton(frame: CGRectMake(0,3,60,37))
-        let selectButton = UIButton(frame: CGRectMake(windowWidth - 58,3,55,37))
-        
-        cancelButton.addTarget(self, action: "cancelColourPicking", forControlEvents: .TouchUpInside)
-        cancelButton.setTitle("Cancel", forState: .Normal)
-        cancelButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        
-        selectButton.addTarget(self, action: "selectColour", forControlEvents: .TouchUpInside)
-        selectButton.setTitle("Select", forState: .Normal)
-        selectButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    
+        let cancelButton = NavigationHelper.leftNavButton("Cancel", target: self, action: "cancelColourPicking")
+        let selectButton = NavigationHelper.rightNavButton("Select", target: self, action: "selectColour")
+
         let leftBarButton = UIBarButtonItem(customView: cancelButton)
         let rightBarButton = UIBarButtonItem(customView: selectButton)
-        let navItem = UINavigationItem()
-        navItem.leftBarButtonItem = leftBarButton
-        navItem.rightBarButtonItem = rightBarButton
-        
-        let navBar = UINavigationBar(frame: CGRectMake(0,20,windowWidth, 44))
-        navBar.barTintColor = UIColor.customGreenColor()
-        navBar.pushNavigationItem(navItem, animated: false)
+        if let navController = self.navigationController {
+            navController.navigationItem.rightBarButtonItem = rightBarButton
+        } else {
+            let navItem = UINavigationItem()
+            navItem.leftBarButtonItem = leftBarButton
+            navItem.rightBarButtonItem = rightBarButton
+            
+            let navBar = NavigationHelper.emptyBar()
+            navBar.pushNavigationItem(navItem, animated: false)
+            
+            self.view.addSubview(navBar)
+        }
 
-        self.view.addSubview(navBar)
     }
     
     

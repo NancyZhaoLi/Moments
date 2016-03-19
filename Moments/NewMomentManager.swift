@@ -238,6 +238,7 @@ class NewMomentManager {
             self.moment!.setBackgroundColour(self.momentColour)
         }
         
+        print("category: " + self.momentCategory)
         self.moment!.category = self.momentCategory
         self.moment!.backgroundColour = self.canvas!.view.backgroundColor!
         

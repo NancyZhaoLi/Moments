@@ -14,6 +14,18 @@ protocol EditTextItemViewControllerDelegate {
 
 class EditTextItemView: UITextView {
     
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: frame, textContainer: textContainer)
+        self.textColor = UIColor.blackColor()
+        self.textAlignment = .Left
+        self.font = UIFont(name: "Helvetica Neue", size: 30)!
+        self.backgroundColor = UIColor.whiteColor()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     func loadPlaceHolder(placeHolder: String){
         self.text = placeHolder
         self.textColor = UIColor.lightGrayColor()
@@ -29,76 +41,105 @@ class EditTextItemView: UITextView {
 class EditTextItemViewController: UIViewController, UITextViewDelegate, UINavigationBarDelegate,  TextSettingViewControllerDelegate {
     
     var delegate: EditTextItemViewControllerDelegate?
-    var text: String = EditTextItemViewController.placeHolder
+    private var text: String! = EditTextItemViewController.placeHolder
     var textColour: UIColor = UIColor.blackColor()
     var textFont: UIFont = UIFont(name: "Helvetica Neue", size: 30)!
     var textAlignment: NSTextAlignment = .Left
     var textViewBackgroundColour: UIColor = UIColor.whiteColor()
+    var settingVC: TextSettingViewController!
 
     private static let placeHolder: String = "Enter Your Text Here..."
     
-    @IBOutlet weak var editTextItemView: EditTextItemView!
+    var editTextItemView: EditTextItemView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("New Text View Controller Loaded")
+    convenience init(){
+        self.init(delegate: nil, text: nil, textAttribute: nil)
+    }
+    
+    convenience required init?(coder aDecoder: NSCoder) {
+        self.init()
+    }
+    
+    init(delegate: EditTextItemViewControllerDelegate?, text: String?, textAttribute: TextItemOtherAttribute?) {
+        super.init(nibName: nil, bundle: nil)
         
-        if self.text == EditTextItemViewController.placeHolder {
-            editTextItemView.loadPlaceHolder(self.text)
-        } else {
-            editTextItemView.loadText(self.text)
-        }
+        self.delegate = delegate
         
-        editTextItemView.textAlignment = self.textAlignment
-        editTextItemView.font = self.textFont
-        editTextItemView.backgroundColor = self.textViewBackgroundColour
+        initUI()
+        initText(text, textAttribute: textAttribute)
+    }
+    
+    
+    private func initUI() {
+        self.view = UIView(frame: CGRectMake(0,0,windowWidth, windowHeight))
+        self.view.backgroundColor = UIColor.customBackgroundColor()
+        
+        let addButton = NavigationHelper.leftNavButton("Add", target: self, action: "addText")
+        let settingButton = NavigationHelper.centerButton("Setting", target: self, action: "setting")
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addButton)
+        self.navigationItem.titleView = settingButton
+        
+        editTextItemView = EditTextItemView(frame: CGRectMake(20,20, windowWidth - 40.0, windowHeight - 40.0))
         editTextItemView.delegate = self
+        self.view.addSubview(editTextItemView)
+        
+        settingVC = TextSettingViewController(delegate: self, textAttribute: self.getTextAttribute())
     }
     
-    @IBAction func cancelAddText(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBAction func addText(sender: AnyObject) {
-        if let navigationController = self.navigationController {
-            navigationController.popViewControllerAnimated(true)
-        } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
+    private func initText(text: String?, textAttribute: TextItemOtherAttribute?) {
+        if text == nil {
+            self.text = text
+            editTextItemView.loadPlaceHolder(EditTextItemViewController.placeHolder)
         }
+        
+        changeTextAndAttribute(text, textAttribute: textAttribute)
+    }
+    
+    func addText() {
+        self.dismiss(true)
+        
         if let delegate = self.delegate {
             self.text = self.editTextItemView.text
-            if self.text == EditTextItemViewController.placeHolder {
+            if self.text == EditTextItemViewController.placeHolder || self.text.isEmpty {
                 self.text = "You didn't write anything..."
             }
             let textAttribute = TextItemOtherAttribute(colour: self.textColour, font: self.textFont, alignment: self.textAlignment)
             
             delegate.addText(self, text: self.text, textAttribute: textAttribute)
         }
-        
     }
     
-    @IBAction func unwindToEditText(sender: UIStoryboardSegue) {
-        if let navigationController = self.navigationController {
-            navigationController.popViewControllerAnimated(true)
+    func setting() {
+        if let navController = self.navigationController {
+            navController.pushViewController(settingVC, animated: true)
+        } else {
+            presentViewController(settingVC, animated: true, completion: nil)
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showTextSetting" {
-            let textSettingVC = segue.destinationViewController as! TextSettingViewController
-            textSettingVC.delegate = self
+    func changeTextAndAttribute(text: String?, textAttribute: TextItemOtherAttribute?) {
+        if let text = text {
+            changeText(text)
+        }
+        if let textAttr = textAttribute {
+            changeTextColour(textAttr.colour)
+            changeTextFont(textAttr.font)
+            changeTextAlignment(textAttr.alignment)
         }
     }
     
-    func changeTextAndAttribute(text: String, textAttribute: TextItemOtherAttribute) {
+    func changeText(text: String) {
         self.text = text
-        self.textColour = textAttribute.colour
-        self.textFont = textAttribute.font
-        self.textAlignment = textAttribute.alignment
+        if text == EditTextItemViewController.placeHolder {
+            editTextItemView.loadText(self.text)
+        } else {
+            editTextItemView.loadPlaceHolder(self.text)
+        }
+    }
+    
+    func getTextAttribute() -> TextItemOtherAttribute {
+        return TextItemOtherAttribute(colour: self.textColour, font: self.textFont, alignment: self.textAlignment)
     }
     
     // Functions for TextSettingViewController Delegate

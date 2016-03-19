@@ -12,15 +12,25 @@ import UIKit
 class EditTextItemNavigationController : UINavigationController {
     
     var viewDelegate: EditTextItemViewControllerDelegate?
+    var text: String?
+    var textAttribute: TextItemOtherAttribute?
+    
+    convenience init(){
+        self.init(viewDelegate: nil, text: nil, textAttribute: nil)
+    }
+    
+    convenience required init?(coder aDecoder: NSCoder) {
+        self.init()
+    }
+    
+    init(viewDelegate: EditTextItemViewControllerDelegate?, text: String?, textAttribute: TextItemOtherAttribute?) {
+        super.init(nibName: nil, bundle: nil)
+        
+        let editTextVC = EditTextItemViewController(delegate: viewDelegate, text: text, textAttribute: textAttribute)
+        self.pushViewController(editTextVC, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("EditTextItemNavigationController begin loading")
-        let rootVC = super.topViewController as! EditTextItemViewController
-        if let delegate = self.viewDelegate {
-            rootVC.delegate = delegate
-        } else {
-            print("delegate for EditTextItemViewController not passed")
-        }
     }
 }

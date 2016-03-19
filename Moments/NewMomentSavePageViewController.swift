@@ -37,8 +37,6 @@ class NewMomentSavePageViewController: UIViewController,
         self.categoryList.separatorStyle = UITableViewCellSeparatorStyle.None
         self.categoryList.showsVerticalScrollIndicator = false
         self.categoryList.backgroundColor = UIColor.clearColor()
-        
-
     }
     
     func displayCategories() {
@@ -47,10 +45,10 @@ class NewMomentSavePageViewController: UIViewController,
         for categoryMO in categoriesMO {
             let category = CategoryEntry(categoryMO: categoryMO)
             categories.append(category)
-            print("category name: " + category.name)
+            //print("category name: " + category.name)
         }
         
-        print("number of categories: " + String(categories.count))
+        //print("number of categories: " + String(categories.count))
     }
     
     override func didReceiveMemoryWarning() {
@@ -117,14 +115,13 @@ class NewMomentSavePageViewController: UIViewController,
         let index = count > 0 ? count - 1 : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
         self.categoryList.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        
     }
 
     
     // Category List - UITableViewDelegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("category count: " + String(categories.count))
+        //print("category count: " + String(categories.count))
         return categories.count
     }
     

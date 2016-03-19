@@ -45,9 +45,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
             fatalError("ERROR: [TextItemViewController] parentView init failed")
         }
         
-        if !initEditView() {
-            fatalError("ERROR: [TextItemViewController] editView init failed")
-        }
+        initEditView()
     }
     
     func initParentView() -> Bool {
@@ -58,13 +56,8 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         return false
     }
     
-    func initEditView() -> Bool {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let navController = storyboard.instantiateViewControllerWithIdentifier("editTextItem") as? EditTextItemNavigationController {
-            self.editViewNavController = navController
-            return true
-        }
-        return false
+    func initEditView() {
+        self.editViewNavController = EditTextItemNavigationController(viewDelegate: self, text: nil, textAttribute: nil)
     }
     
     func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute ) {
@@ -141,7 +134,6 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func tappedView() {
-        self.editViewNavController.viewDelegate = self
         self.presentViewController(editViewNavController, animated: true, completion: nil)
         if let textView = self.view as? UITextView {
             let textAttribute = TextItemOtherAttribute(colour: textView.textColor!, font: textView.font!, alignment: textView.textAlignment)

@@ -112,7 +112,6 @@ class CoreDataSaveHelper {
     }
     
     static func saveCategoryToCoreData(category: CategoryEntry) {
-        
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)

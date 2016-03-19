@@ -44,22 +44,11 @@ struct ItemType {
     
     init(name: String, image: UIImage, action: Selector){
         self.name = name
-        self.image = ItemType.resizeImage(image)
+        self.image = UIHelper.resizeImage(image,newWidth: 80.0)
         self.action = action
     }
     
-    static private func resizeImage(image: UIImage) -> UIImage {
-        let newWidth: CGFloat = 80.0
-        
-        let scale = image.size.width/newWidth
-        let newHeight = image.size.height * scale
-        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-        image.drawInRect(CGRectMake(0,0,newWidth, newHeight))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
+
     
     static func goBack() -> ItemType{
         return ItemType.itemTypes[ItemType.goBackIndex]

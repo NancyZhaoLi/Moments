@@ -81,6 +81,7 @@
 		D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */; };
 		D048BEF51C7DAE4500BD3115 /* StickerItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */; };
 		D048BEF71C7DC10300BD3115 /* NewMomentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */; };
+		D04E67F01C9CE44600D7C38A /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E67EF1C9CE44600D7C38A /* UIHelper.swift */; };
 		D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */; };
 		D05674021C7C601E002AEDB3 /* NewMomentSavePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */; };
 		D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */; };
@@ -191,6 +192,7 @@
 		D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemViewController.swift; sourceTree = "<group>"; };
 		D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemViewController.swift; sourceTree = "<group>"; };
 		D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentManager.swift; sourceTree = "<group>"; };
+		D04E67EF1C9CE44600D7C38A /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemViewController.swift; sourceTree = "<group>"; };
 		D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentSavePageViewController.swift; sourceTree = "<group>"; };
 		D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourPickerViewController.swift; sourceTree = "<group>"; };
@@ -445,23 +447,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		AD25BC821C8E3134006DA556 /* NewMoment_OtherVC */ = {
+		AD25BC821C8E3134006DA556 /* OtherVC */ = {
 			isa = PBXGroup;
 			children = (
 				463466F81C97A832003361EE /* AudioRecorderViewController.swift */,
-				AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */,
-				D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */,
-				766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */,
 				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
 			);
-			name = NewMoment_OtherVC;
+			name = OtherVC;
 			sourceTree = "<group>";
 		};
 		AD25BC831C8E316C006DA556 /* NewMoment_VC */ = {
 			isa = PBXGroup;
 			children = (
-				AD25BC821C8E3134006DA556 /* NewMoment_OtherVC */,
-				AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */,
+				D041E3661C9D3344004628C3 /* EditTextItem */,
+				AD25BC821C8E3134006DA556 /* OtherVC */,
+				AD25BC861C8E322D006DA556 /* ItemVC */,
 				463467091C9B50C0003361EE /* NewItemViewController.swift */,
 				463467071C9B4DB6003361EE /* NewMomentNavigationController.swift */,
 				ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */,
@@ -490,7 +490,7 @@
 			name = TableCells;
 			sourceTree = "<group>";
 		};
-		AD25BC861C8E322D006DA556 /* NewMoment_ItemVC */ = {
+		AD25BC861C8E322D006DA556 /* ItemVC */ = {
 			isa = PBXGroup;
 			children = (
 				D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */,
@@ -499,7 +499,7 @@
 				D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */,
 				D048BEF41C7DAE4500BD3115 /* StickerItemViewController.swift */,
 			);
-			name = NewMoment_ItemVC;
+			name = ItemVC;
 			sourceTree = "<group>";
 		};
 		AD25BC871C8E327D006DA556 /* NewMoment */ = {
@@ -514,9 +514,20 @@
 		AD25BC881C8E32D7006DA556 /* ComponentVC */ = {
 			isa = PBXGroup;
 			children = (
+				D04E67EF1C9CE44600D7C38A /* UIHelper.swift */,
 				D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */,
 			);
 			name = ComponentVC;
+			sourceTree = "<group>";
+		};
+		D041E3661C9D3344004628C3 /* EditTextItem */ = {
+			isa = PBXGroup;
+			children = (
+				766306331C809F3100FA7726 /* EditTextItemNavigationController.swift */,
+				D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */,
+				AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */,
+			);
+			name = EditTextItem;
 			sourceTree = "<group>";
 		};
 		F12AE0561ECDFDBB824A7069 /* Frameworks */ = {
@@ -735,6 +746,7 @@
 				7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */,
 				760197E91C7E10AF00A7315A /* AudioItem+CoreDataProperties.swift in Sources */,
 				D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */,
+				D04E67F01C9CE44600D7C38A /* UIHelper.swift in Sources */,
 				463466FE1C9B0BE6003361EE /* StickerViewCell.swift in Sources */,
 				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
 				D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */,
