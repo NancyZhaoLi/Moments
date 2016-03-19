@@ -46,10 +46,11 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.stickerCollection.delegate = self
-       // self.stickerCollection.dataSource = self
+        self.view.backgroundColor = UIColor.customBackgroundColor()
+        self.stickerCollection.delegate = self
+        self.stickerCollection.dataSource = self
         
-        for i  in 1 ... 16 {
+        for i  in 17 ... 45 {
             
             let name : String = "sticker-" + String(i) + ".png"
             let pic = sticker(image: UIImage(named: name)!, name: "sticker")
@@ -57,7 +58,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
             
         
         }
-        
+         searches = cells
         
         let cellCollNib = UINib (nibName: "StickerViewCell", bundle: NSBundle.mainBundle())
         stickerCollection.registerNib(cellCollNib, forCellWithReuseIdentifier: reuseIdentifier)
@@ -66,10 +67,10 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
 
           initLayout()
           initToolBar()
-          searches = cells
+         
         // Do any additional setup after loading the view.
     }
-    //override func viewDidAppear(animated: Bool) {
+   // override func viewDidAppear(animated: Bool) {
     func initLayout(){
         let cellSize = (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow ) - (cellSpacing)
         //layout.sectionInset = UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
@@ -122,13 +123,26 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = stickerCollection.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! StickerViewCell
-         var imageView : UIImageView
+        
+        var imageView : UIImageView
         //???????????????
         imageView = UIImageView (frame: CGRectMake(0,0, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing ), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
        //???????????????
      
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
         imageView.image = searches[indexPath.row].image
+        imageView.backgroundColor = UIColor.customBackgroundColor()
+        //a serious bug here
+        
+
+        /*
+        cell.imageItem = UIImageView(frame: CGRectMake(0,0, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing ), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
+       // cell.imageItem.contentMode = UIViewContentMode.ScaleAspectFit
+       // cell.imageItem.image = searches[indexPath.row].image
+        */
+        
+        
+        
         cell.addSubview(imageView)
         
       // cell.imageItem.image = searches[indexPath.row].image
