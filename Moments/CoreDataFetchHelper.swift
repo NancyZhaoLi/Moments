@@ -74,6 +74,28 @@ class CoreDataFetchHelper {
         
     }
     
+    static func fetchDateRangeMomentsMOFromCoreData(start: NSDate, end: NSDate) -> [Moment] {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestMoments = NSFetchRequest(entityName: "Moment")
+        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@", start, end)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        
+        requestMoments.sortDescriptors = [sortDescriptor]
+        requestMoments.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(requestMoments) as! [Moment]
+            
+            return results
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
     static func fetchCategoriesMOFromCoreData() -> [Category] {
         let defaultFetchSize = 20
         
