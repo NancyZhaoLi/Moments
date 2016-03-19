@@ -34,15 +34,40 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     let iconSize : CGFloat = 30
   
    private var cells = [sticker]()
-
-    private var searches = [sticker]()
+   private var booklet = [String :  Int]()
+   private var searches = [sticker]()
+    
+    
     func addCells(cell: sticker ){
         print("adding new cell")
         cells.append(cell)
         
     }
+    func addCellsWithName(cell: sticker, inout name : [sticker] ){
+        //print("adding new cell to a particular booklet")
+        name.append(cell)
     
-  
+    }
+    func fetchNewColStickers(name : String){
+        let colnum : Int = booklet[name]!
+        var newcell = [sticker]()
+       
+        
+        for i in 1...colnum {
+            let name_sticker : String = name + "-" + String(i) + ".png"
+            let pic = sticker(image: UIImage(named: name_sticker)!, name: name_sticker)
+            addCellsWithName(pic, name: &newcell )
+        
+        }
+        searches = newcell
+      
+    
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        stickerCollection.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,15 +75,10 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         self.stickerCollection.delegate = self
         self.stickerCollection.dataSource = self
         
-        for i  in 17 ... 45 {
-            
-            let name : String = "sticker-" + String(i) + ".png"
-            let pic = sticker(image: UIImage(named: name)!, name: "sticker")
-            addCells(pic)
-            
-        
-        }
-         searches = cells
+        self.booklet["sticker"] = 44
+        self.booklet["animal"] = 16
+   
+        fetchNewColStickers("sticker")
         
         let cellCollNib = UINib (nibName: "StickerViewCell", bundle: NSBundle.mainBundle())
         stickerCollection.registerNib(cellCollNib, forCellWithReuseIdentifier: reuseIdentifier)
@@ -116,6 +136,13 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
         print(searches.count)
         return  self.searches.count// for now
+        
+    }
+     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let pickedSticker = searches[indexPath.row]
+        print(pickedSticker.name)
+        //performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
         
     }
     
