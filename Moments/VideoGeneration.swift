@@ -14,14 +14,15 @@ import MediaPlayer
 import CoreMedia
 
 class VideoGeneration {
-    func getImages(start : NSDate, end : NSDate) ->[ImageItem]{
-        //retrieve from coredata
-            return []
-    }
-    
-    func getVideos(start : NSDate, end : NSDate) ->[VideoItem]{
-        //retrieve from coredata
-        return []
+    func getImagesAndVideos(start : NSDate, end : NSDate) ->(imageList:NSSet, videoList:NSSet){
+        let momentsMO = CoreDataFetchHelper.fetchDateRangeMomentsMOFromCoreData(start, end: end)
+        let imageList = NSSet!.init()
+        let videoList = NSSet!.init()
+        for moment in momentsMO {
+            imageList!.setByAddingObjectsFromSet(moment.containedImageItem! as Set<NSObject>)
+            videoList!.setByAddingObjectsFromSet(moment.containedVideoItem! as Set<NSObject>)
+        }
+        return (imageList, videoList)
     }
     
     func imagesToVideo(images: [ImageItem])-> AVAsset {

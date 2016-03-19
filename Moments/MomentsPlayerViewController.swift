@@ -10,6 +10,10 @@ import UIKit
 
 class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     
+    var fav : Bool!
+    var start :  NSDate!
+    var end : NSDate!
+    
     @IBOutlet weak var webView: UIWebView!
 
     @IBAction func saveVideo(sender: UIButton) {

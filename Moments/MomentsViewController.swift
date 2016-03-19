@@ -75,4 +75,11 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var momentsPlayerVC = segue.destinationViewController as! MomentsPlayerViewController
+        momentsPlayerVC.fav = fav
+        momentsPlayerVC.start = start
+        momentsPlayerVC.end = end
+    }
 }
