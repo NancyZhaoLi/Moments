@@ -932,7 +932,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM1-Vt-QZB">
                                 <rect key="frame" x="146" y="276" width="83" height="30"/>
-                                <color key="backgroundColor" red="0.30192412060000001" green="0.2968463328" blue="0.37682291670000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <state key="normal" title="Reset!">
                                     <color key="titleColor" red="0.45066028959999999" green="0.92932351209999997" blue="0.99190469459999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1069,14 +1068,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3EJ-qF-jNg">
-                                <rect key="frame" x="52" y="540" width="25" height="25"/>
+                                <rect key="frame" x="52" y="534" width="25" height="25"/>
                                 <state key="normal" image="github_f"/>
                                 <connections>
                                     <action selector="nancylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="Tyc-ps-swr"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3g-Vh-uA6">
-                                <rect key="frame" x="112" y="540" width="25" height="25"/>
+                                <rect key="frame" x="112" y="534" width="25" height="25"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" image="linkdin_f"/>
                                 <connections>
@@ -1084,42 +1083,42 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBB-8L-NaR">
-                                <rect key="frame" x="112" y="284" width="25" height="25"/>
+                                <rect key="frame" x="112" y="290" width="25" height="25"/>
                                 <state key="normal" image="linkdin_f"/>
                                 <connections>
                                     <action selector="xinlink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="Rio-gZ-XAO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfT-Ey-En2">
-                                <rect key="frame" x="52" y="284" width="25" height="25"/>
+                                <rect key="frame" x="52" y="290" width="25" height="25"/>
                                 <state key="normal" image="github_f"/>
                                 <connections>
                                     <action selector="xinlink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="RPJ-us-BdV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSD-oC-TMa">
-                                <rect key="frame" x="236" y="284" width="25" height="25"/>
+                                <rect key="frame" x="236" y="290" width="25" height="25"/>
                                 <state key="normal" image="github_f"/>
                                 <connections>
                                     <action selector="emilylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="AeW-aB-s9u"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAb-Fh-Qyf">
-                                <rect key="frame" x="299" y="284" width="25" height="25"/>
+                                <rect key="frame" x="299" y="290" width="25" height="25"/>
                                 <state key="normal" image="linkdin_f"/>
                                 <connections>
                                     <action selector="emilylink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="Nds-Zn-jhb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k30-Vg-mOu">
-                                <rect key="frame" x="236" y="540" width="25" height="25"/>
+                                <rect key="frame" x="236" y="534" width="25" height="25"/>
                                 <state key="normal" image="github_f"/>
                                 <connections>
                                     <action selector="monicalink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="z6a-PB-vpP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1sy-fW-iEi">
-                                <rect key="frame" x="299" y="540" width="25" height="25"/>
+                                <rect key="frame" x="299" y="534" width="25" height="25"/>
                                 <state key="normal" image="twitter_f"/>
                                 <connections>
                                     <action selector="monicalink:" destination="DFz-oZ-9ro" eventType="touchUpInside" id="iKz-Fa-pyc"/>
