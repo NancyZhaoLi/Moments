@@ -92,8 +92,7 @@ class ImageItemViewController: UIViewController {
         self.view.addGestureRecognizer(pinchRec)
         self.view.addGestureRecognizer(rotateRec)
         self.view.addGestureRecognizer(panRec)
-        
-        self.view.userInteractionEnabled = false
+
         self.view.multipleTouchEnabled = true
     }
     

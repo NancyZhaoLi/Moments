@@ -19,7 +19,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
 
     var manager: NewMomentManager!
     var parentView: UIView!
-    var editViewNavController: EditTextItemNavigationController!
+    var editText: EditTextItemViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func initEditView() {
-        self.editViewNavController = EditTextItemNavigationController(viewDelegate: self, text: nil, textAttribute: nil)
+        editText = EditTextItemViewController(delegate: self, text: nil, textAttribute: nil)
     }
     
     func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute ) {
@@ -67,6 +67,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         let textItemView = UITextView(frame: CGRectMake(0,0, width, height))
         textItemView.center = location
         
+        initEditTextItemViewController(text, textAttribute: textAttribute)
         initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
     }
 
@@ -91,11 +92,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     private func initEditTextItemViewController(text: String, textAttribute: TextItemOtherAttribute) {
-        if let editView = self.editViewNavController.topViewController as? EditTextItemViewController {
-            editView.changeTextAndAttribute(text, textAttribute: textAttribute)
-        } else {
-            fatalError("ERROR: [TextItemViewController] - cannot find the EditTextItemViewController")
-        }
+        editText.changeTextAndAttribute(text, textAttribute: textAttribute)
     }
     
     private func changeText(text: String, textAttribute: TextItemOtherAttribute) {
@@ -129,22 +126,30 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         self.view.addGestureRecognizer(rotateRec)
         self.view.addGestureRecognizer(panRec)
         
-        self.view.userInteractionEnabled = false
         self.view.multipleTouchEnabled = true
     }
     
     func tappedView() {
-        self.presentViewController(editViewNavController, animated: true, completion: nil)
-        if let textView = self.view as? UITextView {
+        if let navController = manager.canvas?.navigationController {
+            navController.pushViewController(editText, animated: true)
+        } else {
+            presentViewController(editText, animated: true, completion: nil)
+        }
+        
+        /*if let textView = self.view as? UITextView {
             let textAttribute = TextItemOtherAttribute(colour: textView.textColor!, font: textView.font!, alignment: textView.textAlignment)
             initEditTextItemViewController(textView.text, textAttribute: textAttribute)
-        }
+        }*/
     }
     
     func pinchedView(sender: UIPinchGestureRecognizer) {
-        parentView.bringSubviewToFront(self.view)
-        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale * 0.5, sender.scale * 0.5)
-        sender.scale = 1.0
+        if sender.state == .Began {
+            
+        } else if sender.state == .Changed {
+            parentView.bringSubviewToFront(self.view)
+            sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+            sender.scale = 1.0
+        }
     }
     
     func rotatedView(sender: UIRotationGestureRecognizer) {

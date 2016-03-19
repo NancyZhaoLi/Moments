@@ -52,6 +52,7 @@ class NewMomentManager {
     var isNewMoment : Bool = true
     var testMode : Bool = true
     var debugPrefix : String = "[NewMomentManager] - "
+    var enableInteraction: Bool! = true
 
     func setCanvas(canvas: NewMomentCanvasViewController) {
         self.canvas = canvas
@@ -151,7 +152,8 @@ class NewMomentManager {
     func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
         let newTextVC = TextItemViewController(manager: self)
         newTextVC.addText(text, location: location, textAttribute: textAttribute)
-            
+        newTextVC.view.userInteractionEnabled = enableInteraction
+        
         return newTextVC
     }
     
@@ -159,6 +161,7 @@ class NewMomentManager {
         let newImageVC = ImageItemViewController(manager: self)
         newImageVC.addImage(image, location: location, editingInfo: editingInfo)
         
+        newImageVC.view.userInteractionEnabled = enableInteraction
         return newImageVC
     }
     
@@ -184,10 +187,12 @@ class NewMomentManager {
         self.savePage!.setDefaultMomentCategory(self.momentCategory)
     }
     
-    func setFavourite() -> Bool {
-        self.momentFavourite = !(self.momentFavourite)
-        
-        return self.momentFavourite
+    func selectFavourite() {
+        momentFavourite = true
+    }
+    
+    func unselectFavourite() {
+        momentFavourite = false
     }
 
     
@@ -237,8 +242,7 @@ class NewMomentManager {
         if updateColour() {
             self.moment!.setBackgroundColour(self.momentColour)
         }
-        
-        print("category: " + self.momentCategory)
+
         self.moment!.category = self.momentCategory
         self.moment!.backgroundColour = self.canvas!.view.backgroundColor!
         
@@ -252,8 +256,6 @@ class NewMomentManager {
                 self.moment!.addItemEntry(imageItemEntry)
             }
         }
-
-        debugEnd("saveMomentEntry")
     }
     
     

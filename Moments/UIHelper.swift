@@ -202,28 +202,22 @@ class NavigationHelper: ButtonHelper {
         navBar.pushNavigationItem(navItem, animated: false)
         
         return navBar
-
     }
-
 }
 
 class UIHelper {
     static private func buttonWidth(text: String) -> CGFloat {
-        return textWidth(text, size: 15.0) + 2 * 5
+        return textSize(text, size: 15.0).width + 2 * 5
     }
     
     static func textSize(text: String, size: CGFloat) -> CGSize {
+        return textSize(text, font: UIFont.systemFontOfSize(size))
+    }
+    
+    static func textSize(text: String, font: UIFont) -> CGSize {
         let nsString: NSString = text as NSString
-        let size: CGSize = nsString.sizeWithAttributes([NSFontAttributeName: UIFont.systemFontOfSize(size)])
-        return size
-    }
-    
-    static func textWidth(text: String, size: CGFloat) -> CGFloat {
-        return textSize(text, size: size).width
-    }
-    
-    static func textHeight(text: String, size: CGFloat) -> CGFloat {
-        return textSize(text, size: size).height
+        let textSize: CGSize = nsString.sizeWithAttributes([NSFontAttributeName: font])
+        return textSize
     }
     
     static func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
@@ -239,7 +233,8 @@ class UIHelper {
 
     static func groupWithHeader(header: String, headerSize: CGFloat,lineHeight: CGFloat, inset: CGFloat, y: CGFloat, content: UIView) -> UIView {
         let view = UIView(frame: CGRectMake(0, y, windowWidth,0))
-        let label = UILabel(frame:CGRectMake(inset, 0, textWidth(header,size: headerSize),textHeight(header,size: headerSize)))
+        let labelSize = textSize(header, size: headerSize)
+        let label = UILabel(frame:CGRectMake(inset, 0, labelSize.width, labelSize.height))
         label.text = header
         label.font = UIFont.systemFontOfSize(headerSize)
         label.backgroundColor = UIColor.clearColor()

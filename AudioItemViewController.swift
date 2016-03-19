@@ -123,8 +123,7 @@ class AudioItemViewController: UIViewController {
         
         self.view.addGestureRecognizer(self.pinchRec)
         self.view.addGestureRecognizer(self.panRec)
-        
-        self.view.userInteractionEnabled = false
+
         self.view.multipleTouchEnabled = true
     }
     

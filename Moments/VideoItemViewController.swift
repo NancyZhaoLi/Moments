@@ -69,8 +69,7 @@ class VideoItemViewController: UIViewController {
         
         self.view.addGestureRecognizer(pinchRec)
         self.view.addGestureRecognizer(panRec)
-        
-        self.view.userInteractionEnabled = false
+
         self.view.multipleTouchEnabled = true
     }
     

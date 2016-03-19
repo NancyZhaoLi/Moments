@@ -44,6 +44,10 @@ class NewMomentCanvasViewController: UIViewController,
         }
         
         initUI()
+        
+        if self.loadedMoment != nil {
+            selectViewMode()
+        }
     }
     
     func initUI() {
@@ -142,12 +146,14 @@ class NewMomentCanvasViewController: UIViewController,
     }
 
     func enableUserInteraction() {
+        manager.enableInteraction = true
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = true
         }
     }
     
     func disableUserInteraction() {
+        manager.enableInteraction = false
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = false
         }
@@ -157,14 +163,14 @@ class NewMomentCanvasViewController: UIViewController,
         favouriteButton.setBackgroundImage(UIImage(named: "favourite_unselected_icon.png")!, forState: .Normal)
         favouriteButton.removeTarget(self, action: "cancelFavourite", forControlEvents: .TouchUpInside)
         favouriteButton.addTarget(self, action: "selectFavourite", forControlEvents: .TouchUpInside)
-        self.manager.setFavourite()
+        manager.unselectFavourite()
     }
     
     func selectFavourite() {
         favouriteButton.setBackgroundImage(UIImage(named: "favourite_selected_icon.png")!, forState: .Normal)
         favouriteButton.removeTarget(self, action: "selectFavourite")
         favouriteButton.addTarget(self, action: "cancelFavourite")
-        self.manager.setFavourite()
+        manager.selectFavourite()
     }
     
     func setting() {
@@ -200,7 +206,7 @@ class NewMomentCanvasViewController: UIViewController,
         image.delegate = self
         image.sourceType = sourceType
         image.allowsEditing = allowsEditing
-        self.presentViewController(image, animated: true)
+        presentViewController(image, animated: true, completion: nil)
     }
     
     func addImageFromGallery() {
@@ -212,7 +218,7 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addAudioFromRecorder(){
-        let audioRecorder = AudioRecorderViewController(sourceView: self.view, delegate: self)
+        let audioRecorder = AudioRecorderViewController(delegate: self)
         presentViewController(audioRecorder, animated: true)
         
         //self.performSegueWithIdentifier("newAudioRecording", sender: self)
@@ -221,7 +227,6 @@ class NewMomentCanvasViewController: UIViewController,
     func addAudioFromMusic() {
         
     }
-
     
     func addVideoFromCamera(){
         

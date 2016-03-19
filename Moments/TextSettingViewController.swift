@@ -98,21 +98,23 @@ class TextSettingViewController : UIViewController,
     }
     
     private func initSizeContent(contentFrame: CGRect) -> UIView {
-        let largeTextSize = UIHelper.textSize("AA", size: 30.0)
+        let largeTextFont = UIFont(name: "HelveticaNeue-Bold", size: 30.0)!
+        let smallTextFont = UIFont(name: "HelveticaNeue-Bold", size: 15.0)!
+        let largeTextSize = UIHelper.textSize("A", font: largeTextFont)
         let sliderHeight = largeTextSize.height
-        let smallTextSize = CGSizeMake(UIHelper.textWidth("AA", size: 15.0), sliderHeight)
+        let smallTextSize = CGSizeMake(UIHelper.textSize("A", font: smallTextFont).width, sliderHeight)
         
         let largeTextLabel = UILabel(frame: CGRect(origin: CGPointMake(windowWidth - 2 * inset - largeTextSize.width,0), size: largeTextSize))
         let smallTextLabel = UILabel(frame: CGRect(origin: CGPointMake(0,0), size: smallTextSize))
         
         largeTextLabel.text = "A"
-        largeTextLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 30.0)
+        largeTextLabel.font = largeTextFont
         largeTextLabel.textColor = UIColor.blackColor()
         largeTextLabel.textAlignment = .Center
         largeTextLabel.backgroundColor = UIColor.clearColor()
         
         smallTextLabel.text = "A"
-        smallTextLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 15.0)
+        smallTextLabel.font = smallTextFont
         smallTextLabel.textColor = UIColor.blackColor()
         smallTextLabel.textAlignment = .Center
         smallTextLabel.backgroundColor = UIColor.clearColor()

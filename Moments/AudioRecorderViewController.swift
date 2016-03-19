@@ -43,30 +43,20 @@ class AudioRecorderViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(sourceView: nil, delegate: nil)
+        self.init(delegate: nil)
     }
 
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(sourceView: UIView?, delegate: AudioRecorderViewControllerDelegate?) {
+    init(delegate: AudioRecorderViewControllerDelegate?) {
         self.haveRecorded = false
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
         
         initUI()
         initRecordingSession()
-        
-        self.modalPresentationStyle = .Popover
-        if let popover = self.popoverPresentationController {
-            popover.delegate = self.delegate as? UIPopoverPresentationControllerDelegate
-            if let sourceView = sourceView {
-                popover.sourceView = sourceView
-                popover.sourceRect = CGRectMake(CGRectGetMidX(sourceView.frame),CGRectGetMidY(sourceView.frame),0,0)
-            }
-            self.preferredContentSize = self.view.frame.size
-        }
     }
     
     func initRecordingSession() {
@@ -110,37 +100,36 @@ class AudioRecorderViewController: UIViewController {
     }
     
     func initUI() {
-        self.view = UIView(frame: CGRectMake(0,0,220, 150))
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view = UIView(frame: CGRectMake(0,0,windowWidth, windowHeight))
+        self.view.backgroundColor = UIColor.customBackgroundColor()
         
-        let saveButton = UIButton(frame: CGRectMake(self.view.frame.width - 50,0,50,37))
-        saveButton.addTarget(self, action: "saveRecording", forControlEvents: .TouchUpInside)
-        saveButton.setTitle("Save", forState: .Normal)
-        saveButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-    
-        startOrPauseButton = UIButton(frame: CGRectMake(0,0,100,100))
-        startOrPauseButton.center = CGPointMake(windowWidth/2.0, windowHeight/3.0)
-        startOrPauseButton.setTitle("Start", forState: UIControlState.Normal)
-        startOrPauseButton.setTitleColor(UIColor.customGreenColor(), forState: .Normal)
-        startOrPauseButton.addTarget(self, action: "startOrPause", forControlEvents: .TouchUpInside)
+        let saveButton = NavigationHelper.rightNavButton("Save", target: self, action: "saveRecording")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         
-        stopButton = UIButton(frame: CGRectMake(self.view.frame.width - 96, 70,50,37))
-        stopButton.setTitle("Stop", forState: .Normal)
-        stopButton.addTarget(self, action: "stop", forControlEvents: .TouchUpInside)
-        stopButton.enabled = false
-        stopButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
-
+        let startButtonSize = windowWidth / 2.0
+        let stopButtonSize = windowWidth / 6.0
+        startOrPauseButton = ButtonHelper.imageButton("text.png", center: CGPointMake(startButtonSize, startButtonSize + 20.0), imageSize: startButtonSize, target: self, action: "startOrPause")
         
-        timeLabel = UILabel(frame: CGRectMake(0,0,50,37))
-        timeLabel.center = CGPoint(x: self.view.frame.width/2.0, y: 100.0)
-        timeLabel.text = "0.0"
+        stopButton = ButtonHelper.imageButton("text.png", center: CGPointMake(windowWidth - stopButtonSize/2.0 - 20.0, startOrPauseButton.frame.maxY), imageSize: stopButtonSize, target: self, action: "stop")
+        
+        let moreOptionBarHeight : CGFloat = 20.0
+        let moreOptionBar = UIHelper.line(0, height: moreOptionBarHeight, y: stopButton.frame.maxY + 10.0, colour: UIColor.customBlueColor())
+        let plusButton = ButtonHelper.imageButton("add_icon.png", center: CGPointMake(windowWidth/2.0, (moreOptionBarHeight - 4.0)/2.0), imageSize: moreOptionBarHeight - 4.0, target: self, action: "showMoreOption")
+        moreOptionBar.addSubview(plusButton)
+        
+        timeLabel = UILabel()
+        timeLabel.font = UIFont(name: "Helvetica-Bold", size: 25.0)
+        timeLabel.text = computeTimeString(0.0)
+        timeLabel.frame.size = UIHelper.textSize(timeLabel.text!, font: timeLabel.font)
+        timeLabel.center = CGPointMake(windowWidth/2.0, 0)
+        timeLabel.frame.origin.y = stopButton.frame.maxY - timeLabel.frame.size.height
         timeLabel.textColor = UIColor.customGreenColor()
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         self.view.addSubview(startOrPauseButton)
         self.view.addSubview(stopButton)
         self.view.addSubview(timeLabel)
-
+        self.view.addSubview(moreOptionBar)
     }
     
     func startOrPause() {
@@ -153,7 +142,6 @@ class AudioRecorderViewController: UIViewController {
             }
         }
     }
-
     
     func pause() {
         self.startOrPauseButton.setTitle("Resume", forState: UIControlState.Normal)
@@ -173,6 +161,8 @@ class AudioRecorderViewController: UIViewController {
     func saveRecording() {
         if let delegate = self.delegate {
             delegate.saveRecording(self, url: self.recorder!.url)
+        } else {
+            self.dismiss(true)
         }
     }
     
@@ -187,10 +177,8 @@ class AudioRecorderViewController: UIViewController {
     
     func updateTime() {
         let currentTime = self.recorder!.currentTime
-        self.timeLabel.text = String(currentTime)
+        self.timeLabel.text = computeTimeString(currentTime)
     }
-    
-
     
     func start() {
         self.startOrPauseButton.setTitle("Pause", forState: UIControlState.Normal)
@@ -202,4 +190,16 @@ class AudioRecorderViewController: UIViewController {
         }
     }
 
+    private func computeTimeString(var second: NSTimeInterval) -> String {
+        let hour: Int = Int(second / 3600.0)
+        second -= Double(hour * 3600)
+        let minute : Int = Int(second / 60.0)
+        second -= Double(minute * 60)
+        
+        let hourString = String(format: "%02d", hour)
+        let minuteString = String(format: "%02d", minute)
+        let secondString = String(format: "%02d", second)
+
+        return hourString + " : " + minuteString + " : " + secondString
+    }
 }
