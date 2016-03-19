@@ -12,6 +12,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     @IBOutlet var categoriesCollectionView: UICollectionView!
     
+   
     var categoriesMO = [Category]()
     var categories = [CategoryEntry]()
     
@@ -28,7 +29,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         self.categoriesCollectionView.showsVerticalScrollIndicator = false
         self.categoriesCollectionView.backgroundColor = UIColor.clearColor()
         self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
-        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.barTintColor = UIColor.customGreenColor()
         width = CGRectGetWidth(collectionView!.frame) / 3
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width!, height: width!)
