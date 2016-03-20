@@ -27,6 +27,10 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
     }
     
+    @IBAction func update(sender: AnyObject) {
+        fetchNewColStickers("animals")
+        self.stickerCollection.reloadData()
+    }
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout ()
     let cellSpacing : CGFloat = 3
     let cellsPerRow : CGFloat = 3
@@ -76,7 +80,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         self.stickerCollection.dataSource = self
         
         self.booklet["sticker"] = 44
-        self.booklet["animal"] = 16
+        self.booklet["animals"] = 16
    
         fetchNewColStickers("sticker")
         

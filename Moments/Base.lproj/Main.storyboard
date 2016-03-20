@@ -155,7 +155,11 @@
                     <navigationItem key="navigationItem" id="TLT-Rz-mym">
                         <nil key="title"/>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="W6q-3Y-ZBt"/>
+                            <barButtonItem systemItem="action" id="W6q-3Y-ZBt">
+                                <connections>
+                                    <action selector="update:" destination="lu1-WJ-L1u" id="cAV-z7-nUW"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem style="plain" id="UFG-2I-Z5D">
                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rA5-hF-jpX">
                                     <rect key="frame" x="238" y="7" width="83" height="30"/>
