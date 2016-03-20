@@ -16,8 +16,6 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var startDate: UITextField!
-
-    
     @IBOutlet weak var endDate: UITextField!
 
     @IBAction func startDate(sender: UITextField) {
@@ -43,10 +41,12 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         fav = !fav
         if fav {
             let image = UIImage(named: "FavouriteSelected")
-            sender.setImage(image, forState: UIControlState.Normal)        }
+            sender.setImage(image, forState: UIControlState.Normal)
+        }
         else {
             let image = UIImage(named: "Favourite")
-            sender.setImage(image, forState: UIControlState.Normal)        }
+            sender.setImage(image, forState: UIControlState.Normal)
+        }
     }
 
 
@@ -77,7 +77,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var momentsPlayerVC = segue.destinationViewController as! MomentsPlayerViewController
+        let momentsPlayerVC = segue.destinationViewController as! MomentsPlayerViewController
         momentsPlayerVC.fav = fav
         momentsPlayerVC.start = start
         momentsPlayerVC.end = end
