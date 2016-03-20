@@ -71,27 +71,46 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
     }
     
-    // delete
     
+    // delete feature
     override func setEditing(editing: Bool, animated: Bool) {
         
         super.setEditing(editing, animated: animated)
         
+        if !editing {
+            navigationController!.setToolbarHidden(true, animated: animated)
+        }
+        
         addCategoryButton.enabled = !editing
-        categoriesCollectionView.allowsMultipleSelection = editing
+        categoriesCollectionView.allowsMultipleSelection = false
         
         let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
         
         for indexPath in indexPaths {
-            categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
+            //categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
             
             let cell = categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
             cell.deleting = editing
         }
         
-        if !editing {
-            navigationController!.setToolbarHidden(true, animated: animated)
+    }
+    
+    
+    @IBAction func deleteCategories(sender: UIBarButtonItem) {
+        
+        let indexPaths = categoriesCollectionView.indexPathsForSelectedItems()! as [NSIndexPath]
+        
+        // delete categories in core data
+        for indexPath in indexPaths {
+            CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categoriesMO[indexPath.row])
+            categoriesMO.removeAtIndex(indexPath.row)
+            categories.removeAtIndex(indexPath.row)
+            
         }
+        
+        // delete categories in collection view
+        categoriesCollectionView.deleteItemsAtIndexPaths(indexPaths)
+        
     }
     
     
@@ -145,8 +164,9 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
-        CoreDataSaveHelper.saveCategoryToCoreData(category)
+        let categoryMO = CoreDataSaveHelper.saveCategoryToCoreData(category)
         categories.append(category)
+        categoriesMO.append(categoryMO)
         
         let count = categories.count
         let index = count > 0 ? count - 1 : 0
@@ -155,6 +175,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         /*UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
             }, completion: nil)*/
+        
         self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
         self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
     

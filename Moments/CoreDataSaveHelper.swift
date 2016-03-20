@@ -111,7 +111,7 @@ class CoreDataSaveHelper {
 
     }
     
-    static func saveCategoryToCoreData(category: CategoryEntry) {
+    static func saveCategoryToCoreData(category: CategoryEntry) -> Category {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
@@ -127,6 +127,8 @@ class CoreDataSaveHelper {
             print("ERROR: saving context to Category")
         }
         
+        return categoryMO
     }
+    
 }
 

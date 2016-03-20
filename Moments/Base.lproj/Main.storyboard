@@ -1299,6 +1299,15 @@
                             <outlet property="delegate" destination="TTt-zD-eGq" id="ta5-WC-bRo"/>
                         </connections>
                     </collectionView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="uNp-bw-xL2"/>
+                        <barButtonItem systemItem="trash" id="6q7-DF-tzx">
+                            <connections>
+                                <action selector="deleteCategories:" destination="TTt-zD-eGq" id="qCe-gQ-lIc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="mQU-tV-9jW"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Categories" id="tJj-WS-7YP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Wwo-ZS-Lp9">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1307,6 +1316,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addCategoryButton" destination="Wwo-ZS-Lp9" id="kPp-Yq-IFw"/>
                         <outlet property="categoriesCollectionView" destination="J6E-zL-B39" id="O02-5e-rpL"/>

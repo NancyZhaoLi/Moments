@@ -44,6 +44,7 @@
 		760197F21C7E10AF00A7315A /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197E41C7E10AF00A7315A /* TextItem.swift */; };
 		760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */; };
 		760198041C7E796200A7315A /* CoreDataSaveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760198031C7E796200A7315A /* CoreDataSaveHelper.swift */; };
+		7601AF4A1C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */; };
 		760593301C7BDAB000A26DDF /* MomentEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605932F1C7BDAB000A26DDF /* MomentEntry.swift */; };
 		760593321C7BDBFB00A26DDF /* TextItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760593311C7BDBFB00A26DDF /* TextItemEntry.swift */; };
 		760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760593331C7BDC1D00A26DDF /* CategoryEntry.swift */; };
@@ -145,6 +146,7 @@
 		760197E41C7E10AF00A7315A /* TextItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
 		760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchHelper.swift; sourceTree = "<group>"; };
 		760198031C7E796200A7315A /* CoreDataSaveHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSaveHelper.swift; sourceTree = "<group>"; };
+		7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataDeleteHelper.swift; sourceTree = "<group>"; };
 		7605932F1C7BDAB000A26DDF /* MomentEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentEntry.swift; sourceTree = "<group>"; };
 		760593311C7BDBFB00A26DDF /* TextItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemEntry.swift; sourceTree = "<group>"; };
 		760593331C7BDC1D00A26DDF /* CategoryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryEntry.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				767834821C7D151B00FC1B96 /* DataModel */,
 				760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */,
 				760198031C7E796200A7315A /* CoreDataSaveHelper.swift */,
+				7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */,
 			);
 			name = CoreDataHelpers;
 			sourceTree = "<group>";
@@ -760,6 +763,7 @@
 				760197E71C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift in Sources */,
 				764BF99F1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift in Sources */,
 				D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */,
+				7601AF4A1C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift in Sources */,
 				760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */,
 				760197E81C7E10AF00A7315A /* StickerItem.swift in Sources */,
 				46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */,
