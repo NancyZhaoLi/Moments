@@ -17,8 +17,12 @@
                         <rect key="frame" x="-20" y="0.0" width="240" height="143"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kAY-2F-P1y">
-                        <rect key="frame" x="72" y="150" width="56" height="32"/>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unselected" id="LHm-h1-Fr0">
+                        <rect key="frame" x="80" y="167" width="40" height="33"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kAY-2F-P1y">
+                        <rect key="frame" x="72" y="138" width="56" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,8 +35,12 @@
             <connections>
                 <outlet property="imageItem" destination="l7d-09-ZFn" id="aKw-6W-YsG"/>
                 <outlet property="name" destination="kAY-2F-P1y" id="QQ9-2q-Yeh"/>
+                <outlet property="selectedImage" destination="LHm-h1-Fr0" id="u84-g8-Cdl"/>
             </connections>
             <point key="canvasLocation" x="322" y="304"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="unselected" width="22" height="22"/>
+    </resources>
 </document>

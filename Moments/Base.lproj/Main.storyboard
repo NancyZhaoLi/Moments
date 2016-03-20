@@ -1308,6 +1308,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addCategoryButton" destination="Wwo-ZS-Lp9" id="kPp-Yq-IFw"/>
                         <outlet property="categoriesCollectionView" destination="J6E-zL-B39" id="O02-5e-rpL"/>
                         <segue destination="i4i-WV-26f" kind="show" identifier="categoryMoments" id="YDK-H9-w9U"/>
                     </connections>

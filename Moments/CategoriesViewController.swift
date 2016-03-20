@@ -12,6 +12,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     @IBOutlet var categoriesCollectionView: UICollectionView!
     
+    @IBOutlet weak var addCategoryButton: UIBarButtonItem!
    
     var categoriesMO = [Category]()
     var categories = [CategoryEntry]()
@@ -26,11 +27,18 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let cellNib = UINib(nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         categoriesCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryViewCell")
         
+        // category page background UI
         self.categoriesCollectionView.showsVerticalScrollIndicator = false
         self.categoriesCollectionView.backgroundColor = UIColor.clearColor()
         self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationController?.navigationBar.barTintColor = UIColor.customGreenColor()
+        
+        
+        // collection view UI
+        navigationController!.toolbarHidden = true
+        navigationItem.leftBarButtonItem = editButtonItem()
+        
         width = CGRectGetWidth(collectionView!.frame) / 3
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width!, height: width!)
@@ -40,8 +48,6 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "categoryMoments" {
@@ -53,6 +59,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
     }
     
+    // get categories from core data
     func getCategoriesFromCoreData(){
         getCategoriesMOFromCoreData()
         for var i = 0; i < categoriesMO.count; ++i {
@@ -62,6 +69,29 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     func getCategoriesMOFromCoreData(){
         categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+    }
+    
+    // delete
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        
+        addCategoryButton.enabled = !editing
+        categoriesCollectionView.allowsMultipleSelection = editing
+        
+        let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
+        
+        for indexPath in indexPaths {
+            categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
+            
+            let cell = categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
+            cell.deleting = editing
+        }
+        
+        if !editing {
+            navigationController!.setToolbarHidden(true, animated: animated)
+        }
     }
     
     
@@ -79,6 +109,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         let cell = categoriesCollectionView.dequeueReusableCellWithReuseIdentifier("CategoryViewCell", forIndexPath: indexPath) as! CategoryViewCell
         
+        cell.deleting = editing
         cell.frame.size.width = width!
         cell.category = categories[indexPath.row]
         
@@ -87,10 +118,23 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let pickedCategory = categories[indexPath.row]
-        performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
+        if !editing {
+            let pickedCategory = categories[indexPath.row]
+            performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
+        } else {
+            navigationController!.setToolbarHidden(false, animated: true)
+        }
         
     }
+    
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        if editing {
+            if collectionView.indexPathsForSelectedItems()!.count == 0 {
+                navigationController!.setToolbarHidden(true, animated: true)
+            }
+        }
+    }
+
     
     
     

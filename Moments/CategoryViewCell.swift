@@ -14,10 +14,26 @@ class CategoryViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageItem: UIImageView!
     
+    @IBOutlet weak var selectedImage: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    var deleting: Bool = false {
+        didSet {
+            selectedImage.hidden = !deleting
+        }
+    }
+    
+    override var selected: Bool {
+        didSet {
+            if deleting {
+                selectedImage.image = UIImage(named: selected ? "selected" : "unselected")
+            }
+        }
     }
     
     var category: CategoryEntry? {
@@ -30,7 +46,7 @@ class CategoryViewCell: UICollectionViewCell {
         if let categoryInfo = category {
             constructName(categoryInfo)
             constructImageItem(categoryInfo)
-            
+            constructSelectedImage()
         }
     }
     
@@ -40,7 +56,7 @@ class CategoryViewCell: UICollectionViewCell {
         name.text = categoryInfo.name
         name.textColor = UIColor(white: 0.0, alpha: 0.7)
         name.backgroundColor = UIColor.clearColor()
-        name.frame = CGRect(x: 0, y: 46, width: self.frame.width, height: 30)
+        name.frame = CGRect(x: 0, y: self.frame.width / 2 - 15, width: self.frame.width, height: 30)
         name.font = UIFont(name: "Helvetica-Bold", size: 15.0)
         name.textAlignment = NSTextAlignment.Center
         name.lineBreakMode = NSLineBreakMode.ByWordWrapping
@@ -53,6 +69,10 @@ class CategoryViewCell: UICollectionViewCell {
         imageItem.backgroundColor = categoryInfo.colour
         imageItem.frame = CGRect(x: 20, y: 20, width: self.frame.width - 40, height: self.frame.width - 40)
         
+    }
+    
+    func constructSelectedImage() {
+        selectedImage.frame = CGRect(x: (self.frame.width / 2) - 10, y: self.frame.width - 43, width: 20, height: 20)
     }
     
     //Monica's functions
