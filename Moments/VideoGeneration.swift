@@ -15,7 +15,8 @@ import CoreMedia
 
 class VideoGeneration {
     static func videoGeneration(fav: Bool, start: NSDate, end: NSDate){
-        let (images, videos) = getImagesAndVideos(start, end: end)
+        print(start.description+" "+end.description)
+        //let (images, videos) = getImagesAndVideos(start, end: end)
     }
     
     static func getImagesAndVideos(start : NSDate, end : NSDate) ->(imageList:NSSet, videoList:NSSet){

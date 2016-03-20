@@ -51,19 +51,42 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
 
 
     func handleStartDatePicker(sender: UIDatePicker){
-        let timeFormatter = NSDateFormatter()
-        timeFormatter.dateStyle = .MediumStyle
-        timeFormatter.timeStyle = .NoStyle
-        startDate.text = "Start Date: " + timeFormatter.stringFromDate(sender.date)
-        start = sender.date
+        if (sender.date.earlierDate(end) == sender.date) {
+            let timeFormatter = NSDateFormatter()
+            timeFormatter.dateStyle = .MediumStyle
+            timeFormatter.timeStyle = .NoStyle
+            startDate.text = "Start Date: " + timeFormatter.stringFromDate(sender.date)
+            start = sender.date
+        }
+        else {
+            let alert = UIAlertController(title: "Impossible start date!",
+                                          message: "The start date you chose must be earlier than the end date. Setting start date to default(2 months ago)",
+                                          preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            startDate.text = "Start Date: Default"
+            start = NSDate().dateByAddingTimeInterval(-60*60*24*60);
+        }
     }
     
     func handleEndDatePicker(sender: UIDatePicker){
-        let timeFormatter = NSDateFormatter()
-        timeFormatter.dateStyle = .MediumStyle
-        timeFormatter.timeStyle = .NoStyle
-        endDate.text = "End Date: " + timeFormatter.stringFromDate(sender.date)
-        end = sender.date
+        if (sender.date.earlierDate(start) == start) {
+            let timeFormatter = NSDateFormatter()
+            timeFormatter.dateStyle = .MediumStyle
+            timeFormatter.timeStyle = .NoStyle
+            endDate.text = "End Date: " + timeFormatter.stringFromDate(sender.date)
+            end = sender.date
+        }
+        else {
+            let alert = UIAlertController(title: "Impossible end date!",
+                message: "The end date you chose must be later than the start date. Setting end date to default(today)",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            endDate.text = "End Date: Default"
+            end = NSDate()
+        }
+
     }
     
     override func viewDidLoad(){
