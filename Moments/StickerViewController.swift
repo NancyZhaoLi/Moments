@@ -28,14 +28,18 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     }
     
     @IBAction func update(sender: AnyObject) {
-        fetchNewColStickers("animals")
-        self.stickerCollection.reloadData()
+      //  fetchNewColStickers("sticker")
+       // self.stickerCollection.reloadData()
+        //TODO: LOAD STICKERS FROM ICLOUD
+        
+        
     }
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout ()
     let cellSpacing : CGFloat = 3
     let cellsPerRow : CGFloat = 3
     let toolBarHeight : CGFloat = 50
     let iconSize : CGFloat = 30
+    let buttonSize : CGFloat = 30
   
    private var cells = [sticker]()
    private var booklet = [String :  Int]()
@@ -79,21 +83,28 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         self.stickerCollection.delegate = self
         self.stickerCollection.dataSource = self
         
-        self.booklet["sticker"] = 44
-        self.booklet["animals"] = 16
-   
-        fetchNewColStickers("sticker")
+       
+        initStickers()
+        fetchNewColStickers("summer")
         
         let cellCollNib = UINib (nibName: "StickerViewCell", bundle: NSBundle.mainBundle())
         stickerCollection.registerNib(cellCollNib, forCellWithReuseIdentifier: reuseIdentifier)
         
         
-
+        
           initLayout()
           initToolBar()
          
-        // Do any additional setup after loading the view.
+       
     }
+    
+    func initStickers(){
+        self.booklet["stickers"] = 16
+        self.booklet["animals"] = 16
+        self.booklet["summer"] = 12
+        self.booklet["love"] = 16
+    }
+    
    // override func viewDidAppear(animated: Bool) {
     func initLayout(){
         let cellSize = (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow ) - (cellSpacing)
@@ -107,18 +118,88 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         var toolBar = UIToolbar(frame: CGRectMake(0,windowHeight - toolBarHeight, windowWidth, toolBarHeight))
         toolBar.barTintColor = UIColor.customBlueColor()
         toolBar.opaque = true
-        var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "donePressed")
-        var cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancelPressed")
-        var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+       //var doneButton = UIBarButtonItem(title: "animals", style: UIBarButtonItemStyle.Plain, target: self, action: "animals:")
+       // var cancelButton = UIBarButtonItem(title: "sticker", style: UIBarButtonItemStyle.Plain, target: self, action: "stickers:")
+       // var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        
+        var buttons =  [UIBarButtonItem] ()
+        let keyArray = [String](booklet.keys)
+        for i in 1...booklet.count{
+            var faction = keyArray[i-1] + ":"
+            
+          
+            
+            let s = NSSelectorFromString(faction)
+            
+            let item = UIBarButtonItem(title: keyArray[i-1], style: UIBarButtonItemStyle.Plain, target: self, action: s)
+          
+            
+            //toolBar.items?.append(item)
+            buttons.append(item)
+            print(keyArray[i-1])
+            
+            
+        
+        }
+        
+      
+        //toolBar.setItems([doneButton, cancelButton], animated: false)
+        toolBar.setItems(buttons, animated: false)
         toolBar.userInteractionEnabled = true
+        
+        
+        
         
         //toolBar.addSubview(addButton)
         //toolBar.addSubview(viewButton)
         //toolBar.addSubview(settingButton)
         //toolBar.addSubview(favouriteButton)
+        
         self.view.addSubview(toolBar)
+        
+       /* let scrollView = UIScrollView()
+        scrollView.frame =  toolBar.frame
+        scrollView.bounds = toolBar.bounds
+        scrollView.autoresizingMask = toolBar.autoresizingMask
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false;
+        
+        let superView = toolBar.superview
+        toolBar.removeFromSuperview()
+        toolBar.autoresizingMask = UIViewAutoresizing.None
+        toolBar.frame = CGRectMake(0, 0, 120, toolBar.frame.size.height)
+        toolBar.bounds = toolBar.frame
+        toolBar.setItems([cancelButton, doneButton], animated: false)
+        scrollView.contentSize = toolBar.frame.size
+        scrollView.addSubview(toolBar)
+        superView?.addSubview(scrollView)
+        
+        */
+        
+        
+        
+        
+        
+        
+        
     
+    }
+    func animals(barButtonItem: UIBarButtonItem){
+        fetchNewColStickers("animals")
+        self.stickerCollection.reloadData()
+    
+    }
+    func stickers(barButtonItem: UIBarButtonItem){
+        fetchNewColStickers("stickers")
+        self.stickerCollection.reloadData()
+    }
+    func summer(barButtonItem: UIBarButtonItem){
+        fetchNewColStickers("summer")
+        self.stickerCollection.reloadData()
+    }
+    func love(barButtonItem: UIBarButtonItem){
+        fetchNewColStickers("love")
+        self.stickerCollection.reloadData()
     }
     
 
