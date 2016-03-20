@@ -121,6 +121,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         if !editing {
             let pickedCategory = categories[indexPath.row]
             performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
+            
         } else {
             navigationController!.setToolbarHidden(false, animated: true)
         }
@@ -128,10 +129,12 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     }
     
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
         if editing {
-            if collectionView.indexPathsForSelectedItems()!.count == 0 {
+            if categoriesCollectionView.indexPathsForSelectedItems()!.count == 0 {
                 navigationController!.setToolbarHidden(true, animated: true)
             }
+            
         }
     }
 
