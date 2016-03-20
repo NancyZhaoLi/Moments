@@ -82,6 +82,9 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         
         addCategoryButton.enabled = !editing
+        
+        //TODO: allow multiple selection
+        //categoriesCollectionView.allowsMultipleSelection = editing
         categoriesCollectionView.allowsMultipleSelection = false
         
         let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
