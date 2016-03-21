@@ -184,7 +184,7 @@ class CoreDataFetchHelper {
             print("[getMaxId] - Fetching failed")
             return false
         }
-        return false
+
     }
     
 

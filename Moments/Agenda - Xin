@@ -23,7 +23,7 @@ BUG - Text Item
   BUG - Slider for text size is off
   BUG - Better width and height calculation algorithm
   BUG - Font list seems duplicated or off
-  TEST BUG - 2s delay after selecting the font from scroller
+  TEST BUG - 1s delay after selecting the font from scroller
 - Image Item
   - Camera option
     - Override picker and add button?

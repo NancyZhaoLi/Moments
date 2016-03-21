@@ -14,15 +14,16 @@ extension String {
     }
 }
 
-
 class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate {
 
     var manager: NewMomentManager!
-    var parentView: UIView!
+    var parentVC: UIViewController!
     var editText: EditTextItemViewController!
+    var dragBeginCoordinate: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("load")
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,15 +43,15 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         
         self.manager = manager
         if !initParentView() {
-            fatalError("ERROR: [TextItemViewController] parentView init failed")
+            fatalError("ERROR: [TextItemViewController] parentVC init failed")
         }
         
         initEditView()
     }
     
     func initParentView() -> Bool {
-        if let canvas = self.manager.canvas, view = canvas.view {
-            self.parentView = view
+        if let canvas = self.manager.canvas{
+            parentVC = canvas
             return true
         }
         return false
@@ -119,7 +120,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         tapRec.addTarget(self, action: "tappedView")
         pinchRec.addTarget(self, action: "pinchedView:")
         rotateRec.addTarget(self, action: "rotatedView:")
-        panRec.addTarget(self, action: "draggedView:")
+        panRec.addTarget(parentVC, action: "draggedView:")
         
         self.view.addGestureRecognizer(tapRec)
         self.view.addGestureRecognizer(pinchRec)
@@ -135,18 +136,13 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         } else {
             presentViewController(editText, animated: true, completion: nil)
         }
-        
-        /*if let textView = self.view as? UITextView {
-            let textAttribute = TextItemOtherAttribute(colour: textView.textColor!, font: textView.font!, alignment: textView.textAlignment)
-            initEditTextItemViewController(textView.text, textAttribute: textAttribute)
-        }*/
     }
     
     func pinchedView(sender: UIPinchGestureRecognizer) {
         if sender.state == .Began {
             
         } else if sender.state == .Changed {
-            parentView.bringSubviewToFront(self.view)
+            parentVC.view.bringSubviewToFront(self.view)
             sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
             sender.scale = 1.0
         }
@@ -169,17 +165,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         lastRotation = sender.rotation*/
     }
     
-    func draggedView(sender: UIPanGestureRecognizer) {
-        if let senderView = sender.view {
-            parentView.bringSubviewToFront(senderView)
-            var translation = sender.translationInView(parentView)
-            if senderView.frame.minY + translation.y <= 60 {
-                translation.y = 60 - senderView.frame.minY
-            }
-            senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
-            sender.setTranslation(CGPointZero, inView: parentView)
-        }
-    }
+
     
     /*********************************************************************************
      
@@ -192,5 +178,4 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         changeText(text, textAttribute: textAttribute)
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
-    
 }

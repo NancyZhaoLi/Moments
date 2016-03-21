@@ -82,7 +82,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         let id =  momentMO.id?.longLongValue
         let date = momentMO.date
         let title = momentMO.title
-        var moment = MomentEntry(id: id!, date: date!, title: title!)
+        let moment = MomentEntry(id: id!, date: date!, title: title!)
         
         for textItemMO in momentMO.containedTextItem! {
             let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)

@@ -76,6 +76,9 @@
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */; };
 		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
+		D048B8861C9FA8EE00B31D87 /* Agenda - Monica in Resources */ = {isa = PBXBuildFile; fileRef = D048B8841C9FA8EE00B31D87 /* Agenda - Monica */; };
+		D048B8871C9FA8EE00B31D87 /* Agenda - Xin in Resources */ = {isa = PBXBuildFile; fileRef = D048B8851C9FA8EE00B31D87 /* Agenda - Xin */; };
+		D048B8891C9FCE3600B31D87 /* DragToTrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048B8881C9FCE3600B31D87 /* DragToTrash.swift */; };
 		D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */; };
 		D048BEEB1C7D971800BD3115 /* VideoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */; };
 		D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */; };
@@ -187,6 +190,9 @@
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioItemViewController.swift; path = ../AudioItemViewController.swift; sourceTree = "<group>"; };
 		D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "REAME - Core Data Tutorial"; sourceTree = "<group>"; };
+		D048B8841C9FA8EE00B31D87 /* Agenda - Monica */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Agenda - Monica"; sourceTree = "<group>"; };
+		D048B8851C9FA8EE00B31D87 /* Agenda - Xin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Agenda - Xin"; sourceTree = "<group>"; };
+		D048B8881C9FCE3600B31D87 /* DragToTrash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragToTrash.swift; sourceTree = "<group>"; };
 		D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherCanvasOptionViewController.swift; sourceTree = "<group>"; };
 		D048BEEA1C7D971800BD3115 /* VideoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemViewController.swift; sourceTree = "<group>"; };
 		D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItemViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */,
+				D048B8841C9FA8EE00B31D87 /* Agenda - Monica */,
+				D048B8851C9FA8EE00B31D87 /* Agenda - Xin */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -514,6 +522,7 @@
 		AD25BC881C8E32D7006DA556 /* ComponentVC */ = {
 			isa = PBXGroup;
 			children = (
+				D048B8881C9FCE3600B31D87 /* DragToTrash.swift */,
 				D04E67EF1C9CE44600D7C38A /* UIHelper.swift */,
 				D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */,
 			);
@@ -649,9 +658,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D048B8871C9FA8EE00B31D87 /* Agenda - Xin in Resources */,
 				465012B61C8A3B8400F7220D /* CategoryViewCell.xib in Resources */,
 				769DD8021C76AABE00FC883E /* LaunchScreen.storyboard in Resources */,
 				463467061C9B3A59003361EE /* StickerViewCell.xib in Resources */,
+				D048B8861C9FA8EE00B31D87 /* Agenda - Monica in Resources */,
 				769DD7FF1C76AABE00FC883E /* Assets.xcassets in Resources */,
 				769DD7FA1C76AABE00FC883E /* Main.storyboard in Resources */,
 				760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */,
@@ -747,6 +758,7 @@
 				D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */,
 				D04E67F01C9CE44600D7C38A /* UIHelper.swift in Sources */,
 				463466FE1C9B0BE6003361EE /* StickerViewCell.swift in Sources */,
+				D048B8891C9FCE3600B31D87 /* DragToTrash.swift in Sources */,
 				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
 				D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */,
 				762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */,

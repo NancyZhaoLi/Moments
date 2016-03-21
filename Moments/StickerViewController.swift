@@ -115,7 +115,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         stickerCollection.collectionViewLayout = layout
     }
     func initToolBar(){
-        var toolBar = UIToolbar(frame: CGRectMake(0,windowHeight - toolBarHeight, windowWidth, toolBarHeight))
+        let toolBar = UIToolbar(frame: CGRectMake(0,windowHeight - toolBarHeight, windowWidth, toolBarHeight))
         toolBar.barTintColor = UIColor.customBlueColor()
         toolBar.opaque = true
        //var doneButton = UIBarButtonItem(title: "animals", style: UIBarButtonItemStyle.Plain, target: self, action: "animals:")
@@ -127,7 +127,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         for i in 1...booklet.count{
             //var faction = keyArray[i-1] + ":"
             
-            var faction = "updateStickerView:"
+            let faction = "updateStickerView:"
             
             let s = NSSelectorFromString(faction)
             
