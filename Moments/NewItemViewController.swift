@@ -79,8 +79,8 @@ class NewItemViewController: UIViewController,
     var rootView: UIView!
     var moreItemsView: UIView!
     
-    var userShortcut: [Int]! = [0, 2, 3, 4]
-    var moreItems: [Int]! = [1, 5, 6, 7]
+    var userShortcut: [Int]! = [0, 1, 2, 3, 4, 5 , 6]
+    var moreItems: [Int]! = []
     var width = windowWidth - 20
     var height = windowHeight - 20
     
@@ -127,11 +127,11 @@ class NewItemViewController: UIViewController,
         let total = userShortcut.count
         for var count = 0; count < total; count++ {
             let itemType = ItemType.getType(userShortcut[count])
-            let center = calCenter(count, total: total + 1)
+            let center = calCenter(count, total: total)
             rootView.addSubview(newButton(itemType, center: center))
         }
         
-        addMoreItemsButton(rootView)
+        //addMoreItemsButton(rootView)
     }
     
     func initMoreItemsView() {
@@ -208,7 +208,7 @@ class NewItemViewController: UIViewController,
 
     // Private Init Helper Functions
     func newButton(item: ItemType, center: CGPoint) -> UIButton {
-        let button = UIButton(frame: CGRectMake(0,0,80,80))
+        let button = UIButton(frame: CGRectMake(0,0,60,60))
         button.center = center
         button.setImage(item.image, forState: .Normal)
         button.addTarget(self, action: item.action, forControlEvents: .TouchUpInside)
