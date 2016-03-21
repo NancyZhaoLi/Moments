@@ -125,9 +125,9 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         var buttons =  [UIBarButtonItem] ()
         let keyArray = [String](booklet.keys)
         for i in 1...booklet.count{
-            var faction = keyArray[i-1] + ":"
+            //var faction = keyArray[i-1] + ":"
             
-          
+            var faction = "updateStickerView:"
             
             let s = NSSelectorFromString(faction)
             
@@ -184,6 +184,11 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
     
     }
+    func updateStickerView(barButtonItem: UIBarButtonItem ) {
+        fetchNewColStickers(barButtonItem.title!)
+        self.stickerCollection.reloadData()
+    }
+    /*
     func animals(barButtonItem: UIBarButtonItem){
         fetchNewColStickers("animals")
         self.stickerCollection.reloadData()
@@ -201,7 +206,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         fetchNewColStickers("love")
         self.stickerCollection.reloadData()
     }
-    
+    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
