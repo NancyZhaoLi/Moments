@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class MomentsViewController: UIViewController, UITextFieldDelegate {
 
@@ -33,7 +34,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func playMoments(sender: AnyObject) {
-        print("generating video")
+        //let progressHUD =
     }
     
     
@@ -60,7 +61,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             let alert = UIAlertController(title: "Impossible start date!",
-                                          message: "The start date you chose must be earlier than the end date. Setting start date to default(2 months ago)",
+                                          message: "The start date you choose must be earlier than the end date. Setting start date to default(2 months ago)",
                                           preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
@@ -79,7 +80,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             let alert = UIAlertController(title: "Impossible end date!",
-                message: "The end date you chose must be later than the start date. Setting end date to default(today)",
+                message: "The end date you choose must be later than the start date. Setting end date to default(today)",
                 preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)

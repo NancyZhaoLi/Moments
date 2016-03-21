@@ -24,6 +24,7 @@ class VideoGeneration {
         var imageList = [CIImage]()
         var videoList = [NSURL!]()
         print(momentsMO.count)
+
        // for moment in momentsMO {
           /*   for imageitemMO in moment.containedImageItem! {
                 imageList.append(imageitemMO.im)
@@ -38,12 +39,6 @@ class VideoGeneration {
        // }
         return (imageList, videoList)
     }
-    
-    func imagesToVideo(images: [ImageItem])-> AVAsset {
-        let vid = AVAsset.init()
-        return vid
-    }
-    
     
     func combineVideo(firstAsset : AVAsset?, secondAsset : AVAsset?, audioAsset : AVAsset?){
         // 1 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.

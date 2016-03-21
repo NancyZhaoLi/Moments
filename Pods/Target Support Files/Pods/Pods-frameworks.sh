@@ -86,10 +86,12 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/CVCalendar.framework"
   install_framework "Pods/Firebase.framework"
+  install_framework "Pods/JGProgressHUD.framework"
   install_framework "Pods/SwiftHSVColorPicker.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/CVCalendar.framework"
   install_framework "Pods/Firebase.framework"
+  install_framework "Pods/JGProgressHUD.framework"
   install_framework "Pods/SwiftHSVColorPicker.framework"
 fi

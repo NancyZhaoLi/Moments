@@ -74,6 +74,7 @@
 		AD5D2BE31C7EBDE9008D608B /* VideoGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */; };
 		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
+		ADED3CB11CA0942A0004708F /* ImagesToVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADED3CB01CA0942A0004708F /* ImagesToVideo.swift */; };
 		D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */; };
 		D045946E1C7AA94C00A1AD12 /* REAME - Core Data Tutorial in Resources */ = {isa = PBXBuildFile; fileRef = D045946D1C7AA94C00A1AD12 /* REAME - Core Data Tutorial */; };
 		D048B8861C9FA8EE00B31D87 /* Agenda - Monica in Resources */ = {isa = PBXBuildFile; fileRef = D048B8841C9FA8EE00B31D87 /* Agenda - Monica */; };
@@ -186,6 +187,7 @@
 		AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGeneration.swift; sourceTree = "<group>"; };
 		ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentCanvasViewController.swift; sourceTree = "<group>"; };
 		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
+		ADED3CB01CA0942A0004708F /* ImagesToVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagesToVideo.swift; sourceTree = "<group>"; };
 		BEC40D23CAC95DC0DBC7D96F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CDB823E19D3280E362436FE1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioItemViewController.swift; path = ../AudioItemViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			children = (
 				ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */,
 				AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */,
+				ADED3CB01CA0942A0004708F /* ImagesToVideo.swift */,
 				AD081AEB1C7D91A70084B286 /* moments.mp4 */,
 				AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */,
 			);
@@ -763,6 +766,7 @@
 				D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */,
 				762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */,
 				468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */,
+				ADED3CB11CA0942A0004708F /* ImagesToVideo.swift in Sources */,
 				760197EE1C7E10AF00A7315A /* ImageItem.swift in Sources */,
 				762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */,
 				760197EA1C7E10AF00A7315A /* AudioItem.swift in Sources */,
