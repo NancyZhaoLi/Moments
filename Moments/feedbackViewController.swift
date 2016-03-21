@@ -62,19 +62,16 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         print("I'm here")
         let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.",preferredStyle: UIAlertControllerStyle.Alert)
         sendMailErrorAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        
-        
-        
-        
-        
-        
-        
-        /* let alert = UIAlertController(title: "Save Video", message: "Your video has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))*/
-        
-        
+       
+    }
+    func sendAlert(alertTitle : String, alertMessage: String){
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
+    
+    
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -84,21 +81,14 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
             
         case MFMailComposeResultCancelled.rawValue:
             print("Cancelled mail")
-            
-            let alert = UIAlertController(title: "Sending Cancelled", message: "You have cancelled sending your email!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            // alert.viewDidAppear( true)
-            
-            self.presentViewController(alert, animated: true, completion: nil)
+            sendAlert("Sending Cancelled", alertMessage: "You have cancelled sending your email!")
+          
             
             
         case MFMailComposeResultSent.rawValue:
             print("Mail Sent")
-            let alert = UIAlertController(title: "Mail Sent", message: "Your email has been sent to us!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            // alert.viewDidAppear( true)
-            
-            self.presentViewController(alert, animated: true, completion: nil)
+          
+            sendAlert("Mail Sent", alertMessage: "Your email has been sent to us!\n Thank you very much!")
             
         case MFMailComposeResultSaved.rawValue:
             print("You saved a draft of this email")

@@ -25,72 +25,37 @@ class aboutusViewController: UIViewController,SFSafariViewControllerDelegate
     //icons from: https://dribbble.com/shots/2421400-Social-icons
     
     //let safari = UIApplication.sharedApplication()
+    func openSafari(userUrl : String){
+        let svc = SFSafariViewController(URL: NSURL(string: userUrl)!)
+        svc.delegate = self
+        self.presentViewController(svc, animated: true, completion: nil)
     
+    }
 
     @IBAction func nancylink(sender: UIButton) {
         
         if( sender.currentImage! == UIImage(named:"linkdin_f.png")){
-       
-         //safari.openURL(NSURL(string: "https://www.linkedin.com/in/nancy-zhao-ying-li-9b353496")!)
-            let svc = SFSafariViewController(URL: NSURL(string: "https://www.linkedin.com/in/nancy-zhao-ying-li-9b353496")!)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
-        
-            
+    
+            openSafari("https://www.linkedin.com/in/nancy-zhao-ying-li-9b353496")
         }
         else if (sender.currentImage! == UIImage(named:"github_f.png")) {
-           
-         
-          // safari.openURL(NSURL(string: "https://github.com/NancyZhaoLi")!)
-            
-            let svcc = SFSafariViewController(URL: NSURL(string: "https://github.com/NancyZhaoLi")!)
-            svcc.delegate = self
-            self.presentViewController(svcc, animated: true, completion: nil)
-            
-            
-        
-        }
-        
-       // self.view.window.dismissViewControllerAnimated(true, completion: nil)
-      //  viewDidLoad()
-        //super.viewDidLoad()
-       // safari = UIApplication.sharedApplication()
-        
+       
+            openSafari("https://github.com/NancyZhaoLi")
+         }
+       
     }
     
-    
-    
-  /*  @IBAction func nancygithub(sender: AnyObject) {
-        
-        safari.openURL(NSURL(string: "https://github.com/NancyZhaoLi")!)
-        
-    }*/
-    
-    
-    
-    
-    
-    
-    
-    
+  
      @IBAction func xinlink(sender: UIButton) {
     
         if( sender.currentImage! == UIImage(named:"linkdin_f.png")){
             print(sender)
-            // safari.openURL(NSURL(string: "https://www.linkedin.com/in/xin-lin-7a5872b5")!)
-            let svc = SFSafariViewController(URL: NSURL(string:"https://www.linkedin.com/in/xin-lin-7a5872b5")!)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+         
+            openSafari("https://www.linkedin.com/in/xin-lin-7a5872b5")
         }
         else if (sender.currentImage! == UIImage(named:"github_f.png")) {
-            
-            
-            
-            // print("havn't added")
-            //safari.openURL(NSURL(string: "https://github.com/x58lin")!)
-            let svcc = SFSafariViewController(URL: NSURL(string:"https://github.com/x58lin")!)
-            svcc.delegate = self
-            self.presentViewController(svcc, animated: true, completion: nil)
+          
+            openSafari("https://github.com/x58lin")
             
             
         }
@@ -107,26 +72,17 @@ class aboutusViewController: UIViewController,SFSafariViewControllerDelegate
     
         if( sender.currentImage! == UIImage(named:"linkdin_f.png")){
             print(sender)
-           // safari.openURL(NSURL(string: "https://www.linkedin.com/in/yuning-xue-a5920a62")!)
-            let svcc = SFSafariViewController(URL: NSURL(string:"https://www.linkedin.com/in/yuning-xue-a5920a62")!)
-            svcc.delegate = self
-            self.presentViewController(svcc, animated: true, completion: nil)
+         
+            openSafari("https://www.linkedin.com/in/yuning-xue-a5920a62")
             
             
         }
         else if (sender.currentImage! == UIImage(named:"github_f.png")) {
             
-            
-            
-            // print("havn't added")
-          // safari.openURL(NSURL(string: "https://github.com/xyuning")!)
-            let svc = SFSafariViewController(URL: NSURL(string:"https://github.com/xyuning")!)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
+            openSafari("https://github.com/xyuning")
             
         }
-        //self.dismissViewControllerAnimated(true, completion: nil)
-    
+   
     }
     
     
@@ -134,28 +90,17 @@ class aboutusViewController: UIViewController,SFSafariViewControllerDelegate
      @IBAction func monicalink(sender: UIButton) {
     
         if( sender.currentImage! == UIImage(named:"twitter_f.png")){
-            //print(sender)
-            
-            let svc = SFSafariViewController(URL: NSURL(string:"https://twitter.com/lalaphoon")!)
-            svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
-            
-            //safari.openURL(NSURL(string: "https://twitter.com/lalaphoon")!)
+           
+            openSafari("https://twitter.com/lalaphoon")
+          
         }
         else if (sender.currentImage! == UIImage(named:"github_f.png")) {
             
-            
-            
-            // print("havn't added")
-            //safari.openURL(NSURL(string: "https://github.com/lalaphoon")!)
-            let svcc = SFSafariViewController(URL: NSURL(string:"https://github.com/lalaphoon")!)
-            svcc.delegate = self
-            self.presentViewController(svcc, animated: true, completion: nil)
+            openSafari("https://github.com/lalaphoon")
             
             
         }
-        //self.dismissViewControllerAnimated(true, completion: nil)
-    
+ 
     }
     
     func safariViewControllerDidFinish(controller: SFSafariViewController)
