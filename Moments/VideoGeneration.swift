@@ -15,17 +15,27 @@ import CoreMedia
 
 class VideoGeneration {
     static func videoGeneration(fav: Bool, start: NSDate, end: NSDate){
-        let (images, videos) = getImagesAndVideos(start, end: end)
+        //let (images, videos) = getImagesAndVideos(start, end: end)
+        //print(images.count+videos.count)
     }
     
-    static func getImagesAndVideos(start : NSDate, end : NSDate) ->(imageList:NSSet, videoList:NSSet){
+    static func getImagesAndVideos(start : NSDate, end : NSDate) ->(imageList:[CIImage], videoList:[NSURL!]){
         let momentsMO = CoreDataFetchHelper.fetchDateRangeMomentsMOFromCoreData(start, end: end)
-        let imageList = NSSet!.init()
-        let videoList = NSSet!.init()
-        for moment in momentsMO {
-            imageList!.setByAddingObjectsFromSet(moment.containedImageItem! as Set<NSObject>)
-            videoList!.setByAddingObjectsFromSet(moment.containedVideoItem! as Set<NSObject>)
-        }
+        var imageList = [CIImage]()
+        var videoList = [NSURL!]()
+        print(momentsMO.count)
+       // for moment in momentsMO {
+          /*   for imageitemMO in moment.containedImageItem! {
+                imageList.append(imageitemMO.im)
+                
+            }
+           for videoItemMO in moment.containedVideoItem! {
+                videoList.append(videoItemMO.url())
+            }*/
+            //imageList.appendContentsOf(moment.containedImageItem! )
+            //imageList.setByAddingObjectsFromSet(moment.containedImageItem! as Set<NSObject>)
+            //videoList!.setByAddingObjectsFromSet(moment.containedVideoItem! as Set<NSObject>)
+       // }
         return (imageList, videoList)
     }
     

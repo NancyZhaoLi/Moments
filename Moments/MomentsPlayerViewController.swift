@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     
@@ -36,5 +37,20 @@ class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getSnapShot(filePath : String)->UIImage? {
+        let fileURL = NSURL(fileURLWithPath: filePath)
+        let asset = AVAsset(URL: fileURL)
+        let assetImageGen = AVAssetImageGenerator(asset: asset)
+        var time = asset.duration
+        time.value = min(time.value, 1)
+        
+        do {
+            let image = try assetImageGen.copyCGImageAtTime(time, actualTime: nil)
+            return UIImage(CGImage: image)
+        } catch{
+            return nil
+        }
     }
 }
