@@ -82,15 +82,12 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         
         addCategoryButton.enabled = !editing
-        
-        //TODO: allow multiple selection
-        //categoriesCollectionView.allowsMultipleSelection = editing
-        categoriesCollectionView.allowsMultipleSelection = false
+        categoriesCollectionView.allowsMultipleSelection = editing
         
         let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
         
         for indexPath in indexPaths {
-            //categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
+            categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
             
             let cell = categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
             cell.deleting = editing
@@ -106,10 +103,29 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         // delete categories in core data
         for indexPath in indexPaths {
             CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categoriesMO[indexPath.row])
-            categoriesMO.removeAtIndex(indexPath.row)
-            categories.removeAtIndex(indexPath.row)
-            
         }
+        
+        // delete categories in array
+        var indexes: [Int] = []
+        for indexPath in indexPaths {
+            indexes.append(indexPath.row)
+        }
+        var newCategoriesMO: [Category] = []
+        for (index, categoryMO) in categoriesMO.enumerate() {
+            if !indexes.contains(index) {
+                newCategoriesMO.append(categoryMO)
+            }
+        }
+        categoriesMO = newCategoriesMO
+        
+        var newCategories: [CategoryEntry] = []
+        for (index, category) in categories.enumerate() {
+            if !indexes.contains(index) {
+                newCategories.append(category)
+            }
+        }
+        categories = newCategories
+        
         
         // delete categories in collection view
         categoriesCollectionView.deleteItemsAtIndexPaths(indexPaths)
