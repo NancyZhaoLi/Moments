@@ -12,6 +12,7 @@ import AVKit
 import AVFoundation
 import CoreData
 
+
 class NewMomentCanvasViewController: UIViewController,
     UIPopoverPresentationControllerDelegate,
     UINavigationControllerDelegate,
@@ -24,7 +25,7 @@ class NewMomentCanvasViewController: UIViewController,
     DragToTrashDelegate {
     
     var savePage : NewMomentSavePageViewController?
-    var manager : NewMomentManager = NewMomentManager()
+    var manager : NewMomentManager?
     var loadedMoment : MomentEntry?
     var addItemPopover: NewItemViewController?
     var center: CGPoint = CGPointMake(windowWidth/2.0, windowHeight/2.0)
@@ -33,17 +34,21 @@ class NewMomentCanvasViewController: UIViewController,
     var viewButton: UIButton! = UIButton()
     var favouriteButton: UIButton! = UIButton()
     var settingButton: UIButton! = UIButton()
+    var canvas: UIScrollView!
     
     var trashController: DragToTrash?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.customBackgroundColor()
         
-        if let moment = self.loadedMoment {
-            manager.loadCanvas(self, moment: moment)
+        initCanvas()
+        
+        if let moment = loadedMoment {
+            manager = NewMomentManager(canvasVC: self, moment: moment)
+            view.backgroundColor = moment.backgroundColour
         } else {
-            manager.setCanvas(self)
+            manager = NewMomentManager(canvasVC: self)
+            view.backgroundColor = UIColor.customBackgroundColor()
         }
         
         initUI()
@@ -54,7 +59,17 @@ class NewMomentCanvasViewController: UIViewController,
         }
     }
     
-    func initUI() {
+    private func initCanvas() {
+        let toolBarHeight: CGFloat = 60.0
+        
+        canvas = UIScrollView(frame: CGRectMake(0,-60.0,windowWidth, windowHeight - toolBarHeight))
+        canvas.backgroundColor = UIColor.clearColor()
+        canvas.userInteractionEnabled = true
+        canvas.multipleTouchEnabled = true
+        self.view.addSubview(canvas)
+    }
+    
+    private func initUI() {
         let buttonSize: CGFloat = 40.0
         let toolBarHeight: CGFloat = 60.0
         
@@ -88,14 +103,14 @@ class NewMomentCanvasViewController: UIViewController,
         toolBar.addSubview(viewButton)
         toolBar.addSubview(settingButton)
         toolBar.addSubview(favouriteButton)
-        self.view.addSubview(toolBar)
+        view.addSubview(toolBar)
     }
     
-    func initTrash() {
+    private func initTrash() {
         let trashImage = UIHelper.resizeImage(UIImage(named: "text.png")!, newWidth: 25.0)
         let trashView = UIImageView()
         trashView.frame.size = CGSizeMake(25.0,25.0)
-        trashView.center = CGPointMake(windowWidth/2.0, 80.0)
+        trashView.center = CGPointMake(windowWidth - 15.0, windowHeight/2.0)
         trashView.image = trashImage
         trashView.hidden = true
         
@@ -162,14 +177,14 @@ class NewMomentCanvasViewController: UIViewController,
     }
 
     func enableUserInteraction() {
-        manager.enableInteraction = true
+        manager!.enableInteraction = true
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = true
         }
     }
     
     func disableUserInteraction() {
-        manager.enableInteraction = false
+        manager!.enableInteraction = false
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = false
         }
@@ -179,14 +194,14 @@ class NewMomentCanvasViewController: UIViewController,
         favouriteButton.setBackgroundImage(UIImage(named: "favourite_unselected_icon.png")!, forState: .Normal)
         favouriteButton.removeTarget(self, action: "cancelFavourite", forControlEvents: .TouchUpInside)
         favouriteButton.addTarget(self, action: "selectFavourite", forControlEvents: .TouchUpInside)
-        manager.unselectFavourite()
+        manager!.unselectFavourite()
     }
     
     func selectFavourite() {
         favouriteButton.setBackgroundImage(UIImage(named: "favourite_selected_icon.png")!, forState: .Normal)
         favouriteButton.removeTarget(self, action: "selectFavourite")
         favouriteButton.addTarget(self, action: "cancelFavourite")
-        manager.selectFavourite()
+        manager!.selectFavourite()
     }
     
     func setting() {
@@ -262,13 +277,11 @@ class NewMomentCanvasViewController: UIViewController,
      
      ******************************************************************/
     func loadText(textItem: TextItemViewController) {
-        self.view.addSubview(textItem.view)
-        self.addChildViewController(textItem)
+        self.addNewViewController(textItem)
     }
     
     func loadImage(imageItem: ImageItemViewController) {
-        self.view.addSubview(imageItem.view)
-        self.addChildViewController(imageItem)
+        self.addNewViewController(imageItem)
     }
     
     func loadAudio(audioItem: AudioItemEntry) {
@@ -284,12 +297,12 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addNewViewController(vc: UIViewController) {
-        self.view.addSubview(vc.view)
+        self.canvas.addSubview(vc.view)
         self.addChildViewController(vc)
     }
     
     func addNewViewController(vc: UIViewController, zPosition: Int) {
-        self.view.insertSubview(vc.view, atIndex: zPosition)
+        self.canvas.insertSubview(vc.view, atIndex: zPosition)
         vc.view.layer.zPosition = 0.0
         self.addChildViewController(vc)
     }
@@ -303,13 +316,13 @@ class NewMomentCanvasViewController: UIViewController,
     // EditTextItemViewControllerDelegate functions
     func addText(controller: EditTextItemViewController, text: String, textAttribute: TextItemOtherAttribute) {
         controller.dismiss(true)
-        addNewViewController(self.manager.addText(text, location: self.center, textAttribute: textAttribute))
+        addNewViewController(manager!.addText(text, location: center, textAttribute: textAttribute))
     }
     
     // Functions for UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         picker.dismiss(true)
-        addNewViewController(manager.addImage(image, location: self.center, editingInfo: editingInfo))
+        addNewViewController(manager!.addImage(image, location: self.center, editingInfo: editingInfo))
     }
     
     // Functions for MPMediaPickerControllerDelegate
@@ -335,7 +348,7 @@ class NewMomentCanvasViewController: UIViewController,
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        self.manager.addAudio(url, location: self.center)
+        manager!.addAudio(url, location: self.center)
     }
     
     // Functions for OtherCanvasOptionViewController
@@ -355,9 +368,9 @@ class NewMomentCanvasViewController: UIViewController,
         if let senderView = sender.view {
             view.bringSubviewToFront(senderView)
             var translation = sender.translationInView(view)
-            if senderView.frame.minY + translation.y <= 60 {
-                translation.y = 60 - senderView.frame.minY
-            }
+            //if senderView.frame.minY + translation.y <= 60 {
+            //    translation.y = 60 - senderView.frame.minY
+           // }
             senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
             sender.setTranslation(CGPointZero, inView: view)
             trashController!.draggedView(senderView)
@@ -372,6 +385,7 @@ class NewMomentCanvasViewController: UIViewController,
     
     func trashItem(view:UIView) {
         view.removeFromSuperview()
+        trashController!.trashView.hidden = true
     }
     
 }

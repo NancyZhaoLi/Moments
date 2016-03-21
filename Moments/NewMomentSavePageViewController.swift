@@ -101,7 +101,7 @@ class NewMomentSavePageViewController: UIViewController,
     }
     
     func isNewMoment() -> Bool {
-        return self.manager!.getIsNewMoment()
+        return manager!.isNewMoment
     }
     
     // NewCategoryViewController Delegate

@@ -15,7 +15,7 @@ class AudioItemViewController: UIViewController {
     var player: AVAudioPlayer?
     var havePlayed: Bool = false
     var timer: NSTimer!
-    var manager: NewMomentManager!
+    var manager: NewMomentManager?
     var parentView: UIView!
     
     @IBOutlet weak var playOrPauseButton: UIButton!
@@ -31,14 +31,14 @@ class AudioItemViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(manager: NewMomentManager())
+        self.init(manager: nil)
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: NewMomentManager) {
+    init(manager: NewMomentManager?) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
@@ -49,8 +49,8 @@ class AudioItemViewController: UIViewController {
         initGestureRecognizer()
     }
     
-    func initParentView() -> Bool {
-        if let canvas = self.manager.canvas, view = canvas.view {
+    private func initParentView() -> Bool {
+        if let canvas = manager!.canvasVC, view = canvas.view {
             self.parentView = view
             return true
         }

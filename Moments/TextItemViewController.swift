@@ -16,14 +16,13 @@ extension String {
 
 class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate {
 
-    var manager: NewMomentManager!
+    var manager: NewMomentManager?
     var parentVC: UIViewController!
     var editText: EditTextItemViewController!
     var dragBeginCoordinate: CGPoint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("load")
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,14 +30,14 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     convenience init() {
-        self.init(manager: NewMomentManager())
+        self.init(manager: nil)
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: NewMomentManager) {
+    init(manager: NewMomentManager?) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
@@ -49,15 +48,15 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         initEditView()
     }
     
-    func initParentView() -> Bool {
-        if let canvas = self.manager.canvas{
+    private func initParentView() -> Bool {
+        if let canvas = manager!.canvasVC {
             parentVC = canvas
             return true
         }
         return false
     }
     
-    func initEditView() {
+    private func initEditView() {
         editText = EditTextItemViewController(delegate: self, text: nil, textAttribute: nil)
     }
     
@@ -131,10 +130,10 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func tappedView() {
-        if let navController = manager.canvas?.navigationController {
+        if let navController = parentVC.navigationController {
             navController.pushViewController(editText, animated: true)
         } else {
-            presentViewController(editText, animated: true, completion: nil)
+            parentVC.presentViewController(editText, animated: true, completion: nil)
         }
     }
     

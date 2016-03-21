@@ -10,7 +10,7 @@ import UIKit
 
 class ImageItemViewController: UIViewController {
     
-    var manager: NewMomentManager!
+    var manager: NewMomentManager?
     var parentView: UIView!
 
     override func viewDidLoad() {
@@ -22,14 +22,14 @@ class ImageItemViewController: UIViewController {
     }
     
     convenience init() {
-        self.init(manager: NewMomentManager())
+        self.init(manager: nil)
     }
     
     convenience required init?(coder aDecoder: NSCoder) {
         self.init()
     }
     
-    init(manager: NewMomentManager) {
+    init(manager: NewMomentManager?) {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
@@ -39,7 +39,7 @@ class ImageItemViewController: UIViewController {
     }
 
     func initParentView() -> Bool {
-        if let canvas = self.manager.canvas, view = canvas.view {
+        if let canvas = manager!.canvasVC, view = canvas.view {
             self.parentView = view
             return true
         }

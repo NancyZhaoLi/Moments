@@ -43,41 +43,27 @@ class DragToTrash {
         }
     }
     
-    func closeToTrash() -> Bool {
-        print("newCoordinate: \(self.itemToTrash!.center)")
-        print("trash: \(trashView.frame)")
-        return fromAbove() || fromBelow() || fromLeft() || fromRight()
+    private func closeToTrash() -> Bool {
+        if let item = itemToTrash?.frame {
+            let trash = trashView.frame
+            
+            if (item.minX > trash.maxX || item.maxX < trash.minX || item.minY > trash.maxY || item.maxY < trash.minY) == false {
+                print("item minX: \(item.minX)")
+                print("item maxX: \(item.maxX)")
+                print("trash minX: \(trash.minX)")
+                print("trash maxX: \(trash.maxX)")
+                print("item minY: \(item.minY)")
+                print("item maxY: \(item.maxY)")
+                print("trash minY: \(trash.minY)")
+                print("trash maxY: \(trash.maxY)")
+                return true
+            }
+            return false
+        }
+        return false
     }
     
-    func fromAbove() -> Bool {
-        let itemY = itemToTrash!.frame.maxY
-        let trashMinY = trashView.frame.minY - radius
-        let trashMaxY = trashView.frame.maxY + radius
-        return itemY >= trashMinY && itemY <= trashMaxY
-    }
-    
-    func fromBelow() -> Bool {
-        let itemY = itemToTrash!.frame.minY
-        let trashMinY = trashView.frame.minY - radius
-        let trashMaxY = trashView.frame.maxY + radius
-        return itemY <= trashMaxY && itemY >= trashMinY
-    }
-    
-    func fromLeft() -> Bool {
-        let itemX = itemToTrash!.frame.maxX
-        let trashMinX = trashView.frame.minX - radius
-        let trashMaxX = trashView.frame.maxX + radius
-        return itemX >= trashMinX && itemX <= trashMaxX
-    }
-    
-    func fromRight() -> Bool {
-        let itemX = itemToTrash!.frame.minX
-        let trashMinX = trashView.frame.minX - radius
-        let trashMaxX = trashView.frame.maxX + radius
-        return itemX <= trashMaxX && itemX >= trashMinX
-    }
-    
-    func delete() {
+    private func delete() {
         if let title = alertTitle, message = alertMessage {
             let viewController = delegate as! UIViewController
             let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
