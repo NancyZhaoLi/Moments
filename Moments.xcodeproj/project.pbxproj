@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460BFD091CA0C59B004CA963 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460BFD081CA0C59B004CA963 /* signupViewController.swift */; };
 		46119D331C76CC1B00DB5F12 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46119D321C76CC1B00DB5F12 /* HomeViewController.swift */; };
 		46119D351C76CC3A00DB5F12 /* UserSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */; };
 		463466F91C97A832003361EE /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463466F81C97A832003361EE /* AudioRecorderViewController.swift */; };
@@ -110,6 +111,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		460BFD081CA0C59B004CA963 /* signupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		46119D321C76CC1B00DB5F12 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingViewController.swift; sourceTree = "<group>"; };
 		463466F81C97A832003361EE /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				767834831C7D152D00FC1B96 /* Others */,
 				769DD7F41C76AABE00FC883E /* AppDelegate.swift */,
 				769DD7F81C76AABE00FC883E /* Main.storyboard */,
+				460BFD081CA0C59B004CA963 /* signupViewController.swift */,
 				46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */,
 				769DD7F61C76AABE00FC883E /* ViewController.swift */,
 				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
@@ -786,6 +789,7 @@
 				769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */,
 				ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */,
 				760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */,
+				460BFD091CA0C59B004CA963 /* signupViewController.swift in Sources */,
 				AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */,
 				762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */,
 				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,

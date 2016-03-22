@@ -99,7 +99,7 @@ class ViewController: UIViewController , UITextFieldDelegate {
             })
         }
     }
-    
+   /*
     @IBAction func signUp(sender: AnyObject) {
         
         if emailTextField == "" || passwordTextField.text == "" {
@@ -159,7 +159,7 @@ class ViewController: UIViewController , UITextFieldDelegate {
         }
 
     }
-    
+    */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
