@@ -22,6 +22,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func startDate(sender: UITextField) {
         let datePickerView: UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.Date
+        datePickerView.setValue(sender.textColor, forKeyPath: "textColor")
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: Selector("handleStartDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
     }
@@ -29,23 +30,28 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func endDate(sender: UITextField) {
         let datePickerView: UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.Date
+        datePickerView.setValue(sender.textColor, forKeyPath: "textColor")
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: Selector("handleEndDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
     }
     
     @IBAction func playMoments(sender: AnyObject) {
-        //let progressHUD =
+        let progressHUD = JGProgressHUD(style: .Light)
+        progressHUD.textLabel.text = "Creating video..."
+        progressHUD.indicatorView = JGProgressHUDIndeterminateIndicatorView()
+        progressHUD.showInView(view)
+        progressHUD.dismissAfterDelay(3)
     }
     
     
     @IBAction func favorite(sender: UIButton) {
         fav = !fav
         if fav {
-            let image = UIImage(named: "FavouriteSelected")
+            let image = UIImage(named: "favourite_unselected_icon")
             sender.setImage(image, forState: UIControlState.Normal)
         }
         else {
-            let image = UIImage(named: "Favourite")
+            let image = UIImage(named: "favourite_selected_icon")
             sender.setImage(image, forState: UIControlState.Normal)
         }
     }
