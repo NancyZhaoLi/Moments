@@ -10,16 +10,21 @@ import Foundation
 import UIKit
 
 class CategoryEntry {
+    //let id: Int64
+
     var colour: UIColor = UIColor.blueColor()
     var name: String
     var momentEntries = [MomentEntry]()
     
+    //init(id: Int64) {
     init() {
+        //self.id = id
         self.colour = UIColor.blueColor()
         self.name = "Uncategorized"
     }
     
     init(categoryMO: Category) {
+        //self.id = categoryMO.id!.longLongValue
         self.colour = categoryMO.colour as! UIColor
         self.name = categoryMO.name!
         
@@ -30,7 +35,9 @@ class CategoryEntry {
     }
     
  
+    //init(id: Int64, colour: UIColor, name: String) {
     init(colour: UIColor, name: String) {
+        //self.id = id
         self.colour = colour
         self.name = name
     }
