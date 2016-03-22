@@ -175,14 +175,18 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             print("changed")
             
             // TODO: add category id to core data?
-            /*
+            
             self.categorySnapshot!.center = longPressLoc
+            
             if let curIndexPath = curIndexPath {
-                papersDataSource.movePaperAtIndexPath(sourceIndexPath!, toIndexPath: indexPath)
+                //From sourceIndexPath to curIndexPath
+                switchCategoryPosition(beganIndexPath!, dstIndexPath: curIndexPath)
+                
                 self.categoriesCollectionView.moveItemAtIndexPath(beganIndexPath!, toIndexPath: curIndexPath)
+                
                 beganIndexPath = curIndexPath
             }
-*/
+
         default:
             print("default")
             let categoryCell = self.categoriesCollectionView.cellForItemAtIndexPath(beganIndexPath!) as! CategoryViewCell
@@ -209,6 +213,23 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             categorySnapshot.transform = transform
             
         }
+    }
+    
+    private func switchCategoryPosition(srcIndexPath: NSIndexPath, dstIndexPath: NSIndexPath) {
+        
+        if srcIndexPath == dstIndexPath {
+            return
+        }
+        
+        let srcIndex = srcIndexPath.row
+        let dstIndex = dstIndexPath.row
+        let categoryMO = categoriesMO[srcIndex]
+        let category = categories[srcIndex]
+        
+        categoriesMO.removeAtIndex(srcIndex)
+        categoriesMO.insert(categoryMO, atIndex: dstIndex)
+        categories.removeAtIndex(srcIndex)
+        categories.insert(category, atIndex: dstIndex)
     }
 
     
@@ -263,6 +284,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
+        print("category id: \(category.id)")
         let categoryMO = CoreDataSaveHelper.saveCategoryToCoreData(category)
         categories.append(category)
         categoriesMO.append(categoryMO)

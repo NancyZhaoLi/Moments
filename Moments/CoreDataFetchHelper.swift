@@ -165,6 +165,34 @@ class CoreDataFetchHelper {
         return nil
     }
     
+    static func requestMaxCategoryId() -> Int64? {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "Category")
+        let sortDes = NSSortDescriptor(key: "id", ascending: false)
+        
+        request.sortDescriptors = [sortDes]
+        request.returnsObjectsAsFaults = false
+        request.fetchLimit = 1
+        
+        do {
+            let results = try context.executeFetchRequest(request)
+            if results.count > 0 {
+                let id = results[0].valueForKey("id")!.longLongValue
+                
+                return id
+            } else {
+                return nil
+            }
+        } catch {
+            print("[getMaxCategoryId] - Fetching failed")
+        }
+        
+        return nil
+    }
+    
     static func deleteMomentGivenId(id: Int64) -> Bool {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
