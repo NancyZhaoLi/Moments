@@ -21,8 +21,7 @@ class NewMomentCanvasViewController: UIViewController,
     MPMediaPickerControllerDelegate,
     ColourPickerViewControllerDelegate,
     AudioRecorderViewControllerDelegate,
-    NewItemViewControllerDelegate,
-    DragToTrashDelegate {
+    NewItemViewControllerDelegate {
     
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager?
@@ -36,7 +35,7 @@ class NewMomentCanvasViewController: UIViewController,
     var settingButton: UIButton! = UIButton()
     var canvas: UIScrollView!
     
-    var trashController: DragToTrash?
+    //var trashController: DragToTrash?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +51,7 @@ class NewMomentCanvasViewController: UIViewController,
         }
         
         initUI()
-        initTrash()
+        //initTrash()
         
         if self.loadedMoment != nil {
             selectViewMode()
@@ -106,7 +105,7 @@ class NewMomentCanvasViewController: UIViewController,
         view.addSubview(toolBar)
     }
     
-    private func initTrash() {
+    /*private func initTrash() {
         let trashImage = UIHelper.resizeImage(UIImage(named: "text.png")!, newWidth: 25.0)
         let trashView = UIImageView()
         trashView.frame.size = CGSizeMake(25.0,25.0)
@@ -116,7 +115,7 @@ class NewMomentCanvasViewController: UIViewController,
         
         trashController = DragToTrash(delegate: self, trashView: trashView, alertTitle: "Delete?", alertMessage: nil, radius: 5.0)
         view.addSubview(trashView)
-    }
+    }*/
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -364,32 +363,29 @@ class NewMomentCanvasViewController: UIViewController,
     // PanGestureRecognizer
     
     func draggedView(sender: UIPanGestureRecognizer) {
-        if sender.state == .Began {
+        /*if sender.state == .Began {
             view.bringSubviewToFront(trashController!.trashView)
             trashController!.trashView.hidden = false
-        }
+        }*/
         
         if let senderView = sender.view {
             view.bringSubviewToFront(senderView)
-            var translation = sender.translationInView(view)
-            //if senderView.frame.minY + translation.y <= 60 {
-            //    translation.y = 60 - senderView.frame.minY
-           // }
+            let translation = sender.translationInView(view)
             senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
             sender.setTranslation(CGPointZero, inView: view)
-            trashController!.draggedView(senderView)
+            //trashController!.draggedView(senderView)
         }
-        
+        /*
         if sender.state == .Ended {
             trashController!.trashView.hidden = true
-        }
+        }*/
     }
     
     // DragToTrash Delegate Functions
     
-    func trashItem(view:UIView) {
+    /*func trashItem(view:UIView) {
         view.removeFromSuperview()
         trashController!.trashView.hidden = true
-    }
+    }*/
     
 }

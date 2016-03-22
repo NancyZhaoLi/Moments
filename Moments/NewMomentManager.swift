@@ -243,7 +243,7 @@ class NewMomentManager {
 
     func saveMomentEntry() {
         updateTitle()
-        canvasVC.trashController!.trashView.removeFromSuperview()
+        //canvasVC.trashController!.trashView.removeFromSuperview()
         
         if self.isNewMoment {
             saveNewMoment()
