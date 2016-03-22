@@ -297,7 +297,12 @@ class NewMomentCanvasViewController: UIViewController,
     }
 
     func addAudioFromMusic() {
-        
+        let musicPicker = MPMediaPickerController(mediaTypes: .AnyAudio)
+        musicPicker.delegate = self
+        musicPicker.allowsPickingMultipleItems = false
+        musicPicker.showsCloudItems = false
+
+        presentViewController(musicPicker, animated: true, completion: nil)
     }
     
     func addVideoFromCamera(){
@@ -381,6 +386,15 @@ class NewMomentCanvasViewController: UIViewController,
     
     func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         mediaPicker.dismiss(true)
+        if let music: MPMediaItem = mediaItemCollection.representativeItem {
+            if let url = music.assetURL {
+                if let audioViewController = manager!.addAudio(url, location: self.center) {
+                    addNewViewController(audioViewController)
+                }
+            } else {
+                print("ERROR: url not found for music selected")
+            }
+        }
     }
     
     // Functions for UIPresentationControllerDelegate
