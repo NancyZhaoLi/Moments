@@ -83,7 +83,7 @@ class NewMomentManager {
         momentFavourite = moment.favourite
         
         if momentFavourite {
-            canvasVC.selectFavourite()
+            //canvasVC.selectFavourite()
         }
         
         if let category = moment.category {

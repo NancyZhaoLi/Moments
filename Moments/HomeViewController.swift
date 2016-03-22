@@ -58,9 +58,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
                         momentTableView.reloadData()
                     }
                 }
-
             }
-
         }
     }
     

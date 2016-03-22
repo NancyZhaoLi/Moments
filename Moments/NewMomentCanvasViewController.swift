@@ -30,12 +30,24 @@ class NewMomentCanvasViewController: UIViewController,
     var center: CGPoint = CGPointMake(windowWidth/2.0, windowHeight/2.0)
     
     var nextButton: UIButton! = UIButton()
+    
+    var addButton: UIButton! = UIButton()
     var viewButton: UIButton! = UIButton()
-    var favouriteButton: UIButton! = UIButton()
     var settingButton: UIButton! = UIButton()
+    var trashButton: UIButton! = UIButton()
+    
     var canvas: UIScrollView!
     
+    let addButtonImageTitle = "add_icon.png"
+    let viewButtonSelectImageTitle = "view_open_icon.png"
+    let viewButtonUnselectImageTitle = "view_close_icon.png"
+    let trashButtonSelectImageTitle = "favourite_selected_icon.png"
+    let trashButtonUnselectImageTitle = "favourite_unselected_icon.png"
+    let settingButtonImageTitle = "setting_icon.png"
+    
     //var trashController: DragToTrash?
+    var trashButtonOn: Bool = true
+    var tapToTrashGestureRec: UITapGestureRecognizer = UITapGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +63,6 @@ class NewMomentCanvasViewController: UIViewController,
         }
         
         initUI()
-        //initTrash()
         
         if self.loadedMoment != nil {
             selectViewMode()
@@ -72,8 +83,6 @@ class NewMomentCanvasViewController: UIViewController,
     
     private func initUI() {
         let buttonSize: CGFloat = 40.0
-        let toolBarHeight: CGFloat = 60.0
-        
         let toolbarItemCenters = ToolbarHelper.getCenter(30.0, totalItems: 4, inset: 20.0)
         
         addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
@@ -86,24 +95,26 @@ class NewMomentCanvasViewController: UIViewController,
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
         
         //Toolbar Buttons
-        let addButton = ButtonHelper.imageButton("add_icon.png", center: toolbarItemCenters[0], imageSize: buttonSize, target: self, action: "addItem")
+        trashButton = UIButton(center: toolbarItemCenters[3], width: buttonSize)
+        tapToTrashGestureRec.addTarget(self, action: "tapToTrash:")
+        cancelTrash()
+        
+        addButton = ButtonHelper.imageButton(addButtonImageTitle, center: toolbarItemCenters[0], imageSize: buttonSize, target: self, action: "addItem")
         
         viewButton = UIButton(center: toolbarItemCenters[1], width: buttonSize)
         cancelViewMode()
         
-        settingButton = ButtonHelper.imageButton("setting_icon.png", center: toolbarItemCenters[2], imageSize: buttonSize, target: self, action: "setting")
+        settingButton = ButtonHelper.imageButton(settingButtonImageTitle, center: toolbarItemCenters[2], imageSize: buttonSize, target: self, action: "setting")
 
-        favouriteButton = UIButton(center: toolbarItemCenters[3], width: buttonSize)
-        cancelFavourite()
-        
         // Toolbar
+        let toolBarHeight: CGFloat = 60.0
         let toolBar = UIToolbar(frame: CGRectMake(0,windowHeight - toolBarHeight, windowWidth, toolBarHeight))
         toolBar.barTintColor = UIColor.customBlueColor()
         toolBar.opaque = true
         toolBar.addSubview(addButton)
         toolBar.addSubview(viewButton)
         toolBar.addSubview(settingButton)
-        toolBar.addSubview(favouriteButton)
+        toolBar.addSubview(trashButton)
         view.addSubview(toolBar)
     }
     
@@ -158,20 +169,23 @@ class NewMomentCanvasViewController: UIViewController,
      
      ******************************************************************/
     func addItem() {
+        cancelTrash()
         if let popover = self.addItemPopover {
             presentViewController(popover, animated: true, completion: nil)
         }
     }
     
     func cancelViewMode() {
-        viewButton.setBackgroundImage(UIImage(named: "view_close_icon.png")!, forState: .Normal)
+        cancelTrash()
+        viewButton.setImage(UIImage(named: viewButtonUnselectImageTitle)!, forState: .Normal)
         viewButton.removeTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
         viewButton.addTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
         enableUserInteraction()
     }
     
     func selectViewMode() {
-        viewButton.setBackgroundImage(UIImage(named: "view_open_icon.png")!, forState: .Normal)
+        cancelTrash()
+        viewButton.setImage(UIImage(named: viewButtonSelectImageTitle)!, forState: .Normal)
         viewButton.removeTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
         viewButton.addTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
         disableUserInteraction()
@@ -190,23 +204,41 @@ class NewMomentCanvasViewController: UIViewController,
             vc.view.userInteractionEnabled = false
         }
     }
-    
-    func cancelFavourite() {
-        favouriteButton.setBackgroundImage(UIImage(named: "favourite_unselected_icon.png")!, forState: .Normal)
-        favouriteButton.removeTarget(self, action: "cancelFavourite", forControlEvents: .TouchUpInside)
-        favouriteButton.addTarget(self, action: "selectFavourite", forControlEvents: .TouchUpInside)
-        manager!.unselectFavourite()
-    }
-    
-    func selectFavourite() {
-        favouriteButton.setBackgroundImage(UIImage(named: "favourite_selected_icon.png")!, forState: .Normal)
-        favouriteButton.removeTarget(self, action: "selectFavourite")
-        favouriteButton.addTarget(self, action: "cancelFavourite")
-        manager!.selectFavourite()
-    }
-    
+
     func setting() {
-        presentViewController(OtherCanvasOptionViewController(sourceView:settingButton, delegate: self), animated: true, completion: nil)
+        cancelTrash()
+        //presentViewController(OtherCanvasOptionViewController(sourceView:settingButton, delegate: self), animated: true, completion: nil)
+        setCanvasBackground()
+    }
+    
+    func cancelTrash() {
+        if trashButtonOn {
+            print ("disable trash")
+            trashButton.setImage(UIImage(named: trashButtonUnselectImageTitle)!, forState: .Normal)
+            trashButton.removeTarget(self, action: "cancelTrash")
+            trashButton.addTarget(self, action: "selectTrash")
+            trashButtonOn = false
+            tapToTrashGestureRec.enabled = false
+            setEnabledOfTapRecognizerOfTextItem(true)
+        }
+    }
+
+    func selectTrash() {
+        print("enable trash")
+        trashButton.setImage(UIImage(named: trashButtonSelectImageTitle)!, forState: .Normal)
+        trashButton.removeTarget(self, action: "selectTrash")
+        trashButton.addTarget(self, action: "cancelTrash")
+        trashButtonOn = true
+        tapToTrashGestureRec.enabled = true
+        setEnabledOfTapRecognizerOfTextItem(false)
+    }
+
+    func setEnabledOfTapRecognizerOfTextItem(enabled: Bool) {
+        for viewController in self.childViewControllers {
+            if let textItem: TextItemViewController = viewController as? TextItemViewController {
+                textItem.tapRec.enabled = enabled
+            }
+        }
     }
     
     func cancelAddNewMoment() {
@@ -298,13 +330,21 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addNewViewController(vc: UIViewController) {
+        print("add new view controller")
+        if tapToTrashGestureRec.enabled == true {
+            print("tap to trash enabled when adding new vc")
+        } else {
+            print("tap to trash not enabled when adding new vc")
+        }
         self.canvas.addSubview(vc.view)
+        vc.view.addGestureRecognizer(tapToTrashGestureRec)
         self.addChildViewController(vc)
     }
     
     func addNewViewController(vc: UIViewController, zPosition: Int) {
         self.canvas.insertSubview(vc.view, atIndex: zPosition)
         vc.view.layer.zPosition = 0.0
+        vc.view.addGestureRecognizer(tapToTrashGestureRec)
         self.addChildViewController(vc)
     }
     
@@ -358,7 +398,12 @@ class NewMomentCanvasViewController: UIViewController,
     
     // Functions for OtherCanvasOptionViewController
     func setCanvasBackground(controller: OtherCanvasOptionViewController) {
-        let colourPickerVC: ColourPickerViewController = ColourPickerViewController(initialColour: self.view.backgroundColor, delegate: self)
+        setCanvasBackground()
+    }
+    
+    func setCanvasBackground() {
+        let colourPickerVC: ColourPickerViewController = ColourPickerViewController(initialColour: view.backgroundColor, delegate: self)
+        colourPickerVC.setNavigationBarTitle("Background Colour")
         presentViewController(colourPickerVC, animated: true, completion: nil)
     }
     
@@ -382,6 +427,17 @@ class NewMomentCanvasViewController: UIViewController,
             trashController!.trashView.hidden = true
         }*/
     }
+    
+    // Tap To Trash
+    
+    func tapToTrash(sender: UITapGestureRecognizer) {
+        print("tap to trash")
+        if let senderView = sender.view {
+            print(senderView)
+            senderView.removeFromSuperview()
+        }
+    }
+    
     
     // DragToTrash Delegate Functions
     

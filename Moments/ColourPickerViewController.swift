@@ -33,6 +33,8 @@ class ColourPickerViewController: UIViewController {
 
     var colourPicker: SwiftHSVColorPicker!
     var delegate: ColourPickerViewControllerDelegate?
+    var navItem: UINavigationItem?
+    var navigationTitle: String?
     
     convenience init() {
         self.init(initialColour: UIColor.whiteColor(), delegate: nil)
@@ -73,21 +75,25 @@ class ColourPickerViewController: UIViewController {
 
         let leftBarButton = UIBarButtonItem(customView: cancelButton)
         let rightBarButton = UIBarButtonItem(customView: selectButton)
-        if let navController = self.navigationController {
-            navController.navigationItem.rightBarButtonItem = rightBarButton
-        } else {
-            let navItem = UINavigationItem()
-            navItem.leftBarButtonItem = leftBarButton
-            navItem.rightBarButtonItem = rightBarButton
-            
-            let navBar = NavigationHelper.emptyBar()
-            navBar.pushNavigationItem(navItem, animated: false)
-            
-            self.view.addSubview(navBar)
-        }
 
+        let navItem = UINavigationItem()
+        navItem.leftBarButtonItem = leftBarButton
+        navItem.rightBarButtonItem = rightBarButton
+        self.navItem = navItem
+        
+        let navBar = NavigationHelper.emptyBar()
+        navBar.pushNavigationItem(navItem, animated: false)
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.tintColor = UIColor.whiteColor()
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.view.addSubview(navBar)
     }
     
+    func setNavigationBarTitle(title: String) {
+        if let navItem = self.navItem {
+            navItem.title = title
+        }
+    }
     
     func cancelColourPicking() {
         self.dismissViewControllerAnimated(true, completion: nil)
