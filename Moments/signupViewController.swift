@@ -92,7 +92,7 @@ class signupViewController: UIViewController, UITextFieldDelegate {
                             // add a new user in database
                             self.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
                             
-                            // TODO: login success, go to login complete page
+                            
                             self.performSegueWithIdentifier("SignupComplete", sender: self)
                             
                         }

@@ -188,25 +188,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         fetchNewColStickers(barButtonItem.title!)
         self.stickerCollection.reloadData()
     }
-    /*
-    func animals(barButtonItem: UIBarButtonItem){
-        fetchNewColStickers("animals")
-        self.stickerCollection.reloadData()
-    
-    }
-    func stickers(barButtonItem: UIBarButtonItem){
-        fetchNewColStickers("stickers")
-        self.stickerCollection.reloadData()
-    }
-    func summer(barButtonItem: UIBarButtonItem){
-        fetchNewColStickers("summer")
-        self.stickerCollection.reloadData()
-    }
-    func love(barButtonItem: UIBarButtonItem){
-        fetchNewColStickers("love")
-        self.stickerCollection.reloadData()
-    }
-    */
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -232,7 +214,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
         let pickedSticker = searches[indexPath.row]
         print(pickedSticker.name)
-        //performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
+        //performSegueWithIdentifier("categoryMoments", sender: pickedSticker)  --> newmoment & s
         
     }
     

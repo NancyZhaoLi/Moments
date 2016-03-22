@@ -29,10 +29,17 @@ class AudioRecorderViewController: UIViewController {
     var timer: NSTimer?
     var delegate: AudioRecorderViewControllerDelegate?
     
-    var startOrPauseButton: UIButton!
+    var startButton: UIButton!
+    var pauseButton: UIButton!
     var stopButton: UIButton!
     var timeLabel: UILabel!
+    var audioTitle: UITextField!
+    //var audioDescription: UITextView!
 
+    let pauseImageTitle = "pause_icon.png"
+    let pauseGrayImageTitle = "pause_icon.png"
+    let recorderImageTitle = "recorder_icon.png"
+    let stopImageTitle = "stop_icon.png"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +78,13 @@ class AudioRecorderViewController: UIViewController {
                         self.initRecorder()
                     } else {
                         print("Error - [AudioRecorderViewController] - fail to begin recordSession")
-                        self.cancelRecording()
+                        self.dismiss(true)
                     }
                 }
             }
         } catch {
             print("Error - [AudioRecorderViewController] - fail to begin recordSession")
-            self.cancelRecording()
+            self.dismiss(true)
         }
     }
     
@@ -95,7 +102,7 @@ class AudioRecorderViewController: UIViewController {
 
         if self.recorder.prepareToRecord() {
             print("Error - [AudioRecordingViewController] - failed to prepare recorder")
-            self.cancelRecording()
+            self.dismiss(true)
         }
     }
     
@@ -108,14 +115,14 @@ class AudioRecorderViewController: UIViewController {
         
         let startButtonSize = windowWidth / 2.0
         let stopButtonSize = windowWidth / 6.0
-        startOrPauseButton = ButtonHelper.imageButton("text.png", center: CGPointMake(startButtonSize, startButtonSize + 20.0), imageSize: startButtonSize, target: self, action: "startOrPause")
+
+        startButton = ButtonHelper.imageButton(recorderImageTitle, center: CGPointMake(startButtonSize, startButtonSize + 20.0), imageSize: startButtonSize, target: self, action: "start")
         
-        stopButton = ButtonHelper.imageButton("text.png", center: CGPointMake(windowWidth - stopButtonSize/2.0 - 20.0, startOrPauseButton.frame.maxY), imageSize: stopButtonSize, target: self, action: "stop")
+        stopButton = ButtonHelper.imageButton(stopImageTitle, center: CGPointMake(stopButtonSize/2.0 + 20.0, startButton.frame.maxY + 10.0), imageSize: stopButtonSize, target:self, action: "stop")
         
-        let moreOptionBarHeight : CGFloat = 20.0
-        let moreOptionBar = UIHelper.line(0, height: moreOptionBarHeight, y: stopButton.frame.maxY + 10.0, colour: UIColor.customBlueColor())
-        let plusButton = ButtonHelper.imageButton("add_icon.png", center: CGPointMake(windowWidth/2.0, (moreOptionBarHeight - 4.0)/2.0), imageSize: moreOptionBarHeight - 4.0, target: self, action: "showMoreOption")
-        moreOptionBar.addSubview(plusButton)
+        pauseButton = ButtonHelper.imageButton(pauseGrayImageTitle, center: CGPointMake(windowWidth - stopButtonSize/2.0 - 20.0, startButton.frame.maxY + 10.0), imageSize: stopButtonSize, target: self, action: "pause")
+        
+        disableStopAndPause()
         
         timeLabel = UILabel()
         timeLabel.font = UIFont(name: "Helvetica-Bold", size: 25.0)
@@ -125,40 +132,106 @@ class AudioRecorderViewController: UIViewController {
         timeLabel.frame.origin.y = stopButton.frame.maxY - timeLabel.frame.size.height
         timeLabel.textColor = UIColor.customGreenColor()
 
+        let titleLabel = UILabel()
+        titleLabel.font = UIFont(name: "Helvetica-Bold", size: 25.0)
+        titleLabel.text = "Title"
+        titleLabel.frame.size = UIHelper.textSize(titleLabel.text!, font: titleLabel.font)
+        titleLabel.frame.origin.y = stopButton.frame.maxY + 20.0
+        titleLabel.frame.origin.x = 20.0
+        titleLabel.textColor = UIColor.customGreenColor()
+        
+        /*let descriptionLabel = UILabel()
+        descriptionLabel.font = UIFont(name: "Helvetica-Bold", size: 25.0)
+        descriptionLabel.text = "Description "
+        descriptionLabel.frame.size = UIHelper.textSize(descriptionLabel.text!, font:descriptionLabel.font)
+        descriptionLabel.frame.origin.y = titleLabel.frame.maxY + 20.0
+        descriptionLabel.frame.origin.x = 20.0
+        descriptionLabel.textColor = UIColor.customGreenColor()*/
+        
+        audioTitle = UITextField(frame: CGRectMake(titleLabel.frame.maxX + 30.0, titleLabel.frame.origin.y, windowWidth - 50.0 - titleLabel.frame.maxX, titleLabel.frame.height))
+        audioTitle.placeholder = "Audio"
+        audioTitle.backgroundColor = UIColor.whiteColor()
+        audioTitle.borderStyle = UITextBorderStyle.RoundedRect
+        audioTitle.layer.borderColor = UIColor.customGreenColor().CGColor
+        audioTitle.layer.borderWidth = 1.0
+        audioTitle.layer.cornerRadius = 5.0
+        
+        /*audioDescription = UITextView(frame: CGRectMake(20.0, descriptionLabel.frame.maxY + 15.0, windowWidth - 40.0, 80.0))
+        audioDescription.backgroundColor = UIColor.whiteColor()
+        audioDescription.layer.borderColor = UIColor.grayColor().CGColor
+        audioDescription.layer.borderWidth = 1.0
+        audioDescription.layer.cornerRadius = 10.0*/
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
-        self.view.addSubview(startOrPauseButton)
+        self.view.addSubview(startButton)
+        self.view.addSubview(pauseButton)
         self.view.addSubview(stopButton)
         self.view.addSubview(timeLabel)
-        self.view.addSubview(moreOptionBar)
+        self.view.addSubview(titleLabel)
+        //self.view.addSubview(descriptionLabel)
+        self.view.addSubview(audioTitle)
+        //self.view.addSubview(audioDescription)
     }
     
-    func startOrPause() {
-        if self.recorder!.recording {
-            pause()
+    
+    func start() {
+        if !haveRecorded {
+            haveRecorded = true
+        }
+        //self.startOrPauseButton.setTitle("Pause", forState: UIControlState.Normal)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        enableStopAndPause()
+        startButton.enabled = false
+        
+        if self.recorder!.record() == true {
+            print("sucessfully record")
         } else {
-            start()
-            if !haveRecorded {
-                haveRecorded = true
-            }
+            print("failed to record")
         }
     }
     
     func pause() {
-        self.startOrPauseButton.setTitle("Resume", forState: UIControlState.Normal)
-        self.recorder!.pause()
-        self.timer!.invalidate()
+        //self.startOrPauseButton.setTitle("Resume", forState: UIControlState.Normal)
+        
+        print("pause")
+        recorder!.pause()
+        pauseButton.setBackgroundImage(UIImage(named: pauseImageTitle)!, forState: .Normal)
+        pauseButton.removeTarget(self, action: "pause", forControlEvents: .TouchUpInside)
+        pauseButton.addTarget(self, action: "resume", forControlEvents: .TouchUpInside)
+        timer!.invalidate()
+    }
+    
+    func resume() {
+        print("resume")
+        pauseButton.setBackgroundImage(UIImage(named: pauseGrayImageTitle)!, forState: .Normal)
+        pauseButton.removeTarget(self, action: "resume", forControlEvents: .TouchUpInside)
+        pauseButton.addTarget(self, action: "pause", forControlEvents: .TouchUpInside)
+        start()
     }
     
     func stop() {
         haveRecorded = false
-        stopButton.enabled = false
-        stopButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
-        startOrPauseButton.setTitle("Start", forState: .Normal)
+        disableStopAndPause()
+        startButton.enabled = true
         self.recorder!.stop()
         self.timer!.invalidate()
     }
     
+    func enableStopAndPause() {
+        stopButton.enabled = true
+        pauseButton.enabled = true
+    }
+    
+    func disableStopAndPause() {
+        stopButton.enabled = false
+        pauseButton.enabled = false
+    }
+    
     func saveRecording() {
+        if recorder.recording {
+            stop()
+        }
+        
         if let delegate = self.delegate {
             delegate.saveRecording(self, url: self.recorder!.url)
         } else {
@@ -166,39 +239,23 @@ class AudioRecorderViewController: UIViewController {
         }
     }
     
-    func cancelRecording() {
-        if let navController = self.navigationController {
-            navController.popViewControllerAnimated(true)
-        } else {
-            self.dismissViewControllerAnimated(true, completion: nil)
-            self.removeFromParentViewController()
-        }
-    }
-    
     func updateTime() {
         let currentTime = self.recorder!.currentTime
         self.timeLabel.text = computeTimeString(currentTime)
     }
-    
-    func start() {
-        self.startOrPauseButton.setTitle("Pause", forState: UIControlState.Normal)
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
-        if self.recorder!.record() == true {
-            print("sucessfully record")
-        } else {
-            print("failed to record")
-        }
-    }
 
-    private func computeTimeString(var second: NSTimeInterval) -> String {
-        let hour: Int = Int(second / 3600.0)
-        second -= Double(hour * 3600)
-        let minute : Int = Int(second / 60.0)
-        second -= Double(minute * 60)
+
+    private func computeTimeString(second: NSTimeInterval) -> String {
+        var secondInt : Int = Int(round(second))
+        
+        let hour: Int = secondInt / 3600
+        secondInt -= hour * 3600
+        let minute : Int = secondInt / 60
+        secondInt -= minute * 60
         
         let hourString = String(format: "%02d", hour)
         let minuteString = String(format: "%02d", minute)
-        let secondString = String(format: "%02d", second)
+        let secondString = String(format: "%02d", secondInt)
 
         return hourString + " : " + minuteString + " : " + secondString
     }

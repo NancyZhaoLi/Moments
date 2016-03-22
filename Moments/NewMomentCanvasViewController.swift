@@ -347,7 +347,6 @@ class NewMomentCanvasViewController: UIViewController,
     
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
         manager!.addAudio(url, location: self.center)
     }
     
