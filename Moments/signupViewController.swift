@@ -97,8 +97,10 @@ class signupViewController: UIViewController, UITextFieldDelegate {
                             //    print(snapshot.value.objectForKey("name"))
                             //})
                             //print(authData.providerData["name"])
+                            self.dismissViewControllerAnimated(true, completion: nil)
                             
                             self.performSegueWithIdentifier("signupComplete", sender: self)
+                            //self.dismiss(true)
                             
                         }
                     })
