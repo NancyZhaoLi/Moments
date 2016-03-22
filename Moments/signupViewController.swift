@@ -91,9 +91,14 @@ class signupViewController: UIViewController, UITextFieldDelegate {
                             
                             // add a new user in database
                             self.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
+                            //print
+                            //self.ref.observeEventType(.ChildAdded, withBlock: { snapshot in
+                            //    print(snapshot.value.objectForKey("email"))
+                            //    print(snapshot.value.objectForKey("name"))
+                            //})
+                            //print(authData.providerData["name"])
                             
-                            
-                            self.performSegueWithIdentifier("SignupComplete", sender: self)
+                            self.performSegueWithIdentifier("signupComplete", sender: self)
                             
                         }
                     })

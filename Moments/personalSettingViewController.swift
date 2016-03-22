@@ -12,19 +12,39 @@ class personalSettingViewController: UITableViewController  {
 
     
     
-    let ref = Firebase(url: "https://momentsxmen.firebaseio.com/")
+    let ref = Firebase(url: "https://momentsxmen.firebaseio.com/users")
     
     @IBOutlet weak var useremail: UILabel!
     
     @IBOutlet weak var username: UILabel!
     func showEmail (){
+         print(ref.authData.uid)
      if ref.authData != nil {
         self.useremail.text = ref.authData.providerData["email"] as? String
         }
     }
     func showName(){
         if ref.authData != nil {
-            self.username.text = ref.authData.providerData["name"] as? String
+          
+            print("showsth")
+         
+            var counter = 0
+             ref.childByAppendingPath(ref.authData.uid)
+                //.childByAppendingPath("name")
+                .observeEventType(.ChildAdded, withBlock: { snapshot in
+            
+                    counter += 1
+                    if counter == 2 {
+                        print(snapshot.value)
+                        self.username.text = snapshot.value as? String
+                    
+                    }
+                
+                }, withCancelBlock: { error in
+                    print(error.description)
+            })
+                   
+                    
         }
         
     
