@@ -16,16 +16,25 @@ class personalSettingViewController: UITableViewController  {
     
     @IBOutlet weak var useremail: UILabel!
     
+    @IBOutlet weak var username: UILabel!
     func showEmail (){
      if ref.authData != nil {
         self.useremail.text = ref.authData.providerData["email"] as? String
         }
+    }
+    func showName(){
+        if ref.authData != nil {
+            self.username.text = ref.authData.providerData["name"] as? String
+        }
+        
+    
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: CGFloat(0.2), green: CGFloat(0.211765), blue: CGFloat(0.286275), alpha: 1.0)
         showEmail()
+        showName()
        
     }
     
