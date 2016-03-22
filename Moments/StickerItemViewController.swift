@@ -57,18 +57,13 @@ class StickerItemViewController: UIViewController {
     
     let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
     let rotateRec: UIRotationGestureRecognizer = UIRotationGestureRecognizer()
-    let panRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
     
     func initGestureRecognizer() {
         pinchRec.addTarget(self, action: "pinchedView:")
         rotateRec.addTarget(self, action: "rotatedView:")
-        panRec.addTarget(self, action: "draggedView:")
         
         self.view.addGestureRecognizer(pinchRec)
         self.view.addGestureRecognizer(rotateRec)
-        self.view.addGestureRecognizer(panRec)
-
-        self.view.multipleTouchEnabled = true
     }
     
     func pinchedView(sender: UIPinchGestureRecognizer) {
@@ -92,16 +87,6 @@ class StickerItemViewController: UIViewController {
         let newTrans = CGAffineTransformRotate(currentTrans, rotation)
         sender.view!.transform = newTrans
         lastRotation = sender.rotation*/
-    }
-    
-    func draggedView(sender: UIPanGestureRecognizer) {
-        if let senderView = sender.view {
-            parentView.bringSubviewToFront(senderView)
-            let translation = sender.translationInView(parentView)
-            senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
-            sender.setTranslation(CGPointZero, inView: parentView)
-            parentView.sendSubviewToBack(senderView)
-        }
     }
     
     /*********************************************************************************

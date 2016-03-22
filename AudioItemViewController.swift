@@ -109,13 +109,9 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
      *********************************************************************************/
     
     let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    let panRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
     
     func initGestureRecognizer() {
-        self.panRec.addTarget(parentVC, action: "draggedView:")
-        self.view.addGestureRecognizer(panRec)
 
-        self.view.multipleTouchEnabled = true
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {

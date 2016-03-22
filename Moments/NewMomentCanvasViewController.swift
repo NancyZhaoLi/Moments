@@ -47,7 +47,10 @@ class NewMomentCanvasViewController: UIViewController,
     
     //var trashController: DragToTrash?
     var trashButtonOn: Bool = true
+    var enableInteraction: Bool = false
+    
     var tapToTrashGestureRec: UITapGestureRecognizer = UITapGestureRecognizer()
+    var dragItemGestureRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +66,7 @@ class NewMomentCanvasViewController: UIViewController,
         }
         
         initUI()
+        initGestureRec()
         
         if self.loadedMoment != nil {
             selectViewMode()
@@ -96,7 +100,6 @@ class NewMomentCanvasViewController: UIViewController,
         
         //Toolbar Buttons
         trashButton = UIButton(center: toolbarItemCenters[3], width: buttonSize)
-        tapToTrashGestureRec.addTarget(self, action: "tapToTrash:")
         cancelTrash()
         
         addButton = ButtonHelper.imageButton(addButtonImageTitle, center: toolbarItemCenters[0], imageSize: buttonSize, target: self, action: "addItem")
@@ -116,6 +119,11 @@ class NewMomentCanvasViewController: UIViewController,
         toolBar.addSubview(settingButton)
         toolBar.addSubview(trashButton)
         view.addSubview(toolBar)
+    }
+    
+    private func initGestureRec() {
+        tapToTrashGestureRec.addTarget(self, action: "tapToTrash:")
+        dragItemGestureRec.addTarget(self, action: "draggedView:")
     }
     
     /*private func initTrash() {
@@ -192,14 +200,14 @@ class NewMomentCanvasViewController: UIViewController,
     }
 
     func enableUserInteraction() {
-        manager!.enableInteraction = true
+        enableInteraction = true
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = true
         }
     }
     
     func disableUserInteraction() {
-        manager!.enableInteraction = false
+        enableInteraction = false
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = false
         }
@@ -330,21 +338,21 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addNewViewController(vc: UIViewController) {
-        print("add new view controller")
-        if tapToTrashGestureRec.enabled == true {
-            print("tap to trash enabled when adding new vc")
-        } else {
-            print("tap to trash not enabled when adding new vc")
-        }
         self.canvas.addSubview(vc.view)
-        vc.view.addGestureRecognizer(tapToTrashGestureRec)
-        self.addChildViewController(vc)
+        initNewViewController(vc)
     }
     
     func addNewViewController(vc: UIViewController, zPosition: Int) {
         self.canvas.insertSubview(vc.view, atIndex: zPosition)
         vc.view.layer.zPosition = 0.0
+        initNewViewController(vc)
+    }
+    
+    private func initNewViewController(vc: UIViewController) {
         vc.view.addGestureRecognizer(tapToTrashGestureRec)
+        vc.view.addGestureRecognizer(dragItemGestureRec)
+        vc.view.multipleTouchEnabled = true
+        vc.view.userInteractionEnabled = enableInteraction
         self.addChildViewController(vc)
     }
     
@@ -431,7 +439,6 @@ class NewMomentCanvasViewController: UIViewController,
     // Tap To Trash
     
     func tapToTrash(sender: UITapGestureRecognizer) {
-        print("tap to trash")
         if let senderView = sender.view {
             print(senderView)
             senderView.removeFromSuperview()

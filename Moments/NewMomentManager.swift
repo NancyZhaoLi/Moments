@@ -50,7 +50,6 @@ class NewMomentManager {
     var idSuffix : String = ""
     
     var isNewMoment : Bool = true
-    var enableInteraction: Bool! = true
     
     convenience init(canvasVC: NewMomentCanvasViewController) {
         self.init(canvasVC: canvasVC, moment: nil)
@@ -157,7 +156,6 @@ class NewMomentManager {
     func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
         let newTextVC = TextItemViewController(manager: self)
         newTextVC.addText(text, location: location, textAttribute: textAttribute)
-        newTextVC.view.userInteractionEnabled = enableInteraction
         
         return newTextVC
     }
@@ -165,8 +163,7 @@ class NewMomentManager {
     func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {
         let newImageVC = ImageItemViewController(manager: self)
         newImageVC.addImage(image, location: location, editingInfo: editingInfo)
-        
-        newImageVC.view.userInteractionEnabled = enableInteraction
+
         return newImageVC
     }
     

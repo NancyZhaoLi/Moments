@@ -113,18 +113,15 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
     let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
     let rotateRec: UIRotationGestureRecognizer = UIRotationGestureRecognizer()
-    let panRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
     
     func initGestureRecognizer() {
         tapRec.addTarget(self, action: "tappedView")
         pinchRec.addTarget(self, action: "pinchedView:")
         rotateRec.addTarget(self, action: "rotatedView:")
-        panRec.addTarget(parentVC, action: "draggedView:")
         
         self.view.addGestureRecognizer(tapRec)
         self.view.addGestureRecognizer(pinchRec)
         self.view.addGestureRecognizer(rotateRec)
-        self.view.addGestureRecognizer(panRec)
         
         self.view.multipleTouchEnabled = true
     }

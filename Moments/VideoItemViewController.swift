@@ -61,16 +61,11 @@ class VideoItemViewController: UIViewController {
      *********************************************************************************/
 
     let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    let panRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
     
     func initGestureRecognizer() {
         pinchRec.addTarget(self, action: "pinchedView:")
-        panRec.addTarget(self, action: "draggedView:")
         
         self.view.addGestureRecognizer(pinchRec)
-        self.view.addGestureRecognizer(panRec)
-
-        self.view.multipleTouchEnabled = true
     }
     
     
@@ -79,15 +74,6 @@ class VideoItemViewController: UIViewController {
         sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
         sender.scale = 1.0
     }
-    
-    func draggedView(sender: UIPanGestureRecognizer) {
-        if let senderView = sender.view {
-            parentView.bringSubviewToFront(senderView)
-            let translation = sender.translationInView(parentView)
-            senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
-            sender.setTranslation(CGPointZero, inView: parentView)
-            parentView.sendSubviewToBack(senderView)
-        }
-    }
+
 
 }
