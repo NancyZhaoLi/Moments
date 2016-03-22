@@ -1460,7 +1460,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="i4i-WV-26f" id="QYn-pw-mJg"/>
-                                    <outlet property="delegate" destination="i4i-WV-26f" id="wLM-Fh-lLp"/>
+                                    <outlet property="delegate" destination="i4i-WV-26f" id="i4a-vM-j6P"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -1801,6 +1801,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3w0-du-Tv0"/>
-        <segue reference="6KN-Sv-cir"/>
+        <segue reference="JUu-zm-hsV"/>
     </inferredMetricsTieBreakers>
 </document>

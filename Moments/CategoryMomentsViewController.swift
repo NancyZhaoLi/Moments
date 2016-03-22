@@ -44,6 +44,15 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editSavedMoment" {
+            let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
+            let newMomentCanvasVC = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
+            let cell = sender as! MomentTableCell
+            newMomentCanvasVC.loadedMoment = cell.moment
+        }
+    }
+    
     func updateCategoryNameLabel() {
         categoryName.text = category?.name
         
@@ -84,6 +93,14 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
         return 120
         
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.momentsTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
+        print("cell at \(indexPath.row) is clicked")
+        //self.indexOfCellClicked = indexPath.row
+        performSegueWithIdentifier("editSavedMoment", sender: cell)
+    }
+
 
 
     
