@@ -19,6 +19,7 @@ class NewCategoryViewController: UIViewController,
     var delegate: NewCategoryViewControllerDelegate?
     var categoryName: UITextField!
     var categoryColour: SwiftHSVColorPicker!
+    var id: Int64?
 
     convenience init() {
         self.init(delegate: nil)
@@ -31,6 +32,7 @@ class NewCategoryViewController: UIViewController,
     init(delegate: NewCategoryViewControllerDelegate?) {
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
+        setId()
         
         self.transitioningDelegate = self
         self.modalPresentationStyle = .Custom
@@ -104,17 +106,28 @@ class NewCategoryViewController: UIViewController,
     }
     
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController)-> UIViewControllerAnimatedTransitioning? {
+        
         return CategoryPresentationAnimationController()
+    }
+    
+    func setId() {
+        
+        if let maxIdInCD : Int64 = CoreDataFetchHelper.requestMaxCategoryId() {
+            self.id = maxIdInCD + 1
+        } else {
+            self.id = 0
+        }
     }
     
     
     func getCategoryEntry() -> CategoryEntry {
+        
         let name = categoryName.text!
         if let colour = categoryColour.color {
-            return CategoryEntry(colour: colour, name: name)
+            return CategoryEntry(id: id!, colour: colour, name: name)
         }
         
-        return CategoryEntry(colour: UIColor.customBlueColor(), name: name)
+        return CategoryEntry(id: id!, colour: UIColor.customBlueColor(), name: name)
     }
 
 }
