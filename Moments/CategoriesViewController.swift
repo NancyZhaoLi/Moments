@@ -13,6 +13,11 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     @IBOutlet var categoriesCollectionView: UICollectionView!
     
     @IBOutlet weak var addCategoryButton: UIBarButtonItem!
+    
+    // snapshot of category cell when moving it
+    private var categorySnapshot: UIView?
+    // the indexPath of the category cell currently moving
+    private var beganIndexPath: NSIndexPath?
    
     var categoriesMO = [Category]()
     var categories = [CategoryEntry]()
@@ -42,6 +47,11 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         width = CGRectGetWidth(collectionView!.frame) / 3
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width!, height: width!)
+        
+        // gesture recognizer
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: "longPress:")
+        self.categoriesCollectionView.addGestureRecognizer(longPressGR)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,7 +105,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
     }
     
-    
+    // delete categories
     @IBAction func deleteCategories(sender: UIBarButtonItem) {
         
         let indexPaths = categoriesCollectionView.indexPathsForSelectedItems()! as [NSIndexPath]
@@ -132,6 +142,75 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
     }
     
+    // draging categories
+    func longPress(longPressGR: UILongPressGestureRecognizer) {
+        
+        if editing {
+            return
+        }
+        
+        let longPressLoc = longPressGR.locationInView(self.categoriesCollectionView)
+        let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(longPressLoc)
+        
+        switch longPressGR.state {
+            
+        case .Began:
+            print("Began")
+            if let curIndexPath = curIndexPath {
+                
+                let categoryCell = self.categoriesCollectionView.cellForItemAtIndexPath(curIndexPath) as! CategoryViewCell
+                
+                categorySnapshot = categoryCell.categorySnapshot
+                setCategorySnapshot(categoryCell.center, alpha: 0.0, transform: CGAffineTransformIdentity)
+                self.categoriesCollectionView.addSubview(categorySnapshot!)
+                UIView.animateWithDuration(0.15, animations: { () -> Void in
+                    self.setCategorySnapshot(categoryCell.center, alpha: 0.9, transform: CGAffineTransformMakeScale(1.1, 1.1))
+                    categoryCell.draging = true
+                })
+                
+                beganIndexPath = curIndexPath
+                
+            }
+        case .Changed:
+            print("changed")
+            
+            // TODO: add category id to core data?
+            /*
+            self.categorySnapshot!.center = longPressLoc
+            if let curIndexPath = curIndexPath {
+                papersDataSource.movePaperAtIndexPath(sourceIndexPath!, toIndexPath: indexPath)
+                self.categoriesCollectionView.moveItemAtIndexPath(beganIndexPath!, toIndexPath: curIndexPath)
+                beganIndexPath = curIndexPath
+            }
+*/
+        default:
+            print("default")
+            let categoryCell = self.categoriesCollectionView.cellForItemAtIndexPath(beganIndexPath!) as! CategoryViewCell
+            
+            UIView.animateWithDuration(0.15, animations: { () -> Void in
+                self.setCategorySnapshot(categoryCell.center, alpha: 0.0, transform: CGAffineTransformIdentity)
+                categoryCell.draging = false
+                }, completion: { (finished: Bool) -> Void in
+                    self.categorySnapshot!.removeFromSuperview()
+                    self.categorySnapshot = nil
+            })
+            
+            beganIndexPath = nil
+            
+        }
+    }
+    
+    // helper function for setting snapshot view of the moving category cell
+    private func setCategorySnapshot(center: CGPoint, alpha: CGFloat, transform: CGAffineTransform) {
+        
+        if let categorySnapshot = categorySnapshot {
+            categorySnapshot.center = center
+            categorySnapshot.alpha = alpha
+            categorySnapshot.transform = transform
+            
+        }
+    }
+
     
     //collection view
     
@@ -180,6 +259,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     
     // NewCategoryViewController Delegate
+    //TODO: go back from create new category in new moment page
     func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         

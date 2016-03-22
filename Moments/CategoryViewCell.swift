@@ -22,13 +22,16 @@ class CategoryViewCell: UICollectionViewCell {
         // Initialization code
     }
     
+    // delete category cells
     var deleting: Bool = false {
+        
         didSet {
             selectedImage.hidden = !deleting
         }
     }
     
     override var selected: Bool {
+        
         didSet {
             if deleting {
                 selectedImage.image = UIImage(named: selected ? "selected" : "unselected")
@@ -36,13 +39,41 @@ class CategoryViewCell: UICollectionViewCell {
         }
     }
     
+    // moving category cells
+    var draging: Bool = false {
+        
+        didSet {
+            let alpha: CGFloat = draging ? 0.0 : 1.0
+            imageItem.alpha = alpha
+            name.alpha = alpha
+        }
+    }
+    
+    var categorySnapshot: UIView {
+        
+        get {
+            let categorySnapshot = snapshotViewAfterScreenUpdates(true)
+            let layer = categorySnapshot.layer
+            
+            layer.shadowOffset = CGSize(width: -3.0, height: 3.0)
+            layer.shadowOpacity = 0.5
+            layer.shadowRadius = 6.0
+            layer.masksToBounds = false
+            
+            return categorySnapshot
+        }
+    }
+    
+    // categoryEntry for constructing the cell
     var category: CategoryEntry? {
+        
         didSet {
             constructCategoryCell()
         }
     }
     
     func constructCategoryCell() {
+        
         if let categoryInfo = category {
             constructName(categoryInfo)
             constructImageItem(categoryInfo)
