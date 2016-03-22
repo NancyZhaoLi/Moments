@@ -65,6 +65,8 @@ class NewMomentCanvasViewController: UIViewController,
         canvas.backgroundColor = UIColor.clearColor()
         canvas.userInteractionEnabled = true
         canvas.multipleTouchEnabled = true
+        canvas.showsVerticalScrollIndicator = false
+        canvas.showsHorizontalScrollIndicator = false
         self.view.addSubview(canvas)
     }
     
