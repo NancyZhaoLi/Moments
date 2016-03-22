@@ -10,17 +10,16 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-class AudioItemViewController: UIViewController {
+class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
 
     var player: AVAudioPlayer?
-    var havePlayed: Bool = false
-    var timer: NSTimer!
     var manager: NewMomentManager?
-    var parentView: UIView!
+    var parentVC: UIViewController!
     
-    @IBOutlet weak var playOrPauseButton: UIButton!
-    @IBOutlet weak var progBar: UIProgressView!
-    @IBOutlet weak var stopButton: UIButton!
+    var playerButton: UIButton!
+    var playImageTitle = "play_icon.png"
+    var pauseImageTitle = "pause_icon.png"
+    var buttonSize: CGFloat = 80.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,66 +45,61 @@ class AudioItemViewController: UIViewController {
             fatalError("ERROR: [TextItemViewController] parentView init failed")
         }
         
+        initView()
         initGestureRecognizer()
     }
     
     private func initParentView() -> Bool {
-        if let canvas = manager!.canvasVC, view = canvas.view {
-            self.parentView = view
+        if let canvas = manager!.canvasVC {
+            parentVC = canvas
             return true
         }
         return false
     }
     
-    func initView(location: CGPoint) {
-        self.view = UIView(frame: CGRectMake(location.x, location.y, 30,30))
-        let playButton = UIButton(frame: CGRectMake(0,0,30,30))
-        playButton.setBackgroundImage(UIImage(named: ""), forState: .Normal)
-        //playButton.addTarget(self, action: "play:", forControlEvents: <#T##UIControlEvents#>)
-        
-        
-        self.view.addSubview(playButton)
+    func initView() {
+        view = UIView()
+        view.frame.size = CGSizeMake(buttonSize, buttonSize)
+        playerButton = ButtonHelper.imageButton(playImageTitle, frame: CGRectMake(0,0,buttonSize,buttonSize), target: self, action: "play")
+        view.addSubview(playerButton)
+    }
+    
+    func play(){
+        if player!.play() {
+            setButtonForPause()
+            print(player!.volume)
+        } else {
+            print("fail to play")
+        }
+    }
+    
+    func setButtonForPause() {
+        playerButton.setImage(UIImage(named: pauseImageTitle), forState: .Normal)
+        playerButton.removeTarget(self, action: "play")
+        playerButton.addTarget(self, action: "pause")
+    }
+    
+    func pause() {
+        print("pause")
+        if player!.playing {
+            setButtonForPlay()
+            player!.pause()
+        }
+    }
+    
+    func setButtonForPlay() {
+        playerButton.setImage(UIImage(named: playImageTitle), forState: .Normal)
+        playerButton.removeTarget(self, action: "pause")
+        playerButton.addTarget(self, action: "play")
     }
 
-    @IBAction func playOrPause(sender: AnyObject) {
-        if let player = self.player {
-            if havePlayed == false {
-                havePlayed = true
-                stopButton.enabled = true
-                timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
-            }
-            if player.playing {
-                playOrPauseButton.setTitle("Play", forState: UIControlState.Normal)
-                player.pause()
-            } else {
-                print("playing?")
-                playOrPauseButton.setTitle("Pause", forState: UIControlState.Normal)
-                player.play()
-                print("playing!")
-            }
-        }
-        
+    func addPlayer(player: AVAudioPlayer, location: CGPoint) {
+        self.player = player
+        self.player?.delegate = self
+        self.view.center = location
     }
     
-    @IBAction func stop(sender: AnyObject) {
-        if let player = self.player {
-            stopButton.enabled = false
-            player.stop()
-            player.currentTime = 0
-            havePlayed = false
-        }
-    }
-    
-    func updateTime() {
-        if let player = self.player {
-            let currentTime = Float(player.currentTime)
-            let duration = Float(player.duration)
-            progBar.progress = currentTime / duration
-        }
-    }
-    
-    
-    func addAudio(audioItem: AudioItemEntry) {
+    func addAudio(audio: AudioItemEntry) {
         
     }
     /*********************************************************************************
@@ -118,28 +112,16 @@ class AudioItemViewController: UIViewController {
     let panRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
     
     func initGestureRecognizer() {
-        self.pinchRec.addTarget(self, action: "pinchedView:")
-        self.panRec.addTarget(self, action: "draggedView:")
-        
-        self.view.addGestureRecognizer(self.pinchRec)
-        self.view.addGestureRecognizer(self.panRec)
+        self.panRec.addTarget(parentVC, action: "draggedView:")
+        self.view.addGestureRecognizer(panRec)
 
         self.view.multipleTouchEnabled = true
     }
     
-    func pinchedView(sender: UIPinchGestureRecognizer) {
-        self.view.bringSubviewToFront(self.view)
-        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-        sender.scale = 1.0
-    }
-    
-    func draggedView(sender: UIPanGestureRecognizer) {
-        if let senderView = sender.view {
-            self.parentView.bringSubviewToFront(senderView)
-            let translation = sender.translationInView(parentView)
-            senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
-            sender.setTranslation(CGPointZero, inView: parentView)
-            self.parentView.sendSubviewToBack(senderView)
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        if flag == true {
+            player.stop()
+            setButtonForPlay()
         }
     }
     

@@ -233,8 +233,12 @@ class AudioRecorderViewController: UIViewController {
         }
         
         if let delegate = self.delegate {
+            print("recording url: \(recorder.url)")
+            self.dismiss(true)
             delegate.saveRecording(self, url: self.recorder!.url)
+            print("save recording done")
         } else {
+            print("no delegate for recording")
             self.dismiss(true)
         }
     }

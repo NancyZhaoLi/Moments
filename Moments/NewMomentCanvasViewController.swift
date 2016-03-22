@@ -347,7 +347,12 @@ class NewMomentCanvasViewController: UIViewController,
     
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
-        manager!.addAudio(url, location: self.center)
+        if let audioViewController = manager!.addAudio(url, location: self.center) {
+            addNewViewController(audioViewController)
+        } else {
+            print("cannot add recording to canvas")
+        }
+        
     }
     
     // Functions for OtherCanvasOptionViewController

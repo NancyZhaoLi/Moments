@@ -172,14 +172,12 @@ class NewMomentManager {
     
     func addAudio(audioURL: NSURL, location: CGPoint) -> AudioItemViewController? {
         do {
+            print("begin")
             let audioPlayer = try AVAudioPlayer(contentsOfURL: audioURL)
-            if let audioItemVC: AudioItemViewController = canvasVC.storyboard?.instantiateViewControllerWithIdentifier("audioPlayer") as? AudioItemViewController {
-                audioItemVC.player = audioPlayer
-                audioItemVC.manager = self
-                audioItemVC.view.center = location
-                
-                return audioItemVC
-            }
+            
+            let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)
+            audioItemVC.addPlayer(audioPlayer, location: location)
+            return audioItemVC
         } catch {
             print("audio player cannot be created")
         }
