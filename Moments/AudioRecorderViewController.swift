@@ -13,7 +13,7 @@ protocol AudioRecorderViewControllerDelegate {
     func saveRecording(controller: AudioRecorderViewController, url: NSURL)
 }
 
-class AudioRecorderViewController: UIViewController {
+class AudioRecorderViewController: UIViewController, UITextFieldDelegate {
     static let recorderSetting = [
         AVFormatIDKey: NSNumber(unsignedInt:kAudioFormatAppleLossless),
         AVEncoderAudioQualityKey : AVAudioQuality.Max.rawValue,
@@ -40,6 +40,8 @@ class AudioRecorderViewController: UIViewController {
     let pauseGrayImageTitle = "pause_icon.png"
     let recorderImageTitle = "recorder_icon.png"
     let stopImageTitle = "stop_icon.png"
+    
+    let titleMaxLength: Int = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,12 +151,13 @@ class AudioRecorderViewController: UIViewController {
         descriptionLabel.textColor = UIColor.customGreenColor()*/
         
         audioTitle = UITextField(frame: CGRectMake(titleLabel.frame.maxX + 30.0, titleLabel.frame.origin.y, windowWidth - 50.0 - titleLabel.frame.maxX, titleLabel.frame.height))
-        audioTitle.placeholder = "Audio"
+        audioTitle.placeholder = "Optional Audio Title..."
         audioTitle.backgroundColor = UIColor.whiteColor()
         audioTitle.borderStyle = UITextBorderStyle.RoundedRect
         audioTitle.layer.borderColor = UIColor.customGreenColor().CGColor
         audioTitle.layer.borderWidth = 1.0
         audioTitle.layer.cornerRadius = 5.0
+        audioTitle.delegate = self
         
         /*audioDescription = UITextView(frame: CGRectMake(20.0, descriptionLabel.frame.maxY + 15.0, windowWidth - 40.0, 80.0))
         audioDescription.backgroundColor = UIColor.whiteColor()
@@ -262,5 +265,21 @@ class AudioRecorderViewController: UIViewController {
         let secondString = String(format: "%02d", secondInt)
 
         return hourString + " : " + minuteString + " : " + secondString
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        return newLength <= titleMaxLength
     }
 }
