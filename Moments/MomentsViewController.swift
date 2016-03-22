@@ -9,7 +9,7 @@
 import UIKit
 import JGProgressHUD
 
-class MomentsViewController: UIViewController, UITextFieldDelegate {
+class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
 
     var fav = false;
     var start = NSDate().dateByAddingTimeInterval(-60*60*24*60);
@@ -36,11 +36,6 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func playMoments(sender: AnyObject) {
-        let progressHUD = JGProgressHUD(style: .Light)
-        progressHUD.textLabel.text = "Creating video..."
-        progressHUD.indicatorView = JGProgressHUDIndeterminateIndicatorView()
-        progressHUD.showInView(view)
-        progressHUD.dismissAfterDelay(3)
     }
     
     
@@ -111,5 +106,14 @@ class MomentsViewController: UIViewController, UITextFieldDelegate {
         momentsPlayerVC.fav = fav
         momentsPlayerVC.start = start
         momentsPlayerVC.end = end
+
+        let alert = UIAlertController(title: "Save Video", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let progressHUD = JGProgressHUD(style: .Dark)
+        progressHUD.textLabel.text = "Creating video..."
+        progressHUD.indicatorView = JGProgressHUDIndeterminateIndicatorView()
+        progressHUD.showInView(self.view)
+        //progressHUD.showInView(self.view)
+        progressHUD.dismissAfterDelay(5)
+        print("sdfs")
     }
 }
