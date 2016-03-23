@@ -19,6 +19,9 @@ extension UIColor {
     static func customBackgroundColor() -> UIColor {
         return UIColor(red: 1.0, green: 1.0, blue: 246/255.0, alpha: 1.0)
     }
+    static func customRedColor() -> UIColor {
+        return UIColor(red: 1.0, green: 128/255.0, blue: 128/255.0, alpha: 1.0)
+    }
 }
 
 let windowHeight = UIScreen.mainScreen().bounds.height

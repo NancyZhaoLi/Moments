@@ -193,6 +193,26 @@ class CoreDataFetchHelper {
         return nil
     }
     
+    static func fetchCategoryIdIndexFromCoreData() -> [CategoryIdIndex] {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "CategoryIdIndex")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(request) as! [CategoryIdIndex]
+            
+            return results
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+        
+    // TODO: move this to delete helper class
     static func deleteMomentGivenId(id: Int64) -> Bool {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext

@@ -21,6 +21,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
    
     var categoriesMO = [Category]()
     var categories = [CategoryEntry]()
+    var categoryIdIndex: CategoryIdIndexEntry?
     
     var width: CGFloat?
     
@@ -28,6 +29,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         super.viewDidLoad()
         
         getCategoriesFromCoreData()
+        getCategoryMapsFromCoreData()
         
         let cellNib = UINib(nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         categoriesCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryViewCell")
@@ -71,14 +73,55 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     // get categories from core data
     func getCategoriesFromCoreData(){
+        
         getCategoriesMOFromCoreData()
+        
         for var i = 0; i < categoriesMO.count; ++i {
             categories.append(CategoryEntry(categoryMO: categoriesMO[i]))
         }
+        
+    }
+    
+    func getCategoryMapsFromCoreData() {
+        
+        let fetchResult = CoreDataFetchHelper.fetchCategoryIdIndexFromCoreData()
+        
+        categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
+        
+        let idToIndex = categoryIdIndex?.idToIndex
+        let indexToId = categoryIdIndex?.indexToId
+        
+        print("maps count: \(idToIndex?.count)")
+        print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
+
     }
     
     func getCategoriesMOFromCoreData(){
+        
         categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+        
+        // If no category exists, create 2 default categories
+        if categoriesMO.count == 0 {
+            let uncategorizedCategory = CategoryEntry(id: 0, colour: UIColor.customGreenColor(), name: "Uncategorized")
+            let favouriteCategory = CategoryEntry(id: 1, colour: UIColor.customRedColor(), name: "Favourite")
+            
+            let uncategorizedCategoryMO = CoreDataSaveHelper.saveCategoryToCoreData(uncategorizedCategory)
+            let favouriteCategoryMO = CoreDataSaveHelper.saveCategoryToCoreData(favouriteCategory)
+            
+            categoriesMO.append(uncategorizedCategoryMO)
+            categoriesMO.append(favouriteCategoryMO)
+            
+            var idToIndex = NSMapTable()
+            var indexToId = NSMapTable()
+            idToIndex.setObject(0, forKey: 0)
+            idToIndex.setObject(1, forKey: 1)
+            indexToId.setObject(0, forKey: 0)
+            indexToId.setObject(1, forKey: 1)
+            
+            let categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
+            CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex)
+
+        }
     }
     
     

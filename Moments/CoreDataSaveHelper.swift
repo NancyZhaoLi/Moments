@@ -143,7 +143,6 @@ class CoreDataSaveHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
         
-        
         let categoryMO = Category(entity: entity!, insertIntoManagedObjectContext: context)
         categoryMO.id = NSNumber(longLong: category.id)
         categoryMO.colour = category.colour
@@ -152,11 +151,30 @@ class CoreDataSaveHelper {
         do{
             try context.save()
         } catch {
-            print("ERROR: saving context to Category")
+            print("ERROR: saving Category to context")
         }
         
         return categoryMO
     }
+    
+    static func saveCategoryIdIndexToCoreData(categoryIdIndex: CategoryIdIndexEntry) {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("CategoryIdIndex", inManagedObjectContext: context)
+        
+        let categoryIdIndexMO = CategoryIdIndex(entity: entity!, insertIntoManagedObjectContext: context)
+        categoryIdIndexMO.idToIndex = categoryIdIndex.idToIndex
+        categoryIdIndexMO.indexToId = categoryIdIndex.indexToId
+        
+        do{
+            try context.save()
+        } catch {
+            print("ERROR: saving CategoryIdIndex to context")
+        }
+
+    }
+
     
 }
 
