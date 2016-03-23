@@ -503,14 +503,22 @@ class NewMomentCanvasViewController: UIViewController,
     // PinchGestureRecognizer
     func pinchedView(sender: UIPinchGestureRecognizer) {
         if let senderView = sender.view {
+
             canvas.bringSubviewToFront(senderView)
+
             switch sender.state {
             
             case UIGestureRecognizerState.Began:
+                if sender.numberOfTouches() != 2 {
+                    return
+                }
                 showBorder(senderView)
                 break
             
             case UIGestureRecognizerState.Changed:
+                if sender.numberOfTouches() != 2 {
+                    return
+                }
                 senderView.transform  = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
                 sender.scale = 1.0
                 break
@@ -524,13 +532,17 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func pinchedTextView(sender: UIPinchGestureRecognizer) {
-        //self.pinchedView(sender)
         if let senderView = sender.view as? TextItemView {
+
+            
             canvas.bringSubviewToFront(senderView)
             
             switch sender.state {
                 
             case UIGestureRecognizerState.Began:
+                if sender.numberOfTouches() != 2 {
+                    return
+                }
                 showBorder(senderView)
                 for var i = 0; i < sender.numberOfTouches(); i++ {
                     senderView.beginPinchCoor.append(sender.locationOfTouch(i, inView: self.canvas))
@@ -538,39 +550,39 @@ class NewMomentCanvasViewController: UIViewController,
                 break
                 
             case UIGestureRecognizerState.Changed:
-                var newCoor = [CGPoint]()
                 if sender.numberOfTouches() != 2 {
-                    break
+                    return
                 }
+                var newCoor = [CGPoint]()
                 for var i = 0; i < sender.numberOfTouches(); i++ {
                     newCoor.append(sender.locationOfTouch(i, inView: self.canvas))
                 }
                 
                 let horizontalScale: CGFloat = horizontalDistance(newCoor) / horizontalDistance(senderView.beginPinchCoor)
                 var verticalScale: CGFloat = verticalDistance(newCoor) / verticalDistance(senderView.beginPinchCoor)
-                if verticalScale > 1.0 {
+                if verticalScale > 1.3 || verticalScale < 0.8 {
+                    return
+                } else if verticalScale > 1.0 {
                     verticalScale = 1.0 + (verticalScale - 1.0) * 0.2
                 } else if verticalScale < 1.0 {
                     verticalScale = 1.0 - (1.0 - verticalScale) * 0.2
                 }
                 
-                print("new coordinate: \(newCoor)")
+                /*print("new coordinate: \(newCoor)")
                 print("vertial distance of new coordinate: \(verticalDistance(newCoor))")
                 print("old coordinate: \(senderView.beginPinchCoor)")
                 print("vertical distance of old coordinate: \(verticalDistance(senderView.beginPinchCoor))")
-                print(verticalScale)
-                
+                print(verticalScale)*/
+
                 let previousCenter: CGPoint = senderView.center
                 let newWidth = senderView.frame.width * horizontalScale
                 let newHeight = senderView.frame.height * verticalScale
-                var changeInWidth: CGFloat = newWidth - senderView.frame.width
-                var changeInHeight: CGFloat = newHeight - senderView.frame.height
+                let changeInWidth: CGFloat = newWidth - senderView.frame.width
+                let changeInHeight: CGFloat = newHeight - senderView.frame.height
                 
-                if newWidth < UIHelper.textSize("A", font: senderView.font!).width + 20.0 {
-                    break
-                }
                 
-                if newHeight < UIHelper.textSize("A", font: senderView.font!).height + 20.0 {
+                if newWidth < UIHelper.textSize("A", font: senderView.font!).width + 20.0 ||
+                    newHeight < UIHelper.textSize("A", font: senderView.font!).height + 20.0{
                     break
                 }
                 
@@ -578,6 +590,7 @@ class NewMomentCanvasViewController: UIViewController,
                 senderView.center = CGPointMake(previousCenter.x + changeInWidth/2.0, previousCenter.y + changeInHeight/2.0)
 
                 senderView.beginPinchCoor = newCoor
+                sender.scale = 1.0
                 break
                 
             default:
@@ -606,15 +619,23 @@ class NewMomentCanvasViewController: UIViewController,
         }*/
         
         if let senderView = sender.view {
+
+            
             canvas.bringSubviewToFront(senderView)
             
             switch sender.state {
                 
             case UIGestureRecognizerState.Began:
+                if sender.numberOfTouches() != 1 {
+                    return
+                }
                 showBorder(senderView)
                 break
                 
             case UIGestureRecognizerState.Changed:
+                if sender.numberOfTouches() != 1 {
+                    return
+                }
                 let translation = sender.translationInView(view)
                 senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
                 sender.setTranslation(CGPointZero, inView: view)
@@ -638,7 +659,9 @@ class NewMomentCanvasViewController: UIViewController,
     
     func tapToTrash(sender: UITapGestureRecognizer) {
         if let senderView = sender.view {
-            print(senderView)
+            if sender.numberOfTouches() != 1 {
+                return
+            }
             senderView.removeFromSuperview()
         }
     }
