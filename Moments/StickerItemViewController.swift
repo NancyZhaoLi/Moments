@@ -8,10 +8,15 @@
 
 import UIKit
 
+class StickerItemView: UIImageView {
+    var stickerName: String?
+}
+
 class StickerItemViewController: UIViewController {
     
     var manager: NewMomentManager?
     var parentView: UIView!
+    private let defaultMaxDimension: CGFloat = 80.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,55 +50,30 @@ class StickerItemViewController: UIViewController {
         }
         return false
     }
+    
+    func addSticker(stickerName: String, location: CGPoint) {
+        if let sticker = UIImage(named: stickerName) {
+            let stickerMaxDimension: CGFloat = max(sticker.size.height, sticker.size.width)
+            var resizeRatio: CGFloat = 1.0
+            
+            if stickerMaxDimension > defaultMaxDimension {
+                resizeRatio = stickerMaxDimension/defaultMaxDimension
+            }
+            
+            let frame = CGRectMake(0,0, sticker.size.width/resizeRatio, sticker.size.height/resizeRatio)
+            let stickerView = StickerItemView(frame: frame)
+            stickerView.center = location
+            stickerView.stickerName = stickerName
+            
+            stickerView.image = sticker
+            self.view = stickerView
+        } else {
+            print("cannot add sticker with name: \(stickerName)")
+        }
+    }
 
     func addSticker(stickerItem: StickerItemEntry) {
         
     }
-    /*********************************************************************************
-     
-     GESTURE RECOGNIZERS
-     
-     *********************************************************************************/
-    
-    let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    let rotateRec: UIRotationGestureRecognizer = UIRotationGestureRecognizer()
-    
-    func initGestureRecognizer() {
-        pinchRec.addTarget(self, action: "pinchedView:")
-        rotateRec.addTarget(self, action: "rotatedView:")
-        
-        self.view.addGestureRecognizer(pinchRec)
-        self.view.addGestureRecognizer(rotateRec)
-    }
-    
-    func pinchedView(sender: UIPinchGestureRecognizer) {
-        parentView.bringSubviewToFront(self.view)
-        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-        sender.scale = 1.0
-    }
-    
-    func rotatedView(sender: UIRotationGestureRecognizer) {
-        
-        /*
-        var lastRotation = CGFloat()
-        self.view.bringSubviewToFront(self.view)
-        if (sender.state == UIGestureRecognizerState.Ended) {
-        lastRotation = 0.0;
-        }
-        
-        let rotation = 0.0 - (lastRotation - sender.rotation)
-        var point = rotateRec.locationInView(self.view)
-        let currentTrans = sender.view!.transform
-        let newTrans = CGAffineTransformRotate(currentTrans, rotation)
-        sender.view!.transform = newTrans
-        lastRotation = sender.rotation*/
-    }
-    
-    /*********************************************************************************
-    
-    DELEGATE FUNCTIONS
-    
-    *********************************************************************************/
-
 }
 

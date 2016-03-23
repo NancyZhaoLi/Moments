@@ -61,6 +61,11 @@ class CoreDataSaveHelper {
         let category: CategoryEntry = moment.category!
 
         */
+        
+        for stickerItem in moment.stickerItemEntries {
+            let stickerItemMO = saveStickerItemToCoreData(stickerItem)
+            containedStickerItem.addObject(stickerItemMO)
+        }
 
         do{
             try context.save()
@@ -80,6 +85,7 @@ class CoreDataSaveHelper {
         textItemMO.frame = NSStringFromCGRect(textItem.frame)
         textItemMO.rotation = NSNumber(float: textItem.rotation)
         textItemMO.otherAttribute = NSKeyedArchiver.archivedDataWithRootObject(textItem.otherAttribute)
+        textItemMO.zPosition = textItem.zPosition
         
         do {
             try context.save()
@@ -100,6 +106,7 @@ class CoreDataSaveHelper {
         imageItemMO.image = UIImagePNGRepresentation(imageItem.image)
         imageItemMO.frame = NSStringFromCGRect(imageItem.frame)
         imageItemMO.rotation = NSNumber(float: imageItem.rotation)
+        imageItemMO.zPosition = imageItem.zPosition
         
         do {
             try context.save()
@@ -111,8 +118,27 @@ class CoreDataSaveHelper {
 
     }
     
-    static func saveCategoryToCoreData(category: CategoryEntry) -> Category {
+    static func saveStickerItemToCoreData(stickerItem: StickerItemEntry) -> StickerItem {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("StickerItem", inManagedObjectContext: context)
         
+        let stickerItemMO = StickerItem(entity: entity!, insertIntoManagedObjectContext: context)
+
+        stickerItemMO.frame = NSStringFromCGRect(stickerItem.frame)
+        stickerItemMO.name = stickerItem.name
+        stickerItemMO.zPosition = stickerItem.zPosition
+
+        do {
+            try context.save()
+        } catch {
+            print("ERROR: cannot save imageItem to context")
+        }
+        
+        return stickerItemMO
+    }
+    
+    static func saveCategoryToCoreData(category: CategoryEntry) -> Category {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)

@@ -21,7 +21,8 @@ class NewMomentCanvasViewController: UIViewController,
     MPMediaPickerControllerDelegate,
     ColourPickerViewControllerDelegate,
     AudioRecorderViewControllerDelegate,
-    NewItemViewControllerDelegate {
+    NewItemViewControllerDelegate,
+    StickerPickerControllerDelegate {
     
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager?
@@ -49,8 +50,10 @@ class NewMomentCanvasViewController: UIViewController,
     var trashButtonOn: Bool = true
     var enableInteraction: Bool = false
     
-    var tapToTrashGestureRec: UITapGestureRecognizer = UITapGestureRecognizer()
-    var dragItemGestureRec: UIPanGestureRecognizer = UIPanGestureRecognizer()
+    var tapToTrashGR: UITapGestureRecognizer = UITapGestureRecognizer()
+    var dragItemGR: UIPanGestureRecognizer = UIPanGestureRecognizer()
+    var pinchItemGR: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
+    var pinchTextItemGR: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,8 +125,10 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     private func initGestureRec() {
-        tapToTrashGestureRec.addTarget(self, action: "tapToTrash:")
-        dragItemGestureRec.addTarget(self, action: "draggedView:")
+        tapToTrashGR.addTarget(self, action: "tapToTrash:")
+        dragItemGR.addTarget(self, action: "draggedView:")
+        pinchItemGR.addTarget(self, action: "pinchedView:")
+        pinchTextItemGR.addTarget(self, action: "pinchedTextView:")
     }
     
     /*private func initTrash() {
@@ -147,7 +152,8 @@ class NewMomentCanvasViewController: UIViewController,
             let vc = segue.destinationViewController as! EditTextItemViewController
             vc.delegate = self
         } else if segue.identifier == "addSticker" {
-            
+            let vc = segue.destinationViewController as! StickerViewController
+            vc.delegate = self
         } else if segue.identifier == "showSavePage" {
             self.savePage = segue.destinationViewController as? NewMomentSavePageViewController
             self.savePage!.canvas = self
@@ -226,7 +232,7 @@ class NewMomentCanvasViewController: UIViewController,
             trashButton.removeTarget(self, action: "cancelTrash")
             trashButton.addTarget(self, action: "selectTrash")
             trashButtonOn = false
-            tapToTrashGestureRec.enabled = false
+            tapToTrashGR.enabled = false
             setEnabledOfTapRecognizerOfTextItem(true)
         }
     }
@@ -237,7 +243,7 @@ class NewMomentCanvasViewController: UIViewController,
         trashButton.removeTarget(self, action: "selectTrash")
         trashButton.addTarget(self, action: "cancelTrash")
         trashButtonOn = true
-        tapToTrashGestureRec.enabled = true
+        tapToTrashGR.enabled = true
         setEnabledOfTapRecognizerOfTextItem(false)
     }
 
@@ -354,8 +360,18 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     private func initNewViewController(vc: UIViewController) {
-        vc.view.addGestureRecognizer(tapToTrashGestureRec)
-        vc.view.addGestureRecognizer(dragItemGestureRec)
+        vc.view.addGestureRecognizer(tapToTrashGR)
+        vc.view.addGestureRecognizer(dragItemGR)
+        if let textItemVC = vc as? TextItemViewController {
+            textItemVC.view.addGestureRecognizer(pinchTextItemGR)
+        } else if let imageItemVC = vc as? ImageItemViewController {
+            imageItemVC.view.addGestureRecognizer(pinchItemGR)
+        } else if let stickerItemVC = vc as? StickerItemViewController {
+            stickerItemVC.view.addGestureRecognizer(pinchItemGR)
+        } else if let videoItemVC = vc as? VideoItemViewController {
+            videoItemVC.view.addGestureRecognizer(pinchItemGR)
+        }
+        
         vc.view.multipleTouchEnabled = true
         vc.view.userInteractionEnabled = enableInteraction
         self.addChildViewController(vc)
@@ -429,6 +445,23 @@ class NewMomentCanvasViewController: UIViewController,
         presentViewController(colourPickerVC, animated: true, completion: nil)
     }
     
+    // Functions for StickerPickerController Delegate
+    func didPickSticker(stickerPicker: StickerViewController, stickerName: String) {
+        stickerPicker.dismiss(true)
+        addNewViewController(manager!.addSticker(stickerName, location: self.center))
+    }
+    
+    // PinchGestureRecognizer
+    func pinchedView(sender: UIPinchGestureRecognizer) {
+        canvas.bringSubviewToFront(self.view)
+        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+        sender.scale = 1.0
+    }
+    
+    func pinchedTextView(sender: UIPinchGestureRecognizer) {
+        self.pinchedView(sender)
+    }
+    
     // PanGestureRecognizer
     
     func draggedView(sender: UIPanGestureRecognizer) {
@@ -466,5 +499,24 @@ class NewMomentCanvasViewController: UIViewController,
         view.removeFromSuperview()
         trashController!.trashView.hidden = true
     }*/
+    
+    
+    func rotatedView(sender: UIRotationGestureRecognizer) {
+        
+        /*
+        var lastRotation = CGFloat()
+        self.view.bringSubviewToFront(self.view)
+        if (sender.state == UIGestureRecognizerState.Ended) {
+        lastRotation = 0.0;
+        }
+        
+        let rotation = 0.0 - (lastRotation - sender.rotation)
+        var point = rotateRec.locationInView(self.view)
+        let currentTrans = sender.view!.transform
+        let newTrans = CGAffineTransformRotate(currentTrans, rotation)
+        sender.view!.transform = newTrans
+        lastRotation = sender.rotation*/
+    }
+    
     
 }

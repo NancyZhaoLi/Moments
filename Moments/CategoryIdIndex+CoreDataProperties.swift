@@ -1,5 +1,5 @@
 //
-//  ImageItem+CoreDataProperties.swift
+//  CategoryIdIndex+CoreDataProperties.swift
 //  Moments
 //
 //  Created by Mengyi LUO on 2016-03-22.
@@ -12,12 +12,9 @@
 import Foundation
 import CoreData
 
-extension ImageItem {
+extension CategoryIdIndex {
 
-    @NSManaged var frame: String?
-    @NSManaged var image: NSData?
-    @NSManaged var rotation: NSNumber?
-    @NSManaged var zPosition: NSNumber?
-    @NSManaged var inMoment: Moment?
+    @NSManaged var idToIndex: NSObject?
+    @NSManaged var indexToId: NSObject?
 
 }

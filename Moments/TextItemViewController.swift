@@ -111,19 +111,10 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     *********************************************************************************/
     
     let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
-    let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    let rotateRec: UIRotationGestureRecognizer = UIRotationGestureRecognizer()
     
     func initGestureRecognizer() {
         tapRec.addTarget(self, action: "tappedView")
-        pinchRec.addTarget(self, action: "pinchedView:")
-        rotateRec.addTarget(self, action: "rotatedView:")
-        
         self.view.addGestureRecognizer(tapRec)
-        self.view.addGestureRecognizer(pinchRec)
-        self.view.addGestureRecognizer(rotateRec)
-        
-        self.view.multipleTouchEnabled = true
     }
     
     func tappedView() {
@@ -133,34 +124,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
             parentVC.presentViewController(editText, animated: true, completion: nil)
         }
     }
-    
-    func pinchedView(sender: UIPinchGestureRecognizer) {
-        if sender.state == .Began {
-            
-        } else if sender.state == .Changed {
-            parentVC.view.bringSubviewToFront(self.view)
-            sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-            sender.scale = 1.0
-        }
-    }
-    
-    func rotatedView(sender: UIRotationGestureRecognizer) {
-        
-        /*
-        var lastRotation = CGFloat()
-        self.view.bringSubviewToFront(self.view)
-        if (sender.state == UIGestureRecognizerState.Ended) {
-        lastRotation = 0.0;
-        }
-        
-        let rotation = 0.0 - (lastRotation - sender.rotation)
-        var point = rotateRec.locationInView(self.view)
-        let currentTrans = sender.view!.transform
-        let newTrans = CGAffineTransformRotate(currentTrans, rotation)
-        sender.view!.transform = newTrans
-        lastRotation = sender.rotation*/
-    }
-    
+ 
 
     
     /*********************************************************************************

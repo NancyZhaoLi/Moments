@@ -45,6 +45,11 @@ class MomentEntry {
             let imageItem = ImageItemEntry(imageItemMO: imageItemMO as! ImageItem)
             addItemEntry(imageItem)
         }
+        
+        for stickerItemMO in momentMO.containedStickerItem! {
+            let stickerItem = StickerItemEntry(stickerItemMO: stickerItemMO as! StickerItem)
+            addItemEntry(stickerItem)
+        }
     }
   
     func setBackgroundColour(colour: UIColor) {

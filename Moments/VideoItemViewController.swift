@@ -53,27 +53,4 @@ class VideoItemViewController: UIViewController {
     func addAudio(audioItem: AudioItemEntry) {
         
     }
-    
-    /*********************************************************************************
-     
-     GESTURE RECOGNIZERS
-     
-     *********************************************************************************/
-
-    let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    
-    func initGestureRecognizer() {
-        pinchRec.addTarget(self, action: "pinchedView:")
-        
-        self.view.addGestureRecognizer(pinchRec)
-    }
-    
-    
-    func pinchedView(sender: UIPinchGestureRecognizer) {
-        parentView.bringSubviewToFront(self.view)
-        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-        sender.scale = 1.0
-    }
-
-
 }

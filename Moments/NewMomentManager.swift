@@ -182,6 +182,12 @@ class NewMomentManager {
         return nil
     }
     
+    func addSticker(stickerName: String, location: CGPoint) -> StickerItemViewController {
+        let newStickerVC = StickerItemViewController(manager: self)
+        newStickerVC.addSticker(stickerName, location: location)
+        
+        return newStickerVC
+    }
     
     /*
     func addAudioItemEntry(entry: AudioItemEntry) {
@@ -267,6 +273,9 @@ class NewMomentManager {
             } else if let view = view as? UIImageView {
                 let imageItemEntry = ImageItemEntry(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
                 moment.addItemEntry(imageItemEntry)
+            } else if let view: StickerItemView = view as? StickerItemView, name: String = view.stickerName {
+                let stickerItemEntry = StickerItemEntry(name: name, frame: view.frame, zPosition: zPosition)
+                moment.addItemEntry(stickerItemEntry)
             }
         }
         self.moment = moment

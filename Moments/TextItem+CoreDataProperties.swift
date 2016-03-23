@@ -2,7 +2,7 @@
 //  TextItem+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Xin Lin on 2016-03-16.
+//  Created by Mengyi LUO on 2016-03-22.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

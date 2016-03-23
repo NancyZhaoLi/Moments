@@ -46,7 +46,6 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
         initView()
-        initGestureRecognizer()
     }
     
     private func initParentView() -> Bool {
@@ -101,17 +100,6 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
     
     func addAudio(audio: AudioItemEntry) {
         
-    }
-    /*********************************************************************************
-     
-     GESTURE RECOGNIZERS
-     
-     *********************************************************************************/
-    
-    let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    
-    func initGestureRecognizer() {
-
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {

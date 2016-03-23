@@ -61,7 +61,6 @@ class ImageItemViewController: UIViewController {
         
         imageView.image = image
         self.view = imageView
-        initGestureRecognizer()
     }
     
     func addImage(imageItem: ImageItemEntry) {
@@ -70,59 +69,6 @@ class ImageItemViewController: UIViewController {
         imageView.layer.zPosition = CGFloat(imageItem.zPosition)
         
         self.view = imageView
-        initGestureRecognizer()
     }
-    
-    
-    /*********************************************************************************
-     
-     GESTURE RECOGNIZERS
-     
-     *********************************************************************************/
-    
-    let pinchRec: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    let rotateRec: UIRotationGestureRecognizer = UIRotationGestureRecognizer()
-
-    func initGestureRecognizer() {
-        pinchRec.addTarget(self, action: "pinchedView:")
-        rotateRec.addTarget(self, action: "rotatedView:")
-        
-        self.view.addGestureRecognizer(pinchRec)
-        self.view.addGestureRecognizer(rotateRec)
-
-        self.view.multipleTouchEnabled = true
-    }
-    
-    func pinchedView(sender: UIPinchGestureRecognizer) {
-        print("pinched")
-        parentView.bringSubviewToFront(self.view)
-        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale * 0.5, sender.scale * 0.5)
-        sender.scale = 1.0
-    }
-    
-    func rotatedView(sender: UIRotationGestureRecognizer) {
-        print("rotate")
-        
-        /*
-        var lastRotation = CGFloat()
-        self.view.bringSubviewToFront(self.view)
-        if (sender.state == UIGestureRecognizerState.Ended) {
-            lastRotation = 0.0;
-        }
-        
-        let rotation = 0.0 - (lastRotation - sender.rotation)
-        var point = rotateRec.locationInView(self.view)
-        let currentTrans = sender.view!.transform
-        let newTrans = CGAffineTransformRotate(currentTrans, rotation)
-        sender.view!.transform = newTrans
-        lastRotation = sender.rotation*/
-    }
-    
-    /*********************************************************************************
-    
-    DELEGATE FUNCTIONS
-    
-    *********************************************************************************/
-    
 }
 

@@ -10,23 +10,20 @@ import Foundation
 import UIKit
 
 class StickerItemEntry {
-    let id: Int64
-    var frame : CGRect
-    var url : NSURL?
-    var rotation : Float = 0
+    var frame : CGRect!
+    var name : String!
+    var zPosition: Int!
     
-    init(id: Int64, frame : CGRect) {
-        self.id = id
+    init(name: String, frame: CGRect, zPosition: Int) {
         self.frame = frame
+        self.name = name
+        self.zPosition = zPosition
     }
     
-    func setURL(url: NSURL) {
-        self.url = url
+    init(stickerItemMO: StickerItem) {
+        self.name = stickerItemMO.name! as String
+        self.frame = CGRectFromString(stickerItemMO.frame!)
+        self.zPosition = stickerItemMO.zPosition!.integerValue
     }
-    
-    func setRotation(rotation : Float) {
-        self.rotation = rotation
-    }
-    
     
 }

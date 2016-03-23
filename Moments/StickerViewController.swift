@@ -16,7 +16,7 @@ import UIKit
     }
 
 protocol StickerPickerControllerDelegate {
-    func didPickSticker(stickerPicker: StickerViewController, url: NSURL)
+    func didPickSticker(stickerPicker: StickerViewController, stickerName: String)
 }
 
 
@@ -218,7 +218,9 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         let pickedSticker = searches[indexPath.row]
         print(pickedSticker.name)
         //performSegueWithIdentifier("categoryMoments", sender: pickedSticker)  --> newmoment & s
-        //delegate.didPickSticker(self, imageName: pickedSticker.name)
+        if let delegate = self.delegate {
+            delegate.didPickSticker(self, stickerName: pickedSticker.name)
+        }
     }
     
     
