@@ -230,6 +230,9 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         categoriesMO.insert(categoryMO, atIndex: dstIndex)
         categories.removeAtIndex(srcIndex)
         categories.insert(category, atIndex: dstIndex)
+        
+        // update id
+        
     }
 
     
