@@ -34,6 +34,9 @@ class CalendarViewController: UIViewController {
         
         calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
+        
+        calendarView.backgroundColor = UIColor.customBackgroundColor()
+        menuView.backgroundColor = UIColor.customBackgroundColor()
     }
     
     @IBAction func getToday(sender: AnyObject) {
