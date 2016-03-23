@@ -100,7 +100,7 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = self.momentsTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
-        //self.indexOfCellClicked = indexPath.row
+        
         dispatch_async(dispatch_get_main_queue(), {
             self.performSegueWithIdentifier("editSavedMoment", sender: cell)
         })

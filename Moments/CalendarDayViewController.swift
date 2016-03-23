@@ -130,8 +130,10 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         
         let cell = self.dayMomentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
-        //self.indexOfCellClicked = indexPath.row
-        performSegueWithIdentifier("editSavedMoment", sender: cell)
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.performSegueWithIdentifier("editSavedMoment", sender: cell)
+        })
     }
 
     
