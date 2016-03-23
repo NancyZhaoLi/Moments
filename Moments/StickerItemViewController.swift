@@ -16,7 +16,10 @@ class StickerItemViewController: UIViewController {
     
     var manager: NewMomentManager?
     var parentView: UIView!
-    private let defaultMaxDimension: CGFloat = 80.0
+    
+    var tapToTrashGR: UITapGestureRecognizer?
+    
+    private let defaultMaxDimension: CGFloat = 130.0
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -14,12 +14,27 @@ extension String {
     }
 }
 
+enum PinchMode {
+    case Horizontal
+    case Vertical
+    case Diagonal
+}
+
+
+class TextItemView: UITextView {
+    var beginPinchCoor: [CGPoint] = [CGPoint]()
+}
+
+
+
 class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate {
 
     var manager: NewMomentManager?
     var parentVC: UIViewController!
     var editText: EditTextItemViewController!
     var dragBeginCoordinate: CGPoint?
+    
+    var tapToTrashGR: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,18 +76,31 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute ) {
-        let width : CGFloat = UIScreen.mainScreen().bounds.size.width - 20 - location.x
-        let height : CGFloat = ((CGFloat(text.length) / width) + 5) * 20
+        let maxHeight: CGFloat = 300.0
         
-        let textItemView = UITextView(frame: CGRectMake(0,0, width, height))
+        let singleLineHeight: CGFloat = UIHelper.textSize("A", font: textAttribute.font).height
+        let fullWidth: CGFloat = UIHelper.textSize(text, font: textAttribute.font).width
+        
+        let width: CGFloat = min(fullWidth + 20.0, windowWidth - 40.0)
+        var height: CGFloat = ceil(fullWidth / width) * singleLineHeight + 20.0
+        
+        if height > maxHeight {
+            height = maxHeight
+        }
+        
+        print("text: \(text)")
+        //print("fullWidth: \")
+        
+        let textItemView = TextItemView(frame: CGRectMake(0,0, width, height))
         textItemView.center = location
+        textItemView.textContainer.lineBreakMode = .ByCharWrapping
         
         initEditTextItemViewController(text, textAttribute: textAttribute)
         initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
     }
 
     func addText(textItem: TextItemEntry) {
-        let textItemView = UITextView(frame: textItem.frame)
+        let textItemView = TextItemView(frame: textItem.frame)
         let text = textItem.content
         let textAttribute = TextItemOtherAttribute(colour: textItem.getTextColour(), font: textItem.getTextFont(), alignment: textItem.getTextAlignment())
         let zPosition = textItem.zPosition
@@ -82,7 +110,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
     }
     
-    private func initNewTextItemView(textView: UITextView, text: String, textAttribute: TextItemOtherAttribute) {
+    private func initNewTextItemView(textView: TextItemView, text: String, textAttribute: TextItemOtherAttribute) {
         self.view = textView
         changeText(text, textAttribute: textAttribute)
         textView.backgroundColor = UIColor.clearColor()
@@ -118,11 +146,13 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func tappedView() {
+        print("before")
         if let navController = parentVC.navigationController {
             navController.pushViewController(editText, animated: true)
         } else {
             parentVC.presentViewController(editText, animated: true, completion: nil)
         }
+        print("after")
     }
  
 

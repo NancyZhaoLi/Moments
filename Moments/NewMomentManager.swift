@@ -112,7 +112,7 @@ class NewMomentManager {
         }
         
         for stickerItem in moment.stickerItemEntries {
-            canvasVC.addNewViewController(loadSticker(stickerItem))
+            canvasVC.addNewViewController(loadSticker(stickerItem), zPosition: stickerItem.zPosition)
         }
     }
 
@@ -143,7 +143,9 @@ class NewMomentManager {
     }
     
     func loadSticker(stickerItem: StickerItemEntry) -> StickerItemViewController {
-        return StickerItemViewController()
+        let newStickerVC = StickerItemViewController(manager: self)
+        newStickerVC.addSticker(stickerItem)
+        return newStickerVC
     }
     
     
@@ -267,15 +269,17 @@ class NewMomentManager {
         
         for var zPosition = 0; zPosition < canvasVC.canvas.subviews.count; zPosition++ {
             let view = canvasVC.canvas.subviews[zPosition]
-            if let view = view as? UITextView {
+            if let view = view as? TextItemView {
                 let entry = TextItemEntry(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition)
                 moment.addItemEntry(entry)
-            } else if let view = view as? UIImageView {
+            } else if let view = view as? ImageItemView {
                 let imageItemEntry = ImageItemEntry(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
                 moment.addItemEntry(imageItemEntry)
-            } else if let view: StickerItemView = view as? StickerItemView, name: String = view.stickerName {
-                let stickerItemEntry = StickerItemEntry(name: name, frame: view.frame, zPosition: zPosition)
-                moment.addItemEntry(stickerItemEntry)
+            } else if let view: StickerItemView = view as? StickerItemView {
+                if let name = view.stickerName {
+                    let stickerItemEntry = StickerItemEntry(name: name, frame: view.frame, zPosition: zPosition)
+                    moment.addItemEntry(stickerItemEntry)
+                }
             }
         }
         self.moment = moment

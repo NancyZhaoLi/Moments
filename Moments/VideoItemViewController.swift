@@ -16,6 +16,8 @@ class VideoItemViewController: UIViewController {
     var manager: NewMomentManager?
     var parentView: UIView!
     
+    var tapToTrashGR: UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

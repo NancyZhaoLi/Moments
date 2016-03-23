@@ -50,10 +50,7 @@ class NewMomentCanvasViewController: UIViewController,
     var trashButtonOn: Bool = true
     var enableInteraction: Bool = false
     
-    var tapToTrashGR: UITapGestureRecognizer = UITapGestureRecognizer()
-    var dragItemGR: UIPanGestureRecognizer = UIPanGestureRecognizer()
-    var pinchItemGR: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
-    var pinchTextItemGR: UIPinchGestureRecognizer = UIPinchGestureRecognizer()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +66,6 @@ class NewMomentCanvasViewController: UIViewController,
         }
         
         initUI()
-        initGestureRec()
         
         if self.loadedMoment != nil {
             selectViewMode()
@@ -124,12 +120,7 @@ class NewMomentCanvasViewController: UIViewController,
         view.addSubview(toolBar)
     }
     
-    private func initGestureRec() {
-        tapToTrashGR.addTarget(self, action: "tapToTrash:")
-        dragItemGR.addTarget(self, action: "draggedView:")
-        pinchItemGR.addTarget(self, action: "pinchedView:")
-        pinchTextItemGR.addTarget(self, action: "pinchedTextView:")
-    }
+
     
     /*private func initTrash() {
         let trashImage = UIHelper.resizeImage(UIImage(named: "text.png")!, newWidth: 25.0)
@@ -232,7 +223,7 @@ class NewMomentCanvasViewController: UIViewController,
             trashButton.removeTarget(self, action: "cancelTrash")
             trashButton.addTarget(self, action: "selectTrash")
             trashButtonOn = false
-            tapToTrashGR.enabled = false
+            setEnabledOfTapToTrashGR(false)
             setEnabledOfTapRecognizerOfTextItem(true)
         }
     }
@@ -243,8 +234,24 @@ class NewMomentCanvasViewController: UIViewController,
         trashButton.removeTarget(self, action: "selectTrash")
         trashButton.addTarget(self, action: "cancelTrash")
         trashButtonOn = true
-        tapToTrashGR.enabled = true
+        setEnabledOfTapToTrashGR(true)
         setEnabledOfTapRecognizerOfTextItem(false)
+    }
+    
+    func setEnabledOfTapToTrashGR(enabled:Bool) {
+        for vc in self.childViewControllers {
+            if let text = vc as? TextItemViewController {
+                text.tapToTrashGR?.enabled = enabled
+            } else if let image = vc as? ImageItemViewController {
+                image.tapToTrashGR?.enabled = enabled
+            } else if let audio = vc as? AudioItemViewController {
+                audio.tapToTrashGR?.enabled = enabled
+            } else if let video = vc as? VideoItemViewController {
+                video.tapToTrashGR?.enabled = enabled
+            } else if let sticker = vc as? StickerItemViewController {
+                sticker.tapToTrashGR?.enabled = enabled
+            }
+        }
     }
 
     func setEnabledOfTapRecognizerOfTextItem(enabled: Bool) {
@@ -360,16 +367,16 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     private func initNewViewController(vc: UIViewController) {
-        vc.view.addGestureRecognizer(tapToTrashGR)
-        vc.view.addGestureRecognizer(dragItemGR)
+        addTapToTrashGR(vc)
+        vc.view.addGestureRecognizer(dragItemGR())
         if let textItemVC = vc as? TextItemViewController {
-            textItemVC.view.addGestureRecognizer(pinchTextItemGR)
+            textItemVC.view.addGestureRecognizer(pinchTextItemGR())
         } else if let imageItemVC = vc as? ImageItemViewController {
-            imageItemVC.view.addGestureRecognizer(pinchItemGR)
+            imageItemVC.view.addGestureRecognizer(pinchItemGR())
         } else if let stickerItemVC = vc as? StickerItemViewController {
-            stickerItemVC.view.addGestureRecognizer(pinchItemGR)
+            stickerItemVC.view.addGestureRecognizer(pinchItemGR())
         } else if let videoItemVC = vc as? VideoItemViewController {
-            videoItemVC.view.addGestureRecognizer(pinchItemGR)
+            videoItemVC.view.addGestureRecognizer(pinchItemGR())
         }
         
         vc.view.multipleTouchEnabled = true
@@ -377,6 +384,39 @@ class NewMomentCanvasViewController: UIViewController,
         self.addChildViewController(vc)
     }
     
+    func addTapToTrashGR(vc: UIViewController) {
+        let tapToTrash = tapToTrashGR()
+        tapToTrash.enabled = false
+        vc.view.addGestureRecognizer(tapToTrash)
+        if let text = vc as? TextItemViewController {
+            text.tapToTrashGR = tapToTrash
+        } else if let image = vc as? ImageItemViewController {
+            image.tapToTrashGR = tapToTrash
+        } else if let audio = vc as? AudioItemViewController {
+            audio.tapToTrashGR? = tapToTrash
+        } else if let video = vc as? VideoItemViewController {
+            video.tapToTrashGR? = tapToTrash
+        } else if let sticker = vc as? StickerItemViewController {
+            sticker.tapToTrashGR = tapToTrash
+        }
+    }
+    
+    func tapToTrashGR() -> UITapGestureRecognizer {
+        return UITapGestureRecognizer(target: self, action: "tapToTrash:")
+    }
+    
+    func dragItemGR() -> UIPanGestureRecognizer {
+        return UIPanGestureRecognizer(target: self, action: "draggedView:")
+    }
+    
+    func pinchItemGR() -> UIPinchGestureRecognizer {
+        return UIPinchGestureRecognizer(target: self, action: "pinchedView:")
+    }
+    
+    func pinchTextItemGR() -> UIPinchGestureRecognizer {
+        return UIPinchGestureRecognizer(target: self, action: "pinchedTextView:")
+    }
+
     /*******************************************************************
     
         DELEGATE FUNCTIONS
@@ -451,16 +491,95 @@ class NewMomentCanvasViewController: UIViewController,
         addNewViewController(manager!.addSticker(stickerName, location: self.center))
     }
     
+    func showBorder(view: UIView) {
+        view.layer.borderColor = UIColor.redColor().CGColor
+        view.layer.borderWidth = 1.0
+    }
+    
+    func hideBorder(view: UIView) {
+        view.layer.borderColor = nil
+        view.layer.borderWidth = 0.0
+    }
     // PinchGestureRecognizer
     func pinchedView(sender: UIPinchGestureRecognizer) {
-        canvas.bringSubviewToFront(self.view)
-        sender.view?.transform = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
-        sender.scale = 1.0
+        if let senderView = sender.view {
+            canvas.bringSubviewToFront(senderView)
+            switch sender.state {
+            
+            case UIGestureRecognizerState.Began:
+                showBorder(senderView)
+                break
+            
+            case UIGestureRecognizerState.Changed:
+                senderView.transform  = CGAffineTransformScale(sender.view!.transform, sender.scale, sender.scale)
+                sender.scale = 1.0
+                break
+            
+            default:
+                hideBorder(senderView)
+                break
+
+            }
+        }
     }
     
     func pinchedTextView(sender: UIPinchGestureRecognizer) {
-        self.pinchedView(sender)
+        //self.pinchedView(sender)
+        if let senderView = sender.view as? TextItemView {
+            canvas.bringSubviewToFront(senderView)
+            
+            switch sender.state {
+                
+            case UIGestureRecognizerState.Began:
+                showBorder(senderView)
+                for var i = 0; i < sender.numberOfTouches(); i++ {
+                    senderView.beginPinchCoor.append(sender.locationOfTouch(i, inView: self.canvas))
+                }
+                break
+                
+            case UIGestureRecognizerState.Changed:
+                var newCoor = [CGPoint]()
+                if sender.numberOfTouches() != 2 {
+                    break
+                }
+                for var i = 0; i < sender.numberOfTouches(); i++ {
+                    newCoor.append(sender.locationOfTouch(i, inView: self.canvas))
+                }
+                
+                let horizontalScale: CGFloat = horizontalDistance(newCoor) / horizontalDistance(senderView.beginPinchCoor)
+                let verticalScale: CGFloat = verticalDistance(newCoor) / verticalDistance(senderView.beginPinchCoor)
+                
+                print("new coordinate: \(newCoor)")
+                print("vertial distance of new coordinate: \(verticalDistance(newCoor))")
+                print("old coordinate: \(senderView.beginPinchCoor)")
+                print("vertical distance of old coordinate: \(verticalDistance(senderView.beginPinchCoor))")
+                print(verticalScale)
+                
+                let previousCenter: CGPoint = senderView.center
+                let changeInWidth: CGFloat = senderView.frame.width * horizontalScale - senderView.frame.width
+                let changeInHeight: CGFloat = senderView.frame.height * verticalScale - senderView.frame.height
+                senderView.frame = CGRectMake(senderView.frame.origin.x, senderView.frame.origin.y, senderView.frame.width * horizontalScale, senderView.frame.height * verticalScale)
+                senderView.center = CGPointMake(previousCenter.x + changeInWidth/2.0, previousCenter.y + changeInHeight/2.0)
+
+                senderView.beginPinchCoor = newCoor
+                break
+                
+            default:
+                senderView.beginPinchCoor.removeAll()
+                hideBorder(senderView)
+                break
+            }
+        }
     }
+    
+    func verticalDistance(coordinates: [CGPoint]) -> CGFloat {
+        return fabs(coordinates[0].y - coordinates[1].y)
+    }
+    
+    func horizontalDistance(coordinates: [CGPoint]) -> CGFloat {
+        return fabs(coordinates[0].x - coordinates[1].x)
+    }
+    
     
     // PanGestureRecognizer
     
@@ -471,10 +590,26 @@ class NewMomentCanvasViewController: UIViewController,
         }*/
         
         if let senderView = sender.view {
-            view.bringSubviewToFront(senderView)
-            let translation = sender.translationInView(view)
-            senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
-            sender.setTranslation(CGPointZero, inView: view)
+            canvas.bringSubviewToFront(senderView)
+            
+            switch sender.state {
+                
+            case UIGestureRecognizerState.Began:
+                showBorder(senderView)
+                break
+                
+            case UIGestureRecognizerState.Changed:
+                let translation = sender.translationInView(view)
+                senderView.center = CGPointMake(senderView.center.x + translation.x, senderView.center.y + translation.y)
+                sender.setTranslation(CGPointZero, inView: view)
+                break
+                
+            default:
+                hideBorder(senderView)
+                break
+            
+            }
+            
             //trashController!.draggedView(senderView)
         }
         /*

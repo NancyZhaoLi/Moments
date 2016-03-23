@@ -8,11 +8,18 @@
 
 import UIKit
 
+class ImageItemView: UIImageView {
+    var url: String = "url"
+}
+
+
 class ImageItemViewController: UIViewController {
     
     var manager: NewMomentManager?
     var parentView: UIView!
 
+    var tapToTrashGR: UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -56,7 +63,7 @@ class ImageItemViewController: UIViewController {
         }
         
         let frame = CGRectMake(0,0, image.size.width/resizeRatio, image.size.height/resizeRatio)
-        let imageView = UIImageView(frame: frame)
+        let imageView = ImageItemView(frame: frame)
         imageView.center = location
         
         imageView.image = image
@@ -64,7 +71,7 @@ class ImageItemViewController: UIViewController {
     }
     
     func addImage(imageItem: ImageItemEntry) {
-        let imageView =  UIImageView(frame: imageItem.frame)
+        let imageView =  ImageItemView(frame: imageItem.frame)
         imageView.image = imageItem.image
         imageView.layer.zPosition = CGFloat(imageItem.zPosition)
         

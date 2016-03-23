@@ -16,6 +16,8 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
     var manager: NewMomentManager?
     var parentVC: UIViewController!
     
+    var tapToTrashGR: UITapGestureRecognizer?
+    
     var playerButton: UIButton!
     var playImageTitle = "play_icon.png"
     var pauseImageTitle = "pause_icon.png"
