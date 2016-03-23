@@ -2,7 +2,7 @@
 //  CategoryIdIndex+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Mengyi LUO on 2016-03-22.
+//  Created by Yuning Xue on 2016-03-23.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
