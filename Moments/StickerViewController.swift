@@ -15,10 +15,15 @@ import UIKit
         
     }
 
+protocol StickerPickerControllerDelegate {
+    func didPickSticker(stickerPicker: StickerViewController, url: NSURL)
+}
+
 
 class StickerViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     private let reuseIdentifier = "StickerViewCell"
+    var delegate: StickerPickerControllerDelegate?
     
     @IBOutlet weak var stickerCollection: UICollectionView!
     
@@ -198,8 +203,6 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     
    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
-        
-        
     }
     
     
@@ -215,7 +218,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         let pickedSticker = searches[indexPath.row]
         print(pickedSticker.name)
         //performSegueWithIdentifier("categoryMoments", sender: pickedSticker)  --> newmoment & s
-        
+        //delegate.didPickSticker(self, imageName: pickedSticker.name)
     }
     
     

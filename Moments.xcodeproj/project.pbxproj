@@ -241,7 +241,6 @@
 			children = (
 				463466FD1C9B0BE6003361EE /* StickerViewCell.swift */,
 				463467051C9B3A59003361EE /* StickerViewCell.xib */,
-				463466FF1C9B12E0003361EE /* StickerViewController.swift */,
 			);
 			name = StickerCollectionCell;
 			sourceTree = "<group>";
@@ -465,6 +464,7 @@
 			children = (
 				463466F81C97A832003361EE /* AudioRecorderViewController.swift */,
 				D048BEE81C7D963B00BD3115 /* OtherCanvasOptionViewController.swift */,
+				463466FF1C9B12E0003361EE /* StickerViewController.swift */,
 			);
 			name = OtherVC;
 			sourceTree = "<group>";
