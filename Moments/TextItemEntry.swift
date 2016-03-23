@@ -85,8 +85,6 @@ class TextItemEntry {
         } else {
             print("cannot convert to NSData")
         }
-        
-        
     }
 
     

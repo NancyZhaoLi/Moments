@@ -46,16 +46,7 @@ class DragToTrash {
     private func closeToTrash() -> Bool {
         if let item = itemToTrash?.frame {
             let trash = trashView.frame
-            
             if (item.minX > trash.maxX || item.maxX < trash.minX || item.minY > trash.maxY || item.maxY < trash.minY) == false {
-                print("item minX: \(item.minX)")
-                print("item maxX: \(item.maxX)")
-                print("trash minX: \(trash.minX)")
-                print("trash maxX: \(trash.maxX)")
-                print("item minY: \(item.minY)")
-                print("item maxY: \(item.maxY)")
-                print("trash minY: \(trash.minY)")
-                print("trash maxY: \(trash.maxY)")
                 return true
             }
             return false

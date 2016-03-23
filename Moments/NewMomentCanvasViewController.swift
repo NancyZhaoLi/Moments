@@ -12,6 +12,12 @@ import AVKit
 import AVFoundation
 import CoreData
 
+let addButtonImageTitle = "add_icon.png"
+let viewButtonSelectImageTitle = "view_open_icon.png"
+let viewButtonUnselectImageTitle = "view_close_icon.png"
+let trashButtonSelectImageTitle = "favourite_selected_icon.png"
+let trashButtonUnselectImageTitle = "favourite_unselected_icon.png"
+let settingButtonImageTitle = "setting_icon.png"
 
 class NewMomentCanvasViewController: UIViewController,
     UIPopoverPresentationControllerDelegate,
@@ -38,38 +44,36 @@ class NewMomentCanvasViewController: UIViewController,
     var trashButton: UIButton! = UIButton()
     
     var canvas: UIScrollView!
-    
-    let addButtonImageTitle = "add_icon.png"
-    let viewButtonSelectImageTitle = "view_open_icon.png"
-    let viewButtonUnselectImageTitle = "view_close_icon.png"
-    let trashButtonSelectImageTitle = "favourite_selected_icon.png"
-    let trashButtonUnselectImageTitle = "favourite_unselected_icon.png"
-    let settingButtonImageTitle = "setting_icon.png"
-    
+
     //var trashController: DragToTrash?
     var trashButtonOn: Bool = true
     var enableInteraction: Bool = false
-    
-
 
     override func viewDidLoad() {
+        print("begin")
         super.viewDidLoad()
-        
+        print("after super.viewDidLoad")
         initCanvas()
+        print("after init Canvas")
         
         if let moment = loadedMoment {
             manager = NewMomentManager(canvasVC: self, moment: moment)
             view.backgroundColor = moment.backgroundColour
+            print("after loading Moment")
         } else {
             manager = NewMomentManager(canvasVC: self)
             view.backgroundColor = UIColor.customBackgroundColor()
+            print("after loading new moment")
         }
         
         initUI()
+        print("after initUI")
         
         if self.loadedMoment != nil {
             selectViewMode()
+            print("after selectViewMode")
         }
+        print("end")
     }
     
     private func initCanvas() {
@@ -218,7 +222,6 @@ class NewMomentCanvasViewController: UIViewController,
     
     func cancelTrash() {
         if trashButtonOn {
-            print ("disable trash")
             trashButton.setImage(UIImage(named: trashButtonUnselectImageTitle)!, forState: .Normal)
             trashButton.removeTarget(self, action: "cancelTrash")
             trashButton.addTarget(self, action: "selectTrash")
@@ -229,7 +232,6 @@ class NewMomentCanvasViewController: UIViewController,
     }
 
     func selectTrash() {
-        print("enable trash")
         trashButton.setImage(UIImage(named: trashButtonSelectImageTitle)!, forState: .Normal)
         trashButton.removeTarget(self, action: "selectTrash")
         trashButton.addTarget(self, action: "cancelTrash")
@@ -580,10 +582,9 @@ class NewMomentCanvasViewController: UIViewController,
                 let changeInWidth: CGFloat = newWidth - senderView.frame.width
                 let changeInHeight: CGFloat = newHeight - senderView.frame.height
                 
-                
                 if newWidth < UIHelper.textSize("A", font: senderView.font!).width + 20.0 ||
                     newHeight < UIHelper.textSize("A", font: senderView.font!).height + 20.0{
-                    break
+                    return
                 }
                 
                 senderView.frame = CGRectMake(senderView.frame.origin.x, senderView.frame.origin.y, senderView.frame.width + changeInWidth, senderView.frame.height + changeInHeight)
@@ -619,10 +620,7 @@ class NewMomentCanvasViewController: UIViewController,
         }*/
         
         if let senderView = sender.view {
-
-            
             canvas.bringSubviewToFront(senderView)
-            
             switch sender.state {
                 
             case UIGestureRecognizerState.Began:

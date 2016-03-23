@@ -171,7 +171,6 @@ class NewMomentManager {
     
     func addAudio(audioURL: NSURL, location: CGPoint) -> AudioItemViewController? {
         do {
-            print("begin")
             let audioPlayer = try AVAudioPlayer(contentsOfURL: audioURL)
             
             let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)

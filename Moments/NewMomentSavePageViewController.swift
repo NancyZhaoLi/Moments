@@ -41,7 +41,7 @@ class NewMomentSavePageViewController: UIViewController,
     
     func displayCategories() {
         let categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
-    
+        
         for categoryMO in categoriesMO {
             let category = CategoryEntry(categoryMO: categoryMO)
             categories.append(category)

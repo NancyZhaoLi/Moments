@@ -88,9 +88,6 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
             height = maxHeight
         }
         
-        print("text: \(text)")
-        //print("fullWidth: \")
-        
         let textItemView = TextItemView(frame: CGRectMake(0,0, width, height))
         textItemView.center = location
         textItemView.textContainer.lineBreakMode = .ByCharWrapping
@@ -146,13 +143,11 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func tappedView() {
-        print("before")
         if let navController = parentVC.navigationController {
             navController.pushViewController(editText, animated: true)
         } else {
             parentVC.presentViewController(editText, animated: true, completion: nil)
         }
-        print("after")
     }
  
 

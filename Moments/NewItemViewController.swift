@@ -47,9 +47,7 @@ struct ItemType {
         self.image = UIHelper.resizeImage(image,newWidth: 80.0)
         self.action = action
     }
-    
 
-    
     static func goBack() -> ItemType{
         return ItemType.itemTypes[ItemType.goBackIndex]
     }

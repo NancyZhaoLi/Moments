@@ -45,11 +45,14 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("segue")
         if segue.identifier == "editSavedMoment" {
+            print("before prepare for segue")
             let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
             let newMomentCanvasVC = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
             let cell = sender as! MomentTableCell
             newMomentCanvasVC.loadedMoment = cell.moment
+            print("after prepare for segue")
         }
     }
     
@@ -98,7 +101,10 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
         let cell = self.momentsTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
         //self.indexOfCellClicked = indexPath.row
-        performSegueWithIdentifier("editSavedMoment", sender: cell)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.performSegueWithIdentifier("editSavedMoment", sender: cell)
+        })
+        
     }
 
 

@@ -55,10 +55,7 @@ class TextSettingViewController : UIViewController,
         }
         self.delegate = delegate!
         self.textAttribute = textAttribute
-
-        print("before initUI")
         initUI()
-        print("after initUI")
     }
     
     
@@ -92,7 +89,6 @@ class TextSettingViewController : UIViewController,
         for var count = 0; count < groupNum; count++ {
             let y = groupFirstY + CGFloat(count) * groupHeight
             let groupView = UIHelper.groupWithHeader(groupHeader[count], headerSize: headerSize, lineHeight: lineHeight, inset: inset, y: y, content: groupContent[count])
-            print(groupView)
             self.view.addSubview(groupView)
         }
     }
@@ -181,10 +177,7 @@ class TextSettingViewController : UIViewController,
                 break
             }
         }
-        
-        print(selectedFontIndex)
-        print(fontName)
-        
+
         fontNamePicker = UIPickerView(frame: CGRect(x: 20, y: self.view.frame.height - 300, width: self.view.frame.width - 40, height: 300))
         fontNamePicker.delegate = self
         fontNamePicker.dataSource = self
@@ -225,7 +218,6 @@ class TextSettingViewController : UIViewController,
     
 
     func goBack() {
-        print("go back")
         self.dismiss(true)
         
         delegate!.changeTextColour(textAttribute.colour)
