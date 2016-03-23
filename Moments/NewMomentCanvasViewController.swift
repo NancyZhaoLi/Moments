@@ -547,7 +547,12 @@ class NewMomentCanvasViewController: UIViewController,
                 }
                 
                 let horizontalScale: CGFloat = horizontalDistance(newCoor) / horizontalDistance(senderView.beginPinchCoor)
-                let verticalScale: CGFloat = verticalDistance(newCoor) / verticalDistance(senderView.beginPinchCoor)
+                var verticalScale: CGFloat = verticalDistance(newCoor) / verticalDistance(senderView.beginPinchCoor)
+                if verticalScale > 1.0 {
+                    verticalScale = 1.0 + (verticalScale - 1.0) * 0.2
+                } else if verticalScale < 1.0 {
+                    verticalScale = 1.0 - (1.0 - verticalScale) * 0.2
+                }
                 
                 print("new coordinate: \(newCoor)")
                 print("vertial distance of new coordinate: \(verticalDistance(newCoor))")
@@ -556,9 +561,20 @@ class NewMomentCanvasViewController: UIViewController,
                 print(verticalScale)
                 
                 let previousCenter: CGPoint = senderView.center
-                let changeInWidth: CGFloat = senderView.frame.width * horizontalScale - senderView.frame.width
-                let changeInHeight: CGFloat = senderView.frame.height * verticalScale - senderView.frame.height
-                senderView.frame = CGRectMake(senderView.frame.origin.x, senderView.frame.origin.y, senderView.frame.width * horizontalScale, senderView.frame.height * verticalScale)
+                let newWidth = senderView.frame.width * horizontalScale
+                let newHeight = senderView.frame.height * verticalScale
+                var changeInWidth: CGFloat = newWidth - senderView.frame.width
+                var changeInHeight: CGFloat = newHeight - senderView.frame.height
+                
+                if newWidth < UIHelper.textSize("A", font: senderView.font!).width + 20.0 {
+                    break
+                }
+                
+                if newHeight < UIHelper.textSize("A", font: senderView.font!).height + 20.0 {
+                    break
+                }
+                
+                senderView.frame = CGRectMake(senderView.frame.origin.x, senderView.frame.origin.y, senderView.frame.width + changeInWidth, senderView.frame.height + changeInHeight)
                 senderView.center = CGPointMake(previousCenter.x + changeInWidth/2.0, previousCenter.y + changeInHeight/2.0)
 
                 senderView.beginPinchCoor = newCoor
