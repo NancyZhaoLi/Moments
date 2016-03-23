@@ -94,9 +94,10 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-        let day = dayView.date.day
-        let randomDay = 10
-        if day == randomDay {
+        
+        let count = CoreDataFetchHelper.fetchDayMomentsCountFromCoreData(dayView.date.date)
+        
+        if count > 0 {
             return true
         }
         
@@ -104,7 +105,26 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     }
     
     func dotMarker(colorOnDayView dayView: CVCalendarDayView) -> [UIColor] {
-        let color = UIColor.blueColor()
+        let count = CoreDataFetchHelper.fetchDayMomentsCountFromCoreData(dayView.date.date)
+        var color: UIColor
+        
+        switch count {
+            
+        case 1:
+            color = UIColor.dotColor1()
+            
+        case 2:
+            color = UIColor.dotColor2()
+        
+        case 3:
+            color = UIColor.dotColor3()
+            
+        default:
+            color = UIColor.dotColor4()
+            
+        }
+        
+        //let color = UIColor.dotColor1()
         return [color]
     }
 

@@ -22,6 +22,23 @@ extension UIColor {
     static func customRedColor() -> UIColor {
         return UIColor(red: 1.0, green: 128/255.0, blue: 128/255.0, alpha: 1.0)
     }
+    
+    static func dotColor1() -> UIColor {
+        return UIColor(red: 135/255.0, green: 206/255.0, blue: 1.0, alpha: 1.0)
+    }
+    
+    static func dotColor2() -> UIColor {
+        return UIColor(red: 92/255.0, green: 172/255.0, blue: 238/255.0, alpha: 1.0)
+    }
+
+    static func dotColor3() -> UIColor {
+        return UIColor(red: 24/255.0, green: 116/255.0, blue: 205/255.0, alpha: 1.0)
+    }
+    
+    static func dotColor4() -> UIColor {
+        return UIColor(red: 16/255.0, green: 78/255.0, blue: 139/255.0, alpha: 1.0)
+    }
+
 }
 
 let windowHeight = UIScreen.mainScreen().bounds.height

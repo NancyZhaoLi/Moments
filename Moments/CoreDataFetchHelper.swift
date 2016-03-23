@@ -231,6 +231,25 @@ class CoreDataFetchHelper {
 
     }
     
+    static func fetchDayMomentsCountFromCoreData(date: NSDate) -> Int {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "Moment")
+        request.predicate = NSPredicate(format: "date >= %@ && date <= %@", date.startOfDay, date.endOfDay)
+        request.returnsObjectsAsFaults = true
+        
+        do {
+            let results = try context.executeFetchRequest(request)
+            
+            return results.count
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
 
 
 }
