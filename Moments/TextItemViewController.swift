@@ -117,7 +117,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         let textItemView = TextItemView(frame: textItem.getFrame())
         let text = textItem.getContent()
         let textAttribute = textItem.getOtherAttribute()
-        let zPosition = textItem.zPosition
+        let zPosition = textItem.getZPosition()
         textItemView.layer.zPosition = CGFloat(zPosition)
         textItemView.item = textItem
         

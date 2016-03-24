@@ -174,6 +174,14 @@ class Moment: NSManagedObject {
         audioItems.append(audio)
     }
     
+    func getAllSavedAudio() -> [AudioItem] {
+        if let savedAudioItems = self.containedAudioItem {
+            return savedAudioItems.allObjects as! [AudioItem]
+        }
+        
+        return [AudioItem]()
+    }
+    
     func addVideo(video: VideoItem) {
         videoItems.append(video)
     }
@@ -210,8 +218,18 @@ class Moment: NSManagedObject {
             
             for audioItem in audioItems {
                 context.insertObject(audioItem)
-                audioItem.save()
-                containedAudioItem.addObject(audioItem)
+                if audioItem.save() {
+                    containedAudioItem.addObject(audioItem)
+                    do{
+                        try context.save()
+                        print("SUCCESS: saving audioItem to core data")
+                    } catch {
+                        print("ERROR: failed to save audioItem to core data \(error)")
+                    }
+                    print("save audioItem Successfully")
+                } else {
+                    print("save audioItem failed ")
+                }
             }
             
             for stickerItem in stickerItems {

@@ -90,10 +90,23 @@ class AudioRecorderViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func initRecorder() {
-        let audioFilename: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let audioURL: NSURL = NSURL(fileURLWithPath: audioFilename).URLByAppendingPathComponent("recording.m4a")
+    private func createAudioFolder() {
+        let documentFilePath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let audioFilePath: NSURL = NSURL(fileURLWithPath: documentFilePath).URLByAppendingPathComponent("Audio",isDirectory: true)
         
+        do {
+            try NSFileManager.defaultManager().createDirectoryAtPath(audioFilePath.path!, withIntermediateDirectories: true, attributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func initRecorder() {
+        let documentFilePath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        createAudioFolder()
+        let fileName = NSUUID().UUIDString + ".m4a"
+        let audioURL: NSURL = NSURL(fileURLWithPath: documentFilePath).URLByAppendingPathComponent("Audio").URLByAppendingPathComponent( fileName)
+
         do {
             self.recorder = try AVAudioRecorder(URL: audioURL, settings: AudioRecorderViewController.recorderSetting)
         } catch {

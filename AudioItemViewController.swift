@@ -10,6 +10,39 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
+class AudioItemView: UIView {
+    var playerButton: UIButton!
+    var playImageTitle = "play_icon.png"
+    var pauseImageTitle = "pause_icon.png"
+    var buttonSize: CGFloat = 80.0
+    
+    var fileURL: NSURL?
+    var musicURL: NSURL?
+    var persistentID: String?
+    
+    init() {
+        super.init(frame: CGRectMake(0, 0, buttonSize + 20.0, buttonSize + 20.0))
+        playerButton = ButtonHelper.imageButton(playImageTitle, frame: CGRectMake(0,0,buttonSize,buttonSize), target: nil, action: nil)
+        playerButton.center = self.center
+        self.addSubview(playerButton)
+    }
+
+    required convenience init?(coder aDecoder: NSCoder) {
+        self.init()
+    }
+    
+    func setPlayImage() {
+        playerButton.setImage(UIImage(named: playImageTitle), forState: .Normal)
+    }
+    
+    func setPauseImage() {
+        playerButton.setImage(UIImage(named: pauseImageTitle), forState: .Normal)
+    }
+    
+
+}
+
+
 class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
 
     var player: AVAudioPlayer?
@@ -17,12 +50,8 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
     var parentVC: UIViewController!
     
     var tapToTrashGR: UITapGestureRecognizer?
-    
-    var playerButton: UIButton!
-    var playImageTitle = "play_icon.png"
-    var pauseImageTitle = "pause_icon.png"
-    var buttonSize: CGFloat = 80.0
-    
+    var audioView: AudioItemView = AudioItemView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -59,49 +88,93 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func initView() {
-        view = UIView()
-        view.frame.size = CGSizeMake(buttonSize, buttonSize)
-        playerButton = ButtonHelper.imageButton(playImageTitle, frame: CGRectMake(0,0,buttonSize,buttonSize), target: self, action: "play")
-        view.addSubview(playerButton)
+        view = self.audioView
     }
     
     func play(){
-        if player!.play() {
-            setButtonForPause()
-            print(player!.volume)
+        if let player = self.player {
+            if player.play() {
+                setButtonForPause()
+            } else {
+                print("ERROR: fail to play")
+            }
         } else {
-            print("fail to play")
+            print("ERROR: player is nil")
         }
+
     }
-    
-    func setButtonForPause() {
-        playerButton.setImage(UIImage(named: pauseImageTitle), forState: .Normal)
-        playerButton.removeTarget(self, action: "play")
-        playerButton.addTarget(self, action: "pause")
-    }
-    
+
     func pause() {
-        print("pause")
         if player!.playing {
             setButtonForPlay()
             player!.pause()
         }
     }
     
-    func setButtonForPlay() {
-        playerButton.setImage(UIImage(named: playImageTitle), forState: .Normal)
-        playerButton.removeTarget(self, action: "pause")
-        playerButton.addTarget(self, action: "play")
-    }
-
-    func addPlayer(player: AVAudioPlayer, location: CGPoint) {
-        self.player = player
-        self.player?.delegate = self
-        self.view.center = location
+    func setButtonForPause() {
+        audioView.setPauseImage()
+        audioView.playerButton.removeTarget(self, action: "play")
+        audioView.playerButton.addTarget(self, action: "pause")
     }
     
-    func addAudio(audio: AudioItem) {
+    func setButtonForPlay() {
+        audioView.setPlayImage()
+        audioView.playerButton.removeTarget(self, action: "pause")
+        audioView.playerButton.addTarget(self, action: "play")
+    }
+    
+    func addMusicAudio(music: MPMediaItem, location: CGPoint) -> Bool {
+        do {
+            if let url = music.assetURL {
+                player = try AVAudioPlayer(contentsOfURL: url)
+                player?.delegate = self
+                view.center = location
+                audioView.musicURL = url
+                audioView.persistentID = String(music.persistentID)
+                audioView.playerButton.addTarget(self, action: "play")
+                return true
+            }
+        } catch {
+            print("ERROR: fail to initiate audioPlayer in AddMusicAudio of AudioItemViewController")
+        }
         
+        return false
+    }
+
+    func addRecordingAudio(fileURL url: NSURL, location: CGPoint) -> Bool {
+        do {
+            player = try AVAudioPlayer(contentsOfURL: url)
+            player?.delegate = self
+            view.center = location
+            audioView.fileURL = url
+            audioView.playerButton.addTarget(self, action: "play")
+            return true
+        } catch {
+            print("ERROR: fail to initiate audioPlayer in AddRecordingAudio of AudioItemViewController")
+        }
+        
+        return false
+    }
+    
+    func addAudio(audioItem: AudioItem) -> Bool {
+        do {
+            if let url = audioItem.getURL() {
+                self.player = try AVAudioPlayer(contentsOfURL: url)
+                self.player?.delegate = self
+                print(audioItem.getFrame())
+                audioView.frame = audioItem.getFrame()
+                audioView.layer.zPosition = CGFloat(audioItem.getZPosition())
+                audioView.fileURL = url
+                audioView.playerButton.addTarget(self, action: "play")
+                return true
+            } else {
+                print("no url found for audioItem")
+            }
+        } catch {
+            print("ERROR: fail to initiate audioPlayer in AddAudio of AudioItemViewController")
+        }
+        
+        return false
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {

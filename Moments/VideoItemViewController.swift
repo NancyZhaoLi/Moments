@@ -11,6 +11,9 @@ import MediaPlayer
 import AVKit
 import AVFoundation
 
+
+
+
 class VideoItemViewController: UIViewController {
 
     var manager: NewMomentManager?

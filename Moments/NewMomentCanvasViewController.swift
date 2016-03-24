@@ -247,6 +247,8 @@ class NewMomentCanvasViewController: UIViewController,
             } else if let image = vc as? ImageItemViewController {
                 image.tapToTrashGR?.enabled = enabled
             } else if let audio = vc as? AudioItemViewController {
+                //print("audio enabled")
+                //print("audio tap to trash GR: \(audio.tapToTrashGR)")
                 audio.tapToTrashGR?.enabled = enabled
             } else if let video = vc as? VideoItemViewController {
                 video.tapToTrashGR?.enabled = enabled
@@ -395,9 +397,12 @@ class NewMomentCanvasViewController: UIViewController,
         } else if let image = vc as? ImageItemViewController {
             image.tapToTrashGR = tapToTrash
         } else if let audio = vc as? AudioItemViewController {
-            audio.tapToTrashGR? = tapToTrash
+            //print("adding tapToTrash to audio")
+            audio.tapToTrashGR = tapToTrash
+            //audio.audioView.playerButton.addGestureRecognizer(tapToTrash)
+            //print("audio tapToTrashGR: \(audio.tapToTrashGR)")
         } else if let video = vc as? VideoItemViewController {
-            video.tapToTrashGR? = tapToTrash
+            video.tapToTrashGR = tapToTrash
         } else if let sticker = vc as? StickerItemViewController {
             sticker.tapToTrashGR = tapToTrash
         }
@@ -417,6 +422,10 @@ class NewMomentCanvasViewController: UIViewController,
     
     func pinchTextItemGR() -> UIPinchGestureRecognizer {
         return UIPinchGestureRecognizer(target: self, action: "pinchedTextView:")
+    }
+    
+    func rotateGR() -> UIRotationGestureRecognizer {
+        return UIRotationGestureRecognizer(target: self, action: "rotateView:")
     }
 
     /*******************************************************************
@@ -445,12 +454,8 @@ class NewMomentCanvasViewController: UIViewController,
     func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         mediaPicker.dismiss(true)
         if let music: MPMediaItem = mediaItemCollection.representativeItem {
-            if let url = music.assetURL {
-                if let audioViewController = manager!.addAudio(url, location: self.center) {
-                    addNewViewController(audioViewController)
-                }
-            } else {
-                print("ERROR: url not found for music selected")
+            if let audioViewController = manager!.addMusicAudio(music, location: self.center) {
+                addNewViewController(audioViewController)
             }
         }
     }
@@ -468,12 +473,11 @@ class NewMomentCanvasViewController: UIViewController,
     
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
-        if let audioViewController = manager!.addAudio(url, location: self.center) {
+        if let audioViewController = manager!.addRecordingAudio(fileURL: url, location: self.center) {
             addNewViewController(audioViewController)
         } else {
             print("cannot add recording to canvas")
         }
-        
     }
     
     // Functions for OtherCanvasOptionViewController
@@ -494,7 +498,7 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func showBorder(view: UIView) {
-        view.layer.borderColor = UIColor.redColor().CGColor
+        view.layer.borderColor = UIColor.lightGrayColor().CGColor
         view.layer.borderWidth = 1.0
     }
     
@@ -673,21 +677,23 @@ class NewMomentCanvasViewController: UIViewController,
     }*/
     
     
-    func rotatedView(sender: UIRotationGestureRecognizer) {
+    func rotateView(sender: UIRotationGestureRecognizer) {
         
-        /*
-        var lastRotation = CGFloat()
-        self.view.bringSubviewToFront(self.view)
-        if (sender.state == UIGestureRecognizerState.Ended) {
-        lastRotation = 0.0;
+        if let senderView = sender.view {
+            var lastRotation = CGFloat()
+            canvas.bringSubviewToFront(senderView)
+            if (sender.state == UIGestureRecognizerState.Ended) {
+                lastRotation = 0.0
+            }
+            
+            let rotation = 0.0 - (lastRotation - sender.rotation)
+            var point = sender.locationInView(canvas)
+            let currentTrans = senderView.transform
+            let newTrans = CGAffineTransformRotate(currentTrans, rotation)
+            senderView.transform = newTrans
+            lastRotation = sender.rotation
         }
-        
-        let rotation = 0.0 - (lastRotation - sender.rotation)
-        var point = rotateRec.locationInView(self.view)
-        let currentTrans = sender.view!.transform
-        let newTrans = CGAffineTransformRotate(currentTrans, rotation)
-        sender.view!.transform = newTrans
-        lastRotation = sender.rotation*/
+
     }
     
     

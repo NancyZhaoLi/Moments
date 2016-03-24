@@ -15,7 +15,7 @@ import CoreData
 extension AudioMapping {
 
     @NSManaged internal var audioURL: String
-    @NSManaged internal var persistentID: String
+    @NSManaged internal var persistentID: String?
     @NSManaged var containedAudioItem: NSSet?
 
 }

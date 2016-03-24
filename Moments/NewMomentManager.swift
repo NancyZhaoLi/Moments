@@ -80,11 +80,7 @@ class NewMomentManager {
         momentDate = moment.getDate()
         momentTitle = moment.getTitle()
         momentFavourite = moment.getFavourite()
-        
-        if momentFavourite {
-            //canvasVC.selectFavourite()
-        }
-        
+
         if let category = moment.getCategory() {
             momentCategory = category.getName()
         }
@@ -103,11 +99,13 @@ class NewMomentManager {
             canvasVC.addNewViewController(loadImage(imageItem), zPosition: imageItem.getZPosition())
         }
         
-        /*for audioItem in moment.audioItemEntries {
-            canvasVC.addNewViewController(loadAudio(audioItem), zPosition: audioItem.zPosition)
+        for audioItem in moment.getAllSavedAudio() {
+            if let audio = loadAudio(audioItem) {
+                canvasVC.addNewViewController(audio, zPosition: audioItem.getZPosition())
+            }
         }
         
-        for videoItem in moment.videoItemEntries {
+        /*for videoItem in moment.videoItemEntries {
             canvasVC.addNewViewController(loadVideo(videoItem))
         }*/
         
@@ -131,11 +129,13 @@ class NewMomentManager {
         return newImageVC
     }
     
-    func loadAudio(audioItem: AudioItem) -> AudioItemViewController {
+    func loadAudio(audioItem: AudioItem) -> AudioItemViewController? {
         let newAudioVC = AudioItemViewController(manager: self)
-        newAudioVC.addAudio(audioItem)
+        if newAudioVC.addAudio(audioItem) {
+            return newAudioVC
+        }
         
-        return newAudioVC
+        return nil
     }
     
     func loadVideo(videoItem: VideoItemEntry) -> VideoItemViewController {
@@ -169,17 +169,20 @@ class NewMomentManager {
         return newImageVC
     }
     
-    func addAudio(audioURL: NSURL, location: CGPoint) -> AudioItemViewController? {
-        do {
-            let audioPlayer = try AVAudioPlayer(contentsOfURL: audioURL)
-            
-            let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)
-            audioItemVC.addPlayer(audioPlayer, location: location)
+    func addMusicAudio(music: MPMediaItem, location: CGPoint) -> AudioItemViewController? {
+        let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)
+        if audioItemVC.addMusicAudio(music, location: location) {
             return audioItemVC
-        } catch {
-            print("audio player cannot be created")
         }
+        return nil
+    }
+    
+    func addRecordingAudio(fileURL url: NSURL, location: CGPoint) -> AudioItemViewController? {
         
+        let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)
+        if audioItemVC.addRecordingAudio(fileURL: url, location: location) {
+            return audioItemVC
+        }
         return nil
     }
     
@@ -189,6 +192,7 @@ class NewMomentManager {
         
         return newStickerVC
     }
+    
     
     /*
     func addAudioItemEntry(entry: AudioItemEntry) {
@@ -292,27 +296,42 @@ class NewMomentManager {
     func saveMoment(moment: Moment) {
         for var zPosition = 0; zPosition < canvasVC.canvas.subviews.count; zPosition++ {
             let view = canvasVC.canvas.subviews[zPosition]
+            
             if let view = view as? TextItemView {
-                let entry = TextItem(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition)
-                if entry != 	nil {
-                    moment.addText(entry!)
+                if let text = TextItem(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition) {
+                    moment.addText(text)
                 } else {
-                    print("fail to create TextItem in saveNewMoment")
+                    print("ERROR: fail to create TextItem in saveNewMoment")
                 }
             } else if let view = view as? ImageItemView {
-                let imageItemEntry = ImageItem(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
-                if imageItemEntry != nil {
-                    moment.addImage(imageItemEntry!)
+                if let image = ImageItem(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition) {
+                    moment.addImage(image)
                 } else {
-                     print("fail to create ImageItem in saveNewMoment")
+                     print("ERROR: fail to create ImageItem in saveNewMoment")
                 }
-            } else if let view: StickerItemView = view as? StickerItemView {
-                if let name = view.stickerName {
-                    let stickerItemEntry = StickerItem(frame: view.frame, name: name, zPosition: zPosition)
-                    if stickerItemEntry != nil {
-                        moment.addSticker(stickerItemEntry!)
+            } else if let view = view as? AudioItemView {
+                print("audio item view")
+                if let musicURL = view.musicURL, persistentID = view.persistentID {
+                    if let audio = AudioItem(frame: view.frame, musicURL: musicURL, persistentID: persistentID, zPosition: zPosition) {
+                        moment.addAudio(audio)
                     } else {
-                        print("fail to create StickerItem in saveNewMoment")
+                        print("ERROR: fail to create music AudioItem in saveNewMoment")
+                    }
+                } else if let fileURL = view.fileURL {
+                    if let audio = AudioItem(frame: view.frame, fileURL: fileURL, zPosition: zPosition) {
+                        moment.addAudio(audio)
+                    } else {
+                        print("ERROR: fail to create recording AudioItem in saveNewMoment")
+                    }
+                } else {
+                    print("ERROR: url not set for AudioItem in saveNewMoment")
+                }
+            } else if let view = view as? StickerItemView {
+                if let name = view.stickerName {
+                    if let sticker = StickerItem(frame: view.frame, name: name, zPosition: zPosition) {
+                        moment.addSticker(sticker)
+                    } else {
+                        print("ERROR: fail to create StickerItem in saveNewMoment")
                     }
                 }
             }

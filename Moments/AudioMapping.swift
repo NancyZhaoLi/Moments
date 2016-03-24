@@ -12,23 +12,18 @@ import UIKit
 import MediaPlayer
 
 class AudioMapping: NSManagedObject {
-
-
-    
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init?(audio: MPMediaItem, persistentID: String) {
+    init?(fileURL: NSURL) {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("AudioMapping", inManagedObjectContext: context)
         
         if let entity = entity {
-            super.init(entity: entity, insertIntoManagedObjectContext: nil)
-            setMappingPersistentID(persistentID)
-            setMappingAudioURL()
-            writeAudioToFile(audio)
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
+            setMappingAudioURL(fileURL)
         } else {
             super.init()
             print("ERROR: entity not found for AudioMapping")
@@ -36,15 +31,16 @@ class AudioMapping: NSManagedObject {
         }
     }
     
-    init?(persistentID: String, audioURL: NSURL) {
+    init?(persistentID: String, musicURL: NSURL) {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("AudioMapping", inManagedObjectContext: context)
         
         if let entity = entity {
-            super.init(entity: entity, insertIntoManagedObjectContext: nil)
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
             setMappingPersistentID(persistentID)
-            setMappingAudioURL(audioURL)
+            setMappingAudioURL(musicURL)
+            //writeAudioToFile()
         } else {
             super.init()
             print("ERROR: entity not found for AudioMapping")
@@ -78,12 +74,20 @@ class AudioMapping: NSManagedObject {
             return NSURL(string: self.audioURL)!
     }
     
-    static func getAudioMappingGivenPersistentID(persistentID: Int64) -> AudioMapping? {
+    func addAudioItem(audioItem: AudioItem) {
+        let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
+        
+        if self.managedObjectContext != nil {
+            containedAudioItem.addObject(audioItem)
+        }
+    }
+    
+    static func getAudioMappingGivenPersistentID(persistentID: String) -> AudioMapping? {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let request = NSFetchRequest(entityName: "AudioMapping")
-        request.predicate = NSPredicate(format: "persistentID = %lld", persistentID)
+        request.predicate = NSPredicate(format: "persistentID = %@", persistentID)
         request.returnsObjectsAsFaults = false
         request.fetchLimit = 1
         
@@ -101,11 +105,26 @@ class AudioMapping: NSManagedObject {
         return nil
     }
     
-    func addAudioItem(audioItem: AudioItem) {
-        let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
+    static func getAudioMappingGivenFileURL(fileURL: NSURL) -> AudioMapping? {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
         
-        if self.managedObjectContext != nil {
-            containedAudioItem.addObject(audioItem)
+        let request = NSFetchRequest(entityName: "AudioMapping")
+        request.predicate = NSPredicate(format: "audioURL = %@", fileURL.absoluteString)
+        request.returnsObjectsAsFaults = false
+        request.fetchLimit = 1
+        
+        do {
+            let results = try context.executeFetchRequest(request) as! [AudioMapping]
+            if results.isEmpty {
+                return nil
+            } else {
+                return results[0]
+            }
+        } catch {
+            fatalError("Failure to fetch audioMapping: \(error)")
         }
+        
+        return nil
     }
 }
