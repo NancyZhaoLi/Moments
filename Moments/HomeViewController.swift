@@ -43,6 +43,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             if NewMomentSavePageVC.isNewMoment() {
                 if let moment: Moment = NewMomentSavePageVC.getMomentEntry() {
                     if moment.save() {
+                        print("after saving a new moment")
                         moments.insert(moment, atIndex: 0)
                         //getMomentsMOFromCoreData()
                         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -54,6 +55,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
                 if let index = self.indexOfCellClicked {
                     if let moment: Moment = NewMomentSavePageVC.getMomentEntry() {
                         if moment.save() {
+                            print("after saving a previously added moment")
                             self.moments[index] = moment
                             momentTableView.reloadData()
                         }

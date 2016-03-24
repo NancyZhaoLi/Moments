@@ -246,24 +246,50 @@ class NewMomentManager {
      *********************************************************************************/
 
     func saveMomentEntry() {
+        print("saving moment entry in manager")
         updateTitle()
         //canvasVC.trashController!.trashView.removeFromSuperview()
-
+        let category = CoreDataFetchHelper.fetchCategoryGivenName(self.momentCategory)
+        let backgroundColour = canvasVC.view.backgroundColor!
+        let favourite = momentFavourite
+        let title = momentTitle
+        
         if self.isNewMoment {
-            saveMoment()
+            let moment = Moment(backgroundColour: backgroundColour, favourite: favourite, title: title, category: category)!
+            saveMoment(moment)
         } else {
-            if (CoreDataFetchHelper.deleteMomentGivenId(moment!.getMomentId())) {
-                saveMoment()
-            } else {
-               fatalError("[saveMomentEntry] - could not delete old moment")
+            //if (CoreDataFetchHelper.deleteMomentGivenId(moment!.getMomentId())) {
+            //if true {
+           /* if let moment = self.moment {
+                moment.setMomentBackgroundColour(backgroundColour)
+                moment.setMomentCategory(category)
+                moment.setMomentFavourite(favourite)
+                moment.setMomentTitle(title)
+                saveMoment(moment)
+            }*/
+            
+            if let moment = self.moment {
+                if let context = moment.managedObjectContext {
+                    context.deleteObject(moment)
+                    do {
+                        try context.save()
+                    } catch {
+                        print("ERROR: could not delete old moment")
+                    }
+                }
+                
             }
+            
+            let moment = Moment(backgroundColour: backgroundColour, favourite: favourite, title: title, category: category)!
+            saveMoment(moment)
+            
+            //} else {
+            //   fatalError("[saveMomentEntry] - could not delete old moment")
+           // }
         }
     }
     
-    func saveMoment() {
-        let category = CoreDataFetchHelper.fetchCategoryGivenName(self.momentCategory)
-        let moment = Moment(backgroundColour: canvasVC.view.backgroundColor!, favourite: momentFavourite, title: self.momentTitle, category: category)!
-        
+    func saveMoment(moment: Moment) {
         for var zPosition = 0; zPosition < canvasVC.canvas.subviews.count; zPosition++ {
             let view = canvasVC.canvas.subviews[zPosition]
             if let view = view as? TextItemView {

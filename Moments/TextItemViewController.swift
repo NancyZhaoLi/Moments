@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 extension String {
     var length: Int {
@@ -23,6 +24,21 @@ enum PinchMode {
 
 class TextItemView: UITextView {
     var beginPinchCoor: [CGPoint] = [CGPoint]()
+    var item: NSManagedObject?
+    
+   /* override func removeFromSuperview() {
+        super.removeFromSuperview()
+        if let item = self.item {
+            if let context = item.managedObjectContext {
+                context.deleteObject(item)
+                do {
+                    try context.save()
+                } catch {
+                    print("could not delete text item")
+                }
+            }
+        }
+    }*/
 }
 
 
@@ -35,6 +51,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     var dragBeginCoordinate: CGPoint?
     
     var tapToTrashGR: UITapGestureRecognizer?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +119,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         let textAttribute = textItem.getOtherAttribute()
         let zPosition = textItem.zPosition
         textItemView.layer.zPosition = CGFloat(zPosition)
+        textItemView.item = textItem
         
         if let attr = textAttribute {
             initEditTextItemViewController(text, textAttribute: attr)
@@ -155,8 +173,6 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
             parentVC.presentViewController(editText, animated: true, completion: nil)
         }
     }
- 
-
     
     /*********************************************************************************
      

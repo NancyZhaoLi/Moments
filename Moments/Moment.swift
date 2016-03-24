@@ -103,7 +103,11 @@ class Moment: NSManagedObject {
     }
     
     func addText(text: TextItem) {
-        textItems.append(text)
+        if let context = self.managedObjectContext {
+            context.insertObject(text)
+            let containedTextItem = self.mutableSetValueForKey("containedTextItem")
+            containedTextItem.addObject(text)
+        }
     }
     
     func firstText() -> TextItem? {
@@ -187,17 +191,17 @@ class Moment: NSManagedObject {
     
     
     func save() -> Bool {
-        let containedTextItem = self.mutableSetValueForKey("containedTextItem")
+        //let containedTextItem = self.mutableSetValueForKey("containedTextItem")
         let containedImageItem = self.mutableSetValueForKey("containedImageItem")
         //let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
         //let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
         let containedStickerItem = self.mutableSetValueForKey("containedStickerItem")
         
         if let context = self.managedObjectContext {
-            for textItem in textItems {
+            /*for textItem in textItems {
                 context.insertObject(textItem)
                 containedTextItem.addObject(textItem)
-            }
+            }*/
             
             for imageItem in imageItems {
                 context.insertObject(imageItem)
@@ -214,7 +218,7 @@ class Moment: NSManagedObject {
                 print("SUCCESS: saving moment to core data")
                 return true
             } catch {
-                print("ERROR: saving moment to core data")
+                print("ERROR: saving moment to core data \(error)")
             }
         }
         
