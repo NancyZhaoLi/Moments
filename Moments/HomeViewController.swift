@@ -28,8 +28,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         self.momentTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.momentTableView.showsVerticalScrollIndicator = false
         self.momentTableView.backgroundColor = UIColor.clearColor()
-        
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
 
     }
 
@@ -45,7 +43,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
                     if moment.save() {
                         print("after saving a new moment")
                         moments.insert(moment, atIndex: 0)
-                        //getMomentsMOFromCoreData()
+
                         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                         self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                         self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
@@ -75,10 +73,6 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
     
     func getMomentsFromCoreData(){
-        getMomentsMOFromCoreData()
-    }
-    
-    func getMomentsMOFromCoreData(){
         moments = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
     }
     

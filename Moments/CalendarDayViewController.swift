@@ -67,26 +67,6 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         moments = CoreDataFetchHelper.fetchDayMomentsMOFromCoreData(date!)
     }
     
-    /*func addMomentFromCoreData(momentMO: Moment) {
-        let id =  momentMO.id.longLongValue
-        let date = momentMO.date
-        let title = momentMO.title
-        let moment = MomentEntry(id: id!, date: date!, title: title!)
-        
-        for textItemMO in momentMO.containedTextItem! {
-            let textItem = textItemMO as! TextItem
-            moment.addItemEntry(textItem)
-        }
-        
-        for imageItemMO in momentMO.containedImageItem! {
-            let imageItem = imageItemMO as! ImageItem
-            moment.addItemEntry(imageItem)
-        }
-        
-        moments.append(moment)
-
-    }*/
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moments.count
     }

@@ -27,11 +27,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("begin")
         getCategoriesFromCoreData()
-        print("after getting categories from core data")
         getCategoryMapsFromCoreData()
-        print("after getting category maps from core data")
         
         let cellNib = UINib(nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         categoriesCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryViewCell")
@@ -89,10 +86,6 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
                 favouriteCategory.save()
             }
 
-            /*let uncategorizedCategoryMO = CoreDataSaveHelper.saveCategoryToCoreData(uncategorizedCategory)
-            let favouriteCategoryMO = CoreDataSaveHelper.saveCategoryToCoreData(favouriteCategory)
-            */
-
             var idToIndex = NSMapTable()
             var indexToId = NSMapTable()
             idToIndex.setObject(0, forKey: 0)
@@ -109,7 +102,6 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     func getCategoryMapsFromCoreData() {
         
         let fetchResult = CoreDataFetchHelper.fetchCategoryIdIndexFromCoreData()
-        print(fetchResult)
         
         if fetchResult.count > 0 {
             categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
@@ -159,29 +151,18 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categories[indexPath.row])
         }
         
-        
-        
         // delete categories in array
         var indexes: [Int] = []
         for indexPath in indexPaths {
             indexes.append(indexPath.row)
         }
-        var newCategoriesMO: [Category] = []
-        for (index, categoryMO) in categories.enumerate() {
-            if !indexes.contains(index) {
-                newCategoriesMO.append(categoryMO)
-            }
-        }
-        categories = newCategoriesMO
-        
-        /*var newCategories: [Category] = []
+        var newCategories: [Category] = []
         for (index, category) in categories.enumerate() {
             if !indexes.contains(index) {
                 newCategories.append(category)
             }
         }
-        categories = newCategories*/
-        
+        categories = newCategories
         
         // delete categories in collection view
         categoriesCollectionView.deleteItemsAtIndexPaths(indexPaths)
@@ -335,9 +316,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         print("category id: \(category.id)")
         category.save()
-        //let categoryMO = CoreDataSaveHelper.saveCategoryToCoreData(category)
         categories.append(category)
-       // categoriesMO.append(categoryMO)
         
         let count = categories.count
         let index = count > 0 ? count - 1 : 0
