@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CategoriesViewController.swift
 //  Moments
 //
 //  Created by Yuning Xue on 2016-03-05.
@@ -29,6 +29,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         getCategoriesFromCoreData()
         getCategoryMapsFromCoreData()
+        sortCategories()
         
         let cellNib = UINib(nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         categoriesCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryViewCell")
@@ -117,6 +118,30 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
 
     }
     
+    func sortCategories() {
+        
+        var tempCategories = [Category]()
+        
+        for var i = 0; i < categories.count; i++ {
+            tempCategories.append(Category())
+        }
+        
+        for category in categories {
+            
+            print("sort- category id: \(category.getId())")
+            
+            let id = Int(category.getId())
+            let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
+            tempCategories[index] = category
+        }
+        
+        categories = tempCategories
+        
+        for category in categories {
+            print("sorted category id: \(category.getId())")
+        }
+    }
+    
     
     // delete feature
     override func setEditing(editing: Bool, animated: Bool) {
@@ -157,12 +182,44 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             indexes.append(indexPath.row)
         }
         var newCategories: [Category] = []
+        /*
         for (index, category) in categories.enumerate() {
+            if !indexes.contains(index) {
+                newCategories.append(category)
+            } else {
+                // delete id and index pair in maps
+                print("deleted category id: \(category.id)")
+                print("deleted category index: \(index)")
+                categoryIdIndex?.idToIndex.removeObjectForKey(Int(category.id))
+                categoryIdIndex?.indexToId.removeObjectForKey(index)
+                CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
+            }
+        }
+*/
+        
+        for var index = 0; index < categories.count; index++ {
+            let category = categories[index]
+            
             if !indexes.contains(index) {
                 newCategories.append(category)
             }
         }
+        
         categories = newCategories
+        
+        // update maps
+        categoryIdIndex?.idToIndex.removeAllObjects()
+        categoryIdIndex?.indexToId.removeAllObjects()
+        
+        for var index = 0; index < categories.count; index++ {
+            let category = categories[index]
+            let id = Int(category.getId())
+            
+            categoryIdIndex?.idToIndex.setObject(index, forKey: id)
+            categoryIdIndex?.indexToId.setObject(id, forKey: index)
+            
+        }
+        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         // delete categories in collection view
         categoriesCollectionView.deleteItemsAtIndexPaths(indexPaths)
@@ -321,14 +378,13 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let count = categories.count
         let index = count > 0 ? count - 1 : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
-        let id = category.id
+        let id = Int(category.id)
         
-        categoryIdIndex?.idToIndex.setObject(index, forKey: Int(id))
+        // add id and index pair to maps
+        categoryIdIndex?.idToIndex.setObject(index, forKey: id)
         print("add to map id: \(id)")
-        categoryIdIndex?.indexToId.setObject(Int(id), forKey: index)
-        
+        categoryIdIndex?.indexToId.setObject(id, forKey: index)
         print("updated Keys: \(categoryIdIndex?.idToIndex.keyEnumerator().allObjects)")
-        
         CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         /*UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
