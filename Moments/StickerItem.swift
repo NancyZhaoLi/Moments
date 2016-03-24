@@ -29,6 +29,7 @@ class StickerItem: NSManagedObject {
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: nil)
             setItemFrame(frame)
+            setItemName(name)
             setItemZPosition(zPosition)
         } else {
             super.init()

@@ -282,7 +282,6 @@ class NewMomentManager {
                 } else {
                      print("fail to create ImageItem in saveNewMoment")
                 }
-                
             } else if let view: StickerItemView = view as? StickerItemView {
                 if let name = view.stickerName {
                     let stickerItemEntry = StickerItem(frame: view.frame, name: name, zPosition: zPosition)

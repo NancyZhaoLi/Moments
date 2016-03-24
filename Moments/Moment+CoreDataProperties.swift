@@ -14,11 +14,11 @@ import CoreData
 
 extension Moment {
 
-    @NSManaged var backgroundColour: NSObject?
-    @NSManaged var date: NSDate?
-    @NSManaged var favourite: NSNumber?
-    @NSManaged var id: NSNumber?
-    @NSManaged var title: String?
+    @NSManaged internal var backgroundColour: NSObject
+    @NSManaged internal var date: NSDate
+    @NSManaged internal var favourite: NSNumber
+    @NSManaged internal var id: NSNumber
+    @NSManaged internal var title: String
     @NSManaged var containedAudioItem: NSSet?
     @NSManaged var containedImageItem: NSSet?
     @NSManaged var containedStickerItem: NSSet?
