@@ -182,20 +182,6 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             indexes.append(indexPath.row)
         }
         var newCategories: [Category] = []
-        /*
-        for (index, category) in categories.enumerate() {
-            if !indexes.contains(index) {
-                newCategories.append(category)
-            } else {
-                // delete id and index pair in maps
-                print("deleted category id: \(category.id)")
-                print("deleted category index: \(index)")
-                categoryIdIndex?.idToIndex.removeObjectForKey(Int(category.id))
-                categoryIdIndex?.indexToId.removeObjectForKey(index)
-                CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
-            }
-        }
-*/
         
         for var index = 0; index < categories.count; index++ {
             let category = categories[index]
@@ -307,16 +293,24 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         let srcIndex = srcIndexPath.row
         let dstIndex = dstIndexPath.row
-        let categoryMO = categories[srcIndex]
         let category = categories[srcIndex]
-        
-        categories.removeAtIndex(srcIndex)
-        categories.insert(categoryMO, atIndex: dstIndex)
+
         categories.removeAtIndex(srcIndex)
         categories.insert(category, atIndex: dstIndex)
         
-        // update id
+        // update maps
+        categoryIdIndex?.idToIndex.removeAllObjects()
+        categoryIdIndex?.indexToId.removeAllObjects()
         
+        for var index = 0; index < categories.count; index++ {
+            let category = categories[index]
+            let id = Int(category.getId())
+            
+            categoryIdIndex?.idToIndex.setObject(index, forKey: id)
+            categoryIdIndex?.indexToId.setObject(id, forKey: index)
+            
+        }
+        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
     }
 
     
