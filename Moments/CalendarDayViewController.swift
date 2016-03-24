@@ -85,7 +85,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         let moment = MomentEntry(id: id!, date: date!, title: title!)
         
         for textItemMO in momentMO.containedTextItem! {
-            let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
+            let textItem = textItemMO as! TextItem
             moment.addItemEntry(textItem)
         }
         

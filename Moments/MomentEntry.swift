@@ -16,7 +16,7 @@ class MomentEntry {
 
     var favourite : Bool = false
     var backgroundColour : UIColor = UIColor.whiteColor()
-    var textItemEntries = [TextItemEntry]()
+    var textItemEntries = [TextItem]()
     var imageItemEntries = [ImageItemEntry]()
     var audioItemEntries = [AudioItemEntry]()
     var videoItemEntries = [VideoItemEntry]()
@@ -36,8 +36,8 @@ class MomentEntry {
 
         self.favourite = momentMO.favourite!.boolValue
         
-        for textItemMO in momentMO.containedTextItem! {
-            let textItem = TextItemEntry(textItemMO: textItemMO as! TextItem)
+        for textItemMO in momentMO.containedTextItem!{
+            let textItem = textItemMO as! TextItem
             addItemEntry(textItem)
         }
         
@@ -60,7 +60,7 @@ class MomentEntry {
         self.favourite = favourite
     }
     
-    func addItemEntry(text: TextItemEntry) {
+    func addItemEntry(text: TextItem) {
         textItemEntries.append(text)
     }
     

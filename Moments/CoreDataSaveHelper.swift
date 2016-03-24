@@ -40,8 +40,8 @@ class CoreDataSaveHelper {
         let containedStickerItem = momentMO.mutableSetValueForKey("containedStickerItem")
         
         for textItem in moment.textItemEntries {
-            let textItemMO = saveTextItemToCoreData(textItem)
-            containedTextItem.addObject(textItemMO)
+            //let textItemMO = saveTextItemToCoreData(textItem)
+            containedTextItem.addObject(textItem)
         }
         
         for imageItem in moment.imageItemEntries {
@@ -75,7 +75,7 @@ class CoreDataSaveHelper {
         
     }
     		
-    static func saveTextItemToCoreData(textItem: TextItemEntry) -> TextItem {
+    /*static func saveTextItemToCoreData(textItem: TextItemEntry) -> TextItem {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("TextItem", inManagedObjectContext: context)
@@ -94,7 +94,7 @@ class CoreDataSaveHelper {
         }
         
         return textItemMO
-    }
+    }*/
     
     static func saveImageItemToCoreData(imageItem: ImageItemEntry) -> ImageItem {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

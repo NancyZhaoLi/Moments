@@ -345,16 +345,16 @@ class NewMomentCanvasViewController: UIViewController,
         self.addNewViewController(imageItem)
     }
     
-    func loadAudio(audioItem: AudioItemEntry) {
+    func loadAudio(audioItem: AudioItemViewController) {
         
     }
     
-    func loadVideo(videoItem: VideoItemEntry) {
+    func loadVideo(videoItem: VideoItemViewController) {
         
     }
     
-    func loadSticker(stickerItem: StickerItemEntry) {
-        
+    func loadSticker(stickerItem: StickerItemViewController) {
+        self.addNewViewController(stickerItem)
     }
     
     func addNewViewController(vc: UIViewController) {

@@ -96,7 +96,7 @@ class NewMomentManager {
         isNewMoment = false
 
         for textItem in moment.textItemEntries {
-            canvasVC.addNewViewController(loadText(textItem), zPosition: textItem.zPosition)
+            canvasVC.addNewViewController(loadText(textItem), zPosition: textItem.getZPosition())
         }
         
         for imageItem in moment.imageItemEntries {
@@ -117,7 +117,7 @@ class NewMomentManager {
     }
 
     
-    func loadText(textItem: TextItemEntry) -> TextItemViewController {
+    func loadText(textItem: TextItem) -> TextItemViewController {
         let newTextVC = TextItemViewController(manager: self)
         newTextVC.addText(textItem)
         
@@ -269,8 +269,12 @@ class NewMomentManager {
         for var zPosition = 0; zPosition < canvasVC.canvas.subviews.count; zPosition++ {
             let view = canvasVC.canvas.subviews[zPosition]
             if let view = view as? TextItemView {
-                let entry = TextItemEntry(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition)
-                moment.addItemEntry(entry)
+                let entry = TextItem(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition)
+                if entry != 	nil {
+                    moment.addItemEntry(entry!)
+                } else {
+                    print("fail to create textItem in saveNewMoment")
+                }
             } else if let view = view as? ImageItemView {
                 let imageItemEntry = ImageItemEntry(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
                 moment.addItemEntry(imageItemEntry)

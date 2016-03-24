@@ -96,15 +96,21 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
     }
 
-    func addText(textItem: TextItemEntry) {
-        let textItemView = TextItemView(frame: textItem.frame)
-        let text = textItem.content
-        let textAttribute = TextItemOtherAttribute(colour: textItem.getTextColour(), font: textItem.getTextFont(), alignment: textItem.getTextAlignment())
+    func addText(textItem: TextItem) {
+        let textItemView = TextItemView(frame: textItem.getFrame())
+        let text = textItem.getContent()
+        let textAttribute = textItem.getOtherAttribute()
         let zPosition = textItem.zPosition
         textItemView.layer.zPosition = CGFloat(zPosition)
-
-        initEditTextItemViewController(text, textAttribute: textAttribute)
-        initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
+        
+        if let attr = textAttribute {
+            initEditTextItemViewController(text, textAttribute: attr)
+            initNewTextItemView(textItemView, text: text, textAttribute: attr)
+        } else {
+            let attr = TextItemOtherAttribute()
+            initEditTextItemViewController(text, textAttribute: attr)
+            initNewTextItemView(textItemView, text: text, textAttribute: attr)
+        }
     }
     
     private func initNewTextItemView(textView: TextItemView, text: String, textAttribute: TextItemOtherAttribute) {

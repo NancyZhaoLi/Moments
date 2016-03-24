@@ -2,7 +2,7 @@
 //  TextItem+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Mengyi LUO on 2016-03-22.
+//  Created by Xin Lin on 2016-03-23.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,11 +14,11 @@ import CoreData
 
 extension TextItem {
 
-    @NSManaged var content: String?
-    @NSManaged var frame: String?
-    @NSManaged var otherAttribute: NSObject?
-    @NSManaged var rotation: NSNumber?
-    @NSManaged var zPosition: NSNumber?
+    @NSManaged internal var content: String
+    @NSManaged internal var frame: String
+    @NSManaged internal var rotation: NSNumber
+    @NSManaged internal var zPosition: NSNumber
+    @NSManaged internal var otherAttribute: NSObject
     @NSManaged var inMoment: Moment?
 
 }

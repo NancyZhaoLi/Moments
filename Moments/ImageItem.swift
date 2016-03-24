@@ -8,10 +8,27 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 class ImageItem: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
-
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+   /* init?() {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("ImageItem", inManagedObjectContext: context)
+        
+        if let entity = entity {
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
+        } else {
+            super.init()
+            print("ERROR: entity not found for textItem")
+            return nil
+        }
+    }*/
+    
 }

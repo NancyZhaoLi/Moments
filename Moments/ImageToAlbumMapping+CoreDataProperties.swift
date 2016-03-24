@@ -1,5 +1,5 @@
 //
-//  ImageItem+CoreDataProperties.swift
+//  ImageToAlbumMapping+CoreDataProperties.swift
 //  Moments
 //
 //  Created by Xin Lin on 2016-03-23.
@@ -12,12 +12,9 @@
 import Foundation
 import CoreData
 
-extension ImageItem {
+extension ImageToAlbumMapping {
 
-    @NSManaged var frame: String?
-    @NSManaged var image: NSData?
-    @NSManaged var rotation: NSNumber?
-    @NSManaged var zPosition: NSNumber?
-    @NSManaged var inMoment: Moment?
+    @NSManaged var imageURL: NSObject?
+    @NSManaged var albumURL: NSObject?
 
 }
