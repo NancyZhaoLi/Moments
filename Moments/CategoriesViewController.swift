@@ -51,8 +51,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         layout.itemSize = CGSize(width: width!, height: width!)
         
         // gesture recognizer
-        let longPressGR = UILongPressGestureRecognizer(target: self, action: "longPress:")
-        self.categoriesCollectionView.addGestureRecognizer(longPressGR)
+        let panPressGR = UIPanGestureRecognizer(target: self, action: "panPress:")
+        self.categoriesCollectionView.addGestureRecognizer(panPressGR)
         
     }
     
@@ -222,16 +222,16 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     }
     
     // draging categories
-    func longPress(longPressGR: UILongPressGestureRecognizer) {
+    func panPress(panPressGR: UIPanGestureRecognizer) {
         
         if editing {
             return
         }
         
-        let longPressLoc = longPressGR.locationInView(self.categoriesCollectionView)
-        let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(longPressLoc)
+        let panPressLoc = panPressGR.locationInView(self.categoriesCollectionView)
+        let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(panPressLoc)
         
-        switch longPressGR.state {
+        switch panPressGR.state {
             
         case .Began:
             print("Began")
@@ -253,7 +253,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         case .Changed:
             print("changed")
             
-            self.categorySnapshot!.center = longPressLoc
+            self.categorySnapshot!.center = panPressLoc
             
             if let curIndexPath = curIndexPath {
                 //From sourceIndexPath to curIndexPath
