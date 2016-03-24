@@ -74,6 +74,8 @@
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
 		AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */; };
 		AD25BC8A1C8E33D3006DA556 /* TextSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */; };
+		AD5CD0B61CA3AB4C006F3607 /* CategoryIdIndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5CD0B51CA3AB4C006F3607 /* CategoryIdIndexEntry.swift */; };
+		AD5CD0B81CA3AB6F006F3607 /* CoreDataSetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5CD0B71CA3AB6F006F3607 /* CoreDataSetHelper.swift */; };
 		AD5D2BE31C7EBDE9008D608B /* VideoGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */; };
 		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
@@ -190,6 +192,8 @@
 		AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsPlayerViewController.swift; sourceTree = "<group>"; };
 		AD081AEB1C7D91A70084B286 /* moments.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = moments.mp4; sourceTree = "<group>"; };
 		AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSettingViewController.swift; sourceTree = "<group>"; };
+		AD5CD0B51CA3AB4C006F3607 /* CategoryIdIndexEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryIdIndexEntry.swift; sourceTree = "<group>"; };
+		AD5CD0B71CA3AB6F006F3607 /* CoreDataSetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSetHelper.swift; sourceTree = "<group>"; };
 		AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGeneration.swift; sourceTree = "<group>"; };
 		ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentCanvasViewController.swift; sourceTree = "<group>"; };
 		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				7605932F1C7BDAB000A26DDF /* MomentEntry.swift */,
 				760593311C7BDBFB00A26DDF /* TextItemEntry.swift */,
 				760593331C7BDC1D00A26DDF /* CategoryEntry.swift */,
+				AD5CD0B51CA3AB4C006F3607 /* CategoryIdIndexEntry.swift */,
 				762763221C7D45FD00F417F0 /* ImageItemEntry.swift */,
 				762763241C7D463C00F417F0 /* AudioItemEntry.swift */,
 				762763261C7D464C00F417F0 /* VideoItemEntry.swift */,
@@ -492,6 +497,7 @@
 		AD25BC841C8E31BD006DA556 /* CoreDataHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				AD5CD0B71CA3AB6F006F3607 /* CoreDataSetHelper.swift */,
 				767834821C7D151B00FC1B96 /* DataModel */,
 				760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */,
 				760198031C7E796200A7315A /* CoreDataSaveHelper.swift */,
@@ -752,6 +758,7 @@
 			files = (
 				760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */,
 				760197F21C7E10AF00A7315A /* TextItem.swift in Sources */,
+				AD5CD0B61CA3AB4C006F3607 /* CategoryIdIndexEntry.swift in Sources */,
 				760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */,
 				760197EF1C7E10AF00A7315A /* Category+CoreDataProperties.swift in Sources */,
 				764BF99D1C8CD2B100776AAB /* CategoryPresentationController.swift in Sources */,
@@ -771,6 +778,7 @@
 				D04E67F01C9CE44600D7C38A /* UIHelper.swift in Sources */,
 				463466FE1C9B0BE6003361EE /* StickerViewCell.swift in Sources */,
 				D048B8891C9FCE3600B31D87 /* DragToTrash.swift in Sources */,
+				AD5CD0B81CA3AB6F006F3607 /* CoreDataSetHelper.swift in Sources */,
 				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
 				D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */,
 				762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */,
