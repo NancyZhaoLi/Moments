@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  Moments
 //
-//  Created by Mengyi LUO on 2016-02-18.
+//  Created by Yuning Xue on 2016-02-18.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 

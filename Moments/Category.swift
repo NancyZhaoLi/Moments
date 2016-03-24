@@ -16,6 +16,14 @@ class Category: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
+    init() {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
+        
+        super.init(entity: entity!, insertIntoManagedObjectContext: nil)
+    }
+    
     init?(id: Int64, colour: UIColor, name: String) {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext

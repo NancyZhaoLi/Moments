@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JGProgressHUD
 
 class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPresentationControllerDelegate {
 
@@ -36,6 +35,11 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
     }
     
     @IBAction func playMoments(sender: AnyObject) {
+        let vc = VidGenViewController()
+        presentViewController(vc, animated: true, completion: nil)
+        performSegueWithIdentifier("playVideo", sender: self)
+        
+        
     }
     
     
@@ -106,14 +110,5 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
         momentsPlayerVC.fav = fav
         momentsPlayerVC.start = start
         momentsPlayerVC.end = end
-
-        let alert = UIAlertController(title: "Save Video", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        let progressHUD = JGProgressHUD(style: .Dark)
-        progressHUD.textLabel.text = "Creating video..."
-        progressHUD.indicatorView = JGProgressHUDIndeterminateIndicatorView()
-        progressHUD.showInView(self.view)
-        //progressHUD.showInView(self.view)
-        progressHUD.dismissAfterDelay(5)
-        print("sdfs")
     }
 }

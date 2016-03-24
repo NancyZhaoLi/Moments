@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CategoriesViewController.swift
 //  Moments
 //
 //  Created by Yuning Xue on 2016-03-05.
@@ -29,6 +29,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         getCategoriesFromCoreData()
         getCategoryMapsFromCoreData()
+        sortCategories()
         
         let cellNib = UINib(nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         categoriesCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryViewCell")
@@ -50,8 +51,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         layout.itemSize = CGSize(width: width!, height: width!)
         
         // gesture recognizer
-        let longPressGR = UILongPressGestureRecognizer(target: self, action: "longPress:")
-        self.categoriesCollectionView.addGestureRecognizer(longPressGR)
+        let panPressGR = UIPanGestureRecognizer(target: self, action: "panPress:")
+        self.categoriesCollectionView.addGestureRecognizer(panPressGR)
         
     }
     
@@ -105,16 +106,43 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         if fetchResult.count > 0 {
             categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
-        
+        /*
+            Testing:
+            
             let idToIndex = categoryIdIndex?.idToIndex
             let indexToId = categoryIdIndex?.indexToId
         
             print("maps count: \(idToIndex?.count)")
             print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
+*/
         } else {
             print("2 default categories id and index not saved into maps")
         }
 
+    }
+    
+    func sortCategories() {
+        
+        var tempCategories = [Category]()
+        
+        for var i = 0; i < categories.count; i++ {
+            tempCategories.append(Category())
+        }
+        
+        for category in categories {
+            
+            print("sort- category id: \(category.getId())")
+            
+            let id = Int(category.getId())
+            let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
+            tempCategories[index] = category
+        }
+        
+        categories = tempCategories
+        
+        for category in categories {
+            print("sorted category id: \(category.getId())")
+        }
     }
     
     
@@ -133,10 +161,16 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
         
         for indexPath in indexPaths {
-            categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
             
-            let cell = categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
-            cell.deleting = editing
+            let index = indexPath.row
+            let id = categories[index].getId()
+            
+            if (id != 0 && id != 1) {
+                categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
+                
+                let cell = categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
+                cell.deleting = editing
+            }
         }
         
     }
@@ -157,12 +191,30 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             indexes.append(indexPath.row)
         }
         var newCategories: [Category] = []
-        for (index, category) in categories.enumerate() {
+        
+        for var index = 0; index < categories.count; index++ {
+            let category = categories[index]
+            
             if !indexes.contains(index) {
                 newCategories.append(category)
             }
         }
+        
         categories = newCategories
+        
+        // update maps
+        categoryIdIndex?.idToIndex.removeAllObjects()
+        categoryIdIndex?.indexToId.removeAllObjects()
+        
+        for var index = 0; index < categories.count; index++ {
+            let category = categories[index]
+            let id = Int(category.getId())
+            
+            categoryIdIndex?.idToIndex.setObject(index, forKey: id)
+            categoryIdIndex?.indexToId.setObject(id, forKey: index)
+            
+        }
+        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         // delete categories in collection view
         categoriesCollectionView.deleteItemsAtIndexPaths(indexPaths)
@@ -170,16 +222,16 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     }
     
     // draging categories
-    func longPress(longPressGR: UILongPressGestureRecognizer) {
+    func panPress(panPressGR: UIPanGestureRecognizer) {
         
         if editing {
             return
         }
         
-        let longPressLoc = longPressGR.locationInView(self.categoriesCollectionView)
-        let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(longPressLoc)
+        let panPressLoc = panPressGR.locationInView(self.categoriesCollectionView)
+        let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(panPressLoc)
         
-        switch longPressGR.state {
+        switch panPressGR.state {
             
         case .Began:
             print("Began")
@@ -201,9 +253,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         case .Changed:
             print("changed")
             
-            // TODO: add category id to core data?
-            
-            self.categorySnapshot!.center = longPressLoc
+            self.categorySnapshot!.center = panPressLoc
             
             if let curIndexPath = curIndexPath {
                 //From sourceIndexPath to curIndexPath
@@ -250,16 +300,24 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         let srcIndex = srcIndexPath.row
         let dstIndex = dstIndexPath.row
-        let categoryMO = categories[srcIndex]
         let category = categories[srcIndex]
-        
-        categories.removeAtIndex(srcIndex)
-        categories.insert(categoryMO, atIndex: dstIndex)
+
         categories.removeAtIndex(srcIndex)
         categories.insert(category, atIndex: dstIndex)
         
-        // update id
+        // update maps
+        categoryIdIndex?.idToIndex.removeAllObjects()
+        categoryIdIndex?.indexToId.removeAllObjects()
         
+        for var index = 0; index < categories.count; index++ {
+            let category = categories[index]
+            let id = Int(category.getId())
+            
+            categoryIdIndex?.idToIndex.setObject(index, forKey: id)
+            categoryIdIndex?.indexToId.setObject(id, forKey: index)
+            
+        }
+        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
     }
 
     
@@ -321,14 +379,13 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let count = categories.count
         let index = count > 0 ? count - 1 : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
-        let id = category.id
+        let id = Int(category.id)
         
-        categoryIdIndex?.idToIndex.setObject(index, forKey: Int(id))
+        // add id and index pair to maps
+        categoryIdIndex?.idToIndex.setObject(index, forKey: id)
         print("add to map id: \(id)")
-        categoryIdIndex?.indexToId.setObject(Int(id), forKey: index)
-        
+        categoryIdIndex?.indexToId.setObject(id, forKey: index)
         print("updated Keys: \(categoryIdIndex?.idToIndex.keyEnumerator().allObjects)")
-        
         CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         /*UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in

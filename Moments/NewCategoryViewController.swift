@@ -119,7 +119,7 @@ class NewCategoryViewController: UIViewController,
         if let maxIdInCD : Int64 = CoreDataFetchHelper.requestMaxCategoryId() {
             self.id = maxIdInCD + 1
         } else {
-            self.id = 0
+            self.id = 2
         }
     }
     

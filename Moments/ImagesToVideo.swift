@@ -6,11 +6,20 @@
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import AVFoundation
 
 class ImagesToVideo {
-    func imagesToVideo(images: [ImageItem])-> AVAsset {
+    func imagesToVideo(images: [UIImage])-> AVAsset {
+        
+        
+        
+        
+        
+        
+        
+        
         let vid = AVAsset.init()
         return vid
     }
