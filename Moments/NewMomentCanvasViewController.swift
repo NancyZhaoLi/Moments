@@ -375,8 +375,10 @@ class NewMomentCanvasViewController: UIViewController,
         vc.view.addGestureRecognizer(dragItemGR())
         if let textItemVC = vc as? TextItemViewController {
             textItemVC.view.addGestureRecognizer(pinchTextItemGR())
+            textItemVC.view.addGestureRecognizer(rotateGR())
         } else if let imageItemVC = vc as? ImageItemViewController {
             imageItemVC.view.addGestureRecognizer(pinchItemGR())
+            imageItemVC.view.addGestureRecognizer(rotateGR())
         } else if let stickerItemVC = vc as? StickerItemViewController {
             stickerItemVC.view.addGestureRecognizer(pinchItemGR())
         } else if let videoItemVC = vc as? VideoItemViewController {
@@ -687,11 +689,14 @@ class NewMomentCanvasViewController: UIViewController,
             }
             
             let rotation = 0.0 - (lastRotation - sender.rotation)
-            var point = sender.locationInView(canvas)
+            //var point = sender.locationInView(canvas)
             let currentTrans = senderView.transform
             let newTrans = CGAffineTransformRotate(currentTrans, rotation)
             senderView.transform = newTrans
-            lastRotation = sender.rotation
+            //lastRotation = sender.rotation
+            //senderView.rotation += sender.rotation
+            sender.rotation = 0.0
+            
         }
 
     }

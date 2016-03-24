@@ -10,6 +10,7 @@ import UIKit
 
 class ImageItemView: UIImageView {
     var url: NSURL = NSURL()
+    var rotation: CGFloat = 0.0
 }
 
 
