@@ -158,6 +158,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categoriesMO[indexPath.row])
         }
         
+        
+        
         // delete categories in array
         var indexes: [Int] = []
         for indexPath in indexPaths {
@@ -338,6 +340,15 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let count = categories.count
         let index = count > 0 ? count - 1 : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
+        let id = category.id
+        
+        categoryIdIndex?.idToIndex.setObject(index, forKey: Int(id))
+        print("add to map id: \(id)")
+        categoryIdIndex?.indexToId.setObject(Int(id), forKey: index)
+        
+        print("updated Keys: \(categoryIdIndex?.idToIndex.keyEnumerator().allObjects)")
+        
+        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         /*UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
