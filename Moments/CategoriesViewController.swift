@@ -111,15 +111,18 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let fetchResult = CoreDataFetchHelper.fetchCategoryIdIndexFromCoreData()
         print(fetchResult)
         
-        /*
-        categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
+        if fetchResult.count > 0 {
+            categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
         
-        let idToIndex = categoryIdIndex?.idToIndex
-        let indexToId = categoryIdIndex?.indexToId
+            let idToIndex = categoryIdIndex?.idToIndex
+            let indexToId = categoryIdIndex?.indexToId
         
-        print("maps count: \(idToIndex?.count)")
-        print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
-*/
+            print("maps count: \(idToIndex?.count)")
+            print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
+        } else {
+            print("2 default categories id and index not saved into maps")
+        }
+
     }
     
     
