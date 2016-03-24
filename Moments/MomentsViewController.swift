@@ -36,12 +36,12 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
     
     @IBAction func playMoments(sender: AnyObject) {
         let vc = VidGenViewController()
+        vc.fav = fav
+        vc.start = start
+        vc.end = end
         presentViewController(vc, animated: true, completion: nil)
         performSegueWithIdentifier("playVideo", sender: self)
-        
-        
     }
-    
     
     @IBAction func favorite(sender: UIButton) {
         fav = !fav
@@ -103,12 +103,5 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let momentsPlayerVC = segue.destinationViewController as! MomentsPlayerViewController
-        momentsPlayerVC.fav = fav
-        momentsPlayerVC.start = start
-        momentsPlayerVC.end = end
     }
 }

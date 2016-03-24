@@ -11,12 +11,19 @@ import JGProgressHUD
 
 class VidGenViewController: UIViewController {
     
+    var fav : Bool!
+    var start :  NSDate!
+    var end : NSDate!
+    
+    let progressHUD = JGProgressHUD(style: .Light)
+    let t = true
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         self.modalPresentationStyle = UIModalPresentationStyle.Popover
-        self.preferredContentSize = CGSizeMake(100,100)
+
+        VideoGeneration.videoGeneration(fav, start: start, end: end)
         
-        let progressHUD = JGProgressHUD(style: .Light)
         progressHUD.textLabel.text = "Creating video..."
         progressHUD.indicatorView = JGProgressHUDIndeterminateIndicatorView()
         progressHUD.showInView(self.view)
@@ -24,6 +31,6 @@ class VidGenViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.dismissViewControllerAnimated(false, completion: nil)
+        self.dismissViewControllerAnimated(false, completion: {})
     }
 }

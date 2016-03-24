@@ -15,31 +15,27 @@ import CoreMedia
 
 class VideoGeneration {
     static func videoGeneration(fav: Bool, start: NSDate, end: NSDate){
-        let a = getImagesAndVideos(start, end: end)
-        //print(a.imageList.count)
+        let (image, vid) = getImagesAndVideos(start, end: end)
+        //ImagesToVideo.imagesToVideo(image)
+        print(vid.count)
     }
     
-    static func getImagesAndVideos(start : NSDate, end : NSDate) ->Int{
-        print("a")
+    static func getImagesAndVideos(start : NSDate, end : NSDate) ->(images: [UIImage?], videos: [NSURL!]){
         let momentsMO = CoreDataFetchHelper.fetchDateRangeMomentsMOFromCoreData(start, end: end)
-        print("b")
-        var imageList = [CIImage]()
+        var imageList = [UIImage?]()
         var videoList = [NSURL!]()
         print(momentsMO.count)
 
-       // for moment in momentsMO {
-          /*   for imageitemMO in moment.containedImageItem! {
-                imageList.append(imageitemMO.im)
-                
+        for moment in momentsMO {
+            for i in moment.containedImageItem! {
+                let ci = i as! ImageItem
+                imageList.append(ci.getImage());
             }
-           for videoItemMO in moment.containedVideoItem! {
-                videoList.append(videoItemMO.url())
-            }*/
-            //imageList.appendContentsOf(moment.containedImageItem! )
-            //imageList.setByAddingObjectsFromSet(moment.containedImageItem! as Set<NSObject>)
-            //videoList!.setByAddingObjectsFromSet(moment.containedVideoItem! as Set<NSObject>)
-       // }
-        return 1
+            for v in moment.containedVideoItem! {
+                videoList.append(v.url())
+            }
+        }
+        return (imageList, videoList)
     }
     
     func combineVideo(firstAsset : AVAsset?, secondAsset : AVAsset?, audioAsset : AVAsset?){

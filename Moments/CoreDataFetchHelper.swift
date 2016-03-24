@@ -50,8 +50,6 @@ class CoreDataFetchHelper {
         
     }
     
-
-    
     static func fetchDayMomentsMOFromCoreData(date: NSDate) -> [Moment] {
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
