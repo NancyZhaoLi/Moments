@@ -100,7 +100,7 @@ class NewMomentManager {
         }
         
         for imageItem in moment.imageItemEntries {
-            canvasVC.addNewViewController(loadImage(imageItem), zPosition: imageItem.zPosition)
+            canvasVC.addNewViewController(loadImage(imageItem), zPosition: imageItem.getZPosition())
         }
         
         for audioItem in moment.audioItemEntries {
@@ -112,7 +112,7 @@ class NewMomentManager {
         }
         
         for stickerItem in moment.stickerItemEntries {
-            canvasVC.addNewViewController(loadSticker(stickerItem), zPosition: stickerItem.zPosition)
+            canvasVC.addNewViewController(loadSticker(stickerItem), zPosition: stickerItem.getZPosition())
         }
     }
 
@@ -124,7 +124,7 @@ class NewMomentManager {
         return newTextVC
     }
     
-    func loadImage(imageItem: ImageItemEntry) -> ImageItemViewController {
+    func loadImage(imageItem: ImageItem) -> ImageItemViewController {
         let newImageVC = ImageItemViewController(manager: self)
         newImageVC.addImage(imageItem)
         
@@ -142,7 +142,7 @@ class NewMomentManager {
         return VideoItemViewController()
     }
     
-    func loadSticker(stickerItem: StickerItemEntry) -> StickerItemViewController {
+    func loadSticker(stickerItem: StickerItem) -> StickerItemViewController {
         let newStickerVC = StickerItemViewController(manager: self)
         newStickerVC.addSticker(stickerItem)
         return newStickerVC
@@ -273,15 +273,24 @@ class NewMomentManager {
                 if entry != 	nil {
                     moment.addItemEntry(entry!)
                 } else {
-                    print("fail to create textItem in saveNewMoment")
+                    print("fail to create TextItem in saveNewMoment")
                 }
             } else if let view = view as? ImageItemView {
-                let imageItemEntry = ImageItemEntry(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
-                moment.addItemEntry(imageItemEntry)
+                let imageItemEntry = ImageItem(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
+                if imageItemEntry != nil {
+                    moment.addItemEntry(imageItemEntry!)
+                } else {
+                     print("fail to create ImageItem in saveNewMoment")
+                }
+                
             } else if let view: StickerItemView = view as? StickerItemView {
                 if let name = view.stickerName {
-                    let stickerItemEntry = StickerItemEntry(name: name, frame: view.frame, zPosition: zPosition)
-                    moment.addItemEntry(stickerItemEntry)
+                    let stickerItemEntry = StickerItem(frame: view.frame, name: name, zPosition: zPosition)
+                    if stickerItemEntry != nil {
+                        moment.addItemEntry(stickerItemEntry!)
+                    } else {
+                        print("fail to create StickerItem in saveNewMoment")
+                    }
                 }
             }
         }

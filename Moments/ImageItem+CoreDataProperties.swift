@@ -14,10 +14,10 @@ import CoreData
 
 extension ImageItem {
 
-    @NSManaged var frame: String?
-    @NSManaged var image: NSData?
-    @NSManaged var rotation: NSNumber?
-    @NSManaged var zPosition: NSNumber?
+    @NSManaged internal var frame: String
+    @NSManaged internal var image: NSData
+    @NSManaged internal var rotation: NSNumber
+    @NSManaged internal var zPosition: NSNumber
     @NSManaged var inMoment: Moment?
 
 }

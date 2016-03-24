@@ -41,12 +41,14 @@ class CoreDataSaveHelper {
         
         for textItem in moment.textItemEntries {
             //let textItemMO = saveTextItemToCoreData(textItem)
+            context.insertObject(textItem)
             containedTextItem.addObject(textItem)
         }
         
         for imageItem in moment.imageItemEntries {
-            let imageItemMO = saveImageItemToCoreData(imageItem)
-            containedImageItem.addObject(imageItemMO)
+            //let imageItemMO = saveImageItemToCoreData(imageItem)
+            context.insertObject(imageItem)
+            containedImageItem.addObject(imageItem)
         }
         
         /*
@@ -63,8 +65,8 @@ class CoreDataSaveHelper {
         */
         
         for stickerItem in moment.stickerItemEntries {
-            let stickerItemMO = saveStickerItemToCoreData(stickerItem)
-            containedStickerItem.addObject(stickerItemMO)
+            context.insertObject(stickerItem)
+            containedStickerItem.addObject(stickerItem)
         }
 
         do{
@@ -96,7 +98,7 @@ class CoreDataSaveHelper {
         return textItemMO
     }*/
     
-    static func saveImageItemToCoreData(imageItem: ImageItemEntry) -> ImageItem {
+  /*  static func saveImageItemToCoreData(imageItem: ImageItemEntry) -> ImageItem {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("ImageItem", inManagedObjectContext: context)
@@ -116,8 +118,8 @@ class CoreDataSaveHelper {
         
         return imageItemMO
 
-    }
-    
+    }*/
+    /*
     static func saveStickerItemToCoreData(stickerItem: StickerItemEntry) -> StickerItem {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
@@ -136,7 +138,7 @@ class CoreDataSaveHelper {
         }
         
         return stickerItemMO
-    }
+    }*/
     
     static func saveCategoryToCoreData(category: CategoryEntry) -> Category {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

@@ -75,8 +75,14 @@ class StickerItemViewController: UIViewController {
         }
     }
 
-    func addSticker(stickerItem: StickerItemEntry) {
-        
+    func addSticker(stickerItem: StickerItem) {
+        if let image = stickerItem.getImage() {
+            let stickerView = StickerItemView(frame: stickerItem.getFrame())
+            stickerView.stickerName = stickerItem.getName()
+            stickerView.image = image
+            
+            self.view = stickerView
+        }
     }
 }
 

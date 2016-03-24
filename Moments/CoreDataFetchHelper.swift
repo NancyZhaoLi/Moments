@@ -93,7 +93,6 @@ class CoreDataFetchHelper {
         } catch {
             fatalError("Failure to fetch context: \(error)")
         }
-        
     }
     
     static func fetchCategoriesMOFromCoreData() -> [Category] {
@@ -132,7 +131,6 @@ class CoreDataFetchHelper {
             fatalError("Failure to fetch context: \(error)")
         }
     }
-    
     
     static func requestMaxOfIdGreaterThan(minimum: Int64, entity: String) -> Int64? {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

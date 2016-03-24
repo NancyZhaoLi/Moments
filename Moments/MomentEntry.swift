@@ -17,10 +17,10 @@ class MomentEntry {
     var favourite : Bool = false
     var backgroundColour : UIColor = UIColor.whiteColor()
     var textItemEntries = [TextItem]()
-    var imageItemEntries = [ImageItemEntry]()
+    var imageItemEntries = [ImageItem]()
     var audioItemEntries = [AudioItemEntry]()
     var videoItemEntries = [VideoItemEntry]()
-    var stickerItemEntries = [StickerItemEntry]()
+    var stickerItemEntries = [StickerItem]()
     var category: String?
   
     init(id: Int64, date: NSDate, title: String) {
@@ -42,12 +42,12 @@ class MomentEntry {
         }
         
         for imageItemMO in momentMO.containedImageItem! {
-            let imageItem = ImageItemEntry(imageItemMO: imageItemMO as! ImageItem)
+            let imageItem = imageItemMO as! ImageItem
             addItemEntry(imageItem)
         }
         
         for stickerItemMO in momentMO.containedStickerItem! {
-            let stickerItem = StickerItemEntry(stickerItemMO: stickerItemMO as! StickerItem)
+            let stickerItem = stickerItemMO as! StickerItem
             addItemEntry(stickerItem)
         }
     }
@@ -64,7 +64,7 @@ class MomentEntry {
         textItemEntries.append(text)
     }
     
-    func addItemEntry(image: ImageItemEntry) {
+    func addItemEntry(image: ImageItem) {
         imageItemEntries.append(image)
     }
     
@@ -76,7 +76,7 @@ class MomentEntry {
         videoItemEntries.append(video)
     }
     
-    func addItemEntry(sticker: StickerItemEntry) {
+    func addItemEntry(sticker: StickerItem) {
         stickerItemEntries.append(sticker)
     }
     

@@ -14,7 +14,7 @@ import CoreData
 
 extension ImageToAlbumMapping {
 
-    @NSManaged var imageURL: NSObject?
-    @NSManaged var albumURL: NSObject?
-
+    @NSManaged internal var albumURL: String
+    @NSManaged internal var imageURL: String
+    
 }

@@ -74,7 +74,7 @@ class TextItem: NSManagedObject {
         
        
         if let entity = entity {
-            super.init(entity: entity, insertIntoManagedObjectContext: context)
+            super.init(entity: entity, insertIntoManagedObjectContext: nil)
             setItemContent(content)
             setItemFrame(frame)
             setItemOtherAttribute(otherAttribute)
@@ -82,7 +82,7 @@ class TextItem: NSManagedObject {
             setItemZPosition(zPosition)
         } else {
             super.init()
-            print("ERROR: entity not found for textItem")
+            print("ERROR: entity not found for TextItem")
             return nil
         }
     }
@@ -91,52 +91,68 @@ class TextItem: NSManagedObject {
         return self.content
     }
     
-    func getFrame() -> CGRect {
-        return CGRectFromString(self.frame)
-    }
-    
-    func getOtherAttribute() -> TextItemOtherAttribute? {
-        return self.textAttribute
-    }
-    
-    func getRotation() -> Float {
-        return self.rotation.floatValue
-    }
-    
-    func getZPosition() -> Int {
-        return self.zPosition.integerValue
-    }
-    
-    func getTextColour() -> UIColor? {
-        return self.textAttribute?.colour
-    }
-    
-    func getTextFont() -> UIFont? {
-        return self.textAttribute?.font
-    }
-    
-    func getTextAlignment() -> NSTextAlignment? {
-        return self.textAttribute?.alignment
-    }
-    
     func setItemContent(content: String) {
         self.content = content
+    }
+    
+    func getFrame() -> CGRect {
+        return CGRectFromString(self.frame)
     }
     
     func setItemFrame(frame: CGRect) {
         self.frame = NSStringFromCGRect(frame)
     }
     
+    func getOtherAttribute() -> TextItemOtherAttribute? {
+        return self.textAttribute
+    }
+    
+    func getTextColour() -> UIColor? {
+        if let attribute = self.textAttribute {
+            return attribute.colour
+        }
+        return nil
+    }
+    
+    func getTextFont() -> UIFont? {
+        if let attribute = self.textAttribute {
+            return attribute.font
+        }
+        return nil
+    }
+    
+    func getTextAlignment() -> NSTextAlignment? {
+        if let attribute = self.textAttribute {
+            return attribute.alignment
+        }
+        return nil
+    }
+    
     func setItemOtherAttribute(otherAttribute: TextItemOtherAttribute) {
         self.otherAttribute = NSKeyedArchiver.archivedDataWithRootObject(otherAttribute)
         self.textAttribute = otherAttribute
-    }	
+    }
+    
+    func getRotation() -> Float {
+        return self.rotation.floatValue
+    }
     
     func setItemRotation(rotation: Float) {
         self.rotation = NSNumber(float: rotation)
     }
     
+    func getZPosition() -> Int {
+        return self.zPosition.integerValue
+    }
+    
     func setItemZPosition(zPosition: Int) {
         self.zPosition = NSNumber(integer: zPosition)
     }
+    
+    
+    
+    
+
+
+
 }

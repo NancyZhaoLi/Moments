@@ -9,7 +9,7 @@
 import UIKit
 
 class ImageItemView: UIImageView {
-    var url: String = "url"
+    var url: NSURL = NSURL()
 }
 
 
@@ -70,10 +70,10 @@ class ImageItemViewController: UIViewController {
         self.view = imageView
     }
     
-    func addImage(imageItem: ImageItemEntry) {
-        let imageView =  ImageItemView(frame: imageItem.frame)
-        imageView.image = imageItem.image
-        imageView.layer.zPosition = CGFloat(imageItem.zPosition)
+    func addImage(imageItem: ImageItem) {
+        let imageView =  ImageItemView(frame: imageItem.getFrame())
+        imageView.image = imageItem.getImage()
+        imageView.layer.zPosition = CGFloat(imageItem.getZPosition())
         
         self.view = imageView
     }

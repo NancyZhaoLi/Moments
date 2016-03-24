@@ -145,7 +145,7 @@ class MomentTableCell: UITableViewCell {
         
         if (showOption == 1) {
             
-            momentImage.image = momentInfo.imageItemEntries[0].image
+            momentImage.image = momentInfo.imageItemEntries[0].getImage()
             momentImage.frame  = CGRect(x: 80, y: 42, width: self.frame.width - 105, height: 130)
             
         } else if (showOption == 2) {

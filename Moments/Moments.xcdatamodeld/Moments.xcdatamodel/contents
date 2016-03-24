@@ -23,9 +23,9 @@
         <attribute name="zPosition" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Moment" inverseName="containedImageItem" inverseEntity="Moment" syncable="YES"/>
     </entity>
-    <entity name="ImageToAlbumMapping" syncable="YES">
-        <attribute name="albumURL" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+    <entity name="ImageToAlbumMapping" representedClassName=".ImageToAlbumMapping" syncable="YES">
+        <attribute name="albumURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Moment" representedClassName=".Moment" syncable="YES">
         <attribute name="backgroundColour" attributeType="Transformable" syncable="YES"/>

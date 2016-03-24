@@ -90,7 +90,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         }
         
         for imageItemMO in momentMO.containedImageItem! {
-            let imageItem = ImageItemEntry(imageItemMO: imageItemMO as! ImageItem)
+            let imageItem = imageItemMO as! ImageItem
             moment.addItemEntry(imageItem)
         }
         

@@ -14,9 +14,9 @@ import CoreData
 
 extension StickerItem {
 
-    @NSManaged var frame: String?
-    @NSManaged var name: String?
-    @NSManaged var zPosition: NSNumber?
+    @NSManaged internal var frame: String
+    @NSManaged internal var name: String
+    @NSManaged internal var zPosition: NSNumber
     @NSManaged var inMoment: Moment?
 
 }

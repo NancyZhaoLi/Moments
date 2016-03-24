@@ -30,7 +30,6 @@
 		46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */; };
 		46E642A91C93AADC00A1CA17 /* personalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */; };
 		46E642AB1C93B78300A1CA17 /* accountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */; };
-		760197D61C7E0E2700A7315A /* StickerItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D51C7E0E2700A7315A /* StickerItemEntry.swift */; };
 		760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */; };
 		760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D81C7E10AF00A7315A /* VideoItem.swift */; };
 		760197E71C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D91C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift */; };
@@ -52,7 +51,6 @@
 		760593341C7BDC1D00A26DDF /* CategoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760593331C7BDC1D00A26DDF /* CategoryEntry.swift */; };
 		7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605EF051C77852A002FB013 /* CalendarViewController.swift */; };
 		760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760AA5D31C7F8E16001017ED /* MomentTableCell.xib */; };
-		762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763221C7D45FD00F417F0 /* ImageItemEntry.swift */; };
 		762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763241C7D463C00F417F0 /* AudioItemEntry.swift */; };
 		762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763261C7D464C00F417F0 /* VideoItemEntry.swift */; };
 		764BF99D1C8CD2B100776AAB /* CategoryPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BF99C1C8CD2B100776AAB /* CategoryPresentationController.swift */; };
@@ -141,7 +139,6 @@
 		46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetpasswordViewController.swift; sourceTree = "<group>"; };
 		46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalSettingViewController.swift; sourceTree = "<group>"; };
 		46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accountSettingViewController.swift; sourceTree = "<group>"; };
-		760197D51C7E0E2700A7315A /* StickerItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StickerItemEntry.swift; sourceTree = "<group>"; };
 		760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		760197D81C7E10AF00A7315A /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItem.swift; sourceTree = "<group>"; };
 		760197D91C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StickerItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -163,7 +160,6 @@
 		760593331C7BDC1D00A26DDF /* CategoryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryEntry.swift; sourceTree = "<group>"; };
 		7605EF051C77852A002FB013 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		760AA5D31C7F8E16001017ED /* MomentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentTableCell.xib; sourceTree = "<group>"; };
-		762763221C7D45FD00F417F0 /* ImageItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemEntry.swift; sourceTree = "<group>"; };
 		762763241C7D463C00F417F0 /* AudioItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioItemEntry.swift; sourceTree = "<group>"; };
 		762763261C7D464C00F417F0 /* VideoItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemEntry.swift; sourceTree = "<group>"; };
 		764BF99C1C8CD2B100776AAB /* CategoryPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPresentationController.swift; sourceTree = "<group>"; };
@@ -338,10 +334,8 @@
 				D0C536651CA353BE00118E65 /* CategoryIdIndexEntry.swift */,
 				7605932F1C7BDAB000A26DDF /* MomentEntry.swift */,
 				760593331C7BDC1D00A26DDF /* CategoryEntry.swift */,
-				762763221C7D45FD00F417F0 /* ImageItemEntry.swift */,
 				762763241C7D463C00F417F0 /* AudioItemEntry.swift */,
 				762763261C7D464C00F417F0 /* VideoItemEntry.swift */,
-				760197D51C7E0E2700A7315A /* StickerItemEntry.swift */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -804,7 +798,6 @@
 				460BFD0F1CA2284E004CA963 /* CategoryIdIndex.swift in Sources */,
 				460BFD091CA0C59B004CA963 /* signupViewController.swift in Sources */,
 				AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */,
-				762763231C7D45FD00F417F0 /* ImageItemEntry.swift in Sources */,
 				ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */,
 				769ABB5D1C8BB7D90049666F /* CategoryMomentsViewController.swift in Sources */,
 				4634670A1C9B50C0003361EE /* NewItemViewController.swift in Sources */,
@@ -825,7 +818,6 @@
 				AD5D2BE31C7EBDE9008D608B /* VideoGeneration.swift in Sources */,
 				D05674021C7C601E002AEDB3 /* NewMomentSavePageViewController.swift in Sources */,
 				769DD7F51C76AABE00FC883E /* AppDelegate.swift in Sources */,
-				760197D61C7E0E2700A7315A /* StickerItemEntry.swift in Sources */,
 				46119D331C76CC1B00DB5F12 /* HomeViewController.swift in Sources */,
 				760198041C7E796200A7315A /* CoreDataSaveHelper.swift in Sources */,
 				468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */,
