@@ -84,7 +84,7 @@ class NewMomentSavePageViewController: UIViewController,
         //momentCategoryDisplay.text = category
     }
     
-    func getMomentEntry() -> MomentEntry {
+    func getMomentEntry() -> Moment {
         return self.manager!.moment!
     }
     

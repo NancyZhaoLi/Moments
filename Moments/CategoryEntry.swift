@@ -14,7 +14,7 @@ class CategoryEntry {
 
     var colour: UIColor = UIColor.blueColor()
     var name: String
-    var momentEntries = [MomentEntry]()
+    var momentEntries = [Moment]()
     
     init(id: Int64) {
         self.id = id
@@ -28,7 +28,7 @@ class CategoryEntry {
         self.name = categoryMO.name!
         
         for momentMO in categoryMO.containedMoment! {
-            let moment = MomentEntry(momentMO: momentMO as! Moment)
+            let moment = momentMO as! Moment
             addMoment(moment)
         }
     }
@@ -48,7 +48,7 @@ class CategoryEntry {
         self.name = name
     }
     
-    func addMoment(moment: MomentEntry) {
+    func addMoment(moment: Moment) {
         momentEntries.append(moment)
     }
     

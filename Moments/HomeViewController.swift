@@ -15,8 +15,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet var homeView: UIView!
     @IBOutlet weak var momentTableView: UITableView!
     
-    var momentsMO = [Moment]()
-    var moments = [MomentEntry]()
+    var moments = [Moment]()
     var indexOfCellClicked: Int?
     
     override func viewDidLoad() {
@@ -42,20 +41,22 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBAction func unwindToHomeView(segue: UIStoryboardSegue) {
         if let NewMomentSavePageVC = segue.sourceViewController as? NewMomentSavePageViewController {
             if NewMomentSavePageVC.isNewMoment() {
-                if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
-                    CoreDataSaveHelper.saveNewMomentToCoreData(moment)
-                    moments.insert(moment, atIndex: 0)
-                    //getMomentsMOFromCoreData()
-                    let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-                    self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                    self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+                if let moment: Moment = NewMomentSavePageVC.getMomentEntry() {
+                    if moment.save() {
+                        moments.insert(moment, atIndex: 0)
+                        //getMomentsMOFromCoreData()
+                        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                        self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                        self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+                    }
                 }
             } else {
                 if let index = self.indexOfCellClicked {
-                    if let moment: MomentEntry = NewMomentSavePageVC.getMomentEntry() {
-                        CoreDataSaveHelper.saveNewMomentToCoreData(moment)
-                        self.moments[index] = moment
-                        momentTableView.reloadData()
+                    if let moment: Moment = NewMomentSavePageVC.getMomentEntry() {
+                        if moment.save() {
+                            self.moments[index] = moment
+                            momentTableView.reloadData()
+                        }
                     }
                 }
             }
@@ -73,13 +74,10 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     func getMomentsFromCoreData(){
         getMomentsMOFromCoreData()
-        for momentMO in momentsMO {
-            moments.append(MomentEntry(momentMO: momentMO))
-        }
     }
     
     func getMomentsMOFromCoreData(){
-        momentsMO = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
+        moments = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
     }
     
     // moments table
@@ -105,7 +103,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        if (moments[indexPath.row].imageItemEntries.count > 0) {
+        if (moments[indexPath.row].numOfImage() > 0) {
             return 185
         }
         return 120

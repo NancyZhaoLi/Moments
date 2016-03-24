@@ -40,7 +40,7 @@ class NewMomentManager {
     private var savePage : NewMomentSavePageViewController?
     
     // Moment Entry Data
-    var moment : MomentEntry?
+    var moment : Moment?
     var momentDate : NSDate = NSDate()
     var momentTitle : String = ""
     var momentFavourite : Bool = false
@@ -55,7 +55,7 @@ class NewMomentManager {
         self.init(canvasVC: canvasVC, moment: nil)
     }
     
-    init(canvasVC: NewMomentCanvasViewController, moment: MomentEntry?) {
+    init(canvasVC: NewMomentCanvasViewController, moment: Moment?) {
         self.canvasVC = canvasVC
         if let moment = moment {
             loadMoment(moment)
@@ -75,43 +75,43 @@ class NewMomentManager {
         LOADING FROM PAST MOMENTS
      *********************************************************************************/
     
-    func loadMoment(moment: MomentEntry) {
+    func loadMoment(moment: Moment) {
         self.moment = moment
-        momentDate = moment.date
-        momentTitle = moment.title
-        momentFavourite = moment.favourite
+        momentDate = moment.getDate()
+        momentTitle = moment.getTitle()
+        momentFavourite = moment.getFavourite()
         
         if momentFavourite {
             //canvasVC.selectFavourite()
         }
         
-        if let category = moment.category {
-            momentCategory = category
+        if let category = moment.getCategory() {
+            momentCategory = category.name!
         }
    
-        momentColour = moment.backgroundColour
+        momentColour = moment.getBackgroundColour()
         canvasVC.view.backgroundColor = self.momentColour
-        idPrefix = String(moment.id / Int64(10000))
-        idSuffix = String(moment.id % Int64(10000))
+        idPrefix = String(moment.getMomentId() / Int64(10000))
+        idSuffix = String(moment.getMomentId() % Int64(10000))
         isNewMoment = false
 
-        for textItem in moment.textItemEntries {
+        for textItem in moment.getAllSavedText() {
             canvasVC.addNewViewController(loadText(textItem), zPosition: textItem.getZPosition())
         }
         
-        for imageItem in moment.imageItemEntries {
+        for imageItem in moment.getAllSavedImage() {
             canvasVC.addNewViewController(loadImage(imageItem), zPosition: imageItem.getZPosition())
         }
         
-        for audioItem in moment.audioItemEntries {
+        /*for audioItem in moment.audioItemEntries {
             canvasVC.addNewViewController(loadAudio(audioItem), zPosition: audioItem.zPosition)
         }
         
         for videoItem in moment.videoItemEntries {
             canvasVC.addNewViewController(loadVideo(videoItem))
-        }
+        }*/
         
-        for stickerItem in moment.stickerItemEntries {
+        for stickerItem in moment.getAllSavedSticker() {
             canvasVC.addNewViewController(loadSticker(stickerItem), zPosition: stickerItem.getZPosition())
         }
     }
@@ -248,37 +248,35 @@ class NewMomentManager {
     func saveMomentEntry() {
         updateTitle()
         //canvasVC.trashController!.trashView.removeFromSuperview()
-        
+
         if self.isNewMoment {
-            saveNewMoment()
+            saveMoment()
         } else {
-            if (CoreDataFetchHelper.deleteMomentGivenId(moment!.id)) {
-                saveNewMoment()
+            if (CoreDataFetchHelper.deleteMomentGivenId(moment!.getMomentId())) {
+                saveMoment()
             } else {
                fatalError("[saveMomentEntry] - could not delete old moment")
             }
         }
     }
     
-    func saveNewMoment() {
-        let moment = MomentEntry.init(id: getId(), date: self.momentDate, title: self.momentTitle)
-        moment.setFavourite(momentFavourite)
-        moment.category = self.momentCategory
-        moment.backgroundColour = canvasVC.view.backgroundColor!
+    func saveMoment() {
+        let category = CoreDataFetchHelper.fetchCategoryGivenName(self.momentCategory)
+        let moment = Moment(backgroundColour: canvasVC.view.backgroundColor!, favourite: momentFavourite, title: self.momentTitle, category: category)!
         
         for var zPosition = 0; zPosition < canvasVC.canvas.subviews.count; zPosition++ {
             let view = canvasVC.canvas.subviews[zPosition]
             if let view = view as? TextItemView {
                 let entry = TextItem(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition)
                 if entry != 	nil {
-                    moment.addItemEntry(entry!)
+                    moment.addText(entry!)
                 } else {
                     print("fail to create TextItem in saveNewMoment")
                 }
             } else if let view = view as? ImageItemView {
                 let imageItemEntry = ImageItem(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition)
                 if imageItemEntry != nil {
-                    moment.addItemEntry(imageItemEntry!)
+                    moment.addImage(imageItemEntry!)
                 } else {
                      print("fail to create ImageItem in saveNewMoment")
                 }
@@ -286,7 +284,7 @@ class NewMomentManager {
                 if let name = view.stickerName {
                     let stickerItemEntry = StickerItem(frame: view.frame, name: name, zPosition: zPosition)
                     if stickerItemEntry != nil {
-                        moment.addItemEntry(stickerItemEntry!)
+                        moment.addSticker(stickerItemEntry!)
                     } else {
                         print("fail to create StickerItem in saveNewMoment")
                     }

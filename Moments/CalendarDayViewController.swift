@@ -17,8 +17,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var dayMomentTableView: UITableView!
     
-    var momentsMO = [Moment]()
-    var moments = [MomentEntry]()
+    var moments = [Moment]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,21 +64,11 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     }
     
     func getMomentsFromCoreData(){
-        
-        getDayMomentsMOFromCoreData()
-        
-        for var i = 0; i < momentsMO.count; ++i {
-            addMomentFromCoreData(momentsMO[i])
-        }
-        
+        moments = CoreDataFetchHelper.fetchDayMomentsMOFromCoreData(date!)
     }
     
-    func getDayMomentsMOFromCoreData(){
-        momentsMO = CoreDataFetchHelper.fetchDayMomentsMOFromCoreData(date!)
-    }
-    
-    func addMomentFromCoreData(momentMO: Moment) {
-        let id =  momentMO.id?.longLongValue
+    /*func addMomentFromCoreData(momentMO: Moment) {
+        let id =  momentMO.id.longLongValue
         let date = momentMO.date
         let title = momentMO.title
         let moment = MomentEntry(id: id!, date: date!, title: title!)
@@ -96,7 +85,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         
         moments.append(moment)
 
-    }
+    }*/
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moments.count
@@ -119,7 +108,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        if (moments[indexPath.row].imageItemEntries.count > 0) {
+        if (moments[indexPath.row].numOfImage() > 0) {
             return 185
         }
         return 120

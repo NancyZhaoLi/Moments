@@ -39,7 +39,7 @@ class MomentTableCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    var moment: MomentEntry? {
+    var moment: Moment? {
         didSet {
             constructMomentTableCell()
         }
@@ -48,9 +48,9 @@ class MomentTableCell: UITableViewCell {
     func constructMomentTableCell() {
         if let momentInfo = moment {
             
-            if (momentInfo.imageItemEntries.count > 0) {
+            if (momentInfo.numOfImage() > 0) {
                 showOption = 1
-            } else if (momentInfo.textItemEntries.count > 0) {
+            } else if (momentInfo.numOfText() > 0) {
                 showOption = 2
             } else {
                 showOption = 3
@@ -92,12 +92,12 @@ class MomentTableCell: UITableViewCell {
         
     }
     
-    func constructDay(momentInfo: MomentEntry) {
+    func constructDay(momentInfo: Moment) {
         
         let dayFmt = NSDateFormatter()
         dayFmt.dateFormat = "dd"
         
-        day.text = dayFmt.stringFromDate(momentInfo.date)
+        day.text = dayFmt.stringFromDate(momentInfo.getDate())
         day.textColor = UIColor.blackColor()
         day.frame = CGRect(x: 10, y: 25, width: 80, height: 30)
         day.font = UIFont(name: "Helvetica", size: 20.0)
@@ -105,11 +105,11 @@ class MomentTableCell: UITableViewCell {
         
     }
     
-    func constructMonth(momentInfo: MomentEntry) {
+    func constructMonth(momentInfo: Moment) {
         
         let monthFmt = NSDateFormatter()
         monthFmt.dateFormat = "MM"
-        let monthNum: String = monthFmt.stringFromDate(momentInfo.date)
+        let monthNum: String = monthFmt.stringFromDate(momentInfo.getDate())
         
         month.text = convertDayFromNumToShort(monthNum)
         month.textColor = UIColor.blackColor()
@@ -119,7 +119,7 @@ class MomentTableCell: UITableViewCell {
         
     }
     
-    func constructDaySuffix(momentInfo: MomentEntry) {
+    func constructDaySuffix(momentInfo: Moment) {
         
         daySuffix.text = getDaySuffix()
         daySuffix.textColor = UIColor.blackColor()
@@ -129,9 +129,9 @@ class MomentTableCell: UITableViewCell {
         
     }
     
-    func constructTitle(momentInfo: MomentEntry) {
+    func constructTitle(momentInfo: Moment) {
         
-        title.text = momentInfo.title
+        title.text = momentInfo.getTitle()
         title.textColor = UIColor.blackColor()
         title.frame = CGRect(x: 80, y: 10, width: self.frame.width - 110, height: 30)
         title.font = UIFont(name: "Helvetica", size: 15.0)
@@ -141,16 +141,16 @@ class MomentTableCell: UITableViewCell {
         
     }
     
-    func constructMoment(momentInfo: MomentEntry) {
+    func constructMoment(momentInfo: Moment) {
         
         if (showOption == 1) {
             
-            momentImage.image = momentInfo.imageItemEntries[0].getImage()
+            momentImage.image = momentInfo.firstImage()!.getImage()
             momentImage.frame  = CGRect(x: 80, y: 42, width: self.frame.width - 105, height: 130)
             
         } else if (showOption == 2) {
             
-            momentText.text = momentInfo.textItemEntries[0].content
+            momentText.text = momentInfo.firstText()!.getContent()
             
             momentText.textColor = UIColor.blackColor()
             momentText.frame = CGRect(x: 80, y: 35, width: self.frame.width - 110, height: 50)

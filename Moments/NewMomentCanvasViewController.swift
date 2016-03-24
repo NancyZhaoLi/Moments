@@ -32,7 +32,7 @@ class NewMomentCanvasViewController: UIViewController,
     
     var savePage : NewMomentSavePageViewController?
     var manager : NewMomentManager?
-    var loadedMoment : MomentEntry?
+    var loadedMoment : Moment?
     var addItemPopover: NewItemViewController?
     var center: CGPoint = CGPointMake(windowWidth/2.0, windowHeight/2.0)
     
@@ -50,30 +50,30 @@ class NewMomentCanvasViewController: UIViewController,
     var enableInteraction: Bool = false
 
     override func viewDidLoad() {
-        print("begin")
+        //print("begin")
         super.viewDidLoad()
-        print("after super.viewDidLoad")
+        //print("after super.viewDidLoad")
         initCanvas()
-        print("after init Canvas")
+        //print("after init Canvas")
         
         if let moment = loadedMoment {
             manager = NewMomentManager(canvasVC: self, moment: moment)
-            view.backgroundColor = moment.backgroundColour
-            print("after loading Moment")
+            view.backgroundColor = moment.getBackgroundColour()
+            //print("after loading Moment")
         } else {
             manager = NewMomentManager(canvasVC: self)
             view.backgroundColor = UIColor.customBackgroundColor()
-            print("after loading new moment")
+            //print("after loading new moment")
         }
         
         initUI()
-        print("after initUI")
+        //print("after initUI")
         
         if self.loadedMoment != nil {
             selectViewMode()
-            print("after selectViewMode")
+            //print("after selectViewMode")
         }
-        print("end")
+        //print("end")
     }
     
     private func initCanvas() {

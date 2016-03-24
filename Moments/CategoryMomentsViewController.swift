@@ -17,7 +17,7 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     
     var category: CategoryEntry?
     
-    var moments = [MomentEntry]()
+    var moments = [Moment]()
     
     
     override func viewDidLoad() {
@@ -90,7 +90,7 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        if (moments[indexPath.row].imageItemEntries.count > 0) {
+        if (moments[indexPath.row].numOfImage() > 0) {
             return 185
         }
         return 120

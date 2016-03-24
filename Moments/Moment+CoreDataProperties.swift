@@ -19,11 +19,11 @@ extension Moment {
     @NSManaged internal var favourite: NSNumber
     @NSManaged internal var id: NSNumber
     @NSManaged internal var title: String
-    @NSManaged var containedAudioItem: NSSet?
-    @NSManaged var containedImageItem: NSSet?
-    @NSManaged var containedStickerItem: NSSet?
-    @NSManaged var containedTextItem: NSSet?
-    @NSManaged var containedVideoItem: NSSet?
+    @NSManaged internal var containedAudioItem: NSSet?
+    @NSManaged internal var containedImageItem: NSSet?
+    @NSManaged internal var containedStickerItem: NSSet?
+    @NSManaged internal var containedTextItem: NSSet?
+    @NSManaged internal var containedVideoItem: NSSet?
     @NSManaged var inCategory: Category?
 
 }

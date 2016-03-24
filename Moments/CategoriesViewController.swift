@@ -348,7 +348,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         print("updated Keys: \(categoryIdIndex?.idToIndex.keyEnumerator().allObjects)")
         
-        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
+        //CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         /*UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
             self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])

@@ -24,7 +24,7 @@ class StickerItem: NSManagedObject {
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
-        let entity = NSEntityDescription.entityForName("TextItem", inManagedObjectContext: context)
+        let entity = NSEntityDescription.entityForName("StickerItem", inManagedObjectContext: context)
         
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: nil)
