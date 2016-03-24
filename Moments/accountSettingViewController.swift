@@ -16,11 +16,12 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var resetemail: UITextField!
     
     
+    //@IBOutlet weak var resetname: UITextField!
     
     @IBAction func resetbutton(sender: AnyObject) {
         
         //pop up an alert for asking password
-        
+        //if sender.title == "Reset Email" {
         let alert = UIAlertController(title: "Required password", message: "Please type your password in order to complete process",preferredStyle: UIAlertControllerStyle.Alert)
         //alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
        // alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
@@ -45,6 +46,13 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         })
         self.presentViewController(alert, animated: true, completion: nil)
         
+        //}
+        /*else {
+        //for reset name
+            self.changename()
+         
+        
+        }*/
         
         
         
@@ -62,6 +70,19 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         return true
         
     }
+    /*
+    func changename(){
+        
+        let currentuid =  ref.authData.uid as? String
+        //let URL_F = "https://momentsxmen.firebaseio.com/users/" + ref.authData.uid
+        //let reff = Firebase(url: URL_F)
+        let reff = ref.childByAppendingPath("users").childByAppendingPath(currentuid)
+        var changedname = ["name" : self.resetname]
+        reff.updateChildValues(changedname)
+        
+    
+    }*/
+    
 
     func changeEmail(){
     
@@ -112,6 +133,9 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: CGFloat(0.2), green: CGFloat(0.211765), blue: CGFloat(0.286275), alpha: 1.0)
         self.resetemail.delegate = self
+       // self.resetname.delegate = self
+        showName()
+       // self.resetname.text = showName()
         if ref.authData != nil{
             
           //  print(ref.authData)
@@ -129,6 +153,39 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func showName()  {
+        if ref.authData != nil {
+            
+            print("showsth-righthere")
+            
+            var counter = 0
+            ref.childByAppendingPath("users")
+                .childByAppendingPath(ref.authData.uid)
+                //.childByAppendingPath("name")
+                .observeEventType(.ChildAdded, withBlock: { snapshot in
+                    
+                    counter += 1
+                    if counter == 2 {
+                        print(snapshot.value)
+                     //   let newname = snapshot.value as! String
+                      //  return newname
+                        
+                    }
+                    
+                    }, withCancelBlock: { error in
+                        print(error.description)
+                })
+            
+            
+        }
+        //return ""
+        
+        
+    }
+
+    
+    
     
     func displayAlert(title: String, message: String) {
         

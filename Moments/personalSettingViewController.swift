@@ -58,11 +58,11 @@ class personalSettingViewController: UITableViewController  {
        
     }
     
-   /* override func viewWillAppear(animated: Bool) {
+   override func viewWillAppear(animated: Bool) {
      //showEmail()
     showName()
-        print(ref.authData.providerData["email"])
-    }*/
+       // print(ref.authData.providerData["email"])
+    }
     
 
     override func didReceiveMemoryWarning() {

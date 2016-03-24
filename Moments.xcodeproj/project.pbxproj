@@ -25,6 +25,7 @@
 		465012B81C8A3DD000F7220D /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465012B71C8A3DD000F7220D /* CategoryViewController.swift */; };
 		468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2811C7A81F800D93268 /* ImageItemViewController.swift */; };
 		468BC2841C7A837500D93268 /* MainUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468BC2831C7A837500D93268 /* MainUIViewController.swift */; };
+		46AFC6041CA4AE9F00072308 /* resetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AFC6031CA4AE9F00072308 /* resetNameViewController.swift */; };
 		46E642A31C92007C00A1CA17 /* aboutusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A21C92007C00A1CA17 /* aboutusViewController.swift */; };
 		46E642A51C9338F600A1CA17 /* privacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A41C9338F600A1CA17 /* privacyViewController.swift */; };
 		46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */; };
@@ -133,6 +134,7 @@
 		4683B74D1C8D056D0087109D /* 53b3a2daaf08f.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 53b3a2daaf08f.ttf; sourceTree = "<group>"; };
 		468BC2811C7A81F800D93268 /* ImageItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageItemViewController.swift; sourceTree = "<group>"; };
 		468BC2831C7A837500D93268 /* MainUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainUIViewController.swift; sourceTree = "<group>"; };
+		46AFC6031CA4AE9F00072308 /* resetNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetNameViewController.swift; sourceTree = "<group>"; };
 		46E642A21C92007C00A1CA17 /* aboutusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = aboutusViewController.swift; path = ../aboutusViewController.swift; sourceTree = "<group>"; };
 		46E642A41C9338F600A1CA17 /* privacyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = privacyViewController.swift; sourceTree = "<group>"; };
 		46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetpasswordViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				46119D341C76CC3A00DB5F12 /* UserSettingViewController.swift */,
 				46E642A41C9338F600A1CA17 /* privacyViewController.swift */,
 				46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */,
+				46AFC6031CA4AE9F00072308 /* resetNameViewController.swift */,
 				46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */,
 				46E642A21C92007C00A1CA17 /* aboutusViewController.swift */,
 				46412CAF1C8E5A1C002F117A /* feedbackViewController.swift */,
@@ -772,6 +775,7 @@
 				D04E67F01C9CE44600D7C38A /* UIHelper.swift in Sources */,
 				463466FE1C9B0BE6003361EE /* StickerViewCell.swift in Sources */,
 				D048B8891C9FCE3600B31D87 /* DragToTrash.swift in Sources */,
+				46AFC6041CA4AE9F00072308 /* resetNameViewController.swift in Sources */,
 				AD5CD0B81CA3AB6F006F3607 /* CoreDataSetHelper.swift in Sources */,
 				D048BEED1C7D976400BD3115 /* TextItemViewController.swift in Sources */,
 				D02AA2371C7A085B00B2F88C /* AudioItemViewController.swift in Sources */,
