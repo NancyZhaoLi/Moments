@@ -52,7 +52,7 @@ class VideoItemViewController: UIViewController {
     }
 
     
-    func addAudio(audioItem: AudioItemEntry) {
+    func addAudio(audioItem: AudioItem) {
         
     }
 }

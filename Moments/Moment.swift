@@ -193,7 +193,7 @@ class Moment: NSManagedObject {
     func save() -> Bool {
         let containedTextItem = self.mutableSetValueForKey("containedTextItem")
         let containedImageItem = self.mutableSetValueForKey("containedImageItem")
-        //let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
+        let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
         //let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
         let containedStickerItem = self.mutableSetValueForKey("containedStickerItem")
         
@@ -203,9 +203,15 @@ class Moment: NSManagedObject {
                 containedTextItem.addObject(textItem)
             }
             
-           for imageItem in imageItems {
+            for imageItem in imageItems {
                 context.insertObject(imageItem)
                 containedImageItem.addObject(imageItem)
+            }
+            
+            for audioItem in audioItems {
+                context.insertObject(audioItem)
+                audioItem.save()
+                containedAudioItem.addObject(audioItem)
             }
             
             for stickerItem in stickerItems {

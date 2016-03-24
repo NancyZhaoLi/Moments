@@ -100,7 +100,7 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
         self.view.center = location
     }
     
-    func addAudio(audio: AudioItemEntry) {
+    func addAudio(audio: AudioItem) {
         
     }
     

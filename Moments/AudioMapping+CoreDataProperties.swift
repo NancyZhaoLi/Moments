@@ -1,8 +1,8 @@
 //
-//  ImageToAlbumMapping+CoreDataProperties.swift
+//  AudioMapping+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Xin Lin on 2016-03-23.
+//  Created by Xin Lin on 2016-03-24.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,9 +12,10 @@
 import Foundation
 import CoreData
 
-extension ImageToAlbumMapping {
+extension AudioMapping {
 
-    @NSManaged internal var albumURL: String
-    @NSManaged internal var imageURL: String
-    
+    @NSManaged internal var audioURL: String
+    @NSManaged internal var persistentID: String
+    @NSManaged var containedAudioItem: NSSet?
+
 }

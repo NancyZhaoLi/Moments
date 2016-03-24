@@ -2,9 +2,14 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Automatic">
     <entity name="AudioItem" representedClassName=".AudioItem" syncable="YES">
         <attribute name="frame" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="zPosition" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="audioMapping" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AudioMapping" inverseName="containedAudioItem" inverseEntity="AudioMapping" syncable="YES"/>
         <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedAudioItem" inverseEntity="Moment" syncable="YES"/>
+    </entity>
+    <entity name="AudioMapping" representedClassName=".AudioMapping" syncable="YES">
+        <attribute name="audioURL" attributeType="String" syncable="YES"/>
+        <attribute name="persistentID" attributeType="String" syncable="YES"/>
+        <relationship name="containedAudioItem" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AudioItem" inverseName="audioMapping" inverseEntity="AudioItem" syncable="YES"/>
     </entity>
     <entity name="Category" representedClassName=".Category" syncable="YES">
         <attribute name="colour" attributeType="Transformable" syncable="YES"/>
@@ -22,10 +27,6 @@
         <attribute name="rotation" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="zPosition" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="inMoment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="containedImageItem" inverseEntity="Moment" syncable="YES"/>
-    </entity>
-    <entity name="ImageToAlbumMapping" representedClassName=".ImageToAlbumMapping" syncable="YES">
-        <attribute name="albumURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Moment" representedClassName=".Moment" syncable="YES">
         <attribute name="backgroundColour" attributeType="Transformable" syncable="YES"/>
@@ -69,6 +70,6 @@
         <element name="StickerItem" positionX="-180" positionY="90" width="128" height="103"/>
         <element name="TextItem" positionX="-288" positionY="-43" width="162" height="133"/>
         <element name="VideoItem" positionX="-180" positionY="99" width="128" height="103"/>
-        <element name="ImageToAlbumMapping" positionX="-180" positionY="99" width="128" height="73"/>
+        <element name="AudioMapping" positionX="-180" positionY="99" width="128" height="88"/>
     </elements>
 </model>

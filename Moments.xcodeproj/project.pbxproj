@@ -49,7 +49,6 @@
 		7601AF4A1C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */; };
 		7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605EF051C77852A002FB013 /* CalendarViewController.swift */; };
 		760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760AA5D31C7F8E16001017ED /* MomentTableCell.xib */; };
-		762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763241C7D463C00F417F0 /* AudioItemEntry.swift */; };
 		762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763261C7D464C00F417F0 /* VideoItemEntry.swift */; };
 		764BF99D1C8CD2B100776AAB /* CategoryPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BF99C1C8CD2B100776AAB /* CategoryPresentationController.swift */; };
 		764BF99F1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764BF99E1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift */; };
@@ -89,6 +88,8 @@
 		D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */; };
 		D05674021C7C601E002AEDB3 /* NewMomentSavePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */; };
 		D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */; };
+		D0C5366F1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C5366D1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift */; };
+		D0C536701CA3DD9300118E65 /* AudioMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C5366E1CA3DD9300118E65 /* AudioMapping.swift */; };
 		DCA83739988F7ABCDC140EC4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7C33052FBC7C3E84D8CBFA /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,7 +156,6 @@
 		7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataDeleteHelper.swift; sourceTree = "<group>"; };
 		7605EF051C77852A002FB013 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		760AA5D31C7F8E16001017ED /* MomentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentTableCell.xib; sourceTree = "<group>"; };
-		762763241C7D463C00F417F0 /* AudioItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioItemEntry.swift; sourceTree = "<group>"; };
 		762763261C7D464C00F417F0 /* VideoItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemEntry.swift; sourceTree = "<group>"; };
 		764BF99C1C8CD2B100776AAB /* CategoryPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPresentationController.swift; sourceTree = "<group>"; };
 		764BF99E1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPresentationAnimationController.swift; sourceTree = "<group>"; };
@@ -204,6 +204,8 @@
 		D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemViewController.swift; sourceTree = "<group>"; };
 		D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentSavePageViewController.swift; sourceTree = "<group>"; };
 		D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourPickerViewController.swift; sourceTree = "<group>"; };
+		D0C5366D1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioMapping+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D0C5366E1CA3DD9300118E65 /* AudioMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioMapping.swift; sourceTree = "<group>"; };
 		EA7C33052FBC7C3E84D8CBFA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -326,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				AD5CD0B51CA3AB4C006F3607 /* CategoryIdIndexEntry.swift */,
-				762763241C7D463C00F417F0 /* AudioItemEntry.swift */,
 				762763261C7D464C00F417F0 /* VideoItemEntry.swift */,
 			);
 			name = DataModel;
@@ -345,6 +346,8 @@
 		767834881C7D3EC600FC1B96 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				D0C5366D1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift */,
+				D0C5366E1CA3DD9300118E65 /* AudioMapping.swift */,
 				460BFD0C1CA2284E004CA963 /* CategoryIdIndex+CoreDataProperties.swift */,
 				460BFD0D1CA2284E004CA963 /* CategoryIdIndex.swift */,
 				760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */,
@@ -756,7 +759,9 @@
 				AD25BC8A1C8E33D3006DA556 /* TextSettingViewController.swift in Sources */,
 				766306321C80003F00FA7726 /* MomentTableCell.swift in Sources */,
 				46412CB01C8E5A1C002F117A /* feedbackViewController.swift in Sources */,
+				D0C536701CA3DD9300118E65 /* AudioMapping.swift in Sources */,
 				7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */,
+				D0C5366F1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift in Sources */,
 				760197E91C7E10AF00A7315A /* AudioItem+CoreDataProperties.swift in Sources */,
 				D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */,
 				460BFD0E1CA2284E004CA963 /* CategoryIdIndex+CoreDataProperties.swift in Sources */,
@@ -770,7 +775,6 @@
 				468BC2821C7A81F800D93268 /* ImageItemViewController.swift in Sources */,
 				ADED3CB11CA0942A0004708F /* ImagesToVideo.swift in Sources */,
 				760197EE1C7E10AF00A7315A /* ImageItem.swift in Sources */,
-				762763251C7D463C00F417F0 /* AudioItemEntry.swift in Sources */,
 				760197EA1C7E10AF00A7315A /* AudioItem.swift in Sources */,
 				463467081C9B4DB6003361EE /* NewMomentNavigationController.swift in Sources */,
 				465012B81C8A3DD000F7220D /* CategoryViewController.swift in Sources */,

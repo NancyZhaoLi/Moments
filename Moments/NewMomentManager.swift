@@ -131,7 +131,7 @@ class NewMomentManager {
         return newImageVC
     }
     
-    func loadAudio(audioItem: AudioItemEntry) -> AudioItemViewController {
+    func loadAudio(audioItem: AudioItem) -> AudioItemViewController {
         let newAudioVC = AudioItemViewController(manager: self)
         newAudioVC.addAudio(audioItem)
         
