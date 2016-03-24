@@ -16,7 +16,7 @@ class NewMomentSavePageViewController: UIViewController,
     
     var canvas : NewMomentCanvasViewController?
     var manager : NewMomentManager?
-    var categories : [CategoryEntry] = [CategoryEntry]()
+    var categories : [Category] = [Category]()
     var selectedCell: UITableViewCell?
 
     @IBOutlet weak var momentTitleDisplay: UITextField!
@@ -40,13 +40,13 @@ class NewMomentSavePageViewController: UIViewController,
     }
     
     func displayCategories() {
-        let categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+        self.categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
         
-        for categoryMO in categoriesMO {
-            let category = CategoryEntry(categoryMO: categoryMO)
+       /* for categoryMO in categoriesMO {
+            cate
             categories.append(category)
             //print("category name: " + category.name)
-        }
+        }*/
         
         //print("number of categories: " + String(categories.count))
     }
@@ -105,10 +105,11 @@ class NewMomentSavePageViewController: UIViewController,
     }
     
     // NewCategoryViewController Delegate
-    func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
+    func newCategory(controller: NewCategoryViewController, category: Category) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
-        CoreDataSaveHelper.saveCategoryToCoreData(category)
+        category.save()
+        //CoreDataSaveHelper.saveCategoryToCoreData(category)
         categories.append(category)
         
         let count = categories.count

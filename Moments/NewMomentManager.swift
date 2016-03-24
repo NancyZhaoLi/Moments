@@ -86,7 +86,7 @@ class NewMomentManager {
         }
         
         if let category = moment.getCategory() {
-            momentCategory = category.name!
+            momentCategory = category.getName()
         }
    
         momentColour = moment.getBackgroundColour()

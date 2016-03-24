@@ -19,8 +19,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     // the indexPath of the category cell currently moving
     private var beganIndexPath: NSIndexPath?
    
-    var categoriesMO = [Category]()
-    var categories = [CategoryEntry]()
+    var categories = [Category]()
     var categoryIdIndex: CategoryIdIndexEntry?
     
     var width: CGFloat?
@@ -28,8 +27,11 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("begin")
         getCategoriesFromCoreData()
+        print("after getting categories from core data")
         getCategoryMapsFromCoreData()
+        print("after getting category maps from core data")
         
         let cellNib = UINib(nibName: "CategoryViewCell", bundle: NSBundle.mainBundle())
         categoriesCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryViewCell")
@@ -64,7 +66,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "categoryMoments" {
             let categoryMomentsVC = segue.destinationViewController as! CategoryMomentsViewController
-            categoryMomentsVC.category = sender as? CategoryEntry
+            categoryMomentsVC.category = sender as? Category
         } else if segue.identifier == "newCategory" {
             let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
             newCategoryVC.delegate = self
@@ -74,43 +76,23 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     // get categories from core data
     func getCategoriesFromCoreData(){
         
-        getCategoriesMOFromCoreData()
-        
-        for var i = 0; i < categoriesMO.count; ++i {
-            categories.append(CategoryEntry(categoryMO: categoriesMO[i]))
-        }
-        
-    }
-    
-    func getCategoryMapsFromCoreData() {
-        
-        let fetchResult = CoreDataFetchHelper.fetchCategoryIdIndexFromCoreData()
-        
-        categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
-        
-        let idToIndex = categoryIdIndex?.idToIndex
-        let indexToId = categoryIdIndex?.indexToId
-        
-        print("maps count: \(idToIndex?.count)")
-        print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
+        categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
 
-    }
-    
-    func getCategoriesMOFromCoreData(){
-        
-        categoriesMO = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
-        
         // If no category exists, create 2 default categories
-        if categoriesMO.count == 0 {
-            let uncategorizedCategory = CategoryEntry(id: 0, colour: UIColor.customGreenColor(), name: "Uncategorized")
-            let favouriteCategory = CategoryEntry(id: 1, colour: UIColor.customRedColor(), name: "Favourite")
-            
-            let uncategorizedCategoryMO = CoreDataSaveHelper.saveCategoryToCoreData(uncategorizedCategory)
+        if categories.count == 0 {
+            if let uncategorizedCategory = Category(id: 0, colour: UIColor.customGreenColor(), name: "Uncategorized"){
+                categories.append(uncategorizedCategory)
+                uncategorizedCategory.save()
+            }
+            if let favouriteCategory = Category(id: 1, colour: UIColor.customRedColor(), name: "Favourite") {
+                categories.append(favouriteCategory)
+                favouriteCategory.save()
+            }
+
+            /*let uncategorizedCategoryMO = CoreDataSaveHelper.saveCategoryToCoreData(uncategorizedCategory)
             let favouriteCategoryMO = CoreDataSaveHelper.saveCategoryToCoreData(favouriteCategory)
-            
-            categoriesMO.append(uncategorizedCategoryMO)
-            categoriesMO.append(favouriteCategoryMO)
-            
+            */
+
             var idToIndex = NSMapTable()
             var indexToId = NSMapTable()
             idToIndex.setObject(0, forKey: 0)
@@ -120,8 +102,24 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             
             let categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
             CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex)
-
+            
         }
+    }
+    
+    func getCategoryMapsFromCoreData() {
+        
+        let fetchResult = CoreDataFetchHelper.fetchCategoryIdIndexFromCoreData()
+        print(fetchResult)
+        
+        /*
+        categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
+        
+        let idToIndex = categoryIdIndex?.idToIndex
+        let indexToId = categoryIdIndex?.indexToId
+        
+        print("maps count: \(idToIndex?.count)")
+        print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
+*/
     }
     
     
@@ -155,7 +153,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         // delete categories in core data
         for indexPath in indexPaths {
-            CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categoriesMO[indexPath.row])
+            CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categories[indexPath.row])
         }
         
         
@@ -166,20 +164,20 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             indexes.append(indexPath.row)
         }
         var newCategoriesMO: [Category] = []
-        for (index, categoryMO) in categoriesMO.enumerate() {
+        for (index, categoryMO) in categories.enumerate() {
             if !indexes.contains(index) {
                 newCategoriesMO.append(categoryMO)
             }
         }
-        categoriesMO = newCategoriesMO
+        categories = newCategoriesMO
         
-        var newCategories: [CategoryEntry] = []
+        /*var newCategories: [Category] = []
         for (index, category) in categories.enumerate() {
             if !indexes.contains(index) {
                 newCategories.append(category)
             }
         }
-        categories = newCategories
+        categories = newCategories*/
         
         
         // delete categories in collection view
@@ -268,11 +266,11 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         let srcIndex = srcIndexPath.row
         let dstIndex = dstIndexPath.row
-        let categoryMO = categoriesMO[srcIndex]
+        let categoryMO = categories[srcIndex]
         let category = categories[srcIndex]
         
-        categoriesMO.removeAtIndex(srcIndex)
-        categoriesMO.insert(categoryMO, atIndex: dstIndex)
+        categories.removeAtIndex(srcIndex)
+        categories.insert(categoryMO, atIndex: dstIndex)
         categories.removeAtIndex(srcIndex)
         categories.insert(category, atIndex: dstIndex)
         
@@ -329,13 +327,14 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     // NewCategoryViewController Delegate
     //TODO: go back from create new category in new moment page
-    func newCategory(controller: NewCategoryViewController, category: CategoryEntry) {
+    func newCategory(controller: NewCategoryViewController, category: Category) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
         print("category id: \(category.id)")
-        let categoryMO = CoreDataSaveHelper.saveCategoryToCoreData(category)
+        category.save()
+        //let categoryMO = CoreDataSaveHelper.saveCategoryToCoreData(category)
         categories.append(category)
-        categoriesMO.append(categoryMO)
+       // categoriesMO.append(categoryMO)
         
         let count = categories.count
         let index = count > 0 ? count - 1 : 0

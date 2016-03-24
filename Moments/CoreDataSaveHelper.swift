@@ -140,7 +140,7 @@ class CoreDataSaveHelper {
         return stickerItemMO
     }*/
     
-    static func saveCategoryToCoreData(category: CategoryEntry) -> Category {
+    /*static func saveCategoryToCoreData(category: Category) -> Category {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
@@ -157,7 +157,7 @@ class CoreDataSaveHelper {
         }
         
         return categoryMO
-    }
+    }*/
     
     static func saveCategoryIdIndexToCoreData(categoryIdIndex: CategoryIdIndexEntry) {
         

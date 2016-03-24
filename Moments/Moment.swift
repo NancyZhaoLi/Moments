@@ -2,7 +2,7 @@
 //  Moment.swift
 //  Moments
 //
-//  Created by Yuning Xue on 2016-02-24.
+//  Created by Xin Lin and Yuning Xue on 2016-03-24.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
@@ -29,7 +29,6 @@ class Moment: NSManagedObject {
         
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: context)
-            print("backgroundColour: \(backgroundColour)")
             setMomentBackgroundColour(backgroundColour)
             setMomentDate()
             setMomentFavourite(favourite)
@@ -38,7 +37,7 @@ class Moment: NSManagedObject {
             setMomentCategory(category)
         } else {
             super.init()
-            print("ERROR: entity not found for TextItem")
+            print("ERROR: entity not found for Moment")
             return nil
         }
     }
@@ -103,11 +102,12 @@ class Moment: NSManagedObject {
     }
     
     func addText(text: TextItem) {
-        if let context = self.managedObjectContext {
+        /*if let context = self.managedObjectContext {
             context.insertObject(text)
             let containedTextItem = self.mutableSetValueForKey("containedTextItem")
             containedTextItem.addObject(text)
-        }
+        }*/
+        textItems.append(text)
     }
     
     func firstText() -> TextItem? {
@@ -191,19 +191,19 @@ class Moment: NSManagedObject {
     
     
     func save() -> Bool {
-        //let containedTextItem = self.mutableSetValueForKey("containedTextItem")
+        let containedTextItem = self.mutableSetValueForKey("containedTextItem")
         let containedImageItem = self.mutableSetValueForKey("containedImageItem")
         //let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
         //let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
         let containedStickerItem = self.mutableSetValueForKey("containedStickerItem")
         
         if let context = self.managedObjectContext {
-            /*for textItem in textItems {
+            for textItem in textItems {
                 context.insertObject(textItem)
                 containedTextItem.addObject(textItem)
-            }*/
+            }
             
-            for imageItem in imageItems {
+           for imageItem in imageItems {
                 context.insertObject(imageItem)
                 containedImageItem.addObject(imageItem)
             }

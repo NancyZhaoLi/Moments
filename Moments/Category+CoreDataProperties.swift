@@ -14,9 +14,9 @@ import CoreData
 
 extension Category {
 
-    @NSManaged var colour: NSObject?
-    @NSManaged var id: NSNumber?
-    @NSManaged var name: String?
+    @NSManaged internal var colour: NSObject
+    @NSManaged internal var id: NSNumber
+    @NSManaged internal var name: String
     @NSManaged var containedMoment: NSSet?
 
 }

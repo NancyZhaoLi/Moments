@@ -13,9 +13,8 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var categoryName: UILabel!
     
     @IBOutlet weak var momentsTableView: UITableView!
-    
-    
-    var category: CategoryEntry?
+
+    var category: Category?
     
     var moments = [Moment]()
     
@@ -62,7 +61,7 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     }
 
     func getMomentsInCategory() {
-        for moment in (category?.momentEntries)! {
+        for moment in (category?.getAllSavedMoments())! {
             print("moment in category")
             moments.append(moment)
         }

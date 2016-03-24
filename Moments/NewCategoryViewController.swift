@@ -10,7 +10,7 @@ import UIKit
 import SwiftHSVColorPicker
 
 protocol NewCategoryViewControllerDelegate {
-    func newCategory(controller: NewCategoryViewController, category: CategoryEntry)
+    func newCategory(controller: NewCategoryViewController, category: Category)
 }
 
 class NewCategoryViewController: UIViewController,
@@ -85,7 +85,11 @@ class NewCategoryViewController: UIViewController,
     
     func saveNewCategory() {
         if let delegate = self.delegate {
-            delegate.newCategory(self, category: getCategoryEntry())
+            if let newCategory = getCategory() {
+                delegate.newCategory(self, category: newCategory)
+            } else {
+                cancelNewCategory()
+            }
         }
     }
     
@@ -120,14 +124,15 @@ class NewCategoryViewController: UIViewController,
     }
     
     
-    func getCategoryEntry() -> CategoryEntry {
+    func getCategory() -> Category? {
         
         let name = categoryName.text!
+        
         if let colour = categoryColour.color {
-            return CategoryEntry(id: id!, colour: colour, name: name)
+            return Category(id: id!, colour: colour, name: name)
         }
         
-        return CategoryEntry(id: id!, colour: UIColor.customBlueColor(), name: name)
+        return Category(id: id!, colour: UIColor.customBlueColor(), name: name)
     }
 
 }

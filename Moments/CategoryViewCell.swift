@@ -65,7 +65,7 @@ class CategoryViewCell: UICollectionViewCell {
     }
     
     // categoryEntry for constructing the cell
-    var category: CategoryEntry? {
+    var category: Category? {
         
         didSet {
             constructCategoryCell()
@@ -82,9 +82,9 @@ class CategoryViewCell: UICollectionViewCell {
     }
     
     
-    func constructName(categoryInfo: CategoryEntry) {
+    func constructName(categoryInfo: Category) {
         
-        name.text = categoryInfo.name
+        name.text = categoryInfo.getName()
         name.textColor = UIColor(white: 0.0, alpha: 0.7)
         name.backgroundColor = UIColor.clearColor()
         name.frame = CGRect(x: 0, y: self.frame.width / 2 - 15, width: self.frame.width, height: 30)
@@ -95,9 +95,9 @@ class CategoryViewCell: UICollectionViewCell {
         
     }
     
-    func constructImageItem(categoryInfo: CategoryEntry) {
+    func constructImageItem(categoryInfo: Category) {
         
-        imageItem.backgroundColor = categoryInfo.colour
+        imageItem.backgroundColor = categoryInfo.getColour()
         imageItem.frame = CGRect(x: 20, y: 20, width: self.frame.width - 40, height: self.frame.width - 40)
         
     }

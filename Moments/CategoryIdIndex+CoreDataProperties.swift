@@ -14,7 +14,7 @@ import CoreData
 
 extension CategoryIdIndex {
 
-    @NSManaged var idToIndex: NSObject?
-    @NSManaged var indexToId: NSObject?
+    @NSManaged var idToIndex: NSObject
+    @NSManaged var indexToId: NSObject
 
 }

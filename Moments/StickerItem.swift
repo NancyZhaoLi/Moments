@@ -2,7 +2,7 @@
 //  StickerItem.swift
 //  Moments
 //
-//  Created by Yuning Xue on 2016-02-24.
+//  Created by Xin Lin and Yuning Xue on 2016-03-24.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 
