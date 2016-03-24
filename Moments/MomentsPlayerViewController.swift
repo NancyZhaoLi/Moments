@@ -15,13 +15,13 @@ import AVFoundation
     var start :  NSDate!
     var end : NSDate!
     
-    let fileURL = NSURL(fileURLWithPath: "moments.mp4")//"/Moments/moments.mp4")
+    let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
     
     @IBOutlet weak var webView: UIWebView!
     
     @IBAction func saveVideo(sender: UIButton) {
         //call export func in videogen
-        
+     
         let alert = UIAlertController(title: "Save Video", message: "Your video has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
@@ -34,9 +34,7 @@ import AVFoundation
     override func viewDidLoad() {
         super.viewDidLoad()
         self.webView.delegate = self
-        
         VideoGeneration.videoGeneration(fav, start: start, end: end)
-        print(NSBundle.mainBundle().bundlePath)
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
     }
     

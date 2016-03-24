@@ -15,12 +15,14 @@ import CoreMedia
 
 class VideoGeneration {
     static func videoGeneration(fav: Bool, start: NSDate, end: NSDate){
-        //let (images, videos) = getImagesAndVideos(start, end: end)
-        //print(images.count+videos.count)
+        let a = getImagesAndVideos(start, end: end)
+        //print(a.imageList.count)
     }
     
-    static func getImagesAndVideos(start : NSDate, end : NSDate) ->(imageList:[CIImage], videoList:[NSURL!]){
+    static func getImagesAndVideos(start : NSDate, end : NSDate) ->Int{
+        print("a")
         let momentsMO = CoreDataFetchHelper.fetchDateRangeMomentsMOFromCoreData(start, end: end)
+        print("b")
         var imageList = [CIImage]()
         var videoList = [NSURL!]()
         print(momentsMO.count)
@@ -37,7 +39,7 @@ class VideoGeneration {
             //imageList.setByAddingObjectsFromSet(moment.containedImageItem! as Set<NSObject>)
             //videoList!.setByAddingObjectsFromSet(moment.containedVideoItem! as Set<NSObject>)
        // }
-        return (imageList, videoList)
+        return 1
     }
     
     func combineVideo(firstAsset : AVAsset?, secondAsset : AVAsset?, audioAsset : AVAsset?){

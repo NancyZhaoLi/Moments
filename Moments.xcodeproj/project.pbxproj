@@ -70,6 +70,7 @@
 		AD25BC8A1C8E33D3006DA556 /* TextSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */; };
 		AD5CD0B61CA3AB4C006F3607 /* CategoryIdIndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5CD0B51CA3AB4C006F3607 /* CategoryIdIndexEntry.swift */; };
 		AD5CD0B81CA3AB6F006F3607 /* CoreDataSetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5CD0B71CA3AB6F006F3607 /* CoreDataSetHelper.swift */; };
+		AD5CD0BC1CA48CD6006F3607 /* VidGenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5CD0BB1CA48CD6006F3607 /* VidGenViewController.swift */; };
 		AD5D2BE31C7EBDE9008D608B /* VideoGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */; };
 		ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */; };
 		ADD431CB1C7CD57F00DA345E /* MomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */; };
@@ -184,6 +185,7 @@
 		AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSettingViewController.swift; sourceTree = "<group>"; };
 		AD5CD0B51CA3AB4C006F3607 /* CategoryIdIndexEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryIdIndexEntry.swift; sourceTree = "<group>"; };
 		AD5CD0B71CA3AB6F006F3607 /* CoreDataSetHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSetHelper.swift; sourceTree = "<group>"; };
+		AD5CD0BB1CA48CD6006F3607 /* VidGenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VidGenViewController.swift; sourceTree = "<group>"; };
 		AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGeneration.swift; sourceTree = "<group>"; };
 		ADD431C01C77ED1800DA345E /* NewMomentCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentCanvasViewController.swift; sourceTree = "<group>"; };
 		ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				ADD431CA1C7CD57F00DA345E /* MomentsViewController.swift */,
 				AD5D2BE21C7EBDE9008D608B /* VideoGeneration.swift */,
 				ADED3CB01CA0942A0004708F /* ImagesToVideo.swift */,
+				AD5CD0BB1CA48CD6006F3607 /* VidGenViewController.swift */,
 				AD081AEB1C7D91A70084B286 /* moments.mp4 */,
 				AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */,
 			);
@@ -745,6 +748,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */,
+				AD5CD0BC1CA48CD6006F3607 /* VidGenViewController.swift in Sources */,
 				760197F21C7E10AF00A7315A /* TextItem.swift in Sources */,
 				AD5CD0B61CA3AB4C006F3607 /* CategoryIdIndexEntry.swift in Sources */,
 				760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */,
