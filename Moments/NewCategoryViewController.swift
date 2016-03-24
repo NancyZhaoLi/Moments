@@ -14,12 +14,13 @@ protocol NewCategoryViewControllerDelegate {
 }
 
 class NewCategoryViewController: UIViewController,
-    UIViewControllerTransitioningDelegate {
+    UIViewControllerTransitioningDelegate, UITextFieldDelegate {
     
     var delegate: NewCategoryViewControllerDelegate?
     var categoryName: UITextField!
     var categoryColour: SwiftHSVColorPicker!
     var id: Int64?
+    let titleMaxLength = 20
 
     convenience init() {
         self.init(delegate: nil)
@@ -71,6 +72,7 @@ class NewCategoryViewController: UIViewController,
         self.categoryName.layer.cornerRadius = 8.0
         self.categoryName.layer.borderWidth = 1.0
         self.categoryName.layer.borderColor = UIColor.customGreenColor().CGColor
+        self.categoryName.delegate = self
 
         categoryColour = SwiftHSVColorPicker(frame: CGRectMake(20,200,self.view.frame.width - 65, self.view.frame.height - 200))
         categoryColour.setViewColor(UIColor.customGreenColor())
@@ -133,6 +135,22 @@ class NewCategoryViewController: UIViewController,
         }
         
         return Category(id: id!, colour: UIColor.customBlueColor(), name: name)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        return newLength <= titleMaxLength
     }
 
 }
