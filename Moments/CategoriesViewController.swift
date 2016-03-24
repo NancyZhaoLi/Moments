@@ -106,12 +106,15 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         if fetchResult.count > 0 {
             categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
-        
+        /*
+            Testing:
+            
             let idToIndex = categoryIdIndex?.idToIndex
             let indexToId = categoryIdIndex?.indexToId
         
             print("maps count: \(idToIndex?.count)")
             print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
+*/
         } else {
             print("2 default categories id and index not saved into maps")
         }
@@ -158,10 +161,16 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
         
         for indexPath in indexPaths {
-            categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
             
-            let cell = categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
-            cell.deleting = editing
+            let index = indexPath.row
+            let id = categories[index].getId()
+            
+            if (id != 0 && id != 1) {
+                categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
+                
+                let cell = categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
+                cell.deleting = editing
+            }
         }
         
     }
@@ -243,8 +252,6 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             }
         case .Changed:
             print("changed")
-            
-            // TODO: add category id to core data?
             
             self.categorySnapshot!.center = longPressLoc
             
