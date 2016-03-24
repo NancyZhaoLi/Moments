@@ -24,6 +24,6 @@ class VidGenViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        print("done")
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
 }

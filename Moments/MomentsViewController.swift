@@ -37,7 +37,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
     @IBAction func playMoments(sender: AnyObject) {
         let vc = VidGenViewController()
         presentViewController(vc, animated: true, completion: nil)
-        //performSegueWithIdentifier("playVideo", sender: self)
+        performSegueWithIdentifier("playVideo", sender: self)
         
         
     }
