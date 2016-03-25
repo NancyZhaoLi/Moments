@@ -50,7 +50,7 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
         print("self is")
         print(self)
-        mailComposerVC.setToRecipients(["lalaphoon@hotmail.ca"])
+        mailComposerVC.setToRecipients(["lalaphoon@hotmail.ca","momentsxmen@gmail.com"])
         //mailComposerVC.setSubject("Moments Feedback")
         mailComposerVC.setSubject(subject.text!)
         mailComposerVC.setMessageBody("Hi Moments Team!\n\nI would like to share the following feedback..\n" + content.text!, isHTML: false)

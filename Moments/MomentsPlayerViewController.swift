@@ -30,6 +30,7 @@ import Photos
     override func viewDidLoad() {
         super.viewDidLoad()
         self.webView.delegate = self
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
     }

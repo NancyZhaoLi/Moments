@@ -39,6 +39,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         self.categoriesCollectionView.backgroundColor = UIColor.clearColor()
         self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.barTintColor = UIColor.customGreenColor()
         
         
