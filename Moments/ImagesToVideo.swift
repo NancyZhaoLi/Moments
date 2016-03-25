@@ -11,7 +11,7 @@ import Foundation
 import AVFoundation
 
 class ImagesToVideo {
-    static func create(){
+    static func create(image: [UIImage]){
         //let vid = AVAsset.init()
         //return vid
     }
