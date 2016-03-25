@@ -73,31 +73,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     // get categories from core data
     func getCategoriesFromCoreData(){
-        
         categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
-
-        // If no category exists, create 2 default categories
-        if categories.count == 0 {
-            if let uncategorizedCategory = Category(id: 0, colour: UIColor.customGreenColor(), name: "Uncategorized"){
-                categories.append(uncategorizedCategory)
-                uncategorizedCategory.save()
-            }
-            if let favouriteCategory = Category(id: 1, colour: UIColor.customRedColor(), name: "Favourite") {
-                categories.append(favouriteCategory)
-                favouriteCategory.save()
-            }
-
-            var idToIndex = NSMapTable()
-            var indexToId = NSMapTable()
-            idToIndex.setObject(0, forKey: 0)
-            idToIndex.setObject(1, forKey: 1)
-            indexToId.setObject(0, forKey: 0)
-            indexToId.setObject(1, forKey: 1)
-            
-            let categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
-            CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex)
-            
-        }
     }
     
     func getCategoryMapsFromCoreData() {

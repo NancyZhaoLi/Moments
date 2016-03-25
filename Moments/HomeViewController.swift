@@ -20,6 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkDefaultCategories()
         getMomentsFromCoreData()
         
         let cellNib = UINib(nibName: "MomentTableCell", bundle: NSBundle.mainBundle())
@@ -70,6 +71,32 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             let vc = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
             vc.loadedMoment = cell.moment
          }
+    }
+    
+    func checkDefaultCategories(){
+        
+        let categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+        
+        // If no category exists, create 2 default categories
+        if categories.count == 0 {
+            if let uncategorizedCategory = Category(id: 0, colour: UIColor.customGreenColor(), name: "Uncategorized"){
+                uncategorizedCategory.save()
+            }
+            if let favouriteCategory = Category(id: 1, colour: UIColor.customRedColor(), name: "Favourite") {
+                favouriteCategory.save()
+            }
+            
+            var idToIndex = NSMapTable()
+            var indexToId = NSMapTable()
+            idToIndex.setObject(0, forKey: 0)
+            idToIndex.setObject(1, forKey: 1)
+            indexToId.setObject(0, forKey: 0)
+            indexToId.setObject(1, forKey: 1)
+            
+            let categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
+            CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex)
+            
+        }
     }
     
     func getMomentsFromCoreData(){
