@@ -17,7 +17,7 @@ let viewButtonSelectImageTitle = "view_open_icon.png"
 let viewButtonUnselectImageTitle = "view_close_icon.png"
 let trashButtonSelectImageTitle = "favourite_selected_icon.png"
 let trashButtonUnselectImageTitle = "favourite_unselected_icon.png"
-let settingButtonImageTitle = "setting_icon.png"
+let settingButtonImageTitle = "bucket_icon.png"
 
 class NewMomentCanvasViewController: UIViewController,
     UIPopoverPresentationControllerDelegate,

@@ -37,7 +37,7 @@ class AudioRecorderViewController: UIViewController, UITextFieldDelegate {
     //var audioDescription: UITextView!
 
     let pauseImageTitle = "pause_icon.png"
-    let pauseGrayImageTitle = "pause_icon.png"
+    let pauseGrayImageTitle = "pause_on_icon.png"
     let recorderImageTitle = "recorder_icon.png"
     let stopImageTitle = "stop_icon.png"
     
@@ -211,7 +211,7 @@ class AudioRecorderViewController: UIViewController, UITextFieldDelegate {
         
         print("pause")
         recorder!.pause()
-        pauseButton.setBackgroundImage(UIImage(named: pauseImageTitle)!, forState: .Normal)
+        pauseButton.setImage(UIImage(named: pauseImageTitle)!, forState: .Normal)
         pauseButton.removeTarget(self, action: "pause", forControlEvents: .TouchUpInside)
         pauseButton.addTarget(self, action: "resume", forControlEvents: .TouchUpInside)
         timer!.invalidate()
@@ -219,7 +219,7 @@ class AudioRecorderViewController: UIViewController, UITextFieldDelegate {
     
     func resume() {
         print("resume")
-        pauseButton.setBackgroundImage(UIImage(named: pauseGrayImageTitle)!, forState: .Normal)
+        pauseButton.setImage(UIImage(named: pauseGrayImageTitle)!, forState: .Normal)
         pauseButton.removeTarget(self, action: "resume", forControlEvents: .TouchUpInside)
         pauseButton.addTarget(self, action: "pause", forControlEvents: .TouchUpInside)
         start()
