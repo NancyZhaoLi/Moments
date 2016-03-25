@@ -51,8 +51,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         layout.itemSize = CGSize(width: width!, height: width!)
         
         // gesture recognizer
-        let panPressGR = UILongPressGestureRecognizer(target: self, action: "panPress:")
-        self.categoriesCollectionView.addGestureRecognizer(panPressGR)
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: "longPress:")
+        self.categoriesCollectionView.addGestureRecognizer(longPressGR)
         
     }
     
@@ -222,14 +222,14 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     }
     
     // draging categories
-    func panPress(panPressGR: UILongPressGestureRecognizer) {
+    func longPress(longPressGR: UILongPressGestureRecognizer) {
         
         if editing {
             return
         }
         
-        let panPressLoc = panPressGR.locationInView(self.categoriesCollectionView)
-        let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(panPressLoc)
+        let longPressLoc = longPressGR.locationInView(self.categoriesCollectionView)
+        let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(longPressLoc)
         
         if let c = curIndexPath {
             print("curIndexPath: \(c.row)")
@@ -238,7 +238,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         
 
-        switch panPressGR.state {
+        switch longPressGR.state {
             
         case .Began:
             print("Began")
@@ -261,7 +261,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             print("changed")
             
             if let curIndexPath = curIndexPath {
-                self.categorySnapshot!.center = panPressLoc
+                self.categorySnapshot!.center = longPressLoc
                 //From sourceIndexPath to curIndexPath
                 switchCategoryPosition(beganIndexPath!, dstIndexPath: curIndexPath)
                 
