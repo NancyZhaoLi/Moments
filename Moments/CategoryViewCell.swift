@@ -105,27 +105,10 @@ class CategoryViewCell: UICollectionViewCell {
         
     }
     
-    /*
-    name.text = categoryInfo.getName()
-    name.textColor = UIColor(white: 0.0, alpha: 0.7)
-    name.backgroundColor = UIColor.clearColor()
-    name.font = UIFont(name: "Helvetica-Bold", size: 15.0)
-    let textSize = UIHelper.textSize(name.text!, font: name.font)
-    let textHeight = textSize.height
-    let textWidth = textSize.width
-    let numRow = ceil(textWidth / self.frame.width)
-    
-    name.frame = CGRect(x: 0, y: self.frame.width / 2 - 15, width: self.frame.width, height: textHeight * numRow)
-    
-    name.textAlignment = NSTextAlignment.Center
-    name.lineBreakMode = NSLineBreakMode.ByWordWrapping
-    name.numberOfLines = 0
-    */
-    
     func constructImageItem(categoryInfo: Category) {
         
         imageItem.backgroundColor = categoryInfo.getColour()
-        imageItem.frame = CGRect(x: 20, y: 20, width: self.frame.width - 40, height: self.frame.width - 40)
+        imageItem.frame = CGRect(x: 8, y: 8, width: self.frame.width - 16, height: self.frame.width - 16)
         
     }
     
