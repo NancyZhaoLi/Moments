@@ -40,9 +40,9 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
     }
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout ()
-    let cellSpacing : CGFloat = 3
+    let cellSpacing : CGFloat = 10
     let cellsPerRow : CGFloat = 3
-    let toolBarHeight : CGFloat = 50
+    let toolBarHeight : CGFloat = 60
     let iconSize : CGFloat = 30
     let buttonSize : CGFloat = 30
   
@@ -108,6 +108,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         self.booklet["animals"] = 16
         self.booklet["summer"] = 12
         self.booklet["love"] = 16
+        self.booklet["sakura"] = 16
     }
     
    // override func viewDidAppear(animated: Bool) {
