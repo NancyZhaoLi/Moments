@@ -87,4 +87,18 @@ class Category: NSManagedObject {
             }
         }
     }
+    
+    func delete() -> Bool {
+        if let context = self.managedObjectContext {
+            context.deleteObject(self)
+            do {
+                try context.save()
+                return true
+            } catch {
+                print("ERROR: fail to delete moment")
+            }
+        }
+        return false
+    }
+    
 }

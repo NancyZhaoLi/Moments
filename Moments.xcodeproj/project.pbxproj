@@ -47,7 +47,6 @@
 		760197F21C7E10AF00A7315A /* TextItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197E41C7E10AF00A7315A /* TextItem.swift */; };
 		760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */; };
 		760198041C7E796200A7315A /* CoreDataSaveHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760198031C7E796200A7315A /* CoreDataSaveHelper.swift */; };
-		7601AF4A1C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */; };
 		7605EF061C77852A002FB013 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7605EF051C77852A002FB013 /* CalendarViewController.swift */; };
 		760AA5D41C7F8E16001017ED /* MomentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 760AA5D31C7F8E16001017ED /* MomentTableCell.xib */; };
 		762763271C7D464C00F417F0 /* VideoItemEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762763261C7D464C00F417F0 /* VideoItemEntry.swift */; };
@@ -156,7 +155,6 @@
 		760197E41C7E10AF00A7315A /* TextItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextItem.swift; sourceTree = "<group>"; };
 		760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataFetchHelper.swift; sourceTree = "<group>"; };
 		760198031C7E796200A7315A /* CoreDataSaveHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataSaveHelper.swift; sourceTree = "<group>"; };
-		7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataDeleteHelper.swift; sourceTree = "<group>"; };
 		7605EF051C77852A002FB013 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		760AA5D31C7F8E16001017ED /* MomentTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentTableCell.xib; sourceTree = "<group>"; };
 		762763261C7D464C00F417F0 /* VideoItemEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItemEntry.swift; sourceTree = "<group>"; };
@@ -495,7 +493,6 @@
 				767834821C7D151B00FC1B96 /* DataModel */,
 				760198011C7E794F00A7315A /* CoreDataFetchHelper.swift */,
 				760198031C7E796200A7315A /* CoreDataSaveHelper.swift */,
-				7601AF491C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift */,
 			);
 			name = CoreDataHelpers;
 			sourceTree = "<group>";
@@ -793,7 +790,6 @@
 				760197E71C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift in Sources */,
 				764BF99F1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift in Sources */,
 				D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */,
-				7601AF4A1C9F2F4800B3AF20 /* CoreDataDeleteHelper.swift in Sources */,
 				760197E81C7E10AF00A7315A /* StickerItem.swift in Sources */,
 				46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */,
 				769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */,

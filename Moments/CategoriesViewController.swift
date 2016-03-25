@@ -158,7 +158,9 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         // delete categories in core data
         for indexPath in indexPaths {
-            CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categories[indexPath.row])
+            //CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categories[indexPath.row])
+            categories[indexPath.row].delete()
+            
         }
         
         // delete categories in array
