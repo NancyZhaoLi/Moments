@@ -40,7 +40,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
     }
     let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout ()
-    let cellSpacing : CGFloat = 10
+    let cellSpacing : CGFloat = 3
     let cellsPerRow : CGFloat = 3
     let toolBarHeight : CGFloat = 60
     let iconSize : CGFloat = 30
@@ -230,8 +230,9 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         let cell = stickerCollection.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! StickerViewCell
         
         var imageView : UIImageView
+      //  CGRectMake(<#T##x: CGFloat##CGFloat#>, <#T##y: CGFloat##CGFloat#>, <#T##width: CGFloat##CGFloat#>, <#T##height: CGFloat##CGFloat#>)
         //???????????????
-        imageView = UIImageView (frame: CGRectMake(0,0, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing ), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing)))
+        imageView = UIImageView (frame: CGRectMake(15,15, (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing + 30 ), (stickerCollection.collectionViewLayout.collectionViewContentSize().width / cellsPerRow) - (cellSpacing + 30)))
        //???????????????
      
         imageView.contentMode = UIViewContentMode.ScaleAspectFit
@@ -279,5 +280,12 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         // Pass the selected object to the new view controller.
     }
     */
-
+    /*func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        //UIEdgeInsetsMake(<#T##top: CGFloat##CGFloat#>, <#T##left: CGFloat##CGFloat#>, <#T##bottom: CGFloat##CGFloat#>, <#T##right: CGFloat##CGFloat#>)
+        return UIEdgeInsetsMake(10, 10, windowHeight - toolBarHeight, 10)
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(110, 110)
+    }
+*/
 }
