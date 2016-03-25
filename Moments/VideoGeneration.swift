@@ -15,28 +15,32 @@ import CoreMedia
 
 class VideoGeneration {
     static func videoGeneration(fav: Bool, start: NSDate, end: NSDate){
-        let (image, vid) = getImagesAndVideos(start, end: end)
-        //ImagesToVideo.imagesToVideo(image)
-        print(vid.count)
+        let (image, vid) = getImagesAndVideos(start, end: end, fav: fav)
+        print(image.count)
+        //ImagesToVideo.create(image)
+        
     }
     
-    static func getImagesAndVideos(start : NSDate, end : NSDate) ->(images: [UIImage?], videos: [NSURL!]){
+    static func getImagesAndVideos(start : NSDate, end : NSDate, fav: Bool) ->(images: [UIImage], videos: [NSURL!]){
         let momentsMO = CoreDataFetchHelper.fetchDateRangeMomentsMOFromCoreData(start, end: end)
-        var imageList = [UIImage?]()
+        var imageList = [UIImage]()
         var videoList = [NSURL!]()
         print(momentsMO.count)
 
         for moment in momentsMO {
-            for i in moment.containedImageItem! {
-                let ci = i as! ImageItem
-                imageList.append(ci.getImage());
-            }
-            for v in moment.containedVideoItem! {
-                videoList.append(v.url())
+            if (!fav || (fav && moment.getFavourite())){
+                for i in moment.containedImageItem! {
+                    let ci = i as! ImageItem
+                    //imageList.append(ci.getImage()!);
+                }
+                for v in moment.containedVideoItem! {
+                    //videoList.append(v.url())
+                }
             }
         }
         return (imageList, videoList)
     }
+    
     
     func combineVideo(firstAsset : AVAsset?, secondAsset : AVAsset?, audioAsset : AVAsset?){
         // 1 - Create AVMutableComposition object. This object will hold your AVMutableCompositionTrack instances.
