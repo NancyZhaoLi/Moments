@@ -17,7 +17,7 @@ class VideoGeneration {
     static func videoGeneration(fav: Bool, start: NSDate, end: NSDate){
         let (image, vid) = getImagesAndVideos(start, end: end, fav: fav)
         print(image.count)
-        //ImagesToVideo.create(image)
+        ImagesToVideo.create()
         print(vid.count)
     }
     
