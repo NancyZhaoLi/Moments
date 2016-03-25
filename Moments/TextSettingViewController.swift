@@ -37,8 +37,8 @@ class TextSettingViewController : UIViewController,
     
     private var alignmentGroup: [UIButton]! = [UIButton]()
     private var previousSelectedTextAlignmentIndex: Int?
-    private let alignmentselectedImage: [String] = ["text.png", "text.png", "text.png", "text.png"]
-    private let alignmentUnselectedImage: [String] = ["text.png", "text.png", "text.png", "text.png"]
+    private let alignmentselectedImage: [String] = ["align_left.png", "align_center.png", "align_right.png", "align_sides.png"]
+    private let alignmentUnselectedImage: [String] = ["align_left.png", "align_center.png", "align_right.png", "align_sides.png"]
     
     let inset: CGFloat! = 20.0
 
