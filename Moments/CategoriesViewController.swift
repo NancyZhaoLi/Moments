@@ -231,6 +231,13 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let panPressLoc = panPressGR.locationInView(self.categoriesCollectionView)
         let curIndexPath = self.categoriesCollectionView.indexPathForItemAtPoint(panPressLoc)
         
+        if let c = curIndexPath {
+            print("curIndexPath: \(c.row)")
+        } else {
+            print("curIndexPath is nil")
+        }
+        
+
         switch panPressGR.state {
             
         case .Began:
@@ -253,9 +260,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         case .Changed:
             print("changed")
             
-            self.categorySnapshot!.center = panPressLoc
-            
             if let curIndexPath = curIndexPath {
+                self.categorySnapshot!.center = panPressLoc
                 //From sourceIndexPath to curIndexPath
                 switchCategoryPosition(beganIndexPath!, dstIndexPath: curIndexPath)
                 
@@ -266,17 +272,19 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
 
         default:
             print("default")
-            let categoryCell = self.categoriesCollectionView.cellForItemAtIndexPath(beganIndexPath!) as! CategoryViewCell
-            
-            UIView.animateWithDuration(0.15, animations: { () -> Void in
-                self.setCategorySnapshot(categoryCell.center, alpha: 0.0, transform: CGAffineTransformIdentity)
-                categoryCell.draging = false
-                }, completion: { (finished: Bool) -> Void in
-                    self.categorySnapshot!.removeFromSuperview()
-                    self.categorySnapshot = nil
-            })
-            
-            beganIndexPath = nil
+            if let indexPath = beganIndexPath {
+                let categoryCell = self.categoriesCollectionView.cellForItemAtIndexPath(indexPath) as! CategoryViewCell
+                
+                UIView.animateWithDuration(0.15, animations: { () -> Void in
+                    self.setCategorySnapshot(categoryCell.center, alpha: 0.0, transform: CGAffineTransformIdentity)
+                    categoryCell.draging = false
+                    }, completion: { (finished: Bool) -> Void in
+                        self.categorySnapshot!.removeFromSuperview()
+                        self.categorySnapshot = nil
+                })
+                
+                beganIndexPath = nil
+            }
             
         }
     }
