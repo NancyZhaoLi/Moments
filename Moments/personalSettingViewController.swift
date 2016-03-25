@@ -61,6 +61,7 @@ class personalSettingViewController: UITableViewController  {
    override func viewWillAppear(animated: Bool) {
      //showEmail()
     showName()
+    super.viewWillAppear(animated)
        // print(ref.authData.providerData["email"])
     }
     

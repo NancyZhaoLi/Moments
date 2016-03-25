@@ -15,8 +15,8 @@ import CoreData
 let addButtonImageTitle = "add_icon.png"
 let viewButtonSelectImageTitle = "locked_icon.png"
 let viewButtonUnselectImageTitle = "unlocked_icon.png"
-let trashButtonSelectImageTitle = "favourite_selected_icon.png"
-let trashButtonUnselectImageTitle = "favourite_unselected_icon.png"
+let trashButtonSelectImageTitle = "trash_icon.png"
+let trashButtonUnselectImageTitle = "trash_icon.png"
 let settingButtonImageTitle = "bucket_icon.png"
 
 class NewMomentCanvasViewController: UIViewController,
