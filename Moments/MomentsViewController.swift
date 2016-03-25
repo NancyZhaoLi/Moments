@@ -12,8 +12,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
 
     var fav = false;
     var start = NSDate().dateByAddingTimeInterval(-60*60*24*60);
-    var end = NSDate();
-    
+    var end = NSDate().dateByAddingTimeInterval(60*60);
     
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!

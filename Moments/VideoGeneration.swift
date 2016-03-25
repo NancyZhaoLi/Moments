@@ -18,26 +18,25 @@ class VideoGeneration {
         let (image, vid) = getImagesAndVideos(start, end: end, fav: fav)
         print(image.count)
         //ImagesToVideo.create(image)
-        
+        print(vid.count)
     }
     
     static func getImagesAndVideos(start : NSDate, end : NSDate, fav: Bool) ->(images: [UIImage], videos: [NSURL!]){
         let momentsMO = CoreDataFetchHelper.fetchDateRangeMomentsMOFromCoreData(start, end: end)
         var imageList = [UIImage]()
         var videoList = [NSURL!]()
-        print(momentsMO.count)
-
         for moment in momentsMO {
             if (!fav || (fav && moment.getFavourite())){
                 for i in moment.containedImageItem! {
                     let ci = i as! ImageItem
-                    //imageList.append(ci.getImage()!);
+                    imageList.append(ci.getImage()!);
                 }
                 for v in moment.containedVideoItem! {
-                    //videoList.append(v.url())
+                    videoList.append(v.url())
                 }
             }
         }
+        print(momentsMO.count)
         return (imageList, videoList)
     }
     

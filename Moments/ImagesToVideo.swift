@@ -13,10 +13,10 @@ import AVFoundation
 class ImagesToVideo {
     //var videoWriter: AVAssetWriter?
 
-    static func create(images: [UIImage])-> AVAsset {
+    static func create(images: [UIImage]) {
         
         
-        let outputUrl = NSURL(fileURLWithPath: "/Users/nancyli/Programming/m.mp4")
+      //  let outputUrl = NSURL(fileURLWithPath: "/Users/nancyli/Programming/m.mp4")
         
     /*    do {
             try videoWriter = AVAssetWriter(URL: outputUrl, fileType: AVFileTypeMPEG4)
@@ -24,18 +24,11 @@ class ImagesToVideo {
             videoWriter = nil
         }*/
         
-        
 
-        
-        
-        
-        
-        
         
         //*******************************
         
         
-        let vid = AVAsset.init()
-        return vid
+        //return AVAsset.init()
     }
 }
