@@ -91,12 +91,12 @@ class CategoryViewCell: UICollectionViewCell {
         let textSize = UIHelper.textSize(name.text!, font: name.font)
         let textHeight = textSize.height
         let textWidth = textSize.width
-        let numRow = ceil(textWidth / self.frame.width)
+        let numRow = ceil(textWidth / (self.frame.width - 20))
         
         if numRow < 2 {
-            name.frame = CGRect(x: 0, y: self.frame.width / 2 - 15, width: self.frame.width, height: 30)
+            name.frame = CGRect(x: 10, y: self.frame.width / 2 - 15, width: self.frame.width - 20, height: 30)
         } else {
-            name.frame = CGRect(x: 0, y: self.frame.width / 2 - 15, width: self.frame.width, height: textHeight * numRow)
+            name.frame = CGRect(x: 10, y: self.frame.width / 2 - 15, width: self.frame.width - 20, height: textHeight * numRow)
         }
 
         name.textAlignment = NSTextAlignment.Center

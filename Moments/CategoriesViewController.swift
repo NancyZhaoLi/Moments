@@ -51,7 +51,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         layout.itemSize = CGSize(width: width!, height: width!)
         
         // gesture recognizer
-        let panPressGR = UIPanGestureRecognizer(target: self, action: "panPress:")
+        let panPressGR = UILongPressGestureRecognizer(target: self, action: "panPress:")
         self.categoriesCollectionView.addGestureRecognizer(panPressGR)
         
     }
@@ -222,7 +222,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     }
     
     // draging categories
-    func panPress(panPressGR: UIPanGestureRecognizer) {
+    func panPress(panPressGR: UILongPressGestureRecognizer) {
         
         if editing {
             return

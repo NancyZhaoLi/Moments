@@ -20,7 +20,7 @@ class NewCategoryViewController: UIViewController,
     var categoryName: UITextField!
     var categoryColour: SwiftHSVColorPicker!
     var id: Int64?
-    let titleMaxLength = 20
+    let titleMaxLength = 28
 
     convenience init() {
         self.init(delegate: nil)
@@ -73,6 +73,8 @@ class NewCategoryViewController: UIViewController,
         self.categoryName.layer.borderWidth = 1.0
         self.categoryName.layer.borderColor = UIColor.customGreenColor().CGColor
         self.categoryName.delegate = self
+        self.categoryName.spellCheckingType = .No
+        self.categoryName.autocorrectionType = .No
 
         categoryColour = SwiftHSVColorPicker(frame: CGRectMake(20,200,self.view.frame.width - 65, self.view.frame.height - 200))
         categoryColour.setViewColor(UIColor.customGreenColor())
