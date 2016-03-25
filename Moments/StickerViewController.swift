@@ -19,6 +19,19 @@ protocol StickerPickerControllerDelegate {
     func didPickSticker(stickerPicker: StickerViewController, stickerName: String)
 }
 
+class StickerButton : UIButton {
+    
+    var name : String = ""
+    /*required init(coder aDecoder: NSCoder){
+        name = ""
+        super.init(coder: aDecoder)
+    }*/
+    
+}
+
+
+
+
 
 class StickerViewController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
@@ -62,6 +75,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
     
     }
     func fetchNewColStickers(name : String){
+        if name != "" {
         let colnum : Int = booklet[name]!
         var newcell = [sticker]()
        
@@ -71,8 +85,14 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
             let pic = sticker(image: UIImage(named: name_sticker)!, name: name_sticker)
             addCellsWithName(pic, name: &newcell )
         
-        }
+        
         searches = newcell
+        }
+    }
+        else{
+         print("no sticer's name!")
+        
+        }
       
     
     }
@@ -126,7 +146,7 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         toolBar.opaque = true
        //var doneButton = UIBarButtonItem(title: "animals", style: UIBarButtonItemStyle.Plain, target: self, action: "animals:")
        // var cancelButton = UIBarButtonItem(title: "sticker", style: UIBarButtonItemStyle.Plain, target: self, action: "stickers:")
-       // var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         var buttons =  [UIBarButtonItem] ()
         let keyArray = [String](booklet.keys)
@@ -136,12 +156,20 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
             let faction = "updateStickerView:"
             
             let s = NSSelectorFromString(faction)
+            let itemButton : StickerButton = StickerButton(type: .Custom)
+            let imagename = keyArray[i-1] + "-1.png"
+            itemButton.setImage(UIImage(named: imagename), forState: .Normal)
+            itemButton.addTarget(self,action: s, forControlEvents: .TouchUpInside)
+            itemButton.frame = CGRectMake(0,0,buttonSize, buttonSize)
+            itemButton.name = keyArray[i-1]
             
-            let item = UIBarButtonItem(title: keyArray[i-1], style: UIBarButtonItemStyle.Plain, target: self, action: s)
-          
             
-            //toolBar.items?.append(item)
+            //let item = UIBarButtonItem(title: keyArray[i-1], style: UIBarButtonItemStyle.Plain, target: self, action: s)
+            let item = UIBarButtonItem(customView: itemButton)
+            
+         
             buttons.append(item)
+            buttons.append(spaceButton)
             print(keyArray[i-1])
             
             
@@ -190,8 +218,11 @@ class StickerViewController: UIViewController,UICollectionViewDataSource, UIColl
         
     
     }
-    func updateStickerView(barButtonItem: UIBarButtonItem ) {
-        fetchNewColStickers(barButtonItem.title!)
+    func updateStickerView(barButtonItem: StickerButton ) {
+        
+        //let name = barButtonItem.image.
+       
+        fetchNewColStickers(barButtonItem.name)
         self.stickerCollection.reloadData()
     }
 
