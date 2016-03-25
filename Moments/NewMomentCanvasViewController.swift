@@ -13,8 +13,8 @@ import AVFoundation
 import CoreData
 
 let addButtonImageTitle = "add_icon.png"
-let viewButtonSelectImageTitle = "view_open_icon.png"
-let viewButtonUnselectImageTitle = "view_close_icon.png"
+let viewButtonSelectImageTitle = "locked_icon.png"
+let viewButtonUnselectImageTitle = "unlocked_icon.png"
 let trashButtonSelectImageTitle = "favourite_selected_icon.png"
 let trashButtonUnselectImageTitle = "favourite_unselected_icon.png"
 let settingButtonImageTitle = "bucket_icon.png"

@@ -13,6 +13,7 @@ import MediaPlayer
 class AudioItemView: UIView {
     var playerButton: UIButton!
     var playImageTitle = "play_icon.png"
+    var musicPlayImageTitle = "music_icon.png"
     var pauseImageTitle = "pause_icon.png"
     var buttonSize: CGFloat = 80.0
     
@@ -30,7 +31,9 @@ class AudioItemView: UIView {
     required convenience init?(coder aDecoder: NSCoder) {
         self.init()
     }
-    
+    func setMusicPlayImage(){
+        playerButton.setImage(UIImage(named: musicPlayImageTitle), forState: .Normal)
+    }
     func setPlayImage() {
         playerButton.setImage(UIImage(named: playImageTitle), forState: .Normal)
     }
@@ -121,6 +124,13 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
         audioView.setPlayImage()
         audioView.playerButton.removeTarget(self, action: "pause")
         audioView.playerButton.addTarget(self, action: "play")
+    }
+    
+    func setMusicButtonForPlay(){
+        audioView.setMusicPlayImage()
+        audioView.playerButton.removeTarget(self, action: "pause")
+        audioView.playerButton.addTarget(self, action: "play")
+    
     }
     
     func addMusicAudio(music: MPMediaItem, location: CGPoint) -> Bool {
