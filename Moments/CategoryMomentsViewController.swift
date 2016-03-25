@@ -105,6 +105,20 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
         })
         
     }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            
+            // delete moment in core data
+            moments[indexPath.row].delete()
+            
+            // delete categories in array
+            moments.removeAtIndex(indexPath.row)
+            
+            // delete cell in table
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
 
 
 
