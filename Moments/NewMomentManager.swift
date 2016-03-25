@@ -250,7 +250,6 @@ class NewMomentManager {
      *********************************************************************************/
 
     func saveMomentEntry() {
-        print("saving moment entry in manager")
         updateTitle()
         //canvasVC.trashController!.trashView.removeFromSuperview()
         let category = CoreDataFetchHelper.fetchCategoryGivenName(self.momentCategory)
@@ -289,13 +288,15 @@ class NewMomentManager {
             let view = canvasVC.canvas.subviews[zPosition]
             
             if let view = view as? TextItemView {
-                if let text = TextItem(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: 0.0, zPosition: zPosition) {
+                if let text = TextItem(content: view.text, frame: view.frame, otherAttribute: TextItemOtherAttribute(colour: view.textColor!, font: view.font!, alignment: view.textAlignment), rotation: Float(view.rotation), zPosition: zPosition) {
                     moment.addText(text)
                 } else {
                     print("ERROR: fail to create TextItem in saveNewMoment")
                 }
             } else if let view = view as? ImageItemView {
-                if let image = ImageItem(frame: view.frame, image: view.image!, rotation: 0.0, zPosition: zPosition) {
+                let rotation = Float(view.rotation)
+                print("saving image item with rotation \(rotation)")
+                if let image = ImageItem(frame: view.frame, image: view.image!, rotation: Float(view.rotation), zPosition: zPosition) {
                     moment.addImage(image)
                 } else {
                      print("ERROR: fail to create ImageItem in saveNewMoment")

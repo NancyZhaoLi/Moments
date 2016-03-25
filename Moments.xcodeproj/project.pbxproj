@@ -293,14 +293,6 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
-		7678347F1C7D14AF00FC1B96 /* NewMoment_Manager */ = {
-			isa = PBXGroup;
-			children = (
-				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
-			);
-			name = NewMoment_Manager;
-			sourceTree = "<group>";
-		};
 		767834801C7D14E100FC1B96 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,7 +515,7 @@
 			isa = PBXGroup;
 			children = (
 				AD25BC831C8E316C006DA556 /* NewMoment_VC */,
-				7678347F1C7D14AF00FC1B96 /* NewMoment_Manager */,
+				D048BEF61C7DC10300BD3115 /* NewMomentManager.swift */,
 			);
 			name = NewMoment;
 			sourceTree = "<group>";

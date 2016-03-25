@@ -133,8 +133,8 @@ class TextItem: NSManagedObject {
         self.textAttribute = otherAttribute
     }
     
-    func getRotation() -> Float {
-        return self.rotation.floatValue
+    func getRotation() -> CGFloat {
+        return CGFloat(self.rotation.floatValue)
     }
     
     func setItemRotation(rotation: Float) {

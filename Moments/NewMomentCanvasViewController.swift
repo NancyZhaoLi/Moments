@@ -689,14 +689,18 @@ class NewMomentCanvasViewController: UIViewController,
             }
             
             let rotation = 0.0 - (lastRotation - sender.rotation)
-            //var point = sender.locationInView(canvas)
-            let currentTrans = senderView.transform
-            let newTrans = CGAffineTransformRotate(currentTrans, rotation)
-            senderView.transform = newTrans
-            //lastRotation = sender.rotation
-            //senderView.rotation += sender.rotation
-            sender.rotation = 0.0
+            let currentTransform = senderView.transform
+            let newTransform = CGAffineTransformRotate(currentTransform, rotation)
+            senderView.transform = newTransform
             
+            if let textView = senderView as? TextItemView {
+                textView.rotation += sender.rotation
+            } else if let imageView = senderView as? ImageItemView {
+                imageView.rotation += sender.rotation
+                print("image rotation changed: \(imageView.rotation)")
+            }
+            
+            sender.rotation = 0.0
         }
 
     }

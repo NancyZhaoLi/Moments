@@ -65,9 +65,10 @@ class ImageItemViewController: UIViewController {
         
         let frame = CGRectMake(0,0, image.size.width/resizeRatio, image.size.height/resizeRatio)
         let imageView = ImageItemView(frame: frame)
-        imageView.center = location
         
+        imageView.center = location
         imageView.image = image
+        
         self.view = imageView
     }
     
@@ -75,8 +76,20 @@ class ImageItemViewController: UIViewController {
         let imageView =  ImageItemView(frame: imageItem.getFrame())
         imageView.image = imageItem.getImage()
         imageView.layer.zPosition = CGFloat(imageItem.getZPosition())
+        //rotate(imageView, rotation: imageView.rotation)
+        
+        imageView.rotation = CGFloat(imageItem.getRotation())
+        let currentTransform = imageView.transform
+        let newTransform = CGAffineTransformRotate(currentTransform, imageView.rotation)
+        imageView.transform = newTransform
         
         self.view = imageView
+    }
+    
+    private func rotate(view: ImageItemView, rotation: CGFloat){
+
+        
+        print("rotate: \(view.rotation)")
     }
 }
 

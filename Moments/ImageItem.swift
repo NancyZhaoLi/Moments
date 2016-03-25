@@ -51,8 +51,8 @@ class ImageItem: NSManagedObject {
         self.image = UIImageJPEGRepresentation(image, 1.0)!
     }
     
-    func getRotation() -> Float {
-        return self.rotation.floatValue
+    func getRotation() -> CGFloat {
+        return CGFloat(self.rotation.floatValue)
     }
     
     func setItemRotation(rotation: Float) {

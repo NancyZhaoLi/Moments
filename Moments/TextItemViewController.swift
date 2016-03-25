@@ -15,33 +15,11 @@ extension String {
     }
 }
 
-enum PinchMode {
-    case Horizontal
-    case Vertical
-    case Diagonal
-}
-
-
 class TextItemView: UITextView {
     var beginPinchCoor: [CGPoint] = [CGPoint]()
     var item: NSManagedObject?
-    
-   /* override func removeFromSuperview() {
-        super.removeFromSuperview()
-        if let item = self.item {
-            if let context = item.managedObjectContext {
-                context.deleteObject(item)
-                do {
-                    try context.save()
-                } catch {
-                    print("could not delete text item")
-                }
-            }
-        }
-    }*/
+    var rotation: CGFloat = 0.0
 }
-
-
 
 class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate {
 
@@ -52,7 +30,6 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     
     var tapToTrashGR: UITapGestureRecognizer?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -110,7 +87,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         textItemView.textContainer.lineBreakMode = .ByCharWrapping
         
         initEditTextItemViewController(text, textAttribute: textAttribute)
-        initNewTextItemView(textItemView, text: text, textAttribute: textAttribute)
+        initNewTextItemView(textItemView, text: text, textAttribute: textAttribute, rotation: 0.0)
     }
 
     func addText(textItem: TextItem) {
@@ -118,24 +95,31 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         let text = textItem.getContent()
         let textAttribute = textItem.getOtherAttribute()
         let zPosition = textItem.getZPosition()
+        let rotation = textItem.getRotation()
+        
         textItemView.layer.zPosition = CGFloat(zPosition)
         textItemView.item = textItem
         
         if let attr = textAttribute {
             initEditTextItemViewController(text, textAttribute: attr)
-            initNewTextItemView(textItemView, text: text, textAttribute: attr)
+            initNewTextItemView(textItemView, text: text, textAttribute: attr, rotation: CGFloat(rotation))
         } else {
             let attr = TextItemOtherAttribute()
             initEditTextItemViewController(text, textAttribute: attr)
-            initNewTextItemView(textItemView, text: text, textAttribute: attr)
+            initNewTextItemView(textItemView, text: text, textAttribute: attr, rotation: CGFloat(rotation))
         }
     }
     
-    private func initNewTextItemView(textView: TextItemView, text: String, textAttribute: TextItemOtherAttribute) {
+    private func initNewTextItemView(textView: TextItemView, text: String, textAttribute: TextItemOtherAttribute, rotation: CGFloat) {
         self.view = textView
         changeText(text, textAttribute: textAttribute)
         textView.backgroundColor = UIColor.clearColor()
-        textView.editable = false		
+        textView.editable = false
+        textView.rotation = rotation
+        
+        let currentTransform = textView.transform
+        let newTransform = CGAffineTransformRotate(currentTransform, rotation)
+        textView.transform = newTransform
 
         initGestureRecognizer()
     }
