@@ -14,6 +14,7 @@ class VidGenViewController: UIViewController {
     var fav : Bool!
     var start :  NSDate!
     var end : NSDate!
+    var path:String!
     
     let progressHUD = JGProgressHUD(style: .Light)
     let t = true
@@ -22,7 +23,7 @@ class VidGenViewController: UIViewController {
         super.viewDidLoad()
         self.modalPresentationStyle = UIModalPresentationStyle.Popover
 
-        VideoGeneration.videoGeneration(fav, start: start, end: end)
+        VideoGeneration.videoGeneration(fav, start: start, end: end, path: path)
         
         progressHUD.textLabel.text = "Creating video..."
         progressHUD.indicatorView = JGProgressHUDIndeterminateIndicatorView()

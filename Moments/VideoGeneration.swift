@@ -14,10 +14,9 @@ import MediaPlayer
 import CoreMedia
 
 class VideoGeneration {
-    static func videoGeneration(fav: Bool, start: NSDate, end: NSDate){
+    static func videoGeneration(fav: Bool, start: NSDate, end: NSDate, path: String){
         let (image, vid) = getImagesAndVideos(start, end: end, fav: fav)
-        print(image.count)
-        ImagesToVideo.create(image)
+        ImagesToVideo.create(image, path: path)
     }
     
     static func getImagesAndVideos(start : NSDate, end : NSDate, fav: Bool) ->(images: [UIImage], videos: [NSURL!]){

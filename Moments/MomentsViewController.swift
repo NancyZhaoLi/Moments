@@ -13,6 +13,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
     var fav = false;
     var start = NSDate().dateByAddingTimeInterval(-60*60*24*60);
     var end = NSDate().dateByAddingTimeInterval(60*60);
+    let path = NSTemporaryDirectory()+"momentsvid.mp4"
     
     @IBOutlet weak var startDate: UITextField!
     @IBOutlet weak var endDate: UITextField!
@@ -38,6 +39,7 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
         vc.fav = fav
         vc.start = start
         vc.end = end
+        vc.path = path
         presentViewController(vc, animated: true, completion: nil)
         performSegueWithIdentifier("playVideo", sender: self)
     }
@@ -102,5 +104,10 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var momentsPlayerVC = segue.destinationViewController as! MomentsPlayerViewController
+        momentsPlayerVC.path = path
     }
 }

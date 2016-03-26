@@ -12,19 +12,18 @@ import Photos
 
   class MomentsPlayerViewController: UIViewController, UIWebViewDelegate {
     
-    let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/Moments/Moments/moments.mp4")
+    var path: String!
     
     @IBOutlet weak var webView: UIWebView!
     
     @IBAction func saveVideo(sender: UIButton) {
-        //call export func in videogen
-     
         let alert = UIAlertController(title: "Save Video", message: "Your video has been saved!", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-       /* PHPhotoLibrary.sharedPhotoLibrary().performChanges(
-        {let req = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(self.fileURL)},
-        completionHandler: {success, error in if !success{NSLog("Failed to save.")};})*/
+        
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges(
+        {let req = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(NSURL(fileURLWithPath: self.path))},
+        completionHandler: {success, error in if !success{NSLog("Failed to save.")};})
     }
     
     override func viewDidLoad() {
@@ -32,6 +31,7 @@ import Photos
         self.webView.delegate = self
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
+        let fileURL = NSURL(fileURLWithPath: path)
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
     }
     

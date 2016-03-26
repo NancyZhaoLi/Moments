@@ -9,11 +9,14 @@
 import UIKit
 import Foundation
 import AVFoundation
+import Photos
 
 class ImagesToVideo {
-    static func create(image: [UIImage]){
-    
-        let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/m.mp4")
+    static func create(image: [UIImage], path: String){
+        
+        let fileURL = NSURL(fileURLWithPath: path)
+        
+        //let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/m.mp4")
         var videoWriter: AVAssetWriter?
         
         let inputSize = CGSize(width: 750, height: 750)
@@ -79,6 +82,11 @@ class ImagesToVideo {
                 })
             }
         }
+        
+        sleep(1)
+        // PHPhotoLibrary.sharedPhotoLibrary().performChanges(
+        //{let req = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(fileURL)},
+        //completionHandler: {success, error in if !success{NSLog("Failed to save.")};})
     }
 
     static func appendPixelBufferForImageAtURL(image: UIImage, pixelBufferAdaptor: AVAssetWriterInputPixelBufferAdaptor, presentationTime: CMTime) -> Bool {
