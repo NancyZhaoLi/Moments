@@ -15,9 +15,9 @@ class ImagesToVideo {
     
         let fileURL = NSURL(fileURLWithPath: "/Users/nancyli/Programming/m.mp4")
         var videoWriter: AVAssetWriter?
-        print(image[0].size.height,image[0].size.width)
-        let inputSize = CGSize(width: 746, height: 746)
-        let outputSize = CGSize(width: 746, height: 746)
+        
+        let inputSize = CGSize(width: 750, height: 750)
+        let outputSize = CGSize(width: 750, height: 750)
         
         do {
             try NSFileManager.defaultManager().removeItemAtURL(fileURL)
@@ -61,20 +61,16 @@ class ImagesToVideo {
                 
                 videoWriterInput.requestMediaDataWhenReadyOnQueue(media_queue, usingBlock: { () -> Void in
                     let fps: Int32 = 1
-                    let frameDuration = CMTimeMake(1, fps)
                     
                     var frameCount: Int64 = 0
                     var remainingPhotoURLs = [UIImage](image)
-                    
+
                     while (videoWriterInput.readyForMoreMediaData && !remainingPhotoURLs.isEmpty) {
-                        print("Remain %d",remainingPhotoURLs.count)
                         let nextPhotoURL = remainingPhotoURLs.removeAtIndex(0)
-                        let lastFrameTime = CMTimeMake(frameCount, fps)
-                        let presentationTime = frameCount == 0 ? lastFrameTime : CMTimeAdd(lastFrameTime, frameDuration)
-                        if (!appendPixelBufferForImageAtURL(nextPhotoURL, pixelBufferAdaptor: pixelBufferAdaptor, presentationTime: presentationTime)){
+                        let lastFrameTime = CMTimeMake(frameCount*2, fps)
+                        if (!appendPixelBufferForImageAtURL(nextPhotoURL, pixelBufferAdaptor: pixelBufferAdaptor, presentationTime: lastFrameTime)){
                             break
                         }
-
                         frameCount++
                     }
 
@@ -125,16 +121,31 @@ class ImagesToVideo {
         
         let context = CGBitmapContextCreate(
             pixelData,
-            Int(image.size.width),
-            Int(image.size.height),
+            Int(750),
+            Int(750),
             8,
             CVPixelBufferGetBytesPerRow(pixelBuffer),
             rgbColorSpace,
             CGImageAlphaInfo.PremultipliedFirst.rawValue
         )
         
-        CGContextDrawImage(context, CGRectMake(0, 0, image.size.width, image.size.height), image.CGImage)
+        let rect = CGRectMake(0, 0, 750, 750)
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(750,750), false, 0)
+        UIColor.blackColor().setFill()
+        UIRectFill(rect)
+        let blackimage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
+        var x = 750 - image.size.width
+        var y = 750 - image.size.height
+        if (x < 0) {
+            x = 0
+        }
+        if (y < 0) {
+            y = 0
+        }
+        CGContextDrawImage(context, CGRectMake(0, 0, 750, 750), blackimage.CGImage)
+        CGContextDrawImage(context, CGRectMake(x/2, y/2, image.size.width, image.size.height), image.CGImage)
         CVPixelBufferUnlockBaseAddress(pixelBuffer, 0)
     }
 }
