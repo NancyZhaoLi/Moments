@@ -356,8 +356,14 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        var pickedCategory : Category
         if !editing {
-            let pickedCategory = categories[indexPath.row]
+            if searchController.active && searchController.searchBar.text != "" {
+                pickedCategory = filteredCategories[indexPath.row]
+            }
+            else{
+                pickedCategory = categories[indexPath.row]
+            }
             performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
             
         } else {
