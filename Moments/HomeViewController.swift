@@ -68,7 +68,8 @@ class HomeViewController: UIViewController, UITableViewDelegate {
                         if moment.save() {
                             print("after saving a previously added moment")
                             self.moments[index] = moment
-                            momentTableView.reloadData()
+                            let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                            momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
                         }
                     }
                 }
@@ -118,8 +119,18 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    func getMomentsFromCoreData(){
+    func getMomentsFromCoreData() {
         moments = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
+    }
+    
+    func getMoreMomentsFromCoreData(beforeDate: NSDate) {
+        
+        let moreMoments = CoreDataFetchHelper.fetchMomentsBeforeDateFromCoreData(beforeDate)
+        
+        for moment in moreMoments {
+            moments.append(moment)
+        }
+        
     }
     
     // moments table
@@ -185,6 +196,20 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
+    /*
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (indexPath.row == moments.count - 1) {
+            //print("reach end of row")
+            
+            getMoreMomentsFromCoreData((moments[moments.count - 1].getDate()))
+            //print("moments count: \(moments.count)")
+            
+            momentTableView.reloadData()
+        }
+        
+    }
+*/
 
 
 }

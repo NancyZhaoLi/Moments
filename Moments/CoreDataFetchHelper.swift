@@ -50,6 +50,30 @@ class CoreDataFetchHelper {
         
     }
     
+    static func fetchMomentsBeforeDateFromCoreData(beforeDate: NSDate) -> [Moment] {
+        let defaultFetchSize = 20
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestMoments = NSFetchRequest(entityName: "Moment")
+        requestMoments.predicate = NSPredicate(format: "date < %@", beforeDate)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        
+        requestMoments.sortDescriptors = [sortDescriptor]
+        requestMoments.returnsObjectsAsFaults = false
+        requestMoments.fetchLimit = defaultFetchSize
+        
+        do {
+            let results = try context.executeFetchRequest(requestMoments) as! [Moment]
+            
+            return results
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
     static func fetchFavouriteMomentsFromCoreData() -> [Moment] {
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
