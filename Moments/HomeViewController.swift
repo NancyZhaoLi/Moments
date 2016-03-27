@@ -26,8 +26,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
         definesPresentationContext = true
-        searchController.searchBar.placeholder = "Search Moments by Title..."
+        searchController.searchBar.placeholder = "Search moments by title..."
         momentTableView.tableHeaderView = searchController.searchBar
         //self.automaticallyAdjustsScrollViewInsets = false
         

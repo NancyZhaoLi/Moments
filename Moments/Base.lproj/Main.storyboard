@@ -296,7 +296,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="esN-9B-b61">
-                                <rect key="frame" x="20" y="99" width="335" height="453"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WXg-ml-XV5" id="8Cs-KL-DXs"/>
@@ -1871,6 +1871,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3w0-du-Tv0"/>
-        <segue reference="FcY-4h-FoV"/>
+        <segue reference="c0A-Oc-VLe"/>
     </inferredMetricsTieBreakers>
 </document>
