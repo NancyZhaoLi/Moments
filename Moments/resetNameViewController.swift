@@ -62,7 +62,8 @@ class resetNameViewController: UIViewController, UITextFieldDelegate {
                 .childByAppendingPath(ref.authData.uid)
                 //.childByAppendingPath("name")
                 .observeEventType(.ChildAdded, withBlock: { snapshot in
-                    
+                     //print("printing updated name now")
+                    // print(snapshot.value)
                     counter += 1
                     if counter == 2 {
                         print("reset successful")

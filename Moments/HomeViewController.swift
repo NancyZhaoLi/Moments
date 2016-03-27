@@ -16,10 +16,21 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var momentTableView: UITableView!
     
     var moments = [Moment]()
+    var filterMoments = [Moment]()
     var indexOfCellClicked: Int?
+    let searchController = UISearchController(searchResultsController: nil)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchBar.placeholder = "Search Moments by Title..."
+        momentTableView.tableHeaderView = searchController.searchBar
+        //self.automaticallyAdjustsScrollViewInsets = false
+        
         checkDefaultCategories()
         getMomentsFromCoreData()
         
@@ -72,7 +83,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             vc.loadedMoment = cell.moment
          }
     }
+    func filterContentForSearchText (searchText: String, scope: String = "ALL")
+    {
+        
+        filterMoments = moments.filter{moment in
+            return moment.title.lowercaseString.containsString(searchText.lowercaseString)}
+        momentTableView.reloadData()
     
+    }
     func checkDefaultCategories(){
         
         let categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
@@ -106,15 +124,24 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     // moments table
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.active && searchController.searchBar.text != "" {
+            return filterMoments.count
+        }
         return moments.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = momentTableView.dequeueReusableCellWithIdentifier("MomentTableCell", forIndexPath: indexPath) as! MomentTableCell
-        
+        let moment: Moment
+        if searchController.active && searchController.searchBar.text != ""{
+            moment = filterMoments[indexPath.row]
+        } else {
+            moment = moments[indexPath.row]
+        }
         cell.frame.size.width = self.momentTableView.frame.width
-        cell.moment = moments[indexPath.row]
+        //cell.moment = moments[indexPath.row]
+        cell.moment = moment
         cell.backgroundColor = UIColor.clearColor()
         
         return cell
@@ -159,4 +186,9 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     }
 
 
+}
+extension HomeViewController : UISearchResultsUpdating{
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }

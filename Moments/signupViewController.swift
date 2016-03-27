@@ -138,6 +138,7 @@ class signupViewController: UIViewController, UITextFieldDelegate {
         self.userEmail.delegate = self
         self.secondPassword.delegate = self
         self.firstPassword.delegate = self
+        self.userName.text = ""
 
         // Do any additional setup after loading the view.
     }
