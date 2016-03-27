@@ -156,7 +156,11 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         for indexPath in indexPaths {
             
             let index = indexPath.row
-            let id = categories[index].getId()
+            
+            var id = categories[index].getId()
+            if searchController.active && searchController.searchBar.text != ""{
+                id = filteredCategories[index].getId()
+            }
             
             if (id != 0 && id != 1) {
                 categoriesCollectionView.deselectItemAtIndexPath(indexPath, animated: false)
