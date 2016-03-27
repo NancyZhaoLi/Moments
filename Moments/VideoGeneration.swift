@@ -24,7 +24,7 @@ class VideoGeneration {
         var imageList = [UIImage]()
         var videoList = [NSURL!]()
         for moment in momentsMO {
-            if (!fav || (fav && moment.getFavourite())){
+            if ((fav && moment.getFavourite()) || !fav){
                 for i in moment.containedImageItem! {
                     let ci = i as! ImageItem
                     imageList.append(ci.getImage()!);
@@ -34,7 +34,6 @@ class VideoGeneration {
                 }
             }
         }
-        print(momentsMO.count)
         return (imageList, videoList)
     }
     
