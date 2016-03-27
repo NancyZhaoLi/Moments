@@ -37,6 +37,8 @@ class CalendarViewController: UIViewController {
         
         calendarView.backgroundColor = UIColor.customBackgroundColor()
         menuView.backgroundColor = UIColor.customBackgroundColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
     
     @IBAction func getToday(sender: AnyObject) {
