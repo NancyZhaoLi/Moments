@@ -93,6 +93,8 @@ class ViewController: UIViewController , UITextFieldDelegate {
                     print("login success!")
                     
                     // TODO: if login success, go to login complete page
+                    self.emailTextField.text = ""
+                    self.passwordTextField.text = ""
                     self.performSegueWithIdentifier("loginAndSignUpComplete", sender: self)
                     
                 }

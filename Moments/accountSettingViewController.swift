@@ -57,6 +57,18 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         
         
     }
+    func displayLogoutAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction((UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            self.ref.unauth()
+            self.dismissViewControllerAnimated(true, completion: nil)
+            
+        })))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     
     // close keyboard when touches began
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -115,7 +127,9 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
                         // Email changed succ
                         
                         
-                        self.displayAlert("Succeed!", message: "You have successfully changed your user email")
+                        self.displayLogoutAlert("Succeed!", message: "You have successfully changed your user email")
+                        
+
                         
                         
                     }
@@ -198,6 +212,13 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         
         self.presentViewController(alert, animated: true, completion: nil)
         
+    }
+    
+    func logout()
+    {
+        ref.unauth()
+        self.dismissViewControllerAnimated(true, completion: nil)
+    
     }
 
     /*
