@@ -47,11 +47,11 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
     @IBAction func favorite(sender: UIButton) {
         fav = !fav
         if fav {
-            let image = UIImage(named: "favourite_unselected_icon")
+            let image = UIImage(named: "favourite_selected_icon")
             sender.setImage(image, forState: UIControlState.Normal)
         }
         else {
-            let image = UIImage(named: "favourite_selected_icon")
+            let image = UIImage(named: "favourite_unselected_icon")
             sender.setImage(image, forState: UIControlState.Normal)
         }
     }
