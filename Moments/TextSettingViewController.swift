@@ -32,6 +32,8 @@ class TextSettingViewController : UIViewController,
     private var pickerPresent: Bool!
     private var textFontName: UIButton!
     
+    private var preview: UILabel!
+    
     private var textColour: UIButton!
     private var colourPicker: ColourPickerViewController!
     
@@ -67,11 +69,11 @@ class TextSettingViewController : UIViewController,
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
 
         let groupFirstY: CGFloat = 90.0
-        let groupHeight: CGFloat = 120.0
+        let groupHeight: CGFloat = 95.0
         let groupNum: Int = 4
         let headerSize: CGFloat = 21.0
         let lineHeight: CGFloat = 3.0
-        let contentFrame = CGRectMake(inset,0, windowWidth - 2 * inset, 40.0)
+        let contentFrame = CGRectMake(inset,0, windowWidth - 2 * inset, 25.0)
         
         let groupHeader: [String] = ["Size", "Colour", "Font", "Alignment"]
         var groupContent: [UIView] = [UIView]()
@@ -86,13 +88,33 @@ class TextSettingViewController : UIViewController,
         groupContent.append(fontContent)
         groupContent.append(alignmentContent)
 
+        var maxY: CGFloat = 0.0
+        
         for var count = 0; count < groupNum; count++ {
             let y = groupFirstY + CGFloat(count) * groupHeight
             let groupView = UIHelper.groupWithHeader(groupHeader[count], headerSize: headerSize, lineHeight: lineHeight, inset: inset, y: y, content: groupContent[count])
+            maxY = groupView.frame.maxY
             self.view.addSubview(groupView)
         }
+        
+        fontNamePicker.backgroundColor = UIColor.customBackgroundColor()
+        
+        initPreview(maxY)
+        
+        
     }
     
+    
+    private func initPreview(maxY: CGFloat) {
+        preview = UILabel(frame: CGRectMake(40, maxY + 15.0, windowWidth - 80.0, windowHeight - maxY - 30.0))
+        preview.backgroundColor = UIColor.whiteColor()
+        preview.text = "Sample Text 1"
+        preview.font = textAttribute.font
+        preview.textColor = textAttribute.colour
+        preview.textAlignment = textAttribute.alignment
+        
+        self.view.addSubview(preview)
+    }
     private func initSizeContent(contentFrame: CGRect) -> UIView {
         let largeTextFont = UIFont(name: "HelveticaNeue-Bold", size: 30.0)!
         let smallTextFont = UIFont(name: "HelveticaNeue-Bold", size: 15.0)!
@@ -117,12 +139,12 @@ class TextSettingViewController : UIViewController,
 
         
         let sliderOrigin = CGPointMake(smallTextLabel.frame.maxX + 5.0,0)
-        let sliderWidth = largeTextLabel.frame.minX - smallTextLabel.frame.maxX - 5
+        let sliderWidth = largeTextLabel.frame.minX - smallTextLabel.frame.maxX - 10.0
         let sliderSize = CGSizeMake(sliderWidth,sliderHeight)
         
         textFontSizeSlider = UISlider(frame: CGRect(origin: sliderOrigin, size: sliderSize))
-        textFontSizeSlider.minimumValue = 5.0
-        textFontSizeSlider.maximumValue = 80.0
+        textFontSizeSlider.minimumValue = 10.0
+        textFontSizeSlider.maximumValue = 70.0
         textFontSizeSlider.value = Float(textAttribute.font.pointSize)
         textFontSizeSlider.continuous = true
         sliderRange = CGFloat(textFontSizeSlider.maximumValue - textFontSizeSlider.minimumValue)
@@ -159,12 +181,14 @@ class TextSettingViewController : UIViewController,
         for familyName in fontFamilyNames {
             let names = UIFont.fontNamesForFamilyName(familyName)
             for name in names {
+
                 if name.componentsSeparatedByString("-").count == 1 {
                     fontData.append(name)
                 }
             }
         }
-
+        
+        fontData.sortInPlace()
         textFontName = ButtonHelper.whiteTextButton("", frame: contentFrame, target: self, action: "changeFontName")
         textFontName.backgroundColor = UIColor.whiteColor()
         
@@ -318,27 +342,18 @@ class TextSettingViewController : UIViewController,
         pickerView.removeFromSuperview()
     }
     
-    
-    /*func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-    let titleData = fontData[row]
-    let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 26.0)!,NSForegroundColorAttributeName:UIColor.blueColor()])
-    return myTitle
-    }*/
-    
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
         var pickerLabel = view as! UILabel!
-        if view == nil {  //if no label there yet
+        if view == nil {
             pickerLabel = UILabel()
-            //color the label's background
-            pickerLabel.backgroundColor = UIColor.whiteColor()
+            pickerLabel.backgroundColor = UIColor.customGreenColor()
         }
         let titleData = fontData[row]
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 26.0)!,NSForegroundColorAttributeName:UIColor(red: CGFloat(8/255.0), green: CGFloat(164/255.0), blue: CGFloat(179/255.0), alpha: 1.0)])
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 26.0)!,NSForegroundColorAttributeName:UIColor.whiteColor()])
         pickerLabel!.attributedText = myTitle
         pickerLabel!.textAlignment = .Center
-        
+
         return pickerLabel
-        
     }
     
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -346,7 +361,7 @@ class TextSettingViewController : UIViewController,
     }
     
     func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return self.view.frame.width - 80
+        return self.view.frame.width - 40
     }
     
 }

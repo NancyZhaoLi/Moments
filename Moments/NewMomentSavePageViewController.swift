@@ -132,10 +132,6 @@ class NewMomentSavePageViewController: UIViewController,
     }
     
     
-    
-    
-    
-    
     /*func setMomentTitle(title: String) {
         momentTitle.text = title
     }

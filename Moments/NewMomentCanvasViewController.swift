@@ -74,7 +74,7 @@ class NewMomentCanvasViewController: UIViewController,
     private func initCanvas() {
         let toolBarHeight: CGFloat = 60.0
         
-        canvas = UIScrollView(frame: CGRectMake(0,-60.0,windowWidth, windowHeight - toolBarHeight))
+        canvas = UIScrollView(frame: CGRectMake(0,0,windowWidth, windowHeight - toolBarHeight))
         canvas.backgroundColor = UIColor.clearColor()
         canvas.userInteractionEnabled = true
         canvas.multipleTouchEnabled = true
@@ -84,16 +84,11 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     private func initUI() {
-        
-        
-        
         addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
         
         initNavigatinButtons()
         
         let toolBar = initToolbar()
-        
-
         view.addSubview(toolBar)
     }
     

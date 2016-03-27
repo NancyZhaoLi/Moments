@@ -30,7 +30,7 @@ class Moment: NSManagedObject {
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: context)
             setMomentBackgroundColour(backgroundColour)
-            setMomentDate()
+            setMomentDate(nil)
             setMomentFavourite(favourite)
             setMomentId()
             setMomentTitle(title)
@@ -41,7 +41,28 @@ class Moment: NSManagedObject {
             return nil
         }
     }
+    
+    init?(backgroundColour: UIColor, date: NSDate, favourite: Bool, title: String, category: Category) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
+        
+        if let entity = entity {
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
+            setMomentBackgroundColour(backgroundColour)
+            setMomentDate(date)
+            setMomentFavourite(favourite)
+            setMomentId()
+            setMomentTitle(title)
+            setMomentCategory(category)
+        } else {
+            super.init()
+            print("ERROR: entity not found for Moment")
+            return nil
+        }
 
+    }
+    
     func getBackgroundColour() -> UIColor {
         return self.backgroundColour as! UIColor
     }
@@ -50,8 +71,12 @@ class Moment: NSManagedObject {
         self.backgroundColour = backgroundColour
     }
     
-    private func setMomentDate() {
-        self.date = NSDate()
+    private func setMomentDate(date: NSDate? ) {
+        if let date = date {
+            self.date = date
+        } else {
+            self.date = NSDate()
+        }
     }
     
     func getDate() -> NSDate {
