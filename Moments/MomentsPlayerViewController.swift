@@ -33,6 +33,15 @@ import Photos
         
         let fileURL = NSURL(fileURLWithPath: path)
         webView.loadHTMLString("<iframe width = \" \(self.webView.frame.width*3) \" height = \" \(self.webView.frame.height*3)\" src = \"\(fileURL)\" </iframe>", baseURL: nil)
+        
+        let audioAsset = AVURLAsset(URL: fileURL)
+        let audioDuration = audioAsset.duration;
+        let audioDurationSeconds = CMTimeGetSeconds(audioDuration);
+        if (audioDurationSeconds < 1.5){
+            let alert = UIAlertController(title: "Oh no!", message: "You don't have any moments created within that time range containing images, use a different time range or add more moments so we can generate a better video for you.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {

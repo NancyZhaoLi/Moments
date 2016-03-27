@@ -620,7 +620,7 @@
 				TargetAttributes = {
 					769DD7F01C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = ZZ9R9MP283;
+						DevelopmentTeam = A4782Z5W32;
 					};
 					769DD8071C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -957,7 +957,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Moments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Moments.cs446.winter2016;
+				PRODUCT_BUNDLE_IDENTIFIER = com.momentsstory.Momentss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moments/Moments-Bridging-Header.h";
@@ -975,7 +975,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Moments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Moments.cs446.winter2016;
+				PRODUCT_BUNDLE_IDENTIFIER = com.momentsstory.Momentss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moments/Moments-Bridging-Header.h";
