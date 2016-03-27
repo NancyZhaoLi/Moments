@@ -95,10 +95,42 @@ class Category: NSManagedObject {
                 try context.save()
                 return true
             } catch {
-                print("ERROR: fail to delete moment")
+                print("ERROR: fail to delete category")
             }
         }
         return false
+    }
+    
+    
+    
+    static func getUncategorized() -> Category? {
+        if let uncategorized = fetchCategoryGivenName("Uncategorized") {
+            return uncategorized
+        }
+        
+        return nil
+    }
+    
+    static func fetchCategoryGivenName(name: String) -> Category? {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestCategory = NSFetchRequest(entityName: "Category")
+        requestCategory.predicate = NSPredicate(format: "name = %@", name)
+        requestCategory.returnsObjectsAsFaults = false
+        requestCategory.fetchLimit = 1
+        
+        do {
+            let results = try context.executeFetchRequest(requestCategory) as! [Category]
+            if !results.isEmpty {
+                let result = results[0]
+                return result
+            }
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+        return nil
     }
     
 }

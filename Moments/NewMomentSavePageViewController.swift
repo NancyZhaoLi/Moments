@@ -21,6 +21,12 @@ class NewMomentSavePageViewController: UIViewController,
 
     @IBOutlet weak var momentTitleDisplay: UITextField!
     @IBOutlet weak var categoryList: UITableView!
+    @IBOutlet weak var favourite: UIButton!
+    
+    
+    @IBAction func changeFavourite(sender: AnyObject) {
+    }
+
     
     @IBAction func newCategory(sender: AnyObject) {
         let newCategoryVC = NewCategoryViewController(delegate: self)
