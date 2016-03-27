@@ -61,9 +61,15 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     }
 
     func getMomentsInCategory() {
-        for moment in (category?.getAllSavedMoments())! {
-            print("moment in category")
-            moments.append(moment)
+        
+        if category!.id != 1 {
+            
+            for moment in (category?.getAllSavedMoments())! {
+                print("moment in category")
+                moments.append(moment)
+            }
+        } else {
+            moments = CoreDataFetchHelper.fetchFavouriteMomentsFromCoreData()
         }
     }
     
