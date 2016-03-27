@@ -18,14 +18,24 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     private var categorySnapshot: UIView?
     // the indexPath of the category cell currently moving
     private var beganIndexPath: NSIndexPath?
+    let searchController = UISearchController(searchResultsController: nil)
    
     var categories = [Category]()
+    var filteredCategories = [Category]()
     var categoryIdIndex: CategoryIdIndexEntry?
     
     var width: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search by category's title"
+        searchController.hidesNavigationBarDuringPresentation = false
+        definesPresentationContext = true
+        navigationItem.titleView = searchController.searchBar
+        searchController.searchBar.sizeToFit()
         
         getCategoriesFromCoreData()
         getCategoryMapsFromCoreData()
@@ -75,6 +85,12 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     // get categories from core data
     func getCategoriesFromCoreData(){
         categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+    }
+    func filterContentForSearchText(searchText: String, scope: String = "All"){
+        filteredCategories = categories.filter{category in
+        return category.name.lowercaseString.containsString(searchText.lowercaseString)}
+        categoriesCollectionView.reloadData()
+    
     }
     
     func getCategoryMapsFromCoreData() {
@@ -315,16 +331,25 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredCategories.count
+        }
         return categories.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = categoriesCollectionView.dequeueReusableCellWithReuseIdentifier("CategoryViewCell", forIndexPath: indexPath) as! CategoryViewCell
-        
+        let category: Category
+        if searchController.active && searchController.searchBar.text != "" {
+            category = filteredCategories[indexPath.row]
+        }else
+        {
+            category = categories[indexPath.row]
+        }
         cell.deleting = editing
         cell.frame.size.width = width!
-        cell.category = categories[indexPath.row]
+        cell.category = category
         
         return cell
     }
@@ -390,5 +415,11 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         presentViewController(newCategoryVC, animated: true, completion: nil)
     }
     
+}
+
+extension CategoriesViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }
 
