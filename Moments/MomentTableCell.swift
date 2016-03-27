@@ -26,6 +26,8 @@ class MomentTableCell: UITableViewCell {
     
     @IBOutlet weak var momentImage: UIImageView!
     
+    var image_name = "bubble2"
+    
     var showOption: Int?
     
     override func awakeFromNib() {
@@ -73,11 +75,11 @@ class MomentTableCell: UITableViewCell {
     func constructSquareImageView(showOption: Int) {
         
         if (showOption == 1) {
-            squareImageView.image = UIImage(named: "square")
+            squareImageView.image = UIImage(named: image_name)
             squareImageView.frame = CGRect(x: 60, y: 10, width: self.frame.width - 75 , height: 170)
             
         } else {
-            squareImageView.image = UIImage(named: "square")
+            squareImageView.image = UIImage(named: image_name)
             squareImageView.frame = CGRect(x: 60, y: 10, width: self.frame.width - 75 , height: 100)
         }
         
