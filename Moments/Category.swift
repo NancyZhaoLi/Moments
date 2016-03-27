@@ -101,8 +101,6 @@ class Category: NSManagedObject {
         return false
     }
     
-    
-    
     static func getUncategorized() -> Category? {
         if let uncategorized = fetchCategoryGivenName("Uncategorized") {
             return uncategorized
@@ -131,6 +129,27 @@ class Category: NSManagedObject {
         }
         
         return nil
+    }
+    
+    static func fetchUncategorized() -> Category {
+        return fetchCategoryGivenName("Uncategorized")!
+    }
+    
+    static func fetchOtherCategories() -> [Category] {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestCategories = NSFetchRequest(entityName: "Category")
+        requestCategories.predicate = NSPredicate(format: "name != %@ && name != %@", "Uncategorized", "Favourite")
+        requestCategories.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(requestCategories) as! [Category]
+            
+            return results
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
     }
     
 }

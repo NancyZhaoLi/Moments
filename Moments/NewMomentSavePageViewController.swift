@@ -16,51 +16,52 @@ class NewMomentSavePageViewController: UIViewController,
     
     var canvas : NewMomentCanvasViewController?
     var manager : NewMomentManager?
-    var categories : [Category] = [Category]()
-    var selectedCell: UITableViewCell?
+    private var categories : [Category] = [Category]()
+    private var selectedCell: UITableViewCell?
+    private var selectedCategory: Category?
 
-    @IBOutlet weak var momentTitleDisplay: UITextField!
-    @IBOutlet weak var categoryList: UITableView!
-    @IBOutlet weak var favourite: UIButton!
-    
-    
-    @IBAction func changeFavourite(sender: AnyObject) {
-    }
-
-    
-    @IBAction func newCategory(sender: AnyObject) {
-        let newCategoryVC = NewCategoryViewController(delegate: self)
-        presentViewController(newCategoryVC, animated: true, completion: nil)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.manager!.setSavePage(self)
-        self.momentTitleDisplay.delegate = self
-        
-        displayCategories()
-        
-        self.categoryList.separatorStyle = UITableViewCellSeparatorStyle.None
-        self.categoryList.showsVerticalScrollIndicator = false
-        self.categoryList.backgroundColor = UIColor.clearColor()
-    }
-    
-    func displayCategories() {
-        self.categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
-        
-       /* for categoryMO in categoriesMO {
-            cate
-            categories.append(category)
-            //print("category name: " + category.name)
-        }*/
-        
-        //print("number of categories: " + String(categories.count))
-    }
+    @IBOutlet weak private var momentTitle: UITextField!
+    @IBOutlet weak private var categoryList: UITableView!
+    @IBOutlet weak private var favourite: UIButton!
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let manager = self.manager {
+            self.manager!.setSavePage(self)
+            self.momentTitle.delegate = self
+            
+            initCategoryListUI()
+            displayCategories()
+        } else {
+            fatalError("Manager not set for savePage")
+        }
+    }
+    
+    private func initCategoryListUI() {
+        self.categoryList.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        self.categoryList.showsVerticalScrollIndicator = false
+        self.categoryList.backgroundColor = UIColor.clearColor()
+    }
+    
+    private func displayCategories() {
+        categories = Category.fetchOtherCategories()
+        let uncategorized = Category.fetchUncategorized()
+        categories.insert(uncategorized, atIndex: 0)
+        for var i = 0; i < categories.count; i++ {
+            let category = categories[i]
+            if category.getName() == selectedCategory!.getName() {
+                let index = NSIndexPath(forRow: i, inSection: 0)
+                categoryList.selectRowAtIndexPath(index, animated: false, scrollPosition: .Middle)
+                break
+            }
+        }
+    }
+
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "saveNewMoment"{
             self.manager!.saveMomentEntry()
@@ -73,43 +74,107 @@ class NewMomentSavePageViewController: UIViewController,
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
 
-    func setDefaultMomentTitle(title: String) {
-        momentTitleDisplay.placeholder = title
+    /*********************************************************************************
+     
+     FUNCTIONS CALLED BY MANAGER
+     *********************************************************************************/
+    func setInitialMomentTitle(title: String) {
+        momentTitle.placeholder = title
     }
     
-    func setDefaultMomentCategory(category: String) {
-        //momentCategoryDisplay.placeholder = category
+    func setInitialMomentCategory(category: Category?) {
+        if let category = category {
+            self.selectedCategory = category
+        }
     }
     
-    func setMomentTitle(title: String) {
-        momentTitleDisplay.text = title
+    func setInitialMomentFavourite(favourite: Bool) {
+        if favourite {
+            selectFavourite()
+        } else {
+            cancelFavourite()
+        }
+    }
+    
+    func getTitle() -> String {
+        if let title = self.momentTitle.text {
+            if title.isEmpty {
+                return self.momentTitle.placeholder!
+            }
+            return title
+        } else {
+            print("no title text")
+            return self.momentTitle.placeholder!
+        }
+    }
+    
+    /*********************************************************************************
+     
+     FAVOURITE
+     *********************************************************************************/
+
+    func selectFavourite() {
+        print("select favourite")
+        favourite.setImage(UIImage(named: "favourite_selected_icon.png")!, forState: .Normal)
+        favourite.removeTarget(self, action: "selectFavourite")
+        favourite.addTarget(self, action: "cancelFavourite")
+        manager!.selectFavourite()
+    }
+    
+    func cancelFavourite() {
+        print("unselect favourite")
+        favourite.setImage(UIImage(named: "favourite_unselected_icon.png")!, forState: .Normal)
+        favourite.removeTarget(self, action: "cancelFavourite")
+        favourite.addTarget(self, action: "selectFavourite")
+        manager!.cancelFavourite()
+    }
+    
+    
+    
+    
+    
+    
+    /*func setMomentTitle(title: String) {
+        momentTitle.text = title
     }
     
     func setMomentCategory(category: String) {
         //momentCategoryDisplay.text = category
+    }*/
+    
+
+    
+
+    
+    /*********************************************************************************
+     
+     NEW CATEGORY
+     *********************************************************************************/
+    
+    @IBAction func newCategory(sender: AnyObject) {
+        let newCategoryVC = NewCategoryViewController(delegate: self)
+        presentViewController(newCategoryVC, animated: true, completion: nil)
+    }
+    
+    /*********************************************************************************
+     
+     FUNCTION CALLED BY HOME PAGE AFTER SAVING A MOMENT
+     *********************************************************************************/
+    func isNewMoment() -> Bool {
+        return manager!.isNewMoment
     }
     
     func getMomentEntry() -> Moment {
         return self.manager!.moment!
     }
     
-    func getTitle() -> String {
-        if let title = self.momentTitleDisplay.text {
-            if title.isEmpty {
-                return self.momentTitleDisplay.placeholder!
-            }
-            return title
-        } else {
-            print("no title text")
-            return self.momentTitleDisplay.placeholder!
-        }
-    }
     
-    func isNewMoment() -> Bool {
-        return manager!.isNewMoment
-    }
-    
+    /*********************************************************************************
+     
+     DELEGATE FUNCTIONS
+     *********************************************************************************/
     // NewCategoryViewController Delegate
     func newCategory(controller: NewCategoryViewController, category: Category) {
         controller.dismissViewControllerAnimated(true, completion: nil)
@@ -140,7 +205,7 @@ class NewMomentSavePageViewController: UIViewController,
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let previousCell = self.selectedCell {
+        if let previousCell = selectedCell {
             previousCell.backgroundColor = UIColor.whiteColor()
             previousCell.textLabel?.textColor = UIColor.blackColor()
         }
@@ -148,8 +213,8 @@ class NewMomentSavePageViewController: UIViewController,
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             cell.backgroundColor = UIColor.blueColor()
             cell.textLabel?.textColor = UIColor.whiteColor()
-            self.selectedCell = cell
-            self.manager!.momentCategory = cell.textLabel!.text!
+            selectedCell = cell
+            manager!.momentCategory = categories[indexPath.row]
         }
     }
     

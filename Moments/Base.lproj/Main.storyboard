@@ -1709,6 +1709,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7KS-5Y-OtM">
+                                <rect key="frame" x="84" y="93" width="218" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gtc-3z-ubu">
                                 <rect key="frame" x="20" y="93" width="56" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -1753,15 +1758,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5W-Ym-Yon">
                                 <rect key="frame" x="310" y="85" width="45" height="45"/>
                                 <state key="normal" title="Button" image="favourite_unselected_icon"/>
-                                <connections>
-                                    <action selector="changeFavourite:" destination="nYU-nk-Mw4" eventType="touchUpInside" id="yPK-AS-hNR"/>
-                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7KS-5Y-OtM">
-                                <rect key="frame" x="84" y="93" width="218" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -1778,7 +1775,7 @@
                     <connections>
                         <outlet property="categoryList" destination="Wvc-Ya-f3e" id="m6d-eo-Mpk"/>
                         <outlet property="favourite" destination="F5W-Ym-Yon" id="ITX-DX-WAD"/>
-                        <outlet property="momentTitleDisplay" destination="7KS-5Y-OtM" id="1ik-7u-rqG"/>
+                        <outlet property="momentTitle" destination="7KS-5Y-OtM" id="aZV-tc-kth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xU-WM-tPl" userLabel="First Responder" sceneMemberID="firstResponder"/>

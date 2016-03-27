@@ -24,6 +24,6 @@ extension Moment {
     @NSManaged internal var containedStickerItem: NSSet?
     @NSManaged internal var containedTextItem: NSSet?
     @NSManaged internal var containedVideoItem: NSSet?
-    @NSManaged var inCategory: Category?
+    @NSManaged var inCategory: Category
 
 }

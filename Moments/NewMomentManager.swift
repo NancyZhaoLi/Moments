@@ -44,7 +44,7 @@ class NewMomentManager {
     var momentDate : NSDate = NSDate()
     var momentTitle : String = ""
     var momentFavourite : Bool = false
-    var momentCategory : String = "Uncategorized"
+    var momentCategory : Category = Category.fetchUncategorized()
     var momentColour : UIColor = UIColor.whiteColor()
     var idPrefix : String = ""
     var idSuffix : String = ""
@@ -70,9 +70,16 @@ class NewMomentManager {
         setDefaultTitle()
     }
     
+    func setSavePage(savePage: NewMomentSavePageViewController) {
+        self.savePage = savePage
+        self.savePage!.setInitialMomentTitle(self.momentTitle)
+        self.savePage!.setInitialMomentCategory(self.momentCategory)
+        self.savePage!.setInitialMomentFavourite(self.momentFavourite)
+    }
+    
     /*********************************************************************************
      
-        LOADING FROM PAST MOMENTS
+        LOADING MOMENT FUNCTIONS
      *********************************************************************************/
     
     func loadMoment(moment: Moment) {
@@ -80,12 +87,9 @@ class NewMomentManager {
         momentDate = moment.getDate()
         momentTitle = moment.getTitle()
         momentFavourite = moment.getFavourite()
-
-        if let category = moment.getCategory() {
-            momentCategory = category.getName()
-        }
-   
+        momentCategory = moment.getCategory()
         momentColour = moment.getBackgroundColour()
+        
         canvasVC.view.backgroundColor = self.momentColour
         idPrefix = String(moment.getMomentId() / Int64(10000))
         idSuffix = String(moment.getMomentId() % Int64(10000))
@@ -151,7 +155,7 @@ class NewMomentManager {
     
     /*********************************************************************************
      
-     NEW MOMENT ELEMENTS
+     NEW MOMENT ITEMS
      
      *********************************************************************************/
     
@@ -192,41 +196,22 @@ class NewMomentManager {
         
         return newStickerVC
     }
-    
-    
-    /*
-    func addAudioItemEntry(entry: AudioItemEntry) {
-    debugBegin("addAudioItemEntry")
-    self.moment!.addAudioItemEntry(entry)
-    debugEnd("addAudioItemEntry")
-    }
-    
-    func addVideoItemEntry(entry: VideoItemEntry) {
-    debugBegin("addVideoItemEntry")
-    self.moment!.addVideoItemEntry(entry)
-    debugEnd("addVideoItemEntry")
-    }
-    
-    func addStickerItemEntry(entry: StickerItemEntry) {
-    debugBegin("addStickerItemEntry")
-    self.moment!.addStickerItemEntry(entry)
-    debugEnd("addStickerItemEntry")
-    }*/
 
-    func setSavePage(savePage: NewMomentSavePageViewController) {
-        self.savePage = savePage
-        self.savePage!.setDefaultMomentTitle(self.momentTitle)
-        self.savePage!.setDefaultMomentCategory(self.momentCategory)
-    }
+
     
     func selectFavourite() {
         momentFavourite = true
     }
     
-    func unselectFavourite() {
+    func cancelFavourite() {
         momentFavourite = false
     }
-
+    
+    
+    /*********************************************************************************
+     
+     FUNCTIONS CALLED FOR NEW MOMENT
+     *********************************************************************************/
     func setDefaultTitle() {
         self.momentTitle = "Moment - " + self.momentDate.day + "/" + self.momentDate.month + "/" + self.momentDate.longYear
     }
@@ -250,9 +235,8 @@ class NewMomentManager {
      *********************************************************************************/
 
     func saveMomentEntry() {
-        updateTitle()
-        //canvasVC.trashController!.trashView.removeFromSuperview()
-        let category = CoreDataFetchHelper.fetchCategoryGivenName(self.momentCategory)
+        self.momentTitle = self.savePage!.getTitle()
+        let category = momentCategory
         let backgroundColour = canvasVC.view.backgroundColor!
         let favourite = momentFavourite
         let title = momentTitle
@@ -332,17 +316,13 @@ class NewMomentManager {
     }
     
     
-    func selectedCategoryName() -> String {
+    /*func selectedCategoryName() -> String {
         return self.savePage!.selectedCell!.textLabel!.text!
-    }
-    
-    func updateTitle() {
-        self.momentTitle = self.savePage!.getTitle()
     }
     
     func getId() -> Int64 {
         let id = Int64(self.idPrefix + self.idSuffix)!
         return id
-    }
+    }*/
     
 }

@@ -36,8 +36,10 @@ class NewMomentCanvasViewController: UIViewController,
     var addItemPopover: NewItemViewController?
     var center: CGPoint = CGPointMake(windowWidth/2.0, windowHeight/2.0)
     
+    // Button to go to savePage
     var nextButton: UIButton! = UIButton()
     
+    // Toolbar Icons
     var addButton: UIButton! = UIButton()
     var viewButton: UIButton! = UIButton()
     var settingButton: UIButton! = UIButton()
@@ -50,30 +52,23 @@ class NewMomentCanvasViewController: UIViewController,
     var enableInteraction: Bool = false
 
     override func viewDidLoad() {
-        //print("begin")
         super.viewDidLoad()
-        //print("after super.viewDidLoad")
         initCanvas()
-        //print("after init Canvas")
         
         if let moment = loadedMoment {
             manager = NewMomentManager(canvasVC: self, moment: moment)
             view.backgroundColor = moment.getBackgroundColour()
-            //print("after loading Moment")
         } else {
             manager = NewMomentManager(canvasVC: self)
             view.backgroundColor = UIColor.customBackgroundColor()
-            //print("after loading new moment")
         }
         
         initUI()
-        //print("after initUI")
         
         if self.loadedMoment != nil {
             selectViewMode()
-            //print("after selectViewMode")
         }
-        //print("end")
+        
     }
     
     private func initCanvas() {
@@ -89,19 +84,33 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     private func initUI() {
-        let buttonSize: CGFloat = 40.0
-        let toolbarItemCenters = ToolbarHelper.getCenter(30.0, totalItems: 4, inset: 20.0)
+        
+        
         
         addItemPopover = NewItemViewController(sourceView: self.view, delegate: self)
         
+        initNavigatinButtons()
+        
+        let toolBar = initToolbar()
+        
+
+        view.addSubview(toolBar)
+    }
+    
+    private func initNavigatinButtons() {
         //Navigation Buttons
         let cancelButton = NavigationHelper.leftNavButton("Cancel", target: self, action: "cancelAddNewMoment")
         nextButton = NavigationHelper.rightNavButton("Next", target: self, action: "goToSavePage")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: nextButton)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
+    }
+    
+    private func initToolbar() -> UIToolbar {
+        let toolbarItemCenters = ToolbarHelper.getCenter(30.0, totalItems: 4, inset: 20.0)
+        let buttonSize: CGFloat = 40.0
+
         
-        //Toolbar Buttons
         trashButton = UIButton(center: toolbarItemCenters[3], width: buttonSize)
         cancelTrash()
         
@@ -112,6 +121,7 @@ class NewMomentCanvasViewController: UIViewController,
         
         settingButton = ButtonHelper.imageButton(settingButtonImageTitle, center: toolbarItemCenters[2], imageSize: buttonSize, target: self, action: "setting")
 
+        
         // Toolbar
         let toolBarHeight: CGFloat = 60.0
         let toolBar = UIToolbar(frame: CGRectMake(0,windowHeight - toolBarHeight, windowWidth, toolBarHeight))
@@ -121,10 +131,9 @@ class NewMomentCanvasViewController: UIViewController,
         toolBar.addSubview(viewButton)
         toolBar.addSubview(settingButton)
         toolBar.addSubview(trashButton)
-        view.addSubview(toolBar)
+        
+        return toolBar
     }
-    
-
     
     /*private func initTrash() {
         let trashImage = UIHelper.resizeImage(UIImage(named: "text.png")!, newWidth: 25.0)
@@ -150,18 +159,21 @@ class NewMomentCanvasViewController: UIViewController,
             let vc = segue.destinationViewController as! StickerViewController
             vc.delegate = self
         } else if segue.identifier == "showSavePage" {
-            self.savePage = segue.destinationViewController as? NewMomentSavePageViewController
-            self.savePage!.canvas = self
-            self.savePage!.manager = self.manager
-            nextButton.removeTarget(self, action: "goToSavePage", forControlEvents: .TouchUpInside)
-            nextButton.addTarget(self, action: "loadSavePage", forControlEvents: .TouchUpInside)
-        } else if segue.identifier == "newAudioRecording" {
+            if let savePage = segue.destinationViewController as? NewMomentSavePageViewController {
+                savePage.canvas = self
+                savePage.manager = self.manager
+                nextButton.removeTarget(self, action: "goToSavePage", forControlEvents: .TouchUpInside)
+                nextButton.addTarget(self, action: "loadSavePage", forControlEvents: .TouchUpInside)
+                self.savePage = savePage
+            }
+        }
+        /*else if segue.identifier == "newAudioRecording" {
             let vc = segue.destinationViewController as! AudioRecorderViewController
             vc.delegate = self
             let popoverVC = vc.popoverPresentationController
             popoverVC?.delegate = self
             popoverVC?.sourceRect = CGRectMake(20,20,0,0)
-        }
+        }*/
     }
     
     func presentViewController(viewControllerToPresent: UIViewController, animated flag: Bool) {
@@ -174,7 +186,7 @@ class NewMomentCanvasViewController: UIViewController,
     
     /*******************************************************************
      
-        BUTTON ACTIONS
+        ADD BUTTON FUNCTIONS
      
      ******************************************************************/
     func addItem() {
@@ -183,6 +195,169 @@ class NewMomentCanvasViewController: UIViewController,
             presentViewController(popover, animated: true, completion: nil)
         }
     }
+    
+    func cancelAddNewMoment() {
+        self.dismiss(true)
+    }
+    
+    /*******************************************************************
+     
+     ADD ITEM FUNCTIONS
+     
+     ******************************************************************/
+    func addText() {
+        let newText = EditTextItemViewController(delegate: self, text: nil, textAttribute: nil)
+        presentViewController(newText, animated: true)
+    }
+    
+    func addImageFromGallery() {
+        addImage(.PhotoLibrary, allowsEditing: true)
+    }
+    
+    func addImageFromCamera() {
+        addImage(.Camera, allowsEditing: false)
+    }
+    
+    func addAudioFromRecorder(){
+        let audioRecorder = AudioRecorderViewController(delegate: self)
+        presentViewController(audioRecorder, animated: true)
+        
+        //self.performSegueWithIdentifier("newAudioRecording", sender: self)
+    }
+    
+    func addAudioFromMusic() {
+        let musicPicker = MPMediaPickerController(mediaTypes: .AnyAudio)
+        musicPicker.delegate = self
+        musicPicker.allowsPickingMultipleItems = false
+        musicPicker.showsCloudItems = false
+        
+        presentViewController(musicPicker, animated: true, completion: nil)
+    }
+    
+    func addSticker() {
+        self.performSegueWithIdentifier("addSticker", sender: self)
+    }
+    
+    func addVideoFromCamera(){
+        
+    }
+    
+    func addVideoFromYoutube() {
+        
+    }
+    
+    private func addImage(sourceType: UIImagePickerControllerSourceType, allowsEditing: Bool) {
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = sourceType
+        image.allowsEditing = allowsEditing
+        presentViewController(image, animated: true, completion: nil)
+    }
+    
+    
+    func addNewViewController(vc: UIViewController) {
+        self.canvas.addSubview(vc.view)
+        initNewViewController(vc)
+    }
+    
+    func addNewViewController(vc: UIViewController, zPosition: Int) {
+        self.canvas.insertSubview(vc.view, atIndex: zPosition)
+        vc.view.layer.zPosition = 0.0
+        initNewViewController(vc)
+    }
+    
+    private func initNewViewController(vc: UIViewController) {
+        addTapToTrashGR(vc)
+        vc.view.addGestureRecognizer(dragItemGR())
+        if let textItemVC = vc as? TextItemViewController {
+            textItemVC.view.addGestureRecognizer(pinchTextItemGR())
+            textItemVC.view.addGestureRecognizer(rotateGR())
+        } else if let imageItemVC = vc as? ImageItemViewController {
+            imageItemVC.view.addGestureRecognizer(pinchItemGR())
+            imageItemVC.view.addGestureRecognizer(rotateGR())
+        } else if let stickerItemVC = vc as? StickerItemViewController {
+            stickerItemVC.view.addGestureRecognizer(pinchItemGR())
+        } else if let videoItemVC = vc as? VideoItemViewController {
+            videoItemVC.view.addGestureRecognizer(pinchItemGR())
+        }
+        
+        vc.view.multipleTouchEnabled = true
+        vc.view.userInteractionEnabled = enableInteraction
+        self.addChildViewController(vc)
+    }
+    
+    private func addTapToTrashGR(vc: UIViewController) {
+        let tapToTrash = tapToTrashGR()
+        tapToTrash.enabled = false
+        vc.view.addGestureRecognizer(tapToTrash)
+        if let text = vc as? TextItemViewController {
+            text.tapToTrashGR = tapToTrash
+        } else if let image = vc as? ImageItemViewController {
+            image.tapToTrashGR = tapToTrash
+        } else if let audio = vc as? AudioItemViewController {
+            //print("adding tapToTrash to audio")
+            audio.tapToTrashGR = tapToTrash
+            //audio.audioView.playerButton.addGestureRecognizer(tapToTrash)
+            //print("audio tapToTrashGR: \(audio.tapToTrashGR)")
+        } else if let video = vc as? VideoItemViewController {
+            video.tapToTrashGR = tapToTrash
+        } else if let sticker = vc as? StickerItemViewController {
+            sticker.tapToTrashGR = tapToTrash
+        }
+    }
+    
+    private func tapToTrashGR() -> UITapGestureRecognizer {
+        return UITapGestureRecognizer(target: self, action: "tapToTrash:")
+    }
+    
+    private func dragItemGR() -> UIPanGestureRecognizer {
+        return UIPanGestureRecognizer(target: self, action: "draggedView:")
+    }
+    
+    private func pinchItemGR() -> UIPinchGestureRecognizer {
+        return UIPinchGestureRecognizer(target: self, action: "pinchedView:")
+    }
+    
+    private func pinchTextItemGR() -> UIPinchGestureRecognizer {
+        return UIPinchGestureRecognizer(target: self, action: "pinchedTextView:")
+    }
+    
+    private func rotateGR() -> UIRotationGestureRecognizer {
+        return UIRotationGestureRecognizer(target: self, action: "rotateView:")
+    }
+    
+    /********************************************************************
+     
+     LOADING ITEM FUNCTIONS
+     
+     ******************************************************************
+    func loadText(textItem: TextItemViewController) {
+        self.addNewViewController(textItem)
+    }
+    
+    func loadImage(imageItem: ImageItemViewController) {
+        self.addNewViewController(imageItem)
+    }
+    
+    func loadAudio(audioItem: AudioItemViewController) {
+        self.addNewViewController(audioItem)
+    }
+    
+    func loadVideo(videoItem: VideoItemViewController) {
+        
+    }
+    
+    func loadSticker(stickerItem: StickerItemViewController) {
+        self.addNewViewController(stickerItem)
+    }
+
+*/
+    
+    /*******************************************************************
+     
+     VIEW BUTTON FUNCTIONS
+     
+     ******************************************************************/
     
     func cancelViewMode() {
         cancelTrash()
@@ -199,7 +374,7 @@ class NewMomentCanvasViewController: UIViewController,
         viewButton.addTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
         disableUserInteraction()
     }
-
+    
     func enableUserInteraction() {
         enableInteraction = true
         for vc in self.childViewControllers {
@@ -213,12 +388,25 @@ class NewMomentCanvasViewController: UIViewController,
             vc.view.userInteractionEnabled = false
         }
     }
+    
+    /*******************************************************************
+     
+     SETTING BUTTON FUNCTIONS
+     
+     ******************************************************************/
 
     func setting() {
         cancelTrash()
         //presentViewController(OtherCanvasOptionViewController(sourceView:settingButton, delegate: self), animated: true, completion: nil)
         setCanvasBackground()
     }
+
+
+    /*******************************************************************
+     
+     TRASH BUTTON FUNCTIONS
+     
+     ******************************************************************/
     
     func cancelTrash() {
         if trashButtonOn {
@@ -266,9 +454,11 @@ class NewMomentCanvasViewController: UIViewController,
         }
     }
     
-    func cancelAddNewMoment() {
-        self.dismiss(true)
-    }
+    /*******************************************************************
+     
+     OTHER SEGUE FUNCTIONS
+     
+     ******************************************************************/
     
     func goToSavePage() {
         performSegueWithIdentifier("showSavePage", sender: self)
@@ -280,155 +470,7 @@ class NewMomentCanvasViewController: UIViewController,
         }
     }
 
-    /*******************************************************************
-     
-        ADD ITEM FUNCTIONS
-     
-     ******************************************************************/
-    func addText() {
-        let newText = EditTextItemViewController(delegate: self, text: nil, textAttribute: nil)
-        presentViewController(newText, animated: true)
-    }
-    
-    private func addImage(sourceType: UIImagePickerControllerSourceType, allowsEditing: Bool) {
-        let image = UIImagePickerController()
-        image.delegate = self
-        image.sourceType = sourceType
-        image.allowsEditing = allowsEditing
-        presentViewController(image, animated: true, completion: nil)
-    }
-    
-    func addImageFromGallery() {
-        addImage(.PhotoLibrary, allowsEditing: true)
-    }
-    
-    func addImageFromCamera() {
-        addImage(.Camera, allowsEditing: false)
-    }
-    
-    func addAudioFromRecorder(){
-        let audioRecorder = AudioRecorderViewController(delegate: self)
-        presentViewController(audioRecorder, animated: true)
-        
-        //self.performSegueWithIdentifier("newAudioRecording", sender: self)
-    }
 
-    func addAudioFromMusic() {
-        let musicPicker = MPMediaPickerController(mediaTypes: .AnyAudio)
-        musicPicker.delegate = self
-        musicPicker.allowsPickingMultipleItems = false
-        musicPicker.showsCloudItems = false
-
-        presentViewController(musicPicker, animated: true, completion: nil)
-    }
-    
-    func addVideoFromCamera(){
-        
-    }
-    
-    func addVideoFromYoutube() {
-    
-    }
-    
-    func addSticker() {
-        self.performSegueWithIdentifier("addSticker", sender: self)
-    }
-
-    /*******************************************************************
-     
-     LOAD FUNCTIONS
-     
-     ******************************************************************/
-    func loadText(textItem: TextItemViewController) {
-        self.addNewViewController(textItem)
-    }
-    
-    func loadImage(imageItem: ImageItemViewController) {
-        self.addNewViewController(imageItem)
-    }
-    
-    func loadAudio(audioItem: AudioItemViewController) {
-        
-    }
-    
-    func loadVideo(videoItem: VideoItemViewController) {
-        
-    }
-    
-    func loadSticker(stickerItem: StickerItemViewController) {
-        self.addNewViewController(stickerItem)
-    }
-    
-    func addNewViewController(vc: UIViewController) {
-        self.canvas.addSubview(vc.view)
-        initNewViewController(vc)
-    }
-    
-    func addNewViewController(vc: UIViewController, zPosition: Int) {
-        self.canvas.insertSubview(vc.view, atIndex: zPosition)
-        vc.view.layer.zPosition = 0.0
-        initNewViewController(vc)
-    }
-    
-    private func initNewViewController(vc: UIViewController) {
-        addTapToTrashGR(vc)
-        vc.view.addGestureRecognizer(dragItemGR())
-        if let textItemVC = vc as? TextItemViewController {
-            textItemVC.view.addGestureRecognizer(pinchTextItemGR())
-            textItemVC.view.addGestureRecognizer(rotateGR())
-        } else if let imageItemVC = vc as? ImageItemViewController {
-            imageItemVC.view.addGestureRecognizer(pinchItemGR())
-            imageItemVC.view.addGestureRecognizer(rotateGR())
-        } else if let stickerItemVC = vc as? StickerItemViewController {
-            stickerItemVC.view.addGestureRecognizer(pinchItemGR())
-        } else if let videoItemVC = vc as? VideoItemViewController {
-            videoItemVC.view.addGestureRecognizer(pinchItemGR())
-        }
-        
-        vc.view.multipleTouchEnabled = true
-        vc.view.userInteractionEnabled = enableInteraction
-        self.addChildViewController(vc)
-    }
-    
-    func addTapToTrashGR(vc: UIViewController) {
-        let tapToTrash = tapToTrashGR()
-        tapToTrash.enabled = false
-        vc.view.addGestureRecognizer(tapToTrash)
-        if let text = vc as? TextItemViewController {
-            text.tapToTrashGR = tapToTrash
-        } else if let image = vc as? ImageItemViewController {
-            image.tapToTrashGR = tapToTrash
-        } else if let audio = vc as? AudioItemViewController {
-            //print("adding tapToTrash to audio")
-            audio.tapToTrashGR = tapToTrash
-            //audio.audioView.playerButton.addGestureRecognizer(tapToTrash)
-            //print("audio tapToTrashGR: \(audio.tapToTrashGR)")
-        } else if let video = vc as? VideoItemViewController {
-            video.tapToTrashGR = tapToTrash
-        } else if let sticker = vc as? StickerItemViewController {
-            sticker.tapToTrashGR = tapToTrash
-        }
-    }
-    
-    func tapToTrashGR() -> UITapGestureRecognizer {
-        return UITapGestureRecognizer(target: self, action: "tapToTrash:")
-    }
-    
-    func dragItemGR() -> UIPanGestureRecognizer {
-        return UIPanGestureRecognizer(target: self, action: "draggedView:")
-    }
-    
-    func pinchItemGR() -> UIPinchGestureRecognizer {
-        return UIPinchGestureRecognizer(target: self, action: "pinchedView:")
-    }
-    
-    func pinchTextItemGR() -> UIPinchGestureRecognizer {
-        return UIPinchGestureRecognizer(target: self, action: "pinchedTextView:")
-    }
-    
-    func rotateGR() -> UIRotationGestureRecognizer {
-        return UIRotationGestureRecognizer(target: self, action: "rotateView:")
-    }
 
     /*******************************************************************
     

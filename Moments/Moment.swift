@@ -93,7 +93,7 @@ class Moment: NSManagedObject {
         self.title = title
     }
     
-    func getCategory() -> Category? {
+    func getCategory() -> Category {
         return self.inCategory
     }
     

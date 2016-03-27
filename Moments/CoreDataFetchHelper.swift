@@ -110,7 +110,6 @@ class CoreDataFetchHelper {
         } catch {
             fatalError("Failure to fetch context: \(error)")
         }
-        
     }
     
     static func fetchCategoryGivenName(name: String) -> Category {
