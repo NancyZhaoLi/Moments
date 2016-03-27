@@ -26,7 +26,7 @@ class MomentTableCell: UITableViewCell {
     
     @IBOutlet weak var momentImage: UIImageView!
     
-    var image_name = "bubble2"
+    var image_name = "bubble1"
     
     var showOption: Int?
     
