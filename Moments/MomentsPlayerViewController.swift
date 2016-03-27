@@ -44,6 +44,13 @@ import Photos
         }
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        do {            let fileURL = NSURL(fileURLWithPath: path)
+            try NSFileManager.defaultManager().removeItemAtPath(path)
+        } catch {print("not clean1")}
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

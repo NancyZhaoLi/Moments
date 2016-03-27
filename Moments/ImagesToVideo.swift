@@ -22,8 +22,8 @@ class ImagesToVideo {
         let outputSize = CGSize(width: 750, height: 750)
         
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(fileURL)
-        } catch {}
+            try NSFileManager.defaultManager().removeItemAtPath(path)
+        } catch {print("not clean")}
     
         do {
             try videoWriter = AVAssetWriter(URL: fileURL, fileType: AVFileTypeMPEG4)
