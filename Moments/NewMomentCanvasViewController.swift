@@ -210,7 +210,7 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addImageFromCamera() {
-        addImage(.SavedPhotosAlbum, allowsEditing: false)
+        addImage(.Camera, allowsEditing: false)
     }
     
     func addAudioFromRecorder(){
@@ -241,11 +241,20 @@ class NewMomentCanvasViewController: UIViewController,
         
     }
     
-    private func addImage(sourceType: UIImagePickerControllerSourceType, allowsEditing: Bool) {
+    private func addImage(var sourceType: UIImagePickerControllerSourceType, allowsEditing: Bool) {
+        if !UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            sourceType = .PhotoLibrary
+        }
+        
         let image = UIImagePickerController()
         image.delegate = self
         image.sourceType = sourceType
         image.allowsEditing = allowsEditing
+        if sourceType == .Camera {
+            let overlay = CameraOverlayViewController(frame: self.view.frame)
+            overlay.initDelegate(self)
+            image.cameraOverlayView = overlay.view
+        }
         presentViewController(image, animated: true, completion: nil)
     }
     
