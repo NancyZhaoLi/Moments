@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class HomeViewController: UIViewController, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewControllerDelegate {
     
     
     @IBOutlet var homeView: UIView!
@@ -81,10 +81,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         if segue.identifier == "editSavedMoment" {
             let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
             let cell = sender as! MomentTableCell
-            let vc = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
-            vc.loadedMoment = cell.moment
-         }
+            newMomentNavigationVC.setDelegate(self)
+            newMomentNavigationVC.loadMoment(cell.moment!)
+        } else if segue.identifier == "HomeToNewMoment" {
+            let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
+            newMomentNavigationVC.setDelegate(self)
+        }
     }
+    
     func filterContentForSearchText (searchText: String, scope: String = "ALL")
     {
         
@@ -223,7 +227,14 @@ class HomeViewController: UIViewController, UITableViewDelegate {
         }
         
     }
-
+    
+    func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("new moment in home view")
+    }
+    
+    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("update moment in home view")
+    }
 
 
 }

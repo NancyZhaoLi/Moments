@@ -34,17 +34,9 @@ class NewMomentSavePageViewController: UIViewController,
         print("save button pressed")
         let animation = true
         if let navigationController = self.navigationController  {
-            if navigationController.viewControllers.first! != self {
-                print("first in navController")
-                navigationController.popViewControllerAnimated(animation)
-            } else {
-                print("not first in navController")
-                self.dismissViewControllerAnimated(true, completion: nil)
-                navigationController.removeFromParentViewController()
-            }
-        }
-        else {
-            print("no navController")
+            self.dismissViewControllerAnimated(true, completion: nil)
+            navigationController.removeFromParentViewController()
+        } else {
             self.dismissViewControllerAnimated(animation, completion: nil)
         }
         self.removeFromParentViewController()
@@ -54,8 +46,10 @@ class NewMomentSavePageViewController: UIViewController,
             if self.isNewMoment() {
                 delegate.newMoment(self, moment: self.getMomentEntry())
             } else {
-                delegate.newMoment(self, moment: self.getMomentEntry())
+                delegate.updateMoment(self, moment: self.getMomentEntry())
             }
+        } else {
+            print("no delegate for save page")
         }
     }
     

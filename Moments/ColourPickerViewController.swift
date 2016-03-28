@@ -104,7 +104,6 @@ class ColourPickerViewController: UIViewController {
         let navBar = NavigationHelper.emptyBar()
         navBar.pushNavigationItem(navItem, animated: false)
         navBar.tintColor = UIColor.whiteColor()
-        navBar.tintColor = UIColor.whiteColor()
         navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.view.addSubview(navBar)
     }
