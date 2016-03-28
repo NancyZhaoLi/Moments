@@ -512,14 +512,15 @@ class NewMomentCanvasViewController: UIViewController,
                 if stringType == kUTTypeMovie as String {
                     let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
                     if let url = urlOfVideo {
-                        //ALAssetsLibrary.writeVideoAtPathToSavedPhotosAlbum(url)
-                        /*, completionBlock: {(url: NSURL!, error: NSError!) in
+                        let photoLibrary : PHPhotoLibrary = PHPhotoLibrary.sharedPhotoLibrary()
+                        photoLibrary.performChanges({
+                            let createAssetRequest: PHAssetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(url)!
+                            }, completionHandler: {(success: Bool, error: NSError?) in
                             if let theError = error {
-                                print("Error saving video = \(theError)")
+                                print("Error saving video: \(theError)")
                             } else {
-                                print("No error with saving")
-                            }
-                        })*/
+                                print("Successfully saved video")
+                            }})
                     } else {
                         print("no url for video")
                     }

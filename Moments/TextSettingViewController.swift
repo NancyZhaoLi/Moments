@@ -350,6 +350,7 @@ class TextSettingViewController : UIViewController,
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let newFontName = fontData[row]
         textAttribute.font = UIFont(name: newFontName, size: textAttribute.font.pointSize)!
+        preview.font = textAttribute.font
         textFontName.setTitle(newFontName, forState: UIControlState.Normal)
         
         sleep(1)
