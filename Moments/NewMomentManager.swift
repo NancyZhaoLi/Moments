@@ -256,9 +256,10 @@ class NewMomentManager {
             }*/
             
             let previousDate = moment.getDate()
+            let previousId = moment.getId()
             moment.delete()
             
-            let newMoment = Moment(backgroundColour: backgroundColour, date: previousDate, favourite: favourite, title: title, category: category)!
+            let newMoment = Moment(backgroundColour: backgroundColour, date: previousDate,  favourite: favourite, id: previousId, title: title, category: category)!
             saveMoment(newMoment)
             
             //} else {

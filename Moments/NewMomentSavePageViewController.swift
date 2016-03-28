@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol NewMomentViewControllerDelegate {
+    func newMoment(controller: NewMomentSavePageViewController, moment: Moment)
+    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment)
+}
+
 class NewMomentSavePageViewController: UIViewController,
     UITableViewDelegate,
     UIViewControllerTransitioningDelegate,
@@ -16,6 +21,7 @@ class NewMomentSavePageViewController: UIViewController,
     
     var canvas : NewMomentCanvasViewController?
     var manager : NewMomentManager?
+    var delegate : NewMomentViewControllerDelegate?
     private var categories : [Category] = [Category]()
     private var selectedCell: UITableViewCell?
     private var selectedCategory: Category?
@@ -24,12 +30,24 @@ class NewMomentSavePageViewController: UIViewController,
     @IBOutlet weak private var categoryList: UITableView!
     @IBOutlet weak private var favourite: UIButton!
     
+    @IBAction func saveMoment(sender: AnyObject) {
+        self.dismiss(true)
+        if let delegate = self.delegate {
+            if self.isNewMoment() {
+                delegate.newMoment(self, moment: self.getMomentEntry())
+            } else {
+                delegate.newMoment(self, moment: self.getMomentEntry())
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.manager!.saveMomentEntry()
         if let manager = self.manager {
             self.manager!.setSavePage(self)
             self.momentTitle.delegate = self
@@ -63,9 +81,7 @@ class NewMomentSavePageViewController: UIViewController,
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "saveNewMoment"{
-            self.manager!.saveMomentEntry()
-        } else if segue.identifier == "newCategory" {
+        if segue.identifier == "newCategory" {
             let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
             newCategoryVC.delegate = self
         }
@@ -156,13 +172,13 @@ class NewMomentSavePageViewController: UIViewController,
     
     /*********************************************************************************
      
-     FUNCTION CALLED BY HOME PAGE AFTER SAVING A MOMENT
+     FUNCTION CALLED AFTER SAVE BUTTON IS CLICKED
      *********************************************************************************/
-    func isNewMoment() -> Bool {
+    private func isNewMoment() -> Bool {
         return manager!.isNewMoment
     }
     
-    func getMomentEntry() -> Moment {
+    private func getMomentEntry() -> Moment {
         return self.manager!.moment!
     }
     

@@ -21,6 +21,9 @@ let trashButtonSelectImageTitle = "trash_selected_icon.png"
 let trashButtonUnselectImageTitle = "trash_icon.png"
 let settingButtonImageTitle = "bucket_icon.png"
 
+
+
+
 class NewMomentCanvasViewController: UIViewController,
     UIPopoverPresentationControllerDelegate,
     UINavigationControllerDelegate,
@@ -159,6 +162,11 @@ class NewMomentCanvasViewController: UIViewController,
             if let savePage = segue.destinationViewController as? NewMomentSavePageViewController {
                 savePage.canvas = self
                 savePage.manager = self.manager
+                if let navController = self.navigationController as? NewMomentNavigationController {
+                    if let delegate = navController.newMomentDelegate {
+                        savePage.delegate = delegate
+                    }
+                }
                 nextButton.removeTarget(self, action: "goToSavePage", forControlEvents: .TouchUpInside)
                 nextButton.addTarget(self, action: "loadSavePage", forControlEvents: .TouchUpInside)
                 self.savePage = savePage

@@ -32,7 +32,7 @@ class Moment: NSManagedObject {
             setMomentBackgroundColour(backgroundColour)
             setMomentDate(nil)
             setMomentFavourite(favourite)
-            setMomentId()
+            setMomentId(nil)
             setMomentTitle(title)
             setMomentCategory(category)
         } else {
@@ -42,7 +42,7 @@ class Moment: NSManagedObject {
         }
     }
     
-    init?(backgroundColour: UIColor, date: NSDate, favourite: Bool, title: String, category: Category) {
+    init?(backgroundColour: UIColor, date: NSDate, favourite: Bool, id: Int64, title: String, category: Category) {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
@@ -52,7 +52,7 @@ class Moment: NSManagedObject {
             setMomentBackgroundColour(backgroundColour)
             setMomentDate(date)
             setMomentFavourite(favourite)
-            setMomentId()
+            setMomentId(id)
             setMomentTitle(title)
             setMomentCategory(category)
         } else {
@@ -91,8 +91,12 @@ class Moment: NSManagedObject {
         self.favourite = NSNumber(bool: favourite)
     }
     
-    private func setMomentId() {
-        self.id = computeId()
+    private func setMomentId(id: Int64?) {
+        if let id = id {
+            self.id = NSNumber(longLong: id)
+        } else {
+            self.id = computeId()
+        }
     }
     
     private func computeId() -> NSNumber {
@@ -106,7 +110,7 @@ class Moment: NSManagedObject {
         return NSNumber(longLong: Int64(idPrefix + idSuffix)!)
     }
     
-    func getMomentId() -> Int64 {
+    func getId() -> Int64 {
         return self.id.longLongValue
     }
     

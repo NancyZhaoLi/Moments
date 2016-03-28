@@ -10,6 +10,8 @@ import UIKit
 
 class NewMomentNavigationController: UINavigationController {
     
+    var newMomentDelegate: NewMomentViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,6 +19,10 @@ class NewMomentNavigationController: UINavigationController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setDelegate(delegate: NewMomentViewControllerDelegate) {
+        self.newMomentDelegate = delegate
     }
 
 }
