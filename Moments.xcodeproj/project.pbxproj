@@ -66,6 +66,7 @@
 		769DD8021C76AABE00FC883E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */; };
 		769DD80D1C76AABE00FC883E /* MomentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD80C1C76AABE00FC883E /* MomentsTests.swift */; };
 		769DD8181C76AABE00FC883E /* MomentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769DD8171C76AABE00FC883E /* MomentsUITests.swift */; };
+		76C21A501CA9A8F500C8DCB3 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C21A4F1CA9A8F500C8DCB3 /* Global.swift */; };
 		AD081AEA1C7D91710084B286 /* MomentsPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */; };
 		AD25BC8A1C8E33D3006DA556 /* TextSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */; };
 		AD5CD0B61CA3AB4C006F3607 /* CategoryIdIndexEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5CD0B51CA3AB4C006F3607 /* CategoryIdIndexEntry.swift */; };
@@ -181,6 +182,7 @@
 		769DD8131C76AABE00FC883E /* MomentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		769DD8171C76AABE00FC883E /* MomentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentsUITests.swift; sourceTree = "<group>"; };
 		769DD8191C76AABE00FC883E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76C21A4F1CA9A8F500C8DCB3 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		AD081AE91C7D91710084B286 /* MomentsPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsPlayerViewController.swift; sourceTree = "<group>"; };
 		AD081AEB1C7D91A70084B286 /* moments.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = moments.mp4; sourceTree = "<group>"; };
 		AD25BC891C8E33D3006DA556 /* TextSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSettingViewController.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
 				769DD8031C76AABE00FC883E /* Info.plist */,
 				769DD7FB1C76AABE00FC883E /* Moments.xcdatamodeld */,
+				76C21A4F1CA9A8F500C8DCB3 /* Global.swift */,
 			);
 			path = Moments;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				AD5CD0BC1CA48CD6006F3607 /* VidGenViewController.swift in Sources */,
 				760197F21C7E10AF00A7315A /* TextItem.swift in Sources */,
 				AD5CD0B61CA3AB4C006F3607 /* CategoryIdIndexEntry.swift in Sources */,
+				76C21A501CA9A8F500C8DCB3 /* Global.swift in Sources */,
 				760198021C7E794F00A7315A /* CoreDataFetchHelper.swift in Sources */,
 				760197EF1C7E10AF00A7315A /* Category+CoreDataProperties.swift in Sources */,
 				764BF99D1C8CD2B100776AAB /* CategoryPresentationController.swift in Sources */,

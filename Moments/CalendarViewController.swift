@@ -19,6 +19,7 @@ class CalendarViewController: UIViewController, NewMomentViewControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "calendarBG")!)
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
         monthLabel.text = CVDate(date: NSDate()).globalDescription
@@ -69,6 +70,8 @@ class CalendarViewController: UIViewController, NewMomentViewControllerDelegate 
         
         if moment.save() {
             print("after saving a new moment")
+            
+            global.addNewMoment(moment)
         }
         
     }

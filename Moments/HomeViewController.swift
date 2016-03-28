@@ -17,12 +17,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     
     var moments = [Moment]()
     var filterMoments = [Moment]()
+    var localNewMoments = [Moment]()
+    
     var indexOfCellClicked: Int?
     let searchController = UISearchController(searchResultsController: nil)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("global new moment count: \(global.getNewMoments().count)")
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -42,6 +45,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         self.momentTableView.showsVerticalScrollIndicator = false
         self.momentTableView.backgroundColor = UIColor.clearColor()
 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        let newMoments = global.getNewMoments()
+        
+        for newMoment in newMoments {
+            if !localNewMoments.contains(newMoment) {
+                print("Home not contain new moment")
+                
+                moments.insert(newMoment, atIndex: 0)
+                localNewMoments.append(newMoment)
+                
+                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+                self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -238,6 +259,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
             let indexPath = NSIndexPath(forRow: 0, inSection: 0)
             self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+
         }
 
     }

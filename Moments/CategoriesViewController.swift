@@ -95,11 +95,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         if moment.save() {
             print("after saving a new moment")
             
-            for category in categories {
-                if moment.getCategory().getName() == category.getName() {
-                    print("category name match: \(category.getName())")
-                }
-            }
+            global.addNewMoment(moment)
         }
         
     }
