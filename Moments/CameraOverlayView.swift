@@ -18,7 +18,7 @@ class CameraOverlayViewController: UIViewController, UIImagePickerControllerDele
         super.init(nibName: nil, bundle: nil)
         self.delegate = nil
         self.albumButton = UIButton(frame: CGRectMake(0,0,70,40))
-        self.albumButton.center = CGPointMake(25.0, frame.size.height - 60.0)
+        self.albumButton.center = CGPointMake(frame.size.width - 50.0, frame.size.height - 60.0)
         self.albumButton.backgroundColor = UIColor.clearColor()
         self.albumButton.setTitle("Album", forState: .Normal)
         self.albumButton.tintColor = UIColor.whiteColor()
