@@ -147,6 +147,7 @@ class MomentTableCell: UITableViewCell {
         
         if (showOption == 1) {
             
+            momentText.text = nil
             momentImage.image = momentInfo.firstImage()!.getImage()
             momentImage.frame  = CGRect(x: 80, y: 42, width: self.frame.width - 105, height: 130)
             
@@ -165,6 +166,7 @@ class MomentTableCell: UITableViewCell {
             
         } else {
             // TODO: add audio/video
+            momentText.text = nil
             momentImage.image = nil
         }
         
