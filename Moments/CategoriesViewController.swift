@@ -26,6 +26,13 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     
     var width: CGFloat?
     
+    
+    /*override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.leftBarButtonItem?.enabled = true
+        
+    }*/
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +43,9 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         definesPresentationContext = true
         navigationItem.titleView = searchController.searchBar
         searchController.searchBar.sizeToFit()
+        
+        //self.searchController.searchBar.delegate = self
+        
         
         getCategoriesFromCoreData()
         getCategoryMapsFromCoreData()
@@ -66,6 +76,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         self.categoriesCollectionView.addGestureRecognizer(longPressGR)
         
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -437,11 +448,17 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         presentViewController(newCategoryVC, animated: true, completion: nil)
     }
     
+    
 }
 
 extension CategoriesViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+        navigationItem.leftBarButtonItem?.enabled = false
+        if !searchController.active {
+        navigationItem.leftBarButtonItem?.enabled = true
+        }
     }
+   // func searchBarCancelButtonClicked
 }
 
