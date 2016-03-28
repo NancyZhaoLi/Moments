@@ -35,6 +35,8 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         self.momentsTableView.backgroundColor = UIColor.clearColor()
         
         self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
+        
+        initUI()
 
     }
     
@@ -52,6 +54,16 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
             let cell = sender as! MomentTableCell
             newMomentNavigationVC.loadMoment(cell.moment)
         }
+    }
+    
+    private func initUI() {
+        let backButton = NavigationHelper.leftNavButton("Back", target: self, action: "backToCategory")
+        let navBar = NavigationHelper.barWithItem(backButton, centerItem: nil, rightItem: nil)
+        self.view.addSubview(navBar)
+    }
+    
+    func backToCategory() {
+        self.dismiss(true)
     }
     
     func updateCategoryNameLabel() {
