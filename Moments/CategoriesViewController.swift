@@ -175,20 +175,29 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     // delete categories
     @IBAction func deleteCategories(sender: UIBarButtonItem) {
         
-        let indexPaths = categoriesCollectionView.indexPathsForSelectedItems()! as [NSIndexPath]
+        var indexPaths = categoriesCollectionView.indexPathsForSelectedItems()! as [NSIndexPath]
         
         // delete categories in core data
+        // delete categories in array
+        var indexes: [Int] = []
+        
         for indexPath in indexPaths {
-            //CoreDataDeleteHelper.deleteCategoriesMOFromCoreData(categories[indexPath.row])
-            categories[indexPath.row].delete()
+            let index = indexPath.row
+            
+            var id = categories[index].getId()
+            
+            // Monica TODO: add filter
+            if (id != 0 && id != 1) {
+                categories[index].delete()
+                indexes.append(index)
+            } else {
+                if let removeIndex = indexPaths.indexOf(indexPath) {
+                    indexPaths.removeAtIndex(removeIndex)
+                }
+            }
             
         }
         
-        // delete categories in array
-        var indexes: [Int] = []
-        for indexPath in indexPaths {
-            indexes.append(indexPath.row)
-        }
         var newCategories: [Category] = []
         
         for var index = 0; index < categories.count; index++ {
@@ -200,6 +209,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         
         categories = newCategories
+        
+        print("done delete categories in core data and array")
         
         // update maps
         categoryIdIndex?.idToIndex.removeAllObjects()

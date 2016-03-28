@@ -58,10 +58,10 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
 
 
     func handleStartDatePicker(sender: UIDatePicker){
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .MediumStyle
+        timeFormatter.timeStyle = .NoStyle
         if (sender.date.earlierDate(end) == sender.date) {
-            let timeFormatter = NSDateFormatter()
-            timeFormatter.dateStyle = .MediumStyle
-            timeFormatter.timeStyle = .NoStyle
             startDate.text = "Start Date: " + timeFormatter.stringFromDate(sender.date)
             start = sender.date
         }
@@ -71,16 +71,16 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
                                           preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-            startDate.text = "Start Date: Default"
             start = NSDate().dateByAddingTimeInterval(-60*60*24*60);
+            "Start Date: " + timeFormatter.stringFromDate(start)
         }
     }
     
     func handleEndDatePicker(sender: UIDatePicker){
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .MediumStyle
+        timeFormatter.timeStyle = .NoStyle
         if (sender.date.earlierDate(start) == start) {
-            let timeFormatter = NSDateFormatter()
-            timeFormatter.dateStyle = .MediumStyle
-            timeFormatter.timeStyle = .NoStyle
             endDate.text = "End Date: " + timeFormatter.stringFromDate(sender.date)
             end = sender.date
         }
@@ -90,8 +90,9 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
                 preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-            endDate.text = "End Date: Default"
             end = NSDate()
+            endDate.text = "End Date: " + timeFormatter.stringFromDate(end)
+            
         }
 
     }
@@ -100,6 +101,12 @@ class MomentsViewController: UIViewController, UITextFieldDelegate, UIPopoverPre
         super.viewDidLoad()
         self.startDate.delegate = self
         self.endDate.delegate = self
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateStyle = .MediumStyle
+        timeFormatter.timeStyle = .NoStyle
+        startDate.text = "Start Date: " + timeFormatter.stringFromDate(start)
+        endDate.text = "End Date: " + timeFormatter.stringFromDate(end)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
