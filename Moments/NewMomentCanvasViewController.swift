@@ -210,7 +210,7 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addImageFromCamera() {
-        addImage(.Camera, allowsEditing: false)
+        addImage(.SavedPhotosAlbum, allowsEditing: false)
     }
     
     func addAudioFromRecorder(){

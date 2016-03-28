@@ -46,7 +46,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
     var textFont: UIFont = UIFont(name: "Helvetica Neue", size: 30)!
     var textAlignment: NSTextAlignment = .Left
     var textViewBackgroundColour: UIColor = UIColor.whiteColor()
-    var settingVC: TextSettingViewController!
+    weak var settingVC: TextSettingViewController!
 
     private static let placeHolder: String = "Enter Your Text Here..."
     

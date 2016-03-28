@@ -145,7 +145,6 @@ class TextSettingViewController : UIViewController,
         smallTextLabel.textColor = UIColor.blackColor()
         smallTextLabel.textAlignment = .Center
         smallTextLabel.backgroundColor = UIColor.clearColor()
-
         
         let sliderOrigin = CGPointMake(smallTextLabel.frame.maxX + 5.0,0)
         let sliderWidth = largeTextLabel.frame.minX - smallTextLabel.frame.maxX - 10.0
@@ -258,6 +257,7 @@ class TextSettingViewController : UIViewController,
         delegate!.changeTextAlignment(textAttribute.alignment)
     }
     
+
     func changeFontSize() {
         let curValue: CGFloat = CGFloat(textFontSizeSlider.value)
         
