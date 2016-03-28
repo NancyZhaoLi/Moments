@@ -39,7 +39,8 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         
         self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundImage")!)
-
+        
+        initUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,6 +57,12 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         }
     }
     
+    private func initUI() {
+        let backButton = NavigationHelper.leftNavButton("Back", target: self, action: "backToCalendar")
+        let navBar = NavigationHelper.barWithItem(backButton, centerItem: nil, rightItem: nil)
+        self.view.addSubview(navBar)
+    }
+    
     func updateDateLabel() {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMMM dd, YYYY"
@@ -65,6 +72,10 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     
     func getMomentsFromCoreData(){
         moments = CoreDataFetchHelper.fetchDayMomentsMOFromCoreData(date!)
+    }
+    
+    func backToCalendar() {
+        self.dismiss(true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
