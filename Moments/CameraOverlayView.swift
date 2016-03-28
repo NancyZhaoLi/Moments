@@ -12,12 +12,13 @@ class CameraOverlayViewController: UIViewController, UIImagePickerControllerDele
     
     var albumButton: UIButton!
     var delegate: UIImagePickerControllerDelegate?
+    var cameraPicker: UIImagePickerController?
     
     init(frame: CGRect) {
         super.init(nibName: nil, bundle: nil)
         self.delegate = nil
-        self.albumButton = UIButton(frame: CGRectMake(0,0,50,40))
-        self.albumButton.center = CGPointMake(25.0, frame.size.height - 30.0)
+        self.albumButton = UIButton(frame: CGRectMake(0,0,70,40))
+        self.albumButton.center = CGPointMake(25.0, frame.size.height - 60.0)
         self.albumButton.backgroundColor = UIColor.clearColor()
         self.albumButton.setTitle("Album", forState: .Normal)
         self.albumButton.tintColor = UIColor.whiteColor()
@@ -48,6 +49,19 @@ class CameraOverlayViewController: UIViewController, UIImagePickerControllerDele
         self.presentViewController(image, animated: true, completion: nil)
     }
     
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        picker.dismiss(false)
+        if let delegate = self.delegate, cameraPicker = self.cameraPicker {
+            delegate.imagePickerController!(cameraPicker, didFinishPickingMediaWithInfo: editingInfo!)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismiss(true)
+        if let delegate = self.delegate, cameraPicker = self.cameraPicker {
+            delegate.imagePickerControllerDidCancel!(cameraPicker)
+        }
+    }
     
     
 }

@@ -11,6 +11,8 @@ import MediaPlayer
 import AVKit
 import AVFoundation
 import CoreData
+import MobileCoreServices
+import Photos
 
 let addButtonImageTitle = "add_icon.png"
 let viewButtonSelectImageTitle = "locked_icon.png"
@@ -234,7 +236,17 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func addVideoFromCamera(){
-        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            let video = UIImagePickerController()
+            video.delegate = self
+            video.sourceType = .Camera
+            video.cameraCaptureMode = .Video
+            video.mediaTypes = [kUTTypeMovie as String]
+            
+            presentViewController(video, animated: true, completion: nil)
+        } else {
+            print("camera not available for video")
+        }
     }
     
     func addVideoFromYoutube() {
@@ -250,8 +262,10 @@ class NewMomentCanvasViewController: UIViewController,
         image.delegate = self
         image.sourceType = sourceType
         image.allowsEditing = allowsEditing
+        image.mediaTypes = [kUTTypeImage as String]
         if sourceType == .Camera {
             let overlay = CameraOverlayViewController(frame: self.view.frame)
+            overlay.cameraPicker = image
             overlay.initDelegate(self)
             image.cameraOverlayView = overlay.view
         }
@@ -489,9 +503,41 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     // Functions for UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
+        
+        if let type:AnyObject = mediaType {
+            if type is String {
+                let stringType = type as! String
+                if stringType == kUTTypeMovie as String {
+                    let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
+                    if let url = urlOfVideo {
+                        //ALAssetsLibrary.writeVideoAtPathToSavedPhotosAlbum(url)
+                        /*, completionBlock: {(url: NSURL!, error: NSError!) in
+                            if let theError = error {
+                                print("Error saving video = \(theError)")
+                            } else {
+                                print("No error with saving")
+                            }
+                        })*/
+                    } else {
+                        print("no url for video")
+                    }
+                } else {
+                    print("type not video")
+                }
+            }
+        }
         picker.dismiss(true)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         addNewViewController(manager!.addImage(image, location: self.center, editingInfo: editingInfo))
+        picker.dismiss(true)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismiss(true)
     }
     
     // Functions for MPMediaPickerControllerDelegate
@@ -554,6 +600,7 @@ class NewMomentCanvasViewController: UIViewController,
         view.layer.borderColor = nil
         view.layer.borderWidth = 0.0
     }
+    
     // PinchGestureRecognizer
     func pinchedView(sender: UIPinchGestureRecognizer) {
         if let senderView = sender.view {
