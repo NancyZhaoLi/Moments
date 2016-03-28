@@ -24,5 +24,11 @@ class NewMomentNavigationController: UINavigationController {
     func setDelegate(delegate: NewMomentViewControllerDelegate) {
         self.newMomentDelegate = delegate
     }
+    
+    func loadMoment(moment: Moment?) {
+        if let newMomentCanvasVC = self.topViewController as? NewMomentCanvasViewController {
+            newMomentCanvasVC.loadedMoment = moment
+        }
+    }
 
 }

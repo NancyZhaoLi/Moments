@@ -51,7 +51,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
     
     @IBAction func unwindToHomeView(segue: UIStoryboardSegue) {
         if let NewMomentSavePageVC = segue.sourceViewController as? NewMomentSavePageViewController {
-            if NewMomentSavePageVC.isNewMoment() {
+            /*if NewMomentSavePageVC.isNewMoment() {
                 if let moment: Moment = NewMomentSavePageVC.getMomentEntry() {
                     if moment.save() {
                         print("after saving a new moment")
@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, UITableViewDelegate {
                         }
                     }
                 }
-            }
+            }*/
         }
     }
     

@@ -91,8 +91,8 @@ class NewMomentManager {
         momentColour = moment.getBackgroundColour()
         
         canvasVC.view.backgroundColor = self.momentColour
-        idPrefix = String(moment.getMomentId() / Int64(10000))
-        idSuffix = String(moment.getMomentId() % Int64(10000))
+        idPrefix = String(moment.getId() / Int64(10000))
+        idSuffix = String(moment.getId() % Int64(10000))
         isNewMoment = false
 
         for textItem in moment.getAllSavedText() {

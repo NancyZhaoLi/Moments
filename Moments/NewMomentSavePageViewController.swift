@@ -31,7 +31,25 @@ class NewMomentSavePageViewController: UIViewController,
     @IBOutlet weak private var favourite: UIButton!
     
     @IBAction func saveMoment(sender: AnyObject) {
-        self.dismiss(true)
+        print("save button pressed")
+        let animation = true
+        if let navigationController = self.navigationController  {
+            if navigationController.viewControllers.first! != self {
+                print("first in navController")
+                navigationController.popViewControllerAnimated(animation)
+            } else {
+                print("not first in navController")
+                self.dismissViewControllerAnimated(true, completion: nil)
+                navigationController.removeFromParentViewController()
+            }
+        }
+        else {
+            print("no navController")
+            self.dismissViewControllerAnimated(animation, completion: nil)
+        }
+        self.removeFromParentViewController()
+        
+        self.manager!.saveMomentEntry()
         if let delegate = self.delegate {
             if self.isNewMoment() {
                 delegate.newMoment(self, moment: self.getMomentEntry())
@@ -47,7 +65,7 @@ class NewMomentSavePageViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.manager!.saveMomentEntry()
+    
         if let manager = self.manager {
             self.manager!.setSavePage(self)
             self.momentTitle.delegate = self

@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
+class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewMomentViewControllerDelegate {
     @IBOutlet weak var categoryName: UILabel!
     
     @IBOutlet weak var momentsTableView: UITableView!
@@ -46,12 +46,11 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("segue")
         if segue.identifier == "editSavedMoment" {
-            print("before prepare for segue")
             let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
-            let newMomentCanvasVC = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
+            newMomentNavigationVC.setDelegate(self)
+            
             let cell = sender as! MomentTableCell
-            newMomentCanvasVC.loadedMoment = cell.moment
-            print("after prepare for segue")
+            newMomentNavigationVC.loadMoment(cell.moment)
         }
     }
     
@@ -126,6 +125,13 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate {
         }
     }
 
+    func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("new moment")
+    }
+    
+    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("update moment")
+    }
 
 
     
