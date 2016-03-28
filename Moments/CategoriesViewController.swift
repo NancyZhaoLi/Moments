@@ -185,8 +185,9 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             let index = indexPath.row
             
             var id = categories[index].getId()
-            
-            // Monica TODO: add filter
+            if (searchController.active && searchController.searchBar.text != ""){
+                id = filteredCategories[index].getId()
+            }
             if (id != 0 && id != 1) {
                 categories[index].delete()
                 indexes.append(index)
