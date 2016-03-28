@@ -9,6 +9,7 @@
 class Global {
 
     var newMoments = [Moment]()
+    var editMoments = [Moment]()
     
     init() {
 
@@ -17,9 +18,17 @@ class Global {
     func getNewMoments() -> [Moment] {
         return self.newMoments
     }
+    
+    func getEditMoments() -> [Moment] {
+        return self.editMoments
+    }
 
     func addNewMoment(moment: Moment) {
         newMoments.append(moment)
+    }
+    
+    func addEditMoment(moment: Moment) {
+        editMoments.append(moment)
     }
     
     func removeNewMoment(moment: Moment) {
@@ -27,6 +36,13 @@ class Global {
             newMoments.removeAtIndex(index)
         }
     }
+    
+    func removeEditMoment(moment: Moment) {
+        if let index = editMoments.indexOf(moment) {
+            editMoments.removeAtIndex(index)
+        }
+    }
+
     
 }
 var global = Global()

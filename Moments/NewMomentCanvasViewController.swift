@@ -513,7 +513,7 @@ class NewMomentCanvasViewController: UIViewController,
     // Functions for UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let mediaType:AnyObject? = info[UIImagePickerControllerMediaType]
-        
+
         if let type:AnyObject = mediaType {
             if type is String {
                 let stringType = type as! String
@@ -533,6 +533,10 @@ class NewMomentCanvasViewController: UIViewController,
                         print("no url for video")
                     }
                 } else {
+                    print("stringType: \(stringType)")
+                    let urlOfImage = info[UIImagePickerControllerMediaURL] as? NSURL
+                    print("url of image: \(urlOfImage)")
+                    
                     print("type not video")
                 }
             }
@@ -541,6 +545,7 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        print("pick image")
         addNewViewController(manager!.addImage(image, location: self.center, editingInfo: editingInfo))
         picker.dismiss(true)
     }

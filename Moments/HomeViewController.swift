@@ -18,6 +18,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     var moments = [Moment]()
     var filterMoments = [Moment]()
     var localNewMoments = [Moment]()
+    var localEditMoments = [Moment]()
     
     var indexOfCellClicked: Int?
     let searchController = UISearchController(searchResultsController: nil)
@@ -49,7 +50,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     
     override func viewWillAppear(animated: Bool) {
         
+        print("first moment title: " + moments[0].getTitle())
+        
         let newMoments = global.getNewMoments()
+        let editMoments = global.getEditMoments()
         
         for newMoment in newMoments {
             if !localNewMoments.contains(newMoment) {
@@ -63,6 +67,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
                 self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
             }
         }
+        
+        for editMoment in editMoments {
+            if !localEditMoments.contains(editMoment) {
+                print("Home not update edited moment")
+                
+                localEditMoments.append(editMoment)
+                
+                print("first moment title: " + moments[0].getTitle())
+                
+                for var i = 0; i < moments.count; i++ {
+                    print("moment title: \(moments[i].getId())")
+                    print("edit moment title \(editMoment.getId())")
+                    if moments[i].getId() == editMoment.getId() {
+                        print("id match")
+
+                        self.moments[i] = editMoment
+                        let indexPath = NSIndexPath(forRow: i, inSection: 0)
+                        momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                    }
+                }
+                
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

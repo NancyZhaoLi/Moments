@@ -78,7 +78,10 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate, NewMomen
                 self.moments[index] = moment
                 let indexPath = NSIndexPath(forRow: index, inSection: 0)
                 dayMomentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                
+                global.addEditMoment(moment)
             }
+            
         }
     }
     
