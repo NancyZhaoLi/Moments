@@ -230,10 +230,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     
     func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
         print("new moment in home view")
+        
+        if moment.save() {
+            print("after saving a new moment")
+            moments.insert(moment, atIndex: 0)
+            
+            let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+            self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+        }
+
     }
     
     func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
         print("update moment in home view")
+        
+        if let index = self.indexOfCellClicked {
+            if moment.save() {
+                print("after saving a previously added moment")
+                self.moments[index] = moment
+                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+            }
+        }
+        
     }
 
 
