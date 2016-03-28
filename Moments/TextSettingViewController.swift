@@ -32,7 +32,7 @@ class TextSettingViewController : UIViewController,
     private var pickerPresent: Bool!
     private var textFontName: UIButton!
     
-    private var preview: UILabel!
+    private var preview: UILabel = UILabel()
     
     private var textColour: UIButton!
     private var colourPicker: ColourPickerViewController!
@@ -44,7 +44,6 @@ class TextSettingViewController : UIViewController,
     
     let inset: CGFloat! = 20.0
 
-    
     convenience required init?(coder aDecoder: NSCoder) {
         self.init(delegate: nil, textAttribute: TextItemOtherAttribute())
     }
@@ -60,8 +59,12 @@ class TextSettingViewController : UIViewController,
         initUI()
     }
     
+    private func reloadAttribute(textAttribute: TextItemOtherAttribute) {
+        self.textAttribute = textAttribute
+        initUI()
+    }
     
-    func initUI() {
+    private func initUI() {
         self.view = UIView(frame: CGRectMake(0,0,windowWidth, windowHeight))
         self.view.backgroundColor = UIColor.customBackgroundColor()
         let backButton = NavigationHelper.leftNavButton("Back", target: self, action: "goBack")
@@ -100,21 +103,27 @@ class TextSettingViewController : UIViewController,
         fontNamePicker.backgroundColor = UIColor.customBackgroundColor()
         
         initPreview(maxY)
-        
-        
     }
     
     
     private func initPreview(maxY: CGFloat) {
-        preview = UILabel(frame: CGRectMake(40, maxY + 15.0, windowWidth - 80.0, windowHeight - maxY - 30.0))
-        preview.backgroundColor = UIColor.whiteColor()
+        let previewBox = UIView(frame: CGRectMake(20, maxY + 25.0, windowWidth - 40.0, windowHeight - maxY - 50.0))
+        preview = UILabel(frame: CGRectMake(20.0, 10.0, previewBox.frame.size.width - 40.0, previewBox.frame.size.height - 20.0))
         preview.text = "Sample Text 1"
         preview.font = textAttribute.font
         preview.textColor = textAttribute.colour
         preview.textAlignment = textAttribute.alignment
         
-        self.view.addSubview(preview)
+        previewBox.backgroundColor = UIColor.whiteColor()
+        previewBox.layer.borderColor = UIColor.blackColor().CGColor
+        previewBox.layer.borderWidth = 3.0
+        previewBox.layer.cornerRadius = 10.0
+        previewBox.layer.masksToBounds = true
+        
+        previewBox.addSubview(preview)
+        self.view.addSubview(previewBox)
     }
+    
     private func initSizeContent(contentFrame: CGRect) -> UIView {
         let largeTextFont = UIFont(name: "HelveticaNeue-Bold", size: 30.0)!
         let smallTextFont = UIFont(name: "HelveticaNeue-Bold", size: 15.0)!
@@ -253,6 +262,7 @@ class TextSettingViewController : UIViewController,
         let curValue: CGFloat = CGFloat(textFontSizeSlider.value)
         
         textAttribute.font = UIFont(name: textAttribute.font.familyName, size: curValue)!
+        preview.font = textAttribute.font
         textFontSize.text = String(Int(curValue))
         let moveLeft: CGFloat = textFontSizeSlider.frame.origin.x + curValue/sliderRange * textFontSizeSlider.frame.size.width
         textFontSize.center = CGPointMake(moveLeft, textFontSize.center.y)
@@ -271,21 +281,25 @@ class TextSettingViewController : UIViewController,
     
     func alignToLeft() {
         textAttribute.alignment = .Left
+        preview.textAlignment = textAttribute.alignment
         setButtonSelected(0)
     }
     
     func alignToCenter() {
         textAttribute.alignment = .Center
+        preview.textAlignment = textAttribute.alignment
         setButtonSelected(1)
     }
     
     func alignToRight() {
         textAttribute.alignment = .Right
+        preview.textAlignment = textAttribute.alignment
         setButtonSelected(2)
     }
     
     func alignToJustified() {
         textAttribute.alignment = .Justified
+        preview.textAlignment = textAttribute.alignment
         setButtonSelected(3)
     }
     
@@ -315,6 +329,7 @@ class TextSettingViewController : UIViewController,
     func selectColor(controller: ColourPickerViewController, colour: UIColor) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         textAttribute.colour = colour
+        preview.textColor = textAttribute.colour
         textColour.backgroundColor = colour
     }
 

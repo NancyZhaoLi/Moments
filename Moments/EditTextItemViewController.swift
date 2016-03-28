@@ -83,8 +83,6 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
         editTextItemView = EditTextItemView(frame: CGRectMake(20,20, windowWidth - 40.0, windowHeight - 40.0))
         editTextItemView.delegate = self
         self.view.addSubview(editTextItemView)
-        
-        settingVC = TextSettingViewController(delegate: self, textAttribute: self.getTextAttribute())
     }
     
     private func initText(text: String?, textAttribute: TextItemOtherAttribute?) {
@@ -94,6 +92,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
         }
         
         changeTextAndAttribute(text, textAttribute: textAttribute)
+        settingVC = TextSettingViewController(delegate: self, textAttribute: self.getTextAttribute())
     }
     
     func addText() {
@@ -126,6 +125,7 @@ class EditTextItemViewController: UIViewController, UITextViewDelegate, UINaviga
             changeTextColour(textAttr.colour)
             changeTextFont(textAttr.font)
             changeTextAlignment(textAttr.alignment)
+            settingVC = TextSettingViewController(delegate: self, textAttribute: textAttr)
         }
     }
     
