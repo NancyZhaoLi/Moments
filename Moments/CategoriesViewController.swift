@@ -160,6 +160,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         
         addCategoryButton.enabled = !editing
+        searchController.searchBar.userInteractionEnabled = !editing
+        searchController.searchBar.translucent = !editing
         categoriesCollectionView.allowsMultipleSelection = editing
         
         let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
