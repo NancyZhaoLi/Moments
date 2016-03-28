@@ -196,20 +196,34 @@ class HomeViewController: UIViewController, UITableViewDelegate {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
-    /*
+    
+    
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        if (indexPath.row == moments.count - 1) {
+        let preIndex = moments.count - 1
+        
+        if (indexPath.row == preIndex) {
             //print("reach end of row")
             
-            getMoreMomentsFromCoreData((moments[moments.count - 1].getDate()))
+            //getMoreMomentsFromCoreData((moments[preIndex].getDate()))
             //print("moments count: \(moments.count)")
             
-            momentTableView.reloadData()
+            /*
+            var moreIndexPaths = [NSIndexPath]()
+
+            for var i = preIndex; i < moments.count; i++ {
+                let indexPath = NSIndexPath(forRow: i, inSection: 0)
+                moreIndexPaths.append(indexPath)
+            }
+            */
+            
+            //momentTableView.reloadData()
+            //momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+            
         }
         
     }
-*/
+
 
 
 }
