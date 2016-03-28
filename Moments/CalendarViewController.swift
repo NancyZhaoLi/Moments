@@ -9,7 +9,7 @@
 import UIKit
 import CVCalendar
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, NewMomentViewControllerDelegate {
     
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
@@ -58,7 +58,23 @@ class CalendarViewController: UIViewController {
         if segue.identifier == "calendarDay" {
             let calendarDayViewController = segue.destinationViewController as! CalendarDayViewController
             calendarDayViewController.date = pickedDay
+        } else if segue.identifier == "CalenderToNewMoment" {
+            let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
+            newMomentNavigationVC.setDelegate(self)
         }
+    }
+    
+    func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("new moment in calendar view")
+        
+        if moment.save() {
+            print("after saving a new moment")
+        }
+        
+    }
+    
+    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("update moment in calendar view")
     }
     
 }

@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
-class CalendarDayViewController: UIViewController, UITableViewDelegate {
+class CalendarDayViewController: UIViewController, UITableViewDelegate, NewMomentViewControllerDelegate {
     
     var date:NSDate?
+    var indexOfCellClicked: Int?
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -51,9 +52,9 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editSavedMoment" {
             let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
-            let newMomentCanvasVC = newMomentNavigationVC.topViewController as! NewMomentCanvasViewController
             let cell = sender as! MomentTableCell
-            newMomentCanvasVC.loadedMoment = cell.moment
+            newMomentNavigationVC.setDelegate(self)
+            newMomentNavigationVC.loadMoment(cell.moment!)
         }
     }
     
@@ -61,6 +62,24 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
         let backButton = NavigationHelper.leftNavButton("Back", target: self, action: "backToCalendar")
         let navBar = NavigationHelper.barWithItem(backButton, centerItem: nil, rightItem: nil)
         self.view.addSubview(navBar)
+    }
+    
+    func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("new moment in calendar view")
+        
+    }
+    
+    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("update moment in calendar view")
+        
+        if let index = self.indexOfCellClicked {
+            if moment.save() {
+                print("after saving a previously added moment")
+                self.moments[index] = moment
+                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                dayMomentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+            }
+        }
     }
     
     func updateDateLabel() {
@@ -109,6 +128,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = self.dayMomentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
+        self.indexOfCellClicked = indexPath.row
         print("cell at \(indexPath.row) is clicked")
         
         dispatch_async(dispatch_get_main_queue(), {
