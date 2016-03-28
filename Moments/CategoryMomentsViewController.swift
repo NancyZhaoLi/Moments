@@ -15,8 +15,8 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
     @IBOutlet weak var momentsTableView: UITableView!
 
     var category: Category?
-    
     var moments = [Moment]()
+    var indexOfCellClicked: Int?
     
     
     override func viewDidLoad() {
@@ -62,6 +62,25 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         self.view.addSubview(navBar)
     }
     
+    func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("new moment in home view")
+        
+    }
+    
+    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("update moment in home view")
+        
+        if let index = self.indexOfCellClicked {
+            if moment.save() {
+                print("after saving a previously added moment")
+                self.moments[index] = moment
+                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                momentsTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+            }
+        }
+    }
+
+    
     func backToCategory() {
         self.dismiss(true)
     }
@@ -75,7 +94,10 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         
         if category!.id != 1 {
             
-            for moment in (category?.getAllSavedMoments())! {
+            let name = category?.getName()
+            let updatedCategory = CoreDataFetchHelper.fetchCategoryGivenName(name!)
+            
+            for moment in (updatedCategory.getAllSavedMoments()) {
                 print("moment in category")
                 moments.append(moment)
             }
@@ -116,6 +138,7 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = self.momentsTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
+        self.indexOfCellClicked = indexPath.row
         
         dispatch_async(dispatch_get_main_queue(), {
             self.performSegueWithIdentifier("editSavedMoment", sender: cell)
@@ -136,15 +159,5 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
-
-    func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
-        print("new moment")
-    }
-    
-    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
-        print("update moment")
-    }
-
-
     
 }

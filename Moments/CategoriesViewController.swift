@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoriesViewController: UICollectionViewController, NewCategoryViewControllerDelegate {
+class CategoriesViewController: UICollectionViewController, NewCategoryViewControllerDelegate, NewMomentViewControllerDelegate {
     
     @IBOutlet var categoriesCollectionView: UICollectionView!
     
@@ -25,13 +25,6 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     var categoryIdIndex: CategoryIdIndexEntry?
     
     var width: CGFloat?
-    
-    
-    /*override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.leftBarButtonItem?.enabled = true
-        
-    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +83,30 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         } else if segue.identifier == "newCategory" {
             let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
             newCategoryVC.delegate = self
+        } else if segue.identifier == "CategoryToNewMoment" {
+            let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
+            newMomentNavigationVC.setDelegate(self)
         }
+    }
+    
+    func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("new moment in home view")
+        
+        if moment.save() {
+            print("after saving a new moment")
+            
+            for category in categories {
+                if moment.getCategory().getName() == category.getName() {
+                    print("category name match: \(category.getName())")
+                }
+            }
+        }
+        
+    }
+    
+    func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
+        print("update moment in home view")
+        
     }
     
     // get categories from core data
