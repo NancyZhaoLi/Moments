@@ -248,7 +248,7 @@ class NewMomentCanvasViewController: UIViewController,
             let video = UIImagePickerController()
             video.delegate = self
             video.sourceType = .Camera
-            video.cameraCaptureMode = .Video
+            //video.cameraCaptureMode = .Video
             video.mediaTypes = [kUTTypeMovie as String]
             
             presentViewController(video, animated: true, completion: nil)
@@ -523,15 +523,11 @@ class NewMomentCanvasViewController: UIViewController,
                 if stringType == kUTTypeMovie as String {
                     let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
                     if let url = urlOfVideo {
-                        let photoLibrary : PHPhotoLibrary = PHPhotoLibrary.sharedPhotoLibrary()
-                        photoLibrary.performChanges({
-                            let createAssetRequest: PHAssetChangeRequest = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(url)!
-                            }, completionHandler: {(success: Bool, error: NSError?) in
-                            if let theError = error {
-                                print("Error saving video: \(theError)")
-                            } else {
-                                print("Successfully saved video")
-                            }})
+                        if let videoViewController = manager!.addRecordedVideo(fileURL: url, location: self.center) {
+                            addNewViewController(videoViewController)
+                        } else {
+                            print("cannot add videoItemVC onto canvas")
+                        }
                     } else {
                         print("no url for video")
                     }
@@ -575,7 +571,7 @@ class NewMomentCanvasViewController: UIViewController,
     
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
-        if let audioViewController = manager!.addRecordingAudio(fileURL: url, location: self.center) {
+        if let audioViewController = manager!.addRecordedAudio(fileURL: url, location: self.center) {
             addNewViewController(audioViewController)
         } else {
             print("cannot add recording to canvas")

@@ -2,7 +2,7 @@
 //  VideoItem+CoreDataProperties.swift
 //  Moments
 //
-//  Created by Mengyi LUO on 2016-03-22.
+//  Created by Nancy Li on 2016-03-28.
 //  Copyright © 2016 Moments. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,9 +14,10 @@ import CoreData
 
 extension VideoItem {
 
-    @NSManaged var frame: String?
-    @NSManaged var url: NSObject?
-    @NSManaged var zPosition: NSNumber?
-    @NSManaged var inMoment: Moment?
+    @NSManaged var frame: String
+    @NSManaged var url: NSObject
+    @NSManaged var zPosition: NSNumber
+    @NSManaged var snapshot: NSData
+    @NSManaged var inMoment: Moment
 
 }

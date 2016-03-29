@@ -109,9 +109,11 @@ class NewMomentManager {
             }
         }
         
-        /*for videoItem in moment.videoItemEntries {
-            canvasVC.addNewViewController(loadVideo(videoItem))
-        }*/
+        for videoItem in moment.getAllSavedVideo() {
+            if let video = loadVideo(videoItem) {
+                canvasVC.addNewViewController(video, zPosition: videoItem.getZPosition())
+            }
+        }
         
         for stickerItem in moment.getAllSavedSticker() {
             canvasVC.addNewViewController(loadSticker(stickerItem), zPosition: stickerItem.getZPosition())
@@ -142,8 +144,13 @@ class NewMomentManager {
         return nil
     }
     
-    func loadVideo(videoItem: VideoItemEntry) -> VideoItemViewController {
-        return VideoItemViewController()
+    func loadVideo(videoItem: VideoItem) -> VideoItemViewController? {
+        let newVideoVC = VideoItemViewController(manager: self)
+        if newVideoVC.addVideo(videoItem) {
+            return newVideoVC
+        }
+        
+        return nil
     }
     
     func loadSticker(stickerItem: StickerItem) -> StickerItemViewController {
@@ -181,12 +188,22 @@ class NewMomentManager {
         return nil
     }
     
-    func addRecordingAudio(fileURL url: NSURL, location: CGPoint) -> AudioItemViewController? {
+    func addRecordedAudio(fileURL url: NSURL, location: CGPoint) -> AudioItemViewController? {
         
         let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)
-        if audioItemVC.addRecordingAudio(fileURL: url, location: location) {
+        if audioItemVC.addRecordedAudio(fileURL: url, location: location) {
             return audioItemVC
         }
+        return nil
+    }
+    
+    func addRecordedVideo(fileURL url: NSURL, location: CGPoint) -> VideoItemViewController? {
+        
+        let videoItemVC: VideoItemViewController = VideoItemViewController(manager: self)
+        if videoItemVC.addRecordedVideo(fileURL: url, location: location) {
+            return videoItemVC
+        }
+        
         return nil
     }
     
@@ -267,7 +284,7 @@ class NewMomentManager {
     }
     
     func saveMoment(moment: Moment) {
-        for var zPosition = 0; zPosition < canvasVC.canvas.subviews.count; zPosition++ {
+        for var zPosition = 0; zPosition < canvasVC.canvas.subviews.count; zPosition+=1 {
             let view = canvasVC.canvas.subviews[zPosition]
             
             if let view = view as? TextItemView {
@@ -300,6 +317,14 @@ class NewMomentManager {
                     }
                 } else {
                     print("ERROR: url not set for AudioItem in saveNewMoment")
+                }
+            } else if let view = view as? VideoItemView {
+                if let fileURL = view.fileURL, snapshot = view.fileSnapshot {
+                    if let video = VideoItem(frame: view.frame, fileURL: fileURL, snapshot: snapshot, zPosition: zPosition) {
+                        moment.addVideo(video)
+                    } else {
+                        print("ERROR: fail to create VideoItem in saveNewMoment")
+                    }
                 }
             } else if let view = view as? StickerItemView {
                 if let name = view.stickerName {

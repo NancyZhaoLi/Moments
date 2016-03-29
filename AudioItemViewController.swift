@@ -151,7 +151,7 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
         return false
     }
 
-    func addRecordingAudio(fileURL url: NSURL, location: CGPoint) -> Bool {
+    func addRecordedAudio(fileURL url: NSURL, location: CGPoint) -> Bool {
         do {
             player = try AVAudioPlayer(contentsOfURL: url)
             player?.delegate = self
@@ -171,7 +171,6 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
             if let url = audioItem.getURL() {
                 self.player = try AVAudioPlayer(contentsOfURL: url)
                 self.player?.delegate = self
-                print(audioItem.getFrame())
                 audioView.frame = audioItem.getFrame()
                 audioView.layer.zPosition = CGFloat(audioItem.getZPosition())
                 audioView.fileURL = url

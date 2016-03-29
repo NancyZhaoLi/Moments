@@ -215,6 +215,13 @@ class Moment: NSManagedObject {
         videoItems.append(video)
     }
     
+    func getAllSavedVideo() -> [VideoItem] {
+        if let savedVideoItems = self.containedVideoItem {
+            return savedVideoItems.allObjects as! [VideoItem]
+        }
+        return [VideoItem]()
+    }
+    
     func addSticker(sticker: StickerItem) {
         stickerItems.append(sticker)
     }
@@ -232,7 +239,7 @@ class Moment: NSManagedObject {
         let containedTextItem = self.mutableSetValueForKey("containedTextItem")
         let containedImageItem = self.mutableSetValueForKey("containedImageItem")
         let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
-        //let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
+        let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
         let containedStickerItem = self.mutableSetValueForKey("containedStickerItem")
         
         print("item list loaded")
@@ -266,6 +273,12 @@ class Moment: NSManagedObject {
                 } else {
                     print("save audioItem failed ")
                 }
+            }
+            
+            for videoItem in videoItems {
+                videoItem.save()
+                context.insertObject(videoItem)
+                containedVideoItem.addObject(videoItem)
             }
             
             for stickerItem in stickerItems {
@@ -305,7 +318,7 @@ class Moment: NSManagedObject {
         let containedTextItem = self.mutableSetValueForKey("containedTextItem")
         let containedImageItem = self.mutableSetValueForKey("containedImageItem")
         let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
-        //let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
+        let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
         let containedStickerItem = self.mutableSetValueForKey("containedStickerItem")
     
         if let context = self.managedObjectContext {
@@ -319,6 +332,10 @@ class Moment: NSManagedObject {
             
             for audioItem in containedAudioItem {
                 context.deleteObject(audioItem as! AudioItem)
+            }
+            
+            for videoItem in containedVideoItem {
+                context.deleteObject(videoItem as! VideoItem)
             }
             
             for stickerItem in containedStickerItem {

@@ -232,6 +232,15 @@ class UIHelper {
         
         return newImage
     }
+    
+    static func resizeImage(image: UIImage, newWidth: CGFloat, newHeight: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0,0,newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 
     static func groupWithHeader(header: String, headerSize: CGFloat,lineHeight: CGFloat, inset: CGFloat, y: CGFloat, content: UIView) -> UIView {
         let view = UIView(frame: CGRectMake(0, y, windowWidth,0))

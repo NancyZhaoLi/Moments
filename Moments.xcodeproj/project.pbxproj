@@ -422,8 +422,8 @@
 				460BFD081CA0C59B004CA963 /* signupViewController.swift */,
 				46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */,
 				769DD7F61C76AABE00FC883E /* ViewController.swift */,
-				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
 				769DD7FE1C76AABE00FC883E /* Assets.xcassets */,
+				468BC2831C7A837500D93268 /* MainUIViewController.swift */,
 				769DD8001C76AABE00FC883E /* LaunchScreen.storyboard */,
 				769DD8031C76AABE00FC883E /* Info.plist */,
 				769DD7FB1C76AABE00FC883E /* Moments.xcdatamodeld */,
@@ -626,7 +626,7 @@
 				TargetAttributes = {
 					769DD7F01C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = ZZ9R9MP283;
+						DevelopmentTeam = A4782Z5W32;
 					};
 					769DD8071C76AABE00FC883E = {
 						CreatedOnToolsVersion = 7.2.1;
