@@ -165,14 +165,32 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             
-            // delete moment in core data
-            moments[indexPath.row].delete()
-
-            // delete categories in array
-            moments.removeAtIndex(indexPath.row)
             
-            // delete cell in table
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            if searchController.active && searchController.searchBar.text != "" {
+                
+                for moment in moments {
+                    if moment.getId() == filterMoments[indexPath.row].getId() {
+                        if let index = moments.indexOf(moment) {
+                            moments.removeAtIndex(index)
+                        }
+                    }
+                }
+                
+                filterMoments[indexPath.row].delete()
+                filterMoments.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                
+            } else {
+                // delete moment in core data
+                moments[indexPath.row].delete()
+                
+                // delete categories in array
+                moments.removeAtIndex(indexPath.row)
+                
+                // delete cell in table
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
+            
         }
     }
     
