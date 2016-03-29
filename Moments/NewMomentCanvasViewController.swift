@@ -276,6 +276,7 @@ class NewMomentCanvasViewController: UIViewController,
             overlay.cameraPicker = image
             overlay.initDelegate(self)
             image.cameraOverlayView = overlay.view
+            image.addChildViewController(overlay)
         }
         presentViewController(image, animated: true, completion: nil)
     }
