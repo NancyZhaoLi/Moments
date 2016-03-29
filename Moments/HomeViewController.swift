@@ -45,11 +45,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         self.momentTableView.separatorStyle = UITableViewCellSeparatorStyle.None
         self.momentTableView.showsVerticalScrollIndicator = false
         self.momentTableView.backgroundColor = UIColor.clearColor()
-
+        
+        global.setHomeViewController(self)
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        /*
         print("first moment title: " + moments[0].getTitle())
         
         let newMoments = global.getNewMoments()
@@ -89,7 +90,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
                 }
                 
             }
-        }
+        }*/
         
     }
 
@@ -277,6 +278,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         
     }
     
+    func newMoment(newMoment: Moment) {
+        moments.insert(newMoment, atIndex: 0)
+        
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
+    }
+    
+    func updateMoment(updatedMoment: Moment) {
+        for moment in moments {
+            if moment.getId() == updatedMoment.getId() {
+                if let index = moments.indexOf(moment) {
+                    moments[index] = updatedMoment
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                }
+            }
+        }
+    }
+    
     func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
         print("new moment in home view")
         
@@ -296,6 +317,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         print("update moment in home view")
         
         if let index = self.indexOfCellClicked {
+            print("index in home view: \(index)")
             if moment.save() {
                 print("after saving a previously added moment")
                 self.moments[index] = moment

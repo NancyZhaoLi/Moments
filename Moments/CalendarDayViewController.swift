@@ -73,13 +73,17 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate, NewMomen
         print("update moment in calendar view")
         
         if let index = self.indexOfCellClicked {
+            print("index: \(index)")
             if moment.save() {
                 print("after saving a previously added moment")
                 self.moments[index] = moment
                 let indexPath = NSIndexPath(forRow: index, inSection: 0)
                 dayMomentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
                 
-                global.addEditMoment(moment)
+                //global.addEditMoment(moment)
+                if let home = global.getHomeViewController() {
+                    home.updateMoment(moment)
+                }
             }
             
         }

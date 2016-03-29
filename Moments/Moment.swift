@@ -228,11 +228,14 @@ class Moment: NSManagedObject {
     
     
     func save() -> Bool {
+        print("save moment begin")
         let containedTextItem = self.mutableSetValueForKey("containedTextItem")
         let containedImageItem = self.mutableSetValueForKey("containedImageItem")
         let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
         //let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
         let containedStickerItem = self.mutableSetValueForKey("containedStickerItem")
+        
+        print("item list loaded")
         
         if let context = self.managedObjectContext {
             for textItem in textItems {
@@ -240,10 +243,14 @@ class Moment: NSManagedObject {
                 containedTextItem.addObject(textItem)
             }
             
+            print("text done")
+            
             for imageItem in imageItems {
                 context.insertObject(imageItem)
                 containedImageItem.addObject(imageItem)
             }
+            
+            print("image done")
             
             for audioItem in audioItems {
                 context.insertObject(audioItem)
@@ -267,7 +274,9 @@ class Moment: NSManagedObject {
             }
             
             do{
+                print("try to save context")
                 try context.save()
+                clearItems()
                 print("SUCCESS: saving moment to core data")
                 return true
             } catch {
@@ -275,6 +284,7 @@ class Moment: NSManagedObject {
             }
         }
         
+        clearItems()
         return false
     }
     
@@ -289,5 +299,52 @@ class Moment: NSManagedObject {
             }
         }
         return false
+    }
+    
+    func deleteContent() -> Bool {
+        let containedTextItem = self.mutableSetValueForKey("containedTextItem")
+        let containedImageItem = self.mutableSetValueForKey("containedImageItem")
+        let containedAudioItem = self.mutableSetValueForKey("containedAudioItem")
+        //let containedVideoItem = self.mutableSetValueForKey("containedVideoItem")
+        let containedStickerItem = self.mutableSetValueForKey("containedStickerItem")
+    
+        if let context = self.managedObjectContext {
+            for textItem in containedTextItem {
+                context.deleteObject(textItem as! TextItem)
+            }
+            
+            for imageItem in containedImageItem {
+                context.deleteObject(imageItem as! ImageItem)
+            }
+            
+            for audioItem in containedAudioItem {
+                context.deleteObject(audioItem as! AudioItem)
+            }
+            
+            for stickerItem in containedStickerItem {
+                context.deleteObject(stickerItem as! StickerItem)
+            }
+            
+            do{
+                try context.save()
+                print("SUCCESS: delete moment content fromt core data")
+                clearItems()
+                return true
+            } catch {
+                print("ERROR: delete moment content from core data \(error)")
+            }
+        }
+        
+        clearItems()
+        return false
+
+    }
+    
+    func clearItems() {
+        textItems.removeAll()
+        imageItems.removeAll()
+        audioItems.removeAll()
+        videoItems.removeAll()
+        stickerItems.removeAll()
     }
 }

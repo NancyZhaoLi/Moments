@@ -11,6 +11,8 @@ class Global {
     var newMoments = [Moment]()
     var editMoments = [Moment]()
     
+    var homeViewController: HomeViewController?
+    
     init() {
 
     }
@@ -41,6 +43,14 @@ class Global {
         if let index = editMoments.indexOf(moment) {
             editMoments.removeAtIndex(index)
         }
+    }
+    
+    func setHomeViewController(homeViewController: HomeViewController) {
+        self.homeViewController = homeViewController
+    }
+    
+    func getHomeViewController() -> HomeViewController? {
+        return homeViewController
     }
 
     

@@ -248,19 +248,17 @@ class NewMomentManager {
             //if (CoreDataFetchHelper.deleteMomentGivenId(moment!.getMomentId())) {
             //if true {
            /* if let moment = self.moment {
-                moment.setMomentBackgroundColour(backgroundColour)
-                moment.setMomentCategory(category)
-                moment.setMomentFavourite(favourite)
-                moment.setMomentTitle(title)
-                saveMoment(moment)
+
             }*/
             
-            let previousDate = moment.getDate()
-            let previousId = moment.getId()
-            moment.delete()
-            
-            let newMoment = Moment(backgroundColour: backgroundColour, date: previousDate,  favourite: favourite, id: previousId, title: title, category: category)!
-            saveMoment(newMoment)
+            moment.deleteContent()
+            moment.setMomentBackgroundColour(backgroundColour)
+            moment.setMomentCategory(category)
+            moment.setMomentFavourite(favourite)
+            moment.setMomentTitle(title)
+            saveMoment(moment)
+
+            //let newMoment = Moment(backgroundColour: backgroundColour, date: previousDate,  favourite: favourite, id: previousId, title: title, category: category)!
             
             //} else {
             //   fatalError("[saveMomentEntry] - could not delete old moment")

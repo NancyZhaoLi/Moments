@@ -70,8 +70,10 @@ class CalendarViewController: UIViewController, NewMomentViewControllerDelegate 
         
         if moment.save() {
             print("after saving a new moment")
-            
-            global.addNewMoment(moment)
+            if let home = global.getHomeViewController() {
+                home.newMoment(moment)
+            }
+            //global.addNewMoment(moment)
         }
         
     }
