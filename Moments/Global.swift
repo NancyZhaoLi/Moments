@@ -9,6 +9,7 @@
 class Global {
     
     var homeViewController: HomeViewController?
+    var categoriesViewController: CategoriesViewController?
     
     init() {
 
@@ -20,6 +21,14 @@ class Global {
     
     func getHomeViewController() -> HomeViewController? {
         return homeViewController
+    }
+    
+    func setCategoriesViewController(categoriesViewController: CategoriesViewController) {
+        self.categoriesViewController = categoriesViewController
+    }
+    
+    func getCategoriesViewController() -> CategoriesViewController? {
+        return categoriesViewController
     }
 
     

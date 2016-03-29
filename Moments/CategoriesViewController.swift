@@ -68,6 +68,8 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         let longPressGR = UILongPressGestureRecognizer(target: self, action: "longPress:")
         self.categoriesCollectionView.addGestureRecognizer(longPressGR)
         
+        global.setCategoriesViewController(self)
+        
     }
     
     
@@ -435,12 +437,19 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         print("category id: \(category.id)")
         category.save()
-        categories.append(category)
+        
+        addNewCategory(category)
+    
+    }
+    
+    func addNewCategory(newCategory: Category) {
+        
+        categories.append(newCategory)
         
         let count = categories.count
         let index = count > 0 ? count - 1 : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
-        let id = Int(category.id)
+        let id = Int(newCategory.getId())
         
         // add id and index pair to maps
         categoryIdIndex?.idToIndex.setObject(index, forKey: id)
@@ -450,12 +459,12 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         /*UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.65, initialSpringVelocity: 0.0, options: .CurveEaseInOut, animations: { () -> Void in
-            self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
-            }, completion: nil)*/
+        self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
+        }, completion: nil)*/
         
         self.categoriesCollectionView.insertItemsAtIndexPaths([indexPath])
         self.categoriesCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.Bottom, animated: true)
-    
+        
     }
 
     

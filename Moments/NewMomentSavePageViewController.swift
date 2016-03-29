@@ -203,14 +203,20 @@ class NewMomentSavePageViewController: UIViewController,
     func newCategory(controller: NewCategoryViewController, category: Category) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
+        print("category id: \(category.id)")
         category.save()
-        //CoreDataSaveHelper.saveCategoryToCoreData(category)
+        
         categories.append(category)
         
         let count = categories.count
         let index = count > 0 ? count - 1 : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
         self.categoryList.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        
+        if let categoriesVC = global.getCategoriesViewController() {
+            categoriesVC.addNewCategory(category)
+        }
+        
     }
 
     
