@@ -76,6 +76,10 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
                 self.moments[index] = moment
                 let indexPath = NSIndexPath(forRow: index, inSection: 0)
                 momentsTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                
+                if let home = global.getHomeViewController() {
+                    home.updateMoment(moment)
+                }
             }
         }
     }
