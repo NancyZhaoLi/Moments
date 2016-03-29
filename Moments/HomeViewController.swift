@@ -223,6 +223,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         }
     }
     
+    func deleteMoment(deletedMoment: Moment) {
+
+        for moment in moments {
+            if moment.getId() == deletedMoment.getId() {
+                if let index = moments.indexOf(moment) {
+                    // delete categories in array
+                    moments.removeAtIndex(index)
+                    
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    // delete cell in table
+                    momentTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                }
+            }
+        }
+        
+    }
+    
     func newMoment(controller: NewMomentSavePageViewController, moment: Moment) {
         print("new moment in home view")
         

@@ -145,6 +145,10 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate, NewMomen
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             
+            if let home = global.getHomeViewController() {
+                home.deleteMoment(moments[indexPath.row])
+            }
+            
             // delete moment in core data
             moments[indexPath.row].delete()
             
@@ -153,6 +157,7 @@ class CalendarDayViewController: UIViewController, UITableViewDelegate, NewMomen
             
             // delete cell in table
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+
         }
     }
 
