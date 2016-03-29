@@ -280,9 +280,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
             print("index in home view: \(index)")
             if moment.save() {
                 print("after saving a previously added moment")
-                self.moments[index] = moment
-                let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                
+                if searchController.active && searchController.searchBar.text != "" {
+                    self.filterMoments[index] = moment
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                } else {
+                    self.moments[index] = moment
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                }
+                
             }
         }
         
