@@ -161,6 +161,10 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             
+            if let home = global.getHomeViewController() {
+                home.deleteMoment(moments[indexPath.row])
+            }
+            
             // delete moment in core data
             moments[indexPath.row].delete()
             
