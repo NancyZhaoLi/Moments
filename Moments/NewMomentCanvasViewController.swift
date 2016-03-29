@@ -272,11 +272,11 @@ class NewMomentCanvasViewController: UIViewController,
         image.allowsEditing = allowsEditing
         image.mediaTypes = [kUTTypeImage as String]
         if sourceType == .Camera {
-            let overlay = CameraOverlayViewController(frame: self.view.frame)
+            /*let overlay = CameraOverlayViewController(frame: self.view.frame)
             overlay.cameraPicker = image
             overlay.initDelegate(self)
             image.cameraOverlayView = overlay.view
-            image.addChildViewController(overlay)
+            image.addChildViewController(overlay)*/
         }
         presentViewController(image, animated: true, completion: nil)
     }
