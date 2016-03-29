@@ -109,6 +109,10 @@ class CategoryViewCell: UICollectionViewCell {
         
         imageItem.backgroundColor = categoryInfo.getColour()
         imageItem.frame = CGRect(x: 8, y: 8, width: self.frame.width - 16, height: self.frame.width - 16)
+        imageItem.layer.masksToBounds = true
+        imageItem.layer.cornerRadius = 20.0
+        imageItem.layer.shadowColor = UIColor.grayColor().CGColor
+        imageItem.layer.shadowRadius = 2.0
         
     }
     

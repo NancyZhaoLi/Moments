@@ -70,9 +70,19 @@ class Category: NSManagedObject {
         moments.addObject(moments)
     }
     
-    func getAllSavedMoments() -> [Moment] {
+    func getSavedMoments() -> [Moment] {
         if let savedMoments = self.containedMoment {
             return savedMoments.allObjects as! [Moment]
+        }
+        
+        return [Moment]()
+    }
+    
+    func getSortedSavedMoments() -> [Moment] {
+        if let savedMoments = self.containedMoment {
+            let sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+            let momentArray: [Moment] = savedMoments.sortedArrayUsingDescriptors([sortDescriptor]) as! [Moment]
+            return momentArray
         }
         
         return [Moment]()
