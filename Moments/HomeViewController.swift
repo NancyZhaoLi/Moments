@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     
     @IBOutlet var homeView: UIView!
     @IBOutlet weak var momentTableView: UITableView!
+    @IBOutlet weak var addNewMomentButton: UIButton!
     
     var moments = [Moment]()
     var filterMoments = [Moment]()
@@ -301,5 +302,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
 extension HomeViewController : UISearchResultsUpdating{
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+        
+        addNewMomentButton.enabled = false
+        if !searchController.active {
+            addNewMomentButton.enabled = true
+        }
     }
 }
