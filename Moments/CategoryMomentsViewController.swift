@@ -73,13 +73,21 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         if let index = self.indexOfCellClicked {
             if moment.save() {
                 print("after saving a previously added moment")
-                self.moments[index] = moment
-                let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                momentsTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                
+                if moment.getCategory() == category {
+                    self.moments[index] = moment
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    momentsTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                } else {
+                    self.moments.removeAtIndex(index)
+                    let indexPath = NSIndexPath(forRow: index, inSection: 0)
+                    momentsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                }
                 
                 if let home = global.getHomeViewController() {
                     home.updateMoment(moment)
                 }
+                
             }
         }
     }
