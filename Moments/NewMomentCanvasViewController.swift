@@ -534,7 +534,8 @@ class NewMomentCanvasViewController: UIViewController,
                 } else {
                     if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
                         addNewViewController(manager!.addImage(image, location: self.center, editingInfo: info))
-                    }
+                    } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                        addNewViewController(manager!.addImage(image, location: self.center, editingInfo: info))                    }
                 }
             }
         }
