@@ -101,7 +101,7 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
             let name = category?.getName()
             let updatedCategory = CoreDataFetchHelper.fetchCategoryGivenName(name!)
             
-            for moment in (updatedCategory.getAllSavedMoments()) {
+            for moment in (updatedCategory.getSortedSavedMoments()) {
                 print("moment in category")
                 moments.append(moment)
             }
