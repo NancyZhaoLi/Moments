@@ -73,7 +73,6 @@ class CalendarViewController: UIViewController, NewMomentViewControllerDelegate 
             if let home = global.getHomeViewController() {
                 home.newMoment(moment)
             }
-            //global.addNewMoment(moment)
         }
         
     }

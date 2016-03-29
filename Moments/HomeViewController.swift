@@ -26,7 +26,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("global new moment count: \(global.getNewMoments().count)")
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -48,83 +47,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         
         global.setHomeViewController(self)
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        /*
-        print("first moment title: " + moments[0].getTitle())
-        
-        let newMoments = global.getNewMoments()
-        let editMoments = global.getEditMoments()
-        
-        for newMoment in newMoments {
-            if !localNewMoments.contains(newMoment) {
-                print("Home not contain new moment")
-                
-                moments.insert(newMoment, atIndex: 0)
-                localNewMoments.append(newMoment)
-                
-                let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-                self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
-            }
-        }
-        
-        for editMoment in editMoments {
-            if !localEditMoments.contains(editMoment) {
-                print("Home not update edited moment")
-                
-                localEditMoments.append(editMoment)
-                
-                print("first moment title: " + moments[0].getTitle())
-                
-                for var i = 0; i < moments.count; i++ {
-                    print("moment title: \(moments[i].getId())")
-                    print("edit moment title \(editMoment.getId())")
-                    if moments[i].getId() == editMoment.getId() {
-                        print("id match")
-
-                        self.moments[i] = editMoment
-                        let indexPath = NSIndexPath(forRow: i, inSection: 0)
-                        momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                    }
-                }
-                
-            }
-        }*/
-        
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func unwindToHomeView(segue: UIStoryboardSegue) {
-        if let NewMomentSavePageVC = segue.sourceViewController as? NewMomentSavePageViewController {
-            /*if NewMomentSavePageVC.isNewMoment() {
-                if let moment: Moment = NewMomentSavePageVC.getMomentEntry() {
-                    if moment.save() {
-                        print("after saving a new moment")
-                        moments.insert(moment, atIndex: 0)
-
-                        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-                        self.momentTableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-                        self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.None, animated: true)
-                    }
-                }
-            } else {
-                if let index = self.indexOfCellClicked {
-                    if let moment: Moment = NewMomentSavePageVC.getMomentEntry() {
-                        if moment.save() {
-                            print("after saving a previously added moment")
-                            self.moments[index] = moment
-                            let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                            momentTableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
-                        }
-                    }
-                }
-            }*/
-        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -139,8 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         }
     }
     
-    func filterContentForSearchText (searchText: String, scope: String = "ALL")
-    {
+    func filterContentForSearchText (searchText: String, scope: String = "ALL") {
         
         filterMoments = moments.filter{moment in
             return moment.title.lowercaseString.containsString(searchText.lowercaseString)}
