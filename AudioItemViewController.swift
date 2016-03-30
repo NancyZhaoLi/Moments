@@ -220,8 +220,18 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
     }
     
     func enableViewMode(enabled: Bool) {
-        trashGR?.enabled = enabled
-        dragGR?.enabled = enabled
+        trashGR?.enabled = !enabled
+        dragGR?.enabled = !enabled
+    }
+    
+    func tapToTrash(sender: UITapGestureRecognizer) {
+        if let senderView = sender.view {
+            if sender.numberOfTouches() != 1 {
+                return
+            }
+            senderView.removeFromSuperview()
+            self.removeFromParentViewController()
+        }
     }
     
 }

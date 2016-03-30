@@ -124,10 +124,20 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
     }
     
     func enableViewMode(enabled: Bool) {
-        trashGR?.enabled = enabled
-        dragGR?.enabled = enabled
-        pinchGR?.enabled = enabled
-        rotateGR?.enabled = enabled
+        trashGR?.enabled = !enabled
+        dragGR?.enabled = !enabled
+        pinchGR?.enabled = !enabled
+        rotateGR?.enabled = !enabled
+    }
+    
+    func tapToTrash(sender: UITapGestureRecognizer) {
+        if let senderView = sender.view {
+            if sender.numberOfTouches() != 1 {
+                return
+            }
+            senderView.removeFromSuperview()
+            self.removeFromParentViewController()
+        }
     }
 }
 

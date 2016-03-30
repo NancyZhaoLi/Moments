@@ -187,21 +187,31 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func enableTrash(enabled: Bool) {
+        print("enable \(enabled)")
         if let trashGR = self.trashGR {
             trashGR.enabled = enabled
         }
-        tapGR.enabled = enabled
+        //tapGR.enabled = !enabled
     }
     
     func enableViewMode(enabled: Bool) {
-        tapGR.enabled = enabled
-        trashGR?.enabled = enabled
-        dragGR?.enabled = enabled
-        pinchGR?.enabled = enabled
-        rotateGR?.enabled = enabled
+        tapGR.enabled = !enabled
+        trashGR?.enabled = !enabled
+        dragGR?.enabled = !enabled
+        pinchGR?.enabled = !enabled
+        rotateGR?.enabled = !enabled
+    }
+    
+    func tapToTrash(sender: UITapGestureRecognizer) {
+        if let senderView = sender.view {
+            if sender.numberOfTouches() != 1 {
+                return
+            }
+            senderView.removeFromSuperview()
+            self.removeFromParentViewController()
+        }
     }
 
-    
     /*********************************************************************************
      
         DELEGATE FUNCTIONS

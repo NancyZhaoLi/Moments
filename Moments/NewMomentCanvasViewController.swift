@@ -21,6 +21,7 @@ protocol NewMomentItemGestureDelegate {
     func addRotateGR(rotateGR: UIRotationGestureRecognizer)
     func enableTrash(enabled: Bool)
     func enableViewMode(enabled: Bool)
+    func tapToTrash(sender: UITapGestureRecognizer)
 }
 
 class NewMomentCanvasViewController: UIViewController,
@@ -300,8 +301,11 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     private func initNewViewController(vc: UIViewController) {
-        addTrashGR(vc)
-        addDragGR(vc)
+        
+        if let delegate = vc as? NewMomentItemGestureDelegate {
+            delegate.addTrashGR(trashGR(vc))
+            delegate.addDragGR(dragItemGR())
+        }
         
         if let textItemVC = vc as? TextItemViewController {
             let textItemVC = textItemVC as NewMomentItemGestureDelegate
@@ -317,11 +321,10 @@ class NewMomentCanvasViewController: UIViewController,
         self.addChildViewController(vc)
     }
     
-    private func addTrashGR(vc: UIViewController) {
-        let trashGR = self.trashGR()
+    /*private func addTrashGR(vc: UIViewController) {
         //vc.view.addGestureRecognizer(trashGR)
         if let vc = vc as? NewMomentItemGestureDelegate {
-            vc.addTrashGR(trashGR)
+            vc.addTrashGR(trashGR())
         }
        /* if let text = vc as? TextItemViewController {
             text.tapToTrashGR = tapToTrash
@@ -337,19 +340,19 @@ class NewMomentCanvasViewController: UIViewController,
         } else if let sticker = vc as? StickerItemViewController {
             sticker.tapToTrashGR = tapToTrash
         }*/
-    }
+    }*/
     
-    private func addDragGR(vc: UIViewController) {
+    /*private func addDragGR(vc: UIViewController) {
         let dragGR = self.dragItemGR()
         if let vc = vc as? NewMomentItemGestureDelegate {
             vc.addDragGR(dragGR)
         }
-    }
+    }*/
     
-    private func trashGR() -> UITapGestureRecognizer {
-        let tapGR = UITapGestureRecognizer(target: self, action: "tapToTrash:")
-        tapGR.enabled = false
-        return tapGR
+    private func trashGR(vc: UIViewController) -> UITapGestureRecognizer {
+        let trashGR = UITapGestureRecognizer(target: vc, action: "tapToTrash:")
+        trashGR.enabled = false
+        return trashGR
     }
     
     private func dragItemGR() -> UIPanGestureRecognizer {
@@ -496,6 +499,7 @@ class NewMomentCanvasViewController: UIViewController,
     func setEnabledOfTapToTrashGR(enabled:Bool) {
         for vc in self.childViewControllers {
             if let vc = vc as? NewMomentItemGestureDelegate {
+                print("vc: \(vc)")
                 vc.enableTrash(enabled)
             }
         }
@@ -775,17 +779,6 @@ class NewMomentCanvasViewController: UIViewController,
         if sender.state == .Ended {
             trashController!.trashView.hidden = true
         }*/
-    }
-    
-    // Tap To Trash
-    
-    func tapToTrash(sender: UITapGestureRecognizer) {
-        if let senderView = sender.view {
-            if sender.numberOfTouches() != 1 {
-                return
-            }
-            senderView.removeFromSuperview()
-        }
     }
     
     
