@@ -60,14 +60,14 @@ class NewMomentSavePageViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        if let manager = self.manager {
+        if self.manager != nil {
             self.manager!.setSavePage(self)
             self.momentTitle.delegate = self
             
             initCategoryListUI()
             displayCategories()
         } else {
-            fatalError("Manager not set for savePage")
+            print("Manager not set for savePage")
         }
     }
     
@@ -158,20 +158,7 @@ class NewMomentSavePageViewController: UIViewController,
         favourite.addTarget(self, action: "selectFavourite")
         manager!.cancelFavourite()
     }
-    
-    
-    /*func setMomentTitle(title: String) {
-        momentTitle.text = title
-    }
-    
-    func setMomentCategory(category: String) {
-        //momentCategoryDisplay.text = category
-    }*/
-    
 
-    
-
-    
     /*********************************************************************************
      
      NEW CATEGORY

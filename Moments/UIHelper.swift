@@ -241,6 +241,34 @@ class UIHelper {
         
         return newImage
     }
+    
+    static func randomBrightColour() -> UIColor {
+        let maxValue: CGFloat = 255.0
+        let val1: CGFloat = CGFloat(arc4random_uniform(255)) / maxValue
+        let val2: CGFloat = CGFloat(arc4random_uniform(255)) / maxValue
+        var val3: CGFloat = CGFloat(arc4random_uniform(255)) / maxValue
+        if val1 + val2 < (100.0 / maxValue) && val3 < (50.0 / maxValue) {
+            val3 += 50.0/maxValue
+        }
+        
+        let rand = arc4random_uniform(3)
+        switch rand {
+            
+        case 0:
+            return UIColor(red: val1, green: val2, blue: val3, alpha: 1.0)
+        case 1:
+            return UIColor(red: val1, green: val3, blue: val2, alpha: 1.0)
+        case 2:
+            return UIColor(red: val2, green: val1, blue: val3, alpha: 1.0)
+        case 3:
+            return UIColor(red: val2, green: val3, blue: val1, alpha: 1.0)
+        case 4:
+            return UIColor(red: val3, green: val1, blue: val2, alpha: 1.0)
+        default:
+            return UIColor(red: val3, green: val2, blue: val1, alpha: 1.0)
+            
+        }
+    }
 
     static func groupWithHeader(header: String, headerSize: CGFloat,lineHeight: CGFloat, inset: CGFloat, y: CGFloat, content: UIView) -> UIView {
         let view = UIView(frame: CGRectMake(0, y, windowWidth,0))
@@ -266,10 +294,10 @@ class UIHelper {
         return view
     }
     
-    
     static func blackLine(inset: CGFloat, y: CGFloat, height: CGFloat) -> UIView {
         return line(inset, height: height, y:y, colour: UIColor.blackColor())
     }
+    
     static func line(inset: CGFloat, height: CGFloat, y: CGFloat, colour: UIColor) -> UIView {
         let view = UIView(frame: CGRectMake(inset, y, windowWidth - inset * 2.0, height))
         view.backgroundColor = colour

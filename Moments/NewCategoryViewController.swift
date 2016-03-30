@@ -77,7 +77,7 @@ class NewCategoryViewController: UIViewController,
         self.categoryName.autocorrectionType = .No
 
         categoryColour = SwiftHSVColorPicker(frame: CGRectMake(20,200,self.view.frame.width - 65, self.view.frame.height - 200))
-        categoryColour.setViewColor(UIColor.customGreenColor())
+        categoryColour.setViewColor(UIHelper.randomBrightColour())
         
         self.view.addSubview(cancelButton)
         self.view.addSubview(saveButton)
@@ -119,7 +119,6 @@ class NewCategoryViewController: UIViewController,
     }
     
     func setId() {
-        
         if let maxIdInCD : Int64 = CoreDataFetchHelper.requestMaxCategoryId() {
             self.id = maxIdInCD + 1
         } else {
@@ -127,11 +126,8 @@ class NewCategoryViewController: UIViewController,
         }
     }
     
-    
     func getCategory() -> Category? {
-        
         let name = categoryName.text!
-        
         if let colour = categoryColour.color {
             return Category(id: id!, colour: colour, name: name)
         }
