@@ -78,7 +78,10 @@ class VideoItemView: UIView {
                 // Create a snapshot with the playbutton
                 self.backgroundColor = UIColor(patternImage: snapshot)
                 if let snapshotWithPlayButton = captureView(self) {
+                    print("succesfully capture view")
                     snapshot = snapshotWithPlayButton
+                } else {
+                    print("cannot capture view")
                 }
                 
                 self.fileSnapshot = snapshot
@@ -92,10 +95,13 @@ class VideoItemView: UIView {
     private func captureView(view: UIView) -> UIImage? {
         UIGraphicsBeginImageContext(view.bounds.size)
         if let context: CGContextRef = UIGraphicsGetCurrentContext() {
+            print("context found")
             view.layer.renderInContext(context)
             let img = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return img
+        } else {
+            print("context found")
         }
         
         UIGraphicsEndImageContext()

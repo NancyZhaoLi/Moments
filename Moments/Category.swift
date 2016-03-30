@@ -162,4 +162,25 @@ class Category: NSManagedObject {
         }
     }
     
+    static func categoryNameExist(categoryName name: String) -> Bool {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestCategories = NSFetchRequest(entityName: "Category")
+        requestCategories.predicate = NSPredicate(format: "name = %@", name)
+        requestCategories.includesSubentities = false
+        
+        do {
+            let results = try context.executeFetchRequest(requestCategories) as! [Category]
+            if results.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+        return false
+    }
 }
