@@ -11,7 +11,7 @@ import MediaPlayer
 import AVKit
 import AVFoundation
 
-class VideoItemView: UIView {
+class VideoItemView: UIImageView {
     private var playImageTitle = "play_icon.png"
     private var buttonSize: CGFloat = 80.0
     
@@ -80,7 +80,7 @@ class VideoItemView: UIView {
                 addSubview(playerButton)
                 
                 // Create a snapshot with the playbutton
-                self.backgroundColor = UIColor(patternImage: snapshot)
+                self.image = snapshot
                 /*if let snapshotWithPlayButton = captureView(self) {
                     snapshot = snapshotWithPlayButton
                 } */
@@ -93,18 +93,7 @@ class VideoItemView: UIView {
         }
     }
     
-    private func captureView(view: UIView) -> UIImage? {
-        UIGraphicsBeginImageContext(view.bounds.size)
-        if let context: CGContextRef = UIGraphicsGetCurrentContext() {
-            view.layer.renderInContext(context)
-            let img = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return img
-        }
-        
-        UIGraphicsEndImageContext()
-        return nil
-    }
+
     
     func setLocation(location: CGPoint) {
         self.center = location

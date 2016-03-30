@@ -281,6 +281,19 @@ class UIHelper {
         }
     }
 
+    static func captureView(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContext(view.bounds.size)
+        if let context: CGContextRef = UIGraphicsGetCurrentContext() {
+            view.layer.renderInContext(context)
+            let img = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return img
+        }
+        
+        UIGraphicsEndImageContext()
+        return nil
+    }
+    
     static func groupWithHeader(header: String, headerSize: CGFloat,lineHeight: CGFloat, inset: CGFloat, y: CGFloat, content: UIView) -> UIView {
         let view = UIView(frame: CGRectMake(0, y, windowWidth,0))
         let labelSize = textSize(header, size: headerSize)
