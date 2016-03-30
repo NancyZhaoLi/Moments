@@ -171,12 +171,13 @@ class Category: NSManagedObject {
         requestCategories.includesSubentities = false
         
         do {
-            let results = try context.executeFetchRequest(requestCategories) as! [Category]
+            //var err: NSError = NSError(
+            /*let count = try context.countForFetchRequest(requestCategories, error: <#T##NSErrorPointer#>)
             if results.isEmpty {
                 return false
             } else {
                 return true
-            }
+            }*/
         } catch {
             fatalError("Failure to fetch context: \(error)")
         }

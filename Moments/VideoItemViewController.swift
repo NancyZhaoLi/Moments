@@ -51,8 +51,8 @@ class VideoItemView: UIView {
             
             do {
                 var snapshot = try UIImage(CGImage: assetImageGen.copyCGImageAtTime(time, actualTime: nil))
-                
-                // Resize the Snapshot
+            
+                // Resize and rotate the Snapshot
                 let defaultMaxDimension: CGFloat = 250.0
                 let imageMaxDimension:CGFloat = max(snapshot.size.height, snapshot.size.width)
                 var resizeRatio: CGFloat = 1.0
@@ -60,7 +60,9 @@ class VideoItemView: UIView {
                 if imageMaxDimension > defaultMaxDimension {
                     resizeRatio = imageMaxDimension/defaultMaxDimension
                 }
-                
+            
+                snapshot = rotate(snapshot)
+
                 let newWidth = snapshot.size.width/resizeRatio
                 let newHeight = snapshot.size.height/resizeRatio
                 snapshot = UIHelper.resizeImage(snapshot, newWidth: newWidth, newHeight: newHeight)
@@ -77,12 +79,9 @@ class VideoItemView: UIView {
                 
                 // Create a snapshot with the playbutton
                 self.backgroundColor = UIColor(patternImage: snapshot)
-                if let snapshotWithPlayButton = captureView(self) {
-                    print("succesfully capture view")
+                /*if let snapshotWithPlayButton = captureView(self) {
                     snapshot = snapshotWithPlayButton
-                } else {
-                    print("cannot capture view")
-                }
+                } */
                 
                 self.fileSnapshot = snapshot
                 
@@ -95,13 +94,10 @@ class VideoItemView: UIView {
     private func captureView(view: UIView) -> UIImage? {
         UIGraphicsBeginImageContext(view.bounds.size)
         if let context: CGContextRef = UIGraphicsGetCurrentContext() {
-            print("context found")
             view.layer.renderInContext(context)
             let img = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return img
-        } else {
-            print("context not found")
         }
         
         UIGraphicsEndImageContext()
@@ -110,6 +106,17 @@ class VideoItemView: UIView {
     
     func setLocation(location: CGPoint) {
         self.center = location
+    }
+    
+    private func rotate(image: UIImage) -> UIImage {
+        UIGraphicsBeginImageContext(image.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextRotateCTM(context, CGFloat(-90.0 * M_PI / 180.0))
+        image.drawAtPoint(CGPointZero)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }
 
