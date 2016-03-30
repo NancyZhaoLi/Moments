@@ -319,7 +319,7 @@ class NewMomentManager {
                     print("ERROR: url not set for AudioItem in saveNewMoment")
                 }
             } else if let view = view as? VideoItemView {
-                if let fileURL = view.fileURL, snapshot = view.fileSnapshot {
+                if let fileURL = view.fileURL, snapshot = view.image {
                     if let video = VideoItem(frame: view.frame, fileURL: fileURL, snapshot: snapshot, zPosition: zPosition) {
                         moment.addVideo(video)
                     } else {

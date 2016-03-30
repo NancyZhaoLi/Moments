@@ -57,8 +57,10 @@ class VideoItemView: UIImageView {
                     resizeRatio = imageMaxDimension/defaultMaxDimension
                 }
                 
-                if let snapshotCG = snapshot.CGImage {
-                    snapshot = UIImage(CGImage: snapshotCG, scale: 1.0, orientation: UIImageOrientation.Right)
+                if snapshot.size.width < snapshot.size.height {
+                    if let snapshotCG = snapshot.CGImage {
+                        snapshot = UIImage(CGImage: snapshotCG, scale: 1.0, orientation: UIImageOrientation.Right)
+                    }
                 }
 
                 let newWidth = snapshot.size.width/resizeRatio

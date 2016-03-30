@@ -170,18 +170,15 @@ class Category: NSManagedObject {
         requestCategories.predicate = NSPredicate(format: "name = %@", name)
         requestCategories.includesSubentities = false
         
-        do {
-            //var err: NSError = NSError(
-            /*let count = try context.countForFetchRequest(requestCategories, error: <#T##NSErrorPointer#>)
-            if results.isEmpty {
-                return false
-            } else {
-                return true
-            }*/
-        } catch {
-            fatalError("Failure to fetch context: \(error)")
+
+        let err: NSErrorPointer = NSErrorPointer()
+        let count = context.countForFetchRequest(requestCategories, error: err)
+        if count == NSNotFound {
+            return false
+        } else if count == 0 {
+            return false
+        } else {
+            return true
         }
-        
-        return false
     }
 }
