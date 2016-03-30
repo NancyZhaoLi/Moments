@@ -47,21 +47,11 @@ class AudioItemView: UIView {
 
 
 class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomentItemGestureDelegate {
-
     var player: AVAudioPlayer?
     var manager: NewMomentManager?
-    var parentVC: UIViewController!
-    
-    var tapToTrashGR: UITapGestureRecognizer?
-    var audioView: AudioItemView = AudioItemView()
+    var parentVC: NewMomentCanvasViewController?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    var audioView: AudioItemView = AudioItemView()
     
     convenience init() {
         self.init(manager: nil)
@@ -75,23 +65,23 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
-        if !initParentView() {
-            fatalError("ERROR: [TextItemViewController] parentView init failed")
-        }
-        
+        initParentVC()
         initView()
     }
     
-    private func initParentView() -> Bool {
-        if let canvas = manager!.canvasVC {
-            parentVC = canvas
-            return true
+    private func initParentVC() {
+        if let manager = manager {
+            if let canvas = manager.canvasVC {
+                self.parentVC = canvas
+            }
         }
-        return false
     }
     
     func initView() {
         view = self.audioView
+        if let parentVC = self.parentVC {
+            audioView.playerButton.enabled = parentVC.enableInteraction
+        } 
     }
     
     func play(){
@@ -193,6 +183,11 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
         }
     }
     
+    /*********************************************************************************
+     
+     GESTURE RECOGNIZERS
+     
+     *********************************************************************************/
     var trashGR: UITapGestureRecognizer?
     var dragGR: UIPanGestureRecognizer?
     
@@ -216,7 +211,7 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
         if let trashGR = self.trashGR {
             trashGR.enabled = enabled
         }
-        self.audioView.playerButton.enabled = !enabled
+        audioView.playerButton.enabled = !enabled
     }
     
     func enableViewMode(enabled: Bool) {

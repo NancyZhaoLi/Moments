@@ -12,7 +12,6 @@ import AVKit
 import AVFoundation
 
 class VideoItemView: UIView {
-    private var playerButton: UIButton!
     private var playImageTitle = "play_icon.png"
     private var buttonSize: CGFloat = 80.0
     
@@ -30,16 +29,8 @@ class VideoItemView: UIView {
     func setFileURL(fileURL url: NSURL) {
         self.fileURL = url
         setSnapShot()
-        initPlayerButton()
-        setPlayImage()
     }
     
-    private func initPlayerButton() {
-        playerButton = ButtonHelper.imageButton(playImageTitle, frame: CGRectMake(0,0,buttonSize,buttonSize), target: nil, action: nil)
-        //playerButton.center = self.center
-        print("self.center: \(self.center), self,frame: \(self.frame)")
-        self.addSubview(playerButton)
-    }
     
     func loadVideo(fileURL url: NSURL, frame: CGRect, zPosition: Int, snapshot: UIImage?) {
         self.fileURL = url
@@ -49,11 +40,6 @@ class VideoItemView: UIView {
         if let snapshot = snapshot {
             self.backgroundColor = UIColor(patternImage: UIHelper.resizeImage(snapshot, newWidth: frame.size.width, newHeight: frame.size.height))
         }
-        initPlayerButton()
-    }
-    
-    func setPlayImage() {
-        playerButton.setImage(UIImage(named: playImageTitle), forState: .Normal)
     }
     
     private func setSnapShot() {
@@ -66,6 +52,7 @@ class VideoItemView: UIView {
             do {
                 var snapshot = try UIImage(CGImage: assetImageGen.copyCGImageAtTime(time, actualTime: nil))
                 
+                // Resize the Snapshot
                 let defaultMaxDimension: CGFloat = 250.0
                 let imageMaxDimension:CGFloat = max(snapshot.size.height, snapshot.size.width)
                 var resizeRatio: CGFloat = 1.0
@@ -78,12 +65,41 @@ class VideoItemView: UIView {
                 let newHeight = snapshot.size.height/resizeRatio
                 snapshot = UIHelper.resizeImage(snapshot, newWidth: newWidth, newHeight: newHeight)
                 
+                // Set the frame size to resized snapshot size
                 let frame = CGRectMake(0,0, newWidth, newHeight)
                 self.frame = frame
+                self.bounds = frame
+                
+                // Add the play button
+                let playerButton = ButtonHelper.imageButton(playImageTitle, frame: CGRectMake(0,0,buttonSize,buttonSize), target: nil, action: nil)
+                playerButton.center = center
+                addSubview(playerButton)
+                
+                // Create a snapshot with the playbutton
                 self.backgroundColor = UIColor(patternImage: snapshot)
+                if let snapshotWithPlayButton = captureView(self) {
+                    snapshot = snapshotWithPlayButton
+                }
+                
                 self.fileSnapshot = snapshot
+                
+                //Remove the Play button 
+                playerButton.removeFromSuperview()
             } catch{}
         }
+    }
+    
+    private func captureView(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContext(view.bounds.size)
+        if let context: CGContextRef = UIGraphicsGetCurrentContext() {
+            view.layer.renderInContext(context)
+            let img = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return img
+        }
+        
+        UIGraphicsEndImageContext()
+        return nil
     }
     
     func setLocation(location: CGPoint) {
@@ -93,22 +109,11 @@ class VideoItemView: UIView {
 
 
 class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate, NewMomentItemGestureDelegate {
-
     var manager: NewMomentManager?
-    var parentView: UIView!
+    var parentVC: NewMomentCanvasViewController?
     
     var playerVC: AVPlayerViewController?
-
-    var tapToTrashGR: UITapGestureRecognizer?
     var videoView: VideoItemView = VideoItemView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     convenience init() {
         self.init(manager: nil)
@@ -122,10 +127,8 @@ class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate,
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
-        if !initParentView() {
-            fatalError("ERROR: [AudioItemViewController] parentView init failed")
-        }
         
+        initParentVC()
         initView()
     }
     
@@ -133,62 +136,62 @@ class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate,
         self.view = videoView
     }
     
-    private func initParentView() -> Bool {
-        if let canvas = manager!.canvasVC, view = canvas.view {
-            self.parentView = view
-            return true
-        }
-        return false
-    }
-    
-    func play() {
-        if let playerVC = self.playerVC {
-            presentViewController(playerVC, animated: true, completion: nil)
-            if let player = playerVC.player {
-                player.play()
-            } else {
-                print("no video player")
+    private func initParentVC() {
+        if let manager = manager {
+            if let canvas = manager.canvasVC {
+                self.parentVC = canvas
             }
-        } else {
-            print("no video player vc")
         }
     }
-    
-    func setButtonForPlay() {
-        videoView.setPlayImage()
-        videoView.playerButton.addTarget(self, action: "play")
-    }
-    
+
     func addRecordedVideo(fileURL url: NSURL, location: CGPoint) -> Bool {
         let playerVC = AVPlayerViewController()
         playerVC.player = AVPlayer(URL: url)
         
         self.playerVC = playerVC
-        self.videoView.setFileURL(fileURL: url)
-        self.videoView.setLocation(location)
-        setButtonForPlay()
+        videoView.setFileURL(fileURL: url)
+        videoView.setLocation(location)
+        addTapToPlayGR()
+        
         return true
     }
 
-    
     func addVideo(videoItem: VideoItem) -> Bool {
         if let url = videoItem.getURL() {
             let playerVC = AVPlayerViewController()
             playerVC.player = AVPlayer(URL: url)
             
             self.playerVC = playerVC
-            self.videoView.loadVideo(fileURL: url, frame: videoItem.getFrame(), zPosition: videoItem.getZPosition(), snapshot: videoItem.getSnapshot())
-            setButtonForPlay()
-            
+            videoView.loadVideo(fileURL: url, frame: videoItem.getFrame(), zPosition: videoItem.getZPosition(), snapshot: videoItem.getSnapshot())
+            addTapToPlayGR()
             return true
         }
         
         return false
     }
     
+    /*********************************************************************************
+     
+     GESTURE RECOGNIZERS
+     
+     *********************************************************************************/
+    
     var trashGR: UITapGestureRecognizer?
     var dragGR: UIPanGestureRecognizer?
     var pinchGR: UIPinchGestureRecognizer?
+    var tapToPlayGR: UITapGestureRecognizer?
+    
+    func addTapToPlayGR() {
+        let tapToPlayGR = UITapGestureRecognizer(target: self, action: "play")
+        if let parentVC = self.parentVC {
+            tapToPlayGR.enabled = parentVC.enableInteraction
+        } else {
+            tapToPlayGR.enabled = true
+        }
+        
+        self.view.addGestureRecognizer(tapToPlayGR)
+        self.tapToPlayGR = tapToPlayGR
+    }
     
     func addTrashGR(trashGR: UITapGestureRecognizer) {
         self.trashGR = trashGR
@@ -212,6 +215,8 @@ class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate,
         if let trashGR = self.trashGR {
             trashGR.enabled = enabled
         }
+        
+        tapToPlayGR?.enabled = !enabled
     }
     
     func enableViewMode(enabled: Bool) {
@@ -227,6 +232,19 @@ class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate,
             }
             senderView.removeFromSuperview()
             self.removeFromParentViewController()
+        }
+    }
+    
+    func play() {
+        if let playerVC = self.playerVC {
+            presentViewController(playerVC, animated: true, completion: nil)
+            if let player = playerVC.player {
+                player.play()
+            } else {
+                print("no video player")
+            }
+        } else {
+            print("no video player vc")
         }
     }
 }

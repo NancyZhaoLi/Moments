@@ -28,19 +28,9 @@ class TextItemView: UITextView {
 class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate, NewMomentItemGestureDelegate {
 
     var manager: NewMomentManager?
-    var parentVC: UIViewController!
+    var parentVC: NewMomentCanvasViewController?
     var editText: EditTextItemViewController!
     var dragBeginCoordinate: CGPoint?
-    
-    var tapToTrashGR: UITapGestureRecognizer?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     convenience init() {
         self.init(manager: nil)
@@ -54,19 +44,16 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
-        if !initParentView() {
-            fatalError("ERROR: [TextItemViewController] parentVC init failed")
-        }
-        
+        initParentVC()
         initEditView()
     }
     
-    private func initParentView() -> Bool {
-        if let canvas = manager!.canvasVC {
-            parentVC = canvas
-            return true
+    private func initParentVC() {
+        if let manager = manager {
+            if let canvas = manager.canvasVC {
+                parentVC = canvas
+            }
         }
-        return false
     }
     
     private func initEditView() {
@@ -74,11 +61,10 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute ) {
+        // Computer text box size
         let maxHeight: CGFloat = 300.0
-        
         let singleLineHeight: CGFloat = UIHelper.textSize("A", font: textAttribute.font).height
         let fullWidth: CGFloat = UIHelper.textSize(text, font: textAttribute.font).width
-        
         let width: CGFloat = min(fullWidth + 20.0, windowWidth - 40.0)
         var height: CGFloat = ceil(fullWidth / width) * singleLineHeight + 20.0
         
@@ -125,7 +111,7 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         let newTransform = CGAffineTransformRotate(currentTransform, rotation)
         textView.transform = newTransform
 
-        initGestureRecognizer()
+        addTapToEditGR()
     }
     
     private func initEditTextItemViewController(text: String, textAttribute: TextItemOtherAttribute) {
@@ -147,23 +133,20 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
 
     *********************************************************************************/
     
-    let tapGR: UITapGestureRecognizer = UITapGestureRecognizer()
+    let tapToEditGR: UITapGestureRecognizer = UITapGestureRecognizer()
     var trashGR: UITapGestureRecognizer?
     var dragGR: UIPanGestureRecognizer?
     var pinchGR: UIPinchGestureRecognizer?
     var rotateGR: UIRotationGestureRecognizer?
     
-    func initGestureRecognizer() {
-        tapGR.addTarget(self, action: "tappedView")
-        self.view.addGestureRecognizer(tapGR)
-    }
-    
-    func tappedView() {
-        if let navController = parentVC.navigationController {
-            navController.pushViewController(editText, animated: true)
+    func addTapToEditGR() {
+        tapToEditGR.addTarget(self, action: "tapToEdit")
+        if let parentVC = self.parentVC {
+            tapToEditGR.enabled = parentVC.enableInteraction
         } else {
-            parentVC.presentViewController(editText, animated: true, completion: nil)
+            tapToEditGR.enabled = true
         }
+        self.view.addGestureRecognizer(tapToEditGR)
     }
 
     func addTrashGR(trashGR: UITapGestureRecognizer) {
@@ -187,19 +170,24 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     }
     
     func enableTrash(enabled: Bool) {
-        print("enable \(enabled)")
         if let trashGR = self.trashGR {
             trashGR.enabled = enabled
         }
-        //tapGR.enabled = !enabled
+        tapToEditGR.enabled = !enabled
     }
     
     func enableViewMode(enabled: Bool) {
-        tapGR.enabled = !enabled
+        tapToEditGR.enabled = !enabled
         trashGR?.enabled = !enabled
         dragGR?.enabled = !enabled
         pinchGR?.enabled = !enabled
         rotateGR?.enabled = !enabled
+    }
+    
+    func tapToEdit() {
+        if let parentVC = self.parentVC {
+            parentVC.presentViewController(editText, animated: true)
+        }
     }
     
     func tapToTrash(sender: UITapGestureRecognizer) {

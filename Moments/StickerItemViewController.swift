@@ -13,21 +13,7 @@ class StickerItemView: UIImageView {
 }
 
 class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate {
-    
     var manager: NewMomentManager?
-    var parentView: UIView!
-    
-    var tapToTrashGR: UITapGestureRecognizer?
-    
-    private let defaultMaxDimension: CGFloat = 130.0
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     convenience init() {
         self.init(manager: nil)
@@ -41,33 +27,25 @@ class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate 
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
-        if !initParentView() {
-            fatalError("ERROR: [TextItemViewController] parentView init failed")
-        }
-    }
-    
-    private func initParentView() -> Bool {
-        if let canvas = manager!.canvasVC, view = canvas.view {
-            self.parentView = view
-            return true
-        }
-        return false
     }
     
     func addSticker(stickerName: String, location: CGPoint) {
+        let defaultMaxDimension: CGFloat = 130.0
         if let sticker = UIImage(named: stickerName) {
+            // Calculate sticker size
             let stickerMaxDimension: CGFloat = max(sticker.size.height, sticker.size.width)
             var resizeRatio: CGFloat = 1.0
-            
             if stickerMaxDimension > defaultMaxDimension {
                 resizeRatio = stickerMaxDimension/defaultMaxDimension
             }
+            let newWidth = sticker.size.width/resizeRatio
+            let newHeight = sticker.size.height/resizeRatio
             
-            let frame = CGRectMake(0,0, sticker.size.width/resizeRatio, sticker.size.height/resizeRatio)
+            // Add the sticker
+            let frame = CGRectMake(0,0, newWidth, newHeight)
             let stickerView = StickerItemView(frame: frame)
             stickerView.center = location
             stickerView.stickerName = stickerName
-            
             stickerView.image = sticker
             self.view = stickerView
         } else {
@@ -80,15 +58,18 @@ class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate 
             let stickerView = StickerItemView(frame: stickerItem.getFrame())
             stickerView.stickerName = stickerItem.getName()
             stickerView.image = image
-            
             self.view = stickerView
         }
     }
     
+    /*********************************************************************************
+     
+     GESTURE RECOGNIZERS
+     
+     *********************************************************************************/
     var trashGR: UITapGestureRecognizer?
     var dragGR: UIPanGestureRecognizer?
     var pinchGR: UIPinchGestureRecognizer?
-    var rotateGR: UIRotationGestureRecognizer?
     
     func addTrashGR(trashGR: UITapGestureRecognizer) {
         self.trashGR = trashGR
@@ -106,8 +87,6 @@ class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate 
     }
     
     func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
-        self.rotateGR = rotateGR
-        self.view.addGestureRecognizer(rotateGR)
     }
     
     func enableTrash(enabled: Bool) {
@@ -120,7 +99,6 @@ class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate 
         trashGR?.enabled = !enabled
         dragGR?.enabled = !enabled
         pinchGR?.enabled = !enabled
-        rotateGR?.enabled = !enabled
     }
     
     func tapToTrash(sender: UITapGestureRecognizer) {

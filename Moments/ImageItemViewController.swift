@@ -17,17 +17,6 @@ class ImageItemView: UIImageView {
 class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
     
     var manager: NewMomentManager?
-    var parentView: UIView!
-
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     convenience init() {
         self.init(manager: nil)
@@ -41,19 +30,8 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
         super.init(nibName: nil, bundle: nil)
         
         self.manager = manager
-        if !initParentView() {
-            fatalError("ERROR: [ImageItemViewController] parentView init failed")
-        }
     }
 
-    func initParentView() -> Bool {
-        if let canvas = manager!.canvasVC, view = canvas.view {
-            self.parentView = view
-            return true
-        }
-        return false
-    }
-    
     func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
         let defaultMaxDimension: CGFloat = 200.0
         let imageMaxDimension:CGFloat = max(image.size.height, image.size.width)
@@ -76,7 +54,6 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
         let imageView =  ImageItemView(frame: imageItem.getFrame())
         imageView.image = imageItem.getImage()
         imageView.layer.zPosition = CGFloat(imageItem.getZPosition())
-        //rotate(imageView, rotation: imageView.rotation)
         
         imageView.rotation = CGFloat(imageItem.getRotation())
         let currentTransform = imageView.transform
@@ -86,11 +63,11 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
         self.view = imageView
     }
     
-    private func rotate(view: ImageItemView, rotation: CGFloat){
-
-        
-        print("rotate: \(view.rotation)")
-    }
+    /*********************************************************************************
+     
+     GESTURE RECOGNIZERS
+     
+     *********************************************************************************/
     
     var trashGR: UITapGestureRecognizer?
     var dragGR: UIPanGestureRecognizer?
