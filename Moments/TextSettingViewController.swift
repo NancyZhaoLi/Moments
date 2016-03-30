@@ -159,7 +159,8 @@ class TextSettingViewController : UIViewController,
         textFontSizeSlider.backgroundColor = UIColor.customGreenColor()
         textFontSizeSlider.addTarget(self, action: "changeFontSize", forControlEvents: UIControlEvents.ValueChanged)
         
-        textFontSize = UILabel(frame: CGRect(origin: CGPointMake(0,textFontSizeSlider.frame.maxY + 1), size: UIHelper.textSize("300", size: 15.0)))
+        let textSize = UIHelper.textSize("30", size: 15.0)
+        textFontSize = UILabel(frame: CGRect(origin: CGPointMake(0,textFontSizeSlider.frame.maxY + 1), size: CGSizeMake(textSize.width + 3.0, textSize.height)))
         textFontSize.textAlignment = .Center
         textFontSize.font = UIFont.systemFontOfSize(15.0)
         textFontSize.textColor = UIColor.blackColor()
@@ -260,11 +261,17 @@ class TextSettingViewController : UIViewController,
 
     func changeFontSize() {
         let curValue: CGFloat = CGFloat(textFontSizeSlider.value)
+        let minValue: CGFloat = CGFloat(textFontSizeSlider.minimumValue)
+        let offset: CGFloat = 15.0
         
         textAttribute.font = UIFont(name: textAttribute.font.familyName, size: curValue)!
         preview.font = textAttribute.font
         textFontSize.text = String(Int(curValue))
-        let moveLeft: CGFloat = textFontSizeSlider.frame.origin.x + curValue/sliderRange * textFontSizeSlider.frame.size.width
+        
+        let difference = curValue - minValue
+        let beginX = textFontSizeSlider.frame.minX + offset
+        let width = textFontSizeSlider.frame.size.width - offset * 2.0
+        let moveLeft: CGFloat = beginX + difference / sliderRange * width
         textFontSize.center = CGPointMake(moveLeft, textFontSize.center.y)
     }
     
@@ -365,7 +372,7 @@ class TextSettingViewController : UIViewController,
             pickerLabel.backgroundColor = UIColor.customGreenColor()
         }
         let titleData = fontData[row]
-        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Helvetica", size: 26.0)!,NSForegroundColorAttributeName:UIColor.whiteColor()])
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: titleData, size: 21.0)!,NSForegroundColorAttributeName:UIColor.whiteColor()])
         pickerLabel!.attributedText = myTitle
         pickerLabel!.textAlignment = .Center
 
