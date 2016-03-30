@@ -92,7 +92,7 @@ class VideoItemView: UIView {
 }
 
 
-class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate {
+class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate, NewMomentItemGestureDelegate {
 
     var manager: NewMomentManager?
     var parentView: UIView!
@@ -184,5 +184,39 @@ class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate 
         }
         
         return false
+    }
+    
+    var trashGR: UITapGestureRecognizer?
+    var dragGR: UIPanGestureRecognizer?
+    var pinchGR: UIPinchGestureRecognizer?
+    
+    func addTrashGR(trashGR: UITapGestureRecognizer) {
+        self.trashGR = trashGR
+        self.view.addGestureRecognizer(trashGR)
+    }
+    
+    func addDragGR(dragGR: UIPanGestureRecognizer) {
+        self.dragGR = dragGR
+        self.view.addGestureRecognizer(dragGR)
+    }
+    
+    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
+        self.pinchGR = pinchGR
+        self.view.addGestureRecognizer(pinchGR)
+    }
+    
+    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
+    }
+    
+    func enableTrash(enabled: Bool) {
+        if let trashGR = self.trashGR {
+            trashGR.enabled = enabled
+        }
+    }
+    
+    func enableViewMode(enabled: Bool) {
+        trashGR?.enabled = enabled
+        dragGR?.enabled = enabled
+        pinchGR?.enabled = enabled
     }
 }

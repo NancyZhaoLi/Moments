@@ -14,15 +14,14 @@ import CoreData
 import MobileCoreServices
 import Photos
 
-let addButtonImageTitle = "add_icon.png"
-let viewButtonSelectImageTitle = "locked_icon.png"
-let viewButtonUnselectImageTitle = "unlocked_icon.png"
-let trashButtonSelectImageTitle = "trash_selected_icon.png"
-let trashButtonUnselectImageTitle = "trash_icon.png"
-let settingButtonImageTitle = "bucket_icon.png"
-
-
-
+protocol NewMomentItemGestureDelegate {
+    func addTrashGR(trashGR: UITapGestureRecognizer)
+    func addDragGR(dragGR: UIPanGestureRecognizer)
+    func addPinchGR(pinchGR: UIPinchGestureRecognizer)
+    func addRotateGR(rotateGR: UIRotationGestureRecognizer)
+    func enableTrash(enabled: Bool)
+    func enableViewMode(enabled: Bool)
+}
 
 class NewMomentCanvasViewController: UIViewController,
     UIPopoverPresentationControllerDelegate,
@@ -40,6 +39,13 @@ class NewMomentCanvasViewController: UIViewController,
     var loadedMoment : Moment?
     var addItemPopover: NewItemViewController?
     var center: CGPoint = CGPointMake(windowWidth/2.0, windowHeight/2.0)
+    
+    let addButtonImageTitle = "add_icon.png"
+    let viewButtonSelectImageTitle = "locked_icon.png"
+    let viewButtonUnselectImageTitle = "unlocked_icon.png"
+    let trashButtonSelectImageTitle = "trash_selected_icon.png"
+    let trashButtonUnselectImageTitle = "trash_icon.png"
+    let settingButtonImageTitle = "bucket_icon.png"
     
     // Button to go to savePage
     var nextButton: UIButton! = UIButton()
@@ -294,30 +300,30 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     private func initNewViewController(vc: UIViewController) {
-        addTapToTrashGR(vc)
-        vc.view.addGestureRecognizer(dragItemGR())
+        addTrashGR(vc)
+        addDragGR(vc)
+        
         if let textItemVC = vc as? TextItemViewController {
-            textItemVC.view.addGestureRecognizer(pinchTextItemGR())
-            textItemVC.view.addGestureRecognizer(rotateGR())
-        } else if let imageItemVC = vc as? ImageItemViewController {
-            imageItemVC.view.addGestureRecognizer(pinchItemGR())
-            imageItemVC.view.addGestureRecognizer(rotateGR())
-        } else if let stickerItemVC = vc as? StickerItemViewController {
-            stickerItemVC.view.addGestureRecognizer(pinchItemGR())
-        } else if let videoItemVC = vc as? VideoItemViewController {
-            videoItemVC.view.addGestureRecognizer(pinchItemGR())
+            let textItemVC = textItemVC as NewMomentItemGestureDelegate
+            textItemVC.addPinchGR(pinchTextItemGR())
+            textItemVC.addRotateGR(rotateGR())
+        } else if let vc = vc as? NewMomentItemGestureDelegate {
+            vc.addPinchGR(pinchItemGR())
+            vc.addRotateGR(rotateGR())
         }
         
         vc.view.multipleTouchEnabled = true
-        vc.view.userInteractionEnabled = enableInteraction
+        vc.view.userInteractionEnabled = true
         self.addChildViewController(vc)
     }
     
-    private func addTapToTrashGR(vc: UIViewController) {
-        let tapToTrash = tapToTrashGR()
-        tapToTrash.enabled = false
-        vc.view.addGestureRecognizer(tapToTrash)
-        if let text = vc as? TextItemViewController {
+    private func addTrashGR(vc: UIViewController) {
+        let trashGR = self.trashGR()
+        //vc.view.addGestureRecognizer(trashGR)
+        if let vc = vc as? NewMomentItemGestureDelegate {
+            vc.addTrashGR(trashGR)
+        }
+       /* if let text = vc as? TextItemViewController {
             text.tapToTrashGR = tapToTrash
         } else if let image = vc as? ImageItemViewController {
             image.tapToTrashGR = tapToTrash
@@ -330,27 +336,45 @@ class NewMomentCanvasViewController: UIViewController,
             video.tapToTrashGR = tapToTrash
         } else if let sticker = vc as? StickerItemViewController {
             sticker.tapToTrashGR = tapToTrash
+        }*/
+    }
+    
+    private func addDragGR(vc: UIViewController) {
+        let dragGR = self.dragItemGR()
+        if let vc = vc as? NewMomentItemGestureDelegate {
+            vc.addDragGR(dragGR)
         }
     }
     
-    private func tapToTrashGR() -> UITapGestureRecognizer {
-        return UITapGestureRecognizer(target: self, action: "tapToTrash:")
+    private func trashGR() -> UITapGestureRecognizer {
+        let tapGR = UITapGestureRecognizer(target: self, action: "tapToTrash:")
+        tapGR.enabled = false
+        return tapGR
     }
     
     private func dragItemGR() -> UIPanGestureRecognizer {
-        return UIPanGestureRecognizer(target: self, action: "draggedView:")
+        let dragGR = UIPanGestureRecognizer(target: self, action: "draggedView:")
+        dragGR.enabled = enableInteraction
+        return dragGR
     }
     
     private func pinchItemGR() -> UIPinchGestureRecognizer {
-        return UIPinchGestureRecognizer(target: self, action: "pinchedView:")
+        let pinchGR = UIPinchGestureRecognizer(target: self, action: "pinchedView:")
+        pinchGR.enabled = enableInteraction
+        return pinchGR
     }
     
     private func pinchTextItemGR() -> UIPinchGestureRecognizer {
-        return UIPinchGestureRecognizer(target: self, action: "pinchedTextView:")
+        let pinchGR = UIPinchGestureRecognizer(target: self, action: "pinchedTextView:")
+        
+        pinchGR.enabled = enableInteraction
+        return pinchGR
     }
     
     private func rotateGR() -> UIRotationGestureRecognizer {
-        return UIRotationGestureRecognizer(target: self, action: "rotateView:")
+        let rotateGR = UIRotationGestureRecognizer(target: self, action: "rotateView:")
+        rotateGR.enabled = enableInteraction
+        return rotateGR
     }
     
     /********************************************************************
@@ -391,7 +415,14 @@ class NewMomentCanvasViewController: UIViewController,
         viewButton.setImage(UIImage(named: viewButtonUnselectImageTitle)!, forState: .Normal)
         viewButton.removeTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
         viewButton.addTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
-        enableUserInteraction()
+        //enableUserInteraction()
+        
+        enableInteraction = true
+        for vc in self.childViewControllers {
+            if let vc = vc as? NewMomentItemGestureDelegate {
+                vc.enableViewMode(false)
+            }
+        }
     }
     
     func selectViewMode() {
@@ -399,10 +430,18 @@ class NewMomentCanvasViewController: UIViewController,
         viewButton.setImage(UIImage(named: viewButtonSelectImageTitle)!, forState: .Normal)
         viewButton.removeTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
         viewButton.addTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
-        disableUserInteraction()
+        
+        enableInteraction = false
+        for vc in self.childViewControllers {
+            if let vc = vc as? NewMomentItemGestureDelegate {
+               vc.enableViewMode(true)
+            }
+        }
+        
+        //disableUserInteraction()
     }
     
-    func enableUserInteraction() {
+    /*func enableUserInteraction() {
         enableInteraction = true
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = true
@@ -414,7 +453,7 @@ class NewMomentCanvasViewController: UIViewController,
         for vc in self.childViewControllers {
             vc.view.userInteractionEnabled = false
         }
-    }
+    }*/
     
     /*******************************************************************
      
@@ -442,7 +481,6 @@ class NewMomentCanvasViewController: UIViewController,
             trashButton.addTarget(self, action: "selectTrash")
             trashButtonOn = false
             setEnabledOfTapToTrashGR(false)
-            setEnabledOfTapRecognizerOfTextItem(true)
         }
     }
 
@@ -451,32 +489,14 @@ class NewMomentCanvasViewController: UIViewController,
         trashButton.removeTarget(self, action: "selectTrash")
         trashButton.addTarget(self, action: "cancelTrash")
         trashButtonOn = true
+        
         setEnabledOfTapToTrashGR(true)
-        setEnabledOfTapRecognizerOfTextItem(false)
     }
     
     func setEnabledOfTapToTrashGR(enabled:Bool) {
         for vc in self.childViewControllers {
-            if let text = vc as? TextItemViewController {
-                text.tapToTrashGR?.enabled = enabled
-            } else if let image = vc as? ImageItemViewController {
-                image.tapToTrashGR?.enabled = enabled
-            } else if let audio = vc as? AudioItemViewController {
-                //print("audio enabled")
-                //print("audio tap to trash GR: \(audio.tapToTrashGR)")
-                audio.tapToTrashGR?.enabled = enabled
-            } else if let video = vc as? VideoItemViewController {
-                video.tapToTrashGR?.enabled = enabled
-            } else if let sticker = vc as? StickerItemViewController {
-                sticker.tapToTrashGR?.enabled = enabled
-            }
-        }
-    }
-
-    func setEnabledOfTapRecognizerOfTextItem(enabled: Bool) {
-        for viewController in self.childViewControllers {
-            if let textItem: TextItemViewController = viewController as? TextItemViewController {
-                textItem.tapRec.enabled = enabled
+            if let vc = vc as? NewMomentItemGestureDelegate {
+                vc.enableTrash(enabled)
             }
         }
     }

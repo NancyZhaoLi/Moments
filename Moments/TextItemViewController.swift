@@ -19,9 +19,13 @@ class TextItemView: UITextView {
     var beginPinchCoor: [CGPoint] = [CGPoint]()
     var item: NSManagedObject?
     var rotation: CGFloat = 0.0
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return false
+    }
 }
 
-class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate {
+class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate, NewMomentItemGestureDelegate {
 
     var manager: NewMomentManager?
     var parentVC: UIViewController!
@@ -143,11 +147,15 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
 
     *********************************************************************************/
     
-    let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
+    let tapGR: UITapGestureRecognizer = UITapGestureRecognizer()
+    var trashGR: UITapGestureRecognizer?
+    var dragGR: UIPanGestureRecognizer?
+    var pinchGR: UIPinchGestureRecognizer?
+    var rotateGR: UIRotationGestureRecognizer?
     
     func initGestureRecognizer() {
-        tapRec.addTarget(self, action: "tappedView")
-        self.view.addGestureRecognizer(tapRec)
+        tapGR.addTarget(self, action: "tappedView")
+        self.view.addGestureRecognizer(tapGR)
     }
     
     func tappedView() {
@@ -157,6 +165,42 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
             parentVC.presentViewController(editText, animated: true, completion: nil)
         }
     }
+
+    func addTrashGR(trashGR: UITapGestureRecognizer) {
+        self.trashGR = trashGR
+        self.view.addGestureRecognizer(trashGR)
+    }
+    
+    func addDragGR(dragGR: UIPanGestureRecognizer) {
+        self.dragGR = dragGR
+        self.view.addGestureRecognizer(dragGR)
+    }
+    
+    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
+        self.pinchGR = pinchGR
+        self.view.addGestureRecognizer(pinchGR)
+    }
+    
+    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
+        self.rotateGR = rotateGR
+        self.view.addGestureRecognizer(rotateGR)
+    }
+    
+    func enableTrash(enabled: Bool) {
+        if let trashGR = self.trashGR {
+            trashGR.enabled = enabled
+        }
+        tapGR.enabled = enabled
+    }
+    
+    func enableViewMode(enabled: Bool) {
+        tapGR.enabled = enabled
+        trashGR?.enabled = enabled
+        dragGR?.enabled = enabled
+        pinchGR?.enabled = enabled
+        rotateGR?.enabled = enabled
+    }
+
     
     /*********************************************************************************
      

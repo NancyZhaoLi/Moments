@@ -46,7 +46,7 @@ class AudioItemView: UIView {
 }
 
 
-class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
+class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomentItemGestureDelegate {
 
     var player: AVAudioPlayer?
     var manager: NewMomentManager?
@@ -191,6 +191,37 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate {
             player.stop()
             setButtonForPlay()
         }
+    }
+    
+    var trashGR: UITapGestureRecognizer?
+    var dragGR: UIPanGestureRecognizer?
+    
+    func addTrashGR(trashGR: UITapGestureRecognizer) {
+        self.trashGR = trashGR
+        self.view.addGestureRecognizer(trashGR)
+    }
+    
+    func addDragGR(dragGR: UIPanGestureRecognizer) {
+        self.dragGR = dragGR
+        self.view.addGestureRecognizer(dragGR)
+    }
+    
+    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
+    }
+    
+    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
+    }
+    
+    func enableTrash(enabled: Bool) {
+        if let trashGR = self.trashGR {
+            trashGR.enabled = enabled
+        }
+        self.audioView.playerButton.enabled = !enabled
+    }
+    
+    func enableViewMode(enabled: Bool) {
+        trashGR?.enabled = enabled
+        dragGR?.enabled = enabled
     }
     
 }

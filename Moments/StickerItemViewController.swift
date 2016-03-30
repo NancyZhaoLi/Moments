@@ -12,7 +12,7 @@ class StickerItemView: UIImageView {
     var stickerName: String?
 }
 
-class StickerItemViewController: UIViewController {
+class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate {
     
     var manager: NewMomentManager?
     var parentView: UIView!
@@ -83,6 +83,44 @@ class StickerItemViewController: UIViewController {
             
             self.view = stickerView
         }
+    }
+    
+    var trashGR: UITapGestureRecognizer?
+    var dragGR: UIPanGestureRecognizer?
+    var pinchGR: UIPinchGestureRecognizer?
+    var rotateGR: UIRotationGestureRecognizer?
+    
+    func addTrashGR(trashGR: UITapGestureRecognizer) {
+        self.trashGR = trashGR
+        self.view.addGestureRecognizer(trashGR)
+    }
+    
+    func addDragGR(dragGR: UIPanGestureRecognizer) {
+        self.dragGR = dragGR
+        self.view.addGestureRecognizer(dragGR)
+    }
+    
+    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
+        self.pinchGR = pinchGR
+        self.view.addGestureRecognizer(pinchGR)
+    }
+    
+    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
+        self.rotateGR = rotateGR
+        self.view.addGestureRecognizer(rotateGR)
+    }
+    
+    func enableTrash(enabled: Bool) {
+        if let trashGR = self.trashGR {
+            trashGR.enabled = enabled
+        }
+    }
+    
+    func enableViewMode(enabled: Bool) {
+        trashGR?.enabled = enabled
+        dragGR?.enabled = enabled
+        pinchGR?.enabled = enabled
+        rotateGR?.enabled = enabled
     }
 }
 
