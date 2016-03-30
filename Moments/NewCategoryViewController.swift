@@ -89,10 +89,15 @@ class NewCategoryViewController: UIViewController,
     
     func saveNewCategory() {
         if let delegate = self.delegate {
-            if let newCategory = getCategory() {
-                delegate.newCategory(self, category: newCategory)
+            if Category.categoryNameExist(categoryName: categoryName.text!) {
+                
+            
             } else {
-                cancelNewCategory()
+                if let newCategory = getCategory() {
+                    delegate.newCategory(self, category: newCategory)
+                } else {
+                    cancelNewCategory()
+                }
             }
         }
     }

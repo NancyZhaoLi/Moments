@@ -169,7 +169,6 @@ class Category: NSManagedObject {
         let requestCategories = NSFetchRequest(entityName: "Category")
         requestCategories.predicate = NSPredicate(format: "name = %@", name)
         requestCategories.includesSubentities = false
-        
 
         let err: NSErrorPointer = NSErrorPointer()
         let count = context.countForFetchRequest(requestCategories, error: err)

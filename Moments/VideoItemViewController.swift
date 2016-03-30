@@ -42,6 +42,7 @@ class VideoItemView: UIImageView {
         if let fileURL = self.fileURL {
             let asset = AVAsset(URL: fileURL)
             let assetImageGen = AVAssetImageGenerator(asset: asset)
+            assetImageGen.appliesPreferredTrackTransform = true
             var time = asset.duration
             time.value = min(time.value, 1)
             
@@ -57,11 +58,11 @@ class VideoItemView: UIImageView {
                     resizeRatio = imageMaxDimension/defaultMaxDimension
                 }
                 
-                if snapshot.size.width < snapshot.size.height {
+               /* if snapshot.size.width < snapshot.size.height {
                     if let snapshotCG = snapshot.CGImage {
                         snapshot = UIImage(CGImage: snapshotCG, scale: 1.0, orientation: UIImageOrientation.Right)
                     }
-                }
+                }*/
 
                 let newWidth = snapshot.size.width/resizeRatio
                 let newHeight = snapshot.size.height/resizeRatio
