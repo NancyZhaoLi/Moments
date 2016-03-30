@@ -101,7 +101,6 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
     }
     
     func enableViewMode(enabled: Bool) {
-        trashGR?.enabled = !enabled
         dragGR?.enabled = !enabled
         pinchGR?.enabled = !enabled
         rotateGR?.enabled = !enabled

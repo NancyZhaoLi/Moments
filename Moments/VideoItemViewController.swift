@@ -206,7 +206,6 @@ class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate,
     }
     
     func enableViewMode(enabled: Bool) {
-        trashGR?.enabled = !enabled
         dragGR?.enabled = !enabled
         pinchGR?.enabled = !enabled
     }

@@ -178,7 +178,6 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
     
     func enableViewMode(enabled: Bool) {
         tapToEditGR.enabled = !enabled
-        trashGR?.enabled = !enabled
         dragGR?.enabled = !enabled
         pinchGR?.enabled = !enabled
         rotateGR?.enabled = !enabled

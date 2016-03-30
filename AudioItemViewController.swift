@@ -215,7 +215,6 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
     }
     
     func enableViewMode(enabled: Bool) {
-        trashGR?.enabled = !enabled
         dragGR?.enabled = !enabled
     }
     
