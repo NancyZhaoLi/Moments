@@ -9,7 +9,7 @@
 import UIKit
 
 
-class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewMomentViewControllerDelegate {
+class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewMomentViewControllerDelegate, EditCategoryViewControllerDelegate {
     @IBOutlet weak var categoryName: UILabel!
     
     @IBOutlet weak var momentsTableView: UITableView!
@@ -34,7 +34,7 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         self.momentsTableView.showsVerticalScrollIndicator = false
         self.momentsTableView.backgroundColor = UIColor.clearColor()
         
-        self.view.backgroundColor = UIColor(red: CGFloat(255/255.0), green: CGFloat(255/255.0), blue: CGFloat(246/255.0), alpha: 1.0)
+        self.view.backgroundColor = UIColor.customGreenColor()
         
         initUI()
 
@@ -58,7 +58,8 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
     
     private func initUI() {
         let backButton = NavigationHelper.leftNavButton("Back", target: self, action: "backToCategory")
-        let navBar = NavigationHelper.barWithItem(backButton, centerItem: nil, rightItem: nil)
+        let settingButton = NavigationHelper.rightNavButtonWithImage("setting_icon.png", target: self, action: "categorySetting")
+        let navBar = NavigationHelper.barWithItem(backButton, centerItem: nil, rightItem: settingButton)
         self.view.addSubview(navBar)
     }
     
@@ -97,9 +98,15 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         self.dismiss(true)
     }
     
+    func categorySetting() {
+        if let category = self.category {
+            let editCategory = NewCategoryViewController(delegate: self, categoryName: category.getName(), categoryColour: category.getColour())
+            presentViewController(editCategory, animated: true, completion: nil)
+        }
+    }
+    
     func updateCategoryNameLabel() {
         categoryName.text = category?.name
-        
     }
 
     func getMomentsInCategory() {
@@ -176,4 +183,12 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         }
     }
     
+    func editCategory(controller: NewCategoryViewController, categoryName: String, categoryColour: UIColor) {
+        if let category = self.category {
+            category.setCategoryName(categoryName)
+            category.setCategoryColour(categoryColour)
+            category.save()
+            updateCategoryNameLabel()
+        }
+    }
 }

@@ -13,10 +13,15 @@ protocol NewCategoryViewControllerDelegate {
     func newCategory(controller: NewCategoryViewController, category: Category)
 }
 
+protocol EditCategoryViewControllerDelegate {
+    func editCategory(controller: NewCategoryViewController, categoryName: String, categoryColour: UIColor)
+}
+
 class NewCategoryViewController: UIViewController,
     UIViewControllerTransitioningDelegate, UITextFieldDelegate {
     
-    var delegate: NewCategoryViewControllerDelegate?
+    var newCategoryDelegate: NewCategoryViewControllerDelegate?
+    var editCategoryDelegate: EditCategoryViewControllerDelegate?
     var categoryName: UITextField!
     var categoryColour: SwiftHSVColorPicker!
     var id: Int64?
@@ -32,16 +37,26 @@ class NewCategoryViewController: UIViewController,
     
     init(delegate: NewCategoryViewControllerDelegate?) {
         super.init(nibName: nil, bundle: nil)
-        self.delegate = delegate
+        self.newCategoryDelegate = delegate
         setId()
         
         self.transitioningDelegate = self
         self.modalPresentationStyle = .Custom
         
-        initUI()
+        initUI(nil, colour: nil)
     }
     
-    func initUI() {
+    init(delegate: EditCategoryViewControllerDelegate?, categoryName: String, categoryColour: UIColor) {
+        super.init(nibName: nil, bundle: nil)
+        self.editCategoryDelegate = delegate
+        
+        self.transitioningDelegate = self
+        self.modalPresentationStyle = .Custom
+        
+        initUI(categoryName, colour: categoryColour)
+    }
+    
+    func initUI(name: String?, colour: UIColor?) {
         self.view = UIView(frame: CGRectMake(0,0,windowWidth-20, windowHeight))
         self.view.backgroundColor = UIColor.whiteColor()
         self.view.layer.cornerRadius = 20.0
@@ -68,59 +83,87 @@ class NewCategoryViewController: UIViewController,
         colourLabel.text = "Colour"
         colourLabel.textColor = UIColor.customGreenColor()
         
-        self.categoryName = UITextField(frame: CGRectMake(90,85,230,30))
-        self.categoryName.layer.cornerRadius = 8.0
-        self.categoryName.layer.borderWidth = 1.0
-        self.categoryName.layer.borderColor = UIColor.customGreenColor().CGColor
-        self.categoryName.delegate = self
-        self.categoryName.spellCheckingType = .No
-        self.categoryName.autocorrectionType = .No
+        categoryName = UITextField(frame: CGRectMake(90,85,230,30))
+        categoryName.layer.cornerRadius = 8.0
+        categoryName.layer.borderWidth = 1.0
+        categoryName.layer.borderColor = UIColor.customGreenColor().CGColor
+        categoryName.delegate = self
+        categoryName.spellCheckingType = .No
+        categoryName.autocorrectionType = .No
+        categoryName.text = name
 
         categoryColour = SwiftHSVColorPicker(frame: CGRectMake(20,200,self.view.frame.width - 65, self.view.frame.height - 200))
-        categoryColour.setViewColor(UIHelper.randomBrightColour())
-        
-        self.view.addSubview(cancelButton)
-        self.view.addSubview(saveButton)
-        self.view.addSubview(nameLabel)
-        self.view.addSubview(colourLabel)
-        self.view.addSubview(categoryColour)
-        self.view.addSubview(categoryName)
+        if let colour = colour {
+            categoryColour.setViewColor(colour)
+        } else {
+            categoryColour.setViewColor(UIHelper.randomBrightColour())
+        }
+            
+        view.addSubview(cancelButton)
+        view.addSubview(saveButton)
+        view.addSubview(nameLabel)
+        view.addSubview(colourLabel)
+        view.addSubview(categoryColour)
+        view.addSubview(categoryName)
     }
-    
+
     func saveNewCategory() {
-        if let delegate = self.delegate {
-            if let categoryName = categoryName.text {
-                let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
-                if categoryName.isEmpty {
-                    let alert = UIAlertController(title: "Category name cannot be empty, enter a name", message: nil, preferredStyle: .Alert)
-                    let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
-                    alert.addAction(okay)
-                    presentViewController(alert, animated: true, completion: nil)
-                } else if categoryName.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty {
-                    let alert = UIAlertController(title: "Category name cannot be all space, enter a different name", message: nil, preferredStyle: .Alert)
-                    let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
-                    alert.addAction(okay)
-                    presentViewController(alert, animated: true, completion: nil)
-                } else if Category.categoryNameExist(categoryName: categoryName) {
-                    let alert = UIAlertController(title: "Category name already exist, enter a different name", message: nil, preferredStyle: .Alert)
-                    let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
-                    alert.addAction(okay)
-                    presentViewController(alert, animated: true, completion: nil)
-                } else {
-                    if let newCategory = getCategory() {
-                        delegate.newCategory(self, category: newCategory)
-                    } else {
-                        cancelNewCategory()
-                    }
-                }
+        if let delegate = self.editCategoryDelegate {
+            checkForValidName()
+            if let name = categoryName.text {
+                let colour = categoryColour.color
+                self.dismiss(true)
+                delegate.editCategory(self, categoryName: name, categoryColour: colour)
             } else {
-                let alert = UIAlertController(title: "Category name cannot be empty, enter a name", message: nil, preferredStyle: .Alert)
-                let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
-                alert.addAction(okay)
-                presentViewController(alert, animated: true, completion: nil)
+                cancelNewCategory()
+            }
+        } else if let delegate = self.newCategoryDelegate {
+            checkForValidName()
+            if let newCategory = getCategory() {
+                self.dismiss(true)
+                delegate.newCategory(self, category: newCategory)
+            } else {
+                cancelNewCategory()
             }
         }
     }
+    
+    private func checkForValidName() {
+        if let categoryName = categoryName.text {
+            let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+            if categoryName.isEmpty {
+                showAlertForEmptyName()
+            } else if categoryName.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty {
+                showAlertForAllSpaceName()
+            } else if Category.categoryNameExist(categoryName: categoryName) {
+                showAlertForDuplicateName()
+            }
+        } else {
+            showAlertForEmptyName()
+        }
+    }
+    
+    private func showAlertForDuplicateName() {
+        let alert = UIAlertController(title: "Category name already exist, enter a different name", message: nil, preferredStyle: .Alert)
+        let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
+        alert.addAction(okay)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func showAlertForEmptyName() {
+        let alert = UIAlertController(title: "Category name cannot be empty, enter a name", message: nil, preferredStyle: .Alert)
+        let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
+        alert.addAction(okay)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func showAlertForAllSpaceName() {
+        let alert = UIAlertController(title: "Category name cannot be all space, enter a different name", message: nil, preferredStyle: .Alert)
+        let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
+        alert.addAction(okay)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
     
     func cancelNewCategory() {
         self.dismissViewControllerAnimated(true, completion: nil)

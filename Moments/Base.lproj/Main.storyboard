@@ -1902,7 +1902,7 @@
         <image name="twitter_f" width="50" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c0A-Oc-VLe"/>
         <segue reference="3w0-du-Tv0"/>
+        <segue reference="FcY-4h-FoV"/>
     </inferredMetricsTieBreakers>
 </document>
