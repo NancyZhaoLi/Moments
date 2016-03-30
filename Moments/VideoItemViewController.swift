@@ -101,7 +101,7 @@ class VideoItemView: UIView {
             UIGraphicsEndImageContext()
             return img
         } else {
-            print("context found")
+            print("context not found")
         }
         
         UIGraphicsEndImageContext()
