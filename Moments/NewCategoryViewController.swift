@@ -90,8 +90,10 @@ class NewCategoryViewController: UIViewController,
     func saveNewCategory() {
         if let delegate = self.delegate {
             if Category.categoryNameExist(categoryName: categoryName.text!) {
-                
-            
+                let alert = UIAlertController(title: "Category name already exist, enter a different name", message: nil, preferredStyle: .Alert)
+                let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
+                alert.addAction(okay)
+                presentViewController(alert, animated: true, completion: nil)
             } else {
                 if let newCategory = getCategory() {
                     delegate.newCategory(self, category: newCategory)
