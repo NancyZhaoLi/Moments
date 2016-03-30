@@ -13,7 +13,7 @@ import MediaPlayer
 class AudioItemView: UIView {
     var playerButton: UIButton!
     var playImageTitle = "play_icon.png"
-    var musicPlayImageTitle = "music_icon.png"
+    var musicPlayImageTitle = "music2_icon.png"
     var pauseImageTitle = "pause_icon.png"
     var buttonSize: CGFloat = 80.0
     
@@ -111,7 +111,12 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
     }
     
     func setButtonForPlay() {
-        audioView.setPlayImage()
+        if audioView.musicURL == nil{
+            audioView.setPlayImage()
+        }
+        else{
+            audioView.setMusicPlayImage()
+        }
         audioView.playerButton.removeTarget(self, action: "pause")
         audioView.playerButton.addTarget(self, action: "play")
     }
@@ -132,6 +137,7 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
                 audioView.musicURL = url
                 audioView.persistentID = String(music.persistentID)
                 audioView.playerButton.addTarget(self, action: "play")
+                audioView.setMusicPlayImage()
                 return true
             }
         } catch {
