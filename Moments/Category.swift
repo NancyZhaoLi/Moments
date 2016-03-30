@@ -100,6 +100,13 @@ class Category: NSManagedObject {
     
     func delete() -> Bool {
         if let context = self.managedObjectContext {
+            let containedMoment = self.mutableSetValueForKey("containedMoment")
+            for item in containedMoment {
+                if let moment = item as? Moment, uncategorize = Category.getUncategorized() {
+                    moment.setMomentCategory(uncategorize)
+                }
+            }
+
             context.deleteObject(self)
             do {
                 try context.save()

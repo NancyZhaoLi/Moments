@@ -89,17 +89,35 @@ class NewCategoryViewController: UIViewController,
     
     func saveNewCategory() {
         if let delegate = self.delegate {
-            if Category.categoryNameExist(categoryName: categoryName.text!) {
-                let alert = UIAlertController(title: "Category name already exist, enter a different name", message: nil, preferredStyle: .Alert)
+            if let categoryName = categoryName.text {
+                let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+                if categoryName.isEmpty {
+                    let alert = UIAlertController(title: "Category name cannot be empty, enter a name", message: nil, preferredStyle: .Alert)
+                    let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
+                    alert.addAction(okay)
+                    presentViewController(alert, animated: true, completion: nil)
+                } else if categoryName.stringByTrimmingCharactersInSet(whitespaceSet).isEmpty {
+                    let alert = UIAlertController(title: "Category name cannot be all space, enter a different name", message: nil, preferredStyle: .Alert)
+                    let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
+                    alert.addAction(okay)
+                    presentViewController(alert, animated: true, completion: nil)
+                } else if Category.categoryNameExist(categoryName: categoryName) {
+                    let alert = UIAlertController(title: "Category name already exist, enter a different name", message: nil, preferredStyle: .Alert)
+                    let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
+                    alert.addAction(okay)
+                    presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    if let newCategory = getCategory() {
+                        delegate.newCategory(self, category: newCategory)
+                    } else {
+                        cancelNewCategory()
+                    }
+                }
+            } else {
+                let alert = UIAlertController(title: "Category name cannot be empty, enter a name", message: nil, preferredStyle: .Alert)
                 let okay = UIAlertAction(title: "Okay", style: UIAlertActionStyle.Destructive, handler: nil)
                 alert.addAction(okay)
                 presentViewController(alert, animated: true, completion: nil)
-            } else {
-                if let newCategory = getCategory() {
-                    delegate.newCategory(self, category: newCategory)
-                } else {
-                    cancelNewCategory()
-                }
             }
         }
     }
