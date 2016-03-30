@@ -32,7 +32,7 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
         self.manager = manager
     }
 
-    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
+    func addImage(var image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
         let defaultMaxDimension: CGFloat = 200.0
         let imageMaxDimension:CGFloat = max(image.size.height, image.size.width)
         var resizeRatio: CGFloat = 1.0
@@ -46,6 +46,7 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
         
         imageView.center = location
         imageView.image = image
+        
         self.view = imageView
     }
     

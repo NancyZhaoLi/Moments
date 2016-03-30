@@ -16,7 +16,6 @@ class VideoItemView: UIImageView {
     private var buttonSize: CGFloat = 80.0
     
     var fileURL: NSURL?
-    var fileSnapshot: UIImage?
     
     init() {
         super.init(frame: CGRectZero)
@@ -34,12 +33,9 @@ class VideoItemView: UIImageView {
     
     func loadVideo(fileURL url: NSURL, frame: CGRect, zPosition: Int, snapshot: UIImage?) {
         self.fileURL = url
-        self.fileSnapshot = snapshot
+        self.image = snapshot
         self.frame = frame
         self.layer.zPosition = CGFloat(zPosition)
-        if let snapshot = snapshot {
-            self.backgroundColor = UIColor(patternImage: UIHelper.resizeImage(snapshot, newWidth: frame.size.width, newHeight: frame.size.height))
-        }
     }
     
     private func setSnapShot() {
@@ -69,37 +65,29 @@ class VideoItemView: UIImageView {
                 let newHeight = snapshot.size.height/resizeRatio
                 snapshot = UIHelper.resizeImage(snapshot, newWidth: newWidth, newHeight: newHeight)
                 
+                //Add play button to snapshot
+                UIGraphicsBeginImageContext(snapshot.size)
+                let snapshotRect = CGRectMake(0,0,snapshot.size.width, snapshot.size.height)
+                let playButtonRect = CGRectMake(snapshot.size.width/2.0 - buttonSize/2.0, snapshot.size.height/2.0 - buttonSize/2.0, buttonSize, buttonSize)
+                let playButton = UIHelper.resizeImage(UIImage(named: playImageTitle)!, newWidth: buttonSize)
+                snapshot.drawInRect(snapshotRect)
+                playButton.drawInRect(playButtonRect)
+                
+                snapshot = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
                 // Set the frame size to resized snapshot size
                 let frame = CGRectMake(0,0, newWidth, newHeight)
                 self.frame = frame
                 self.bounds = frame
-                
-                // Add the play button
-                let playerButton = ButtonHelper.imageButton(playImageTitle, frame: CGRectMake(0,0,buttonSize,buttonSize), target: nil, action: nil)
-                playerButton.center = center
-                addSubview(playerButton)
-                
-                // Create a snapshot with the playbutton
                 self.image = snapshot
-                /*if let snapshotWithPlayButton = captureView(self) {
-                    snapshot = snapshotWithPlayButton
-                } */
-                
-                self.fileSnapshot = snapshot
-                
-                //Remove the Play button 
-                //playerButton.removeFromSuperview()
             } catch{}
         }
     }
     
-
-    
     func setLocation(location: CGPoint) {
         self.center = location
     }
-    
-
 }
 
 
