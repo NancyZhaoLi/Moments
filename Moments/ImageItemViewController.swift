@@ -47,6 +47,8 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
         imageView.center = location
         imageView.image = image
         
+        
+        
         self.view = imageView
     }
     

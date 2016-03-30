@@ -242,6 +242,17 @@ class UIHelper {
         return newImage
     }
     
+    static func rotateImageRight(image: UIImage) -> UIImage {
+        UIGraphicsBeginImageContext(image.size)
+        let context = UIGraphicsGetCurrentContext()
+        CGContextRotateCTM(context, CGFloat(-90.0 * M_PI / 180.0))
+        image.drawAtPoint(CGPointZero)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
     static func randomBrightColour() -> UIColor {
         let maxValue: CGFloat = 255.0
         let val1: CGFloat = CGFloat(arc4random_uniform(255)) / maxValue

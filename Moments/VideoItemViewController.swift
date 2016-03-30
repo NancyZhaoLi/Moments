@@ -60,8 +60,10 @@ class VideoItemView: UIView {
                 if imageMaxDimension > defaultMaxDimension {
                     resizeRatio = imageMaxDimension/defaultMaxDimension
                 }
-            
-                //snapshot = rotate(snapshot)
+                
+                if let snapshotCG = snapshot.CGImage {
+                    snapshot = UIImage(CGImage: snapshotCG, scale: 1.0, orientation: UIImageOrientation.Right)
+                }
 
                 let newWidth = snapshot.size.width/resizeRatio
                 let newHeight = snapshot.size.height/resizeRatio
@@ -108,16 +110,7 @@ class VideoItemView: UIView {
         self.center = location
     }
     
-    private func rotate(image: UIImage) -> UIImage {
-        UIGraphicsBeginImageContext(image.size)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextRotateCTM(context, CGFloat(-90.0 * M_PI / 180.0))
-        image.drawAtPoint(CGPointZero)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-    }
+
 }
 
 
