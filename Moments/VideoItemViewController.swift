@@ -61,7 +61,7 @@ class VideoItemView: UIView {
                     resizeRatio = imageMaxDimension/defaultMaxDimension
                 }
             
-                snapshot = rotate(snapshot)
+                //snapshot = rotate(snapshot)
 
                 let newWidth = snapshot.size.width/resizeRatio
                 let newHeight = snapshot.size.height/resizeRatio
@@ -86,7 +86,7 @@ class VideoItemView: UIView {
                 self.fileSnapshot = snapshot
                 
                 //Remove the Play button 
-                playerButton.removeFromSuperview()
+                //playerButton.removeFromSuperview()
             } catch{}
         }
     }
