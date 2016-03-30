@@ -165,7 +165,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qzg-n6-a4v">
                                 <rect key="frame" x="46" y="109" width="283" height="112"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="61"/>
-                                <color key="textColor" red="0.19569203915157893" green="0.23005756578947367" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
