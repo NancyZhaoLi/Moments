@@ -12,7 +12,7 @@ import AVKit
 import AVFoundation
 
 class VideoItemView: UIImageView {
-    private var playImageTitle = "play_icon.png"
+    private var playImageTitle = "play2_icon.png"
     private var buttonSize: CGFloat = 80.0
     
     var fileURL: NSURL?
