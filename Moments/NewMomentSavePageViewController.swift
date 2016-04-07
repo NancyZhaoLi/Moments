@@ -95,7 +95,8 @@ class NewMomentSavePageViewController: UIViewController,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newCategory" {
             let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
-            newCategoryVC.delegate = self
+           // newCategoryVC.delegate = self
+            newCategoryVC.newCategoryDelegate = self
         }
     }
     

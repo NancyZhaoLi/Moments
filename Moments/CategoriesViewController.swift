@@ -84,7 +84,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             categoryMomentsVC.category = sender as? Category
         } else if segue.identifier == "newCategory" {
             let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
-            newCategoryVC.delegate = self
+            newCategoryVC.newCategoryDelegate = self
         } else if segue.identifier == "CategoryToNewMoment" {
             let newMomentNavigationVC = segue.destinationViewController as! NewMomentNavigationController
             newMomentNavigationVC.setDelegate(self)
