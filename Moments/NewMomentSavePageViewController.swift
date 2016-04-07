@@ -97,6 +97,7 @@ class NewMomentSavePageViewController: UIViewController,
             let newCategoryVC = segue.destinationViewController as! NewCategoryViewController
            // newCategoryVC.delegate = self
             newCategoryVC.newCategoryDelegate = self
+            print("i'm here in newCategoryVC")
         }
     }
     

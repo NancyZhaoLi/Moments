@@ -144,7 +144,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     func sortCategories() {
         
         var tempCategories = [Category]()
-        
+        print ("the total cateogories is " + String(categories.count))
         for var i = 0; i < categories.count; i++ {
             tempCategories.append(Category())
         }
@@ -154,8 +154,11 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             print("sort- category id: \(category.getId())")
             
             let id = Int(category.getId())
-            let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
-            tempCategories[index] = category
+            //let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
+            //print("index is " + String(index))
+            tempCategories[id] = category
+            
+            
         }
         
         categories = tempCategories
