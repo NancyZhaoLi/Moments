@@ -94,66 +94,41 @@ class VideoItemView: UIImageView {
 }
 
 
-class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate, NewMomentItemGestureDelegate {
-    var manager: NewMomentManager?
-    var parentVC: NewMomentCanvasViewController?
+class VideoItemViewController: ItemViewController, AVPlayerViewControllerDelegate {
     
     var playerVC: AVPlayerViewController?
     var videoView: VideoItemView = VideoItemView()
     
-    convenience init() {
-        self.init(manager: nil)
-    }
-    
-    convenience required init?(coder aDecoder: NSCoder) {
-        self.init()
-    }
-    
-    init(manager: NewMomentManager?) {
-        super.init(nibName: nil, bundle: nil)
-        
-        self.manager = manager
-        
-        initParentVC()
-        initView()
-    }
-    
-    private func initView() {
+    override init?(manager: NewMomentManager?) {
+        super.init(manager: manager)
         self.view = videoView
     }
-    
-    private func initParentVC() {
-        if let manager = manager {
-            if let canvas = manager.canvasVC {
-                self.parentVC = canvas
-            }
-        }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
-    func addRecordedVideo(fileURL url: NSURL, location: CGPoint) -> Bool {
+    override func addItem (videoURL url: NSURL, location: CGPoint) {
         let playerVC = AVPlayerViewController()
         playerVC.player = AVPlayer(URL: url)
         
         self.playerVC = playerVC
         videoView.setFileURL(fileURL: url)
         videoView.setLocation(location)
-        addTapToPlayGR()
-        
-        return true
+        addToCanvas()
+        addGR()
     }
 
-    func addVideo(videoItem: VideoItem) -> Bool {
-        if let url = videoItem.getURL() {
+    override func addItem(video video: VideoItem) {
+        if let url = video.getURL() {
             let playerVC = AVPlayerViewController()
             playerVC.player = AVPlayer(URL: url)
             
             self.playerVC = playerVC
-            videoView.loadVideo(fileURL: url, frame: videoItem.getFrame(), zPosition: videoItem.getZPosition(), snapshot: videoItem.getSnapshot())
-            addTapToPlayGR()
-            return true
+            videoView.loadVideo(fileURL: url, frame: video.getFrame(), zPosition: video.getZPosition(), snapshot: video.getSnapshot())
+            addToCanvas(video.getZPosition())
+            addGR()
         }
-        
-        return false
     }
     
     /*********************************************************************************
@@ -162,62 +137,31 @@ class VideoItemViewController: UIViewController, AVPlayerViewControllerDelegate,
      
      *********************************************************************************/
     
-    var trashGR: UITapGestureRecognizer?
-    var dragGR: UIPanGestureRecognizer?
-    var pinchGR: UIPinchGestureRecognizer?
     var tapToPlayGR: UITapGestureRecognizer?
     
-    func addTapToPlayGR() {
+    override func addGR() {
+        super.addGR()
+        addTapToPlayGR()
+    }
+    
+    private func addTapToPlayGR() {
         let tapToPlayGR = UITapGestureRecognizer(target: self, action: "play")
-        if let parentVC = self.parentVC {
-            tapToPlayGR.enabled = parentVC.enableInteraction
-        } else {
-            tapToPlayGR.enabled = true
+        if let manager = self.manager {
+            tapToPlayGR.enabled = manager.enableInteraction
         }
-        
         self.view.addGestureRecognizer(tapToPlayGR)
         self.tapToPlayGR = tapToPlayGR
     }
-    
-    func addTrashGR(trashGR: UITapGestureRecognizer) {
-        self.trashGR = trashGR
-        self.view.addGestureRecognizer(trashGR)
-    }
-    
-    func addDragGR(dragGR: UIPanGestureRecognizer) {
-        self.dragGR = dragGR
-        self.view.addGestureRecognizer(dragGR)
-    }
-    
-    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
-        self.pinchGR = pinchGR
-        self.view.addGestureRecognizer(pinchGR)
-    }
-    
-    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
-    }
-    
-    func enableTrash(enabled: Bool) {
-        if let trashGR = self.trashGR {
-            trashGR.enabled = enabled
-        }
-        
+
+    override func addRotateGR() {}
+
+    override func enableTrash(enabled: Bool) {
+        super.enableTrash(enabled)
         tapToPlayGR?.enabled = !enabled
     }
     
-    func enableViewMode(enabled: Bool) {
-        dragGR?.enabled = !enabled
-        pinchGR?.enabled = !enabled
-    }
-    
-    func tapToTrash(sender: UITapGestureRecognizer) {
-        if let senderView = sender.view {
-            if sender.numberOfTouches() != 1 {
-                return
-            }
-            senderView.removeFromSuperview()
-            self.removeFromParentViewController()
-        }
+    override func tapToTrash(sender: UITapGestureRecognizer) {
+        super.tapToTrash(sender)
     }
     
     func play() {

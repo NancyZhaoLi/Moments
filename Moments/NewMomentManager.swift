@@ -50,6 +50,7 @@ class NewMomentManager {
     var idSuffix : String = ""
     
     var isNewMoment : Bool = true
+    var enableInteraction: Bool = true
     
     convenience init(canvasVC: NewMomentCanvasViewController) {
         self.init(canvasVC: canvasVC, moment: nil)
@@ -77,6 +78,7 @@ class NewMomentManager {
         self.savePage!.setInitialMomentFavourite(self.momentFavourite)
     }
     
+    
     /*********************************************************************************
      
         LOADING MOMENT FUNCTIONS
@@ -96,124 +98,67 @@ class NewMomentManager {
         isNewMoment = false
 
         for textItem in moment.getAllSavedText() {
-            canvasVC.addNewViewController(loadText(textItem), zPosition: textItem.getZPosition())
+            let text = TextItemViewController(manager: self)!
+            text.addItem(text: textItem)
         }
         
         for imageItem in moment.getAllSavedImage() {
-            canvasVC.addNewViewController(loadImage(imageItem), zPosition: imageItem.getZPosition())
+            let image = ImageItemViewController(manager: self)!
+            image.addItem(image: imageItem)
         }
         
         for audioItem in moment.getAllSavedAudio() {
-            if let audio = loadAudio(audioItem) {
-                canvasVC.addNewViewController(audio, zPosition: audioItem.getZPosition())
-            }
+            let audio = AudioItemViewController(manager: self)!
+            audio.addItem(audio: audioItem)
         }
         
         for videoItem in moment.getAllSavedVideo() {
-            if let video = loadVideo(videoItem) {
-                canvasVC.addNewViewController(video, zPosition: videoItem.getZPosition())
-            }
+            let video = VideoItemViewController(manager: self)!
+            video.addItem(video: videoItem)
         }
         
         for stickerItem in moment.getAllSavedSticker() {
-            canvasVC.addNewViewController(loadSticker(stickerItem), zPosition: stickerItem.getZPosition())
+            let sticker = StickerItemViewController(manager: self)!
+            sticker.addItem(sticker: stickerItem)
         }
     }
 
-    
-    func loadText(textItem: TextItem) -> TextItemViewController {
-        let newTextVC = TextItemViewController(manager: self)
-        newTextVC.addText(textItem)
-        
-        return newTextVC
-    }
-    
-    func loadImage(imageItem: ImageItem) -> ImageItemViewController {
-        let newImageVC = ImageItemViewController(manager: self)
-        newImageVC.addImage(imageItem)
-        
-        return newImageVC
-    }
-    
-    func loadAudio(audioItem: AudioItem) -> AudioItemViewController? {
-        let newAudioVC = AudioItemViewController(manager: self)
-        if newAudioVC.addAudio(audioItem) {
-            return newAudioVC
-        }
-        
-        return nil
-    }
-    
-    func loadVideo(videoItem: VideoItem) -> VideoItemViewController? {
-        let newVideoVC = VideoItemViewController(manager: self)
-        if newVideoVC.addVideo(videoItem) {
-            return newVideoVC
-        }
-        
-        return nil
-    }
-    
-    func loadSticker(stickerItem: StickerItem) -> StickerItemViewController {
-        let newStickerVC = StickerItemViewController(manager: self)
-        newStickerVC.addSticker(stickerItem)
-        return newStickerVC
-    }
-    
-    
+
     /*********************************************************************************
      
      NEW MOMENT ITEMS
      
      *********************************************************************************/
     
-    func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute) -> TextItemViewController {
-        let newTextVC = TextItemViewController(manager: self)
-        newTextVC.addText(text, location: location, textAttribute: textAttribute)
-        
-        return newTextVC
+    func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute){
+        let newTextVC = TextItemViewController(manager: self)!
+        newTextVC.addItem(text, location: location, textAttribute: textAttribute)
     }
     
-    func addImage(image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) -> ImageItemViewController {
-        let newImageVC = ImageItemViewController(manager: self)
-        newImageVC.addImage(image, location: location, editingInfo: editingInfo)
-
-        return newImageVC
+    func addImage(image: UIImage, location: CGPoint) {
+        let newImageVC = ImageItemViewController(manager: self)!
+        newImageVC.addItem(image: image, location: location)
     }
     
-    func addMusicAudio(music: MPMediaItem, location: CGPoint) -> AudioItemViewController? {
-        let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)
-        if audioItemVC.addMusicAudio(music, location: location) {
-            return audioItemVC
-        }
-        return nil
+    func addMusicAudio(music: MPMediaItem, location: CGPoint) {
+        let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)!
+        audioItemVC.addItem(musicItem: music, location: location)
     }
     
-    func addRecordedAudio(fileURL url: NSURL, location: CGPoint) -> AudioItemViewController? {
-        
-        let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)
-        if audioItemVC.addRecordedAudio(fileURL: url, location: location) {
-            return audioItemVC
-        }
-        return nil
+    func addRecordedAudio(fileURL url: NSURL, location: CGPoint)  {
+        let audioItemVC: AudioItemViewController = AudioItemViewController(manager: self)!
+        audioItemVC.addItem(recordingURL: url, location: location)
     }
     
-    func addRecordedVideo(fileURL url: NSURL, location: CGPoint) -> VideoItemViewController? {
-        
-        let videoItemVC: VideoItemViewController = VideoItemViewController(manager: self)
-        if videoItemVC.addRecordedVideo(fileURL: url, location: location) {
-            return videoItemVC
-        }
-        
-        return nil
+    func addRecordedVideo(fileURL url: NSURL, location: CGPoint) {
+        let videoItemVC: VideoItemViewController = VideoItemViewController(manager: self)!
+        videoItemVC.addItem(videoURL: url, location: location)
     }
     
-    func addSticker(stickerName: String, location: CGPoint) -> StickerItemViewController {
-        let newStickerVC = StickerItemViewController(manager: self)
-        newStickerVC.addSticker(stickerName, location: location)
-        
-        return newStickerVC
+    func addSticker(stickerName: String, location: CGPoint){
+        let newStickerVC = StickerItemViewController(manager: self)!
+        newStickerVC.addItem(stickerName: stickerName, location: location)
     }
-
 
     
     func selectFavourite() {
@@ -224,6 +169,31 @@ class NewMomentManager {
         momentFavourite = false
     }
     
+    func cancelViewMode() {
+        enableInteraction = true
+        for vc in canvasVC.childViewControllers {
+            if let vc = vc as? ItemViewController {
+                vc.enableViewMode(false)
+            }
+        }
+    }
+    
+    func selectViewMode() {
+        enableInteraction = false
+        for vc in canvasVC.childViewControllers {
+            if let vc = vc as? ItemViewController {
+                vc.enableViewMode(true)
+            }
+        }
+    }
+    
+    func setEnabledOfTapToTrashGR(enabled:Bool) {
+        for vc in canvasVC.childViewControllers {
+            if let vc = vc as? ItemViewController {
+                vc.enableTrash(enabled)
+            }
+        }
+    }
     
     /*********************************************************************************
      
@@ -262,24 +232,12 @@ class NewMomentManager {
             let moment = Moment(backgroundColour: backgroundColour, favourite: favourite, title: title, category: category)!
             saveMoment(moment)
         } else if let moment = self.moment {
-            //if (CoreDataFetchHelper.deleteMomentGivenId(moment!.getMomentId())) {
-            //if true {
-           /* if let moment = self.moment {
-
-            }*/
-            
             moment.deleteContent()
             moment.setMomentBackgroundColour(backgroundColour)
             moment.setMomentCategory(category)
             moment.setMomentFavourite(favourite)
             moment.setMomentTitle(title)
             saveMoment(moment)
-
-            //let newMoment = Moment(backgroundColour: backgroundColour, date: previousDate,  favourite: favourite, id: previousId, title: title, category: category)!
-            
-            //} else {
-            //   fatalError("[saveMomentEntry] - could not delete old moment")
-           // }
         }
     }
     
@@ -339,6 +297,60 @@ class NewMomentManager {
         self.moment = moment
     }
     
+    
+    func addItemToCanvas(vc: UIViewController) {
+        canvasVC.canvas.addSubview(vc.view)
+        setupNewItem(vc)
+    }
+    
+    func addItemToCanvas(vc: UIViewController, zPosition: Int) {
+        canvasVC.canvas.insertSubview(vc.view, atIndex: zPosition)
+        vc.view.layer.zPosition = 0.0
+        setupNewItem(vc)
+    }
+    
+    private func setupNewItem(vc: UIViewController) {
+        vc.view.multipleTouchEnabled = true
+        vc.view.userInteractionEnabled = true
+        canvasVC.addChildViewController(vc)
+    }
+    
+    
+    func trashGR(vc: UIViewController) -> UITapGestureRecognizer {
+        let trashGR = UITapGestureRecognizer(target: vc, action: "tapToTrash:")
+        trashGR.enabled = false
+        return trashGR
+    }
+    
+    func dragGR() -> UIPanGestureRecognizer {
+        let dragGR = UIPanGestureRecognizer(target: canvasVC, action: "draggedView:")
+        dragGR.enabled = enableInteraction
+        return dragGR
+    }
+    
+    func pinchGR() -> UIPinchGestureRecognizer {
+        let pinchGR = UIPinchGestureRecognizer(target: canvasVC, action: "pinchedView:")
+        pinchGR.enabled = enableInteraction
+        return pinchGR
+    }
+    
+    func pinchTextGR() -> UIPinchGestureRecognizer {
+        let pinchGR = UIPinchGestureRecognizer(target: canvasVC, action: "pinchedTextView:")
+        
+        pinchGR.enabled = enableInteraction
+        return pinchGR
+    }
+    
+    func rotateGR() -> UIRotationGestureRecognizer {
+        let rotateGR = UIRotationGestureRecognizer(target: canvasVC, action: "rotateView:")
+        rotateGR.enabled = enableInteraction
+        return rotateGR
+    }
+    
+    
+    func presentViewController(vc: UIViewController, animated: Bool) {
+        canvasVC.presentViewController(vc, animated: true)
+    }
     
     /*func selectedCategoryName() -> String {
         return self.savePage!.selectedCell!.textLabel!.text!

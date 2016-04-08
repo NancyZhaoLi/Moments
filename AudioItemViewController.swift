@@ -46,42 +46,27 @@ class AudioItemView: UIView {
 }
 
 
-class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomentItemGestureDelegate {
+class AudioItemViewController: ItemViewController, AVAudioPlayerDelegate	 {
     var player: AVAudioPlayer?
-    var manager: NewMomentManager?
-    var parentVC: NewMomentCanvasViewController?
 
     var audioView: AudioItemView = AudioItemView()
     
-    convenience init() {
-        self.init(manager: nil)
-    }
-    
-    convenience required init?(coder aDecoder: NSCoder) {
-        self.init()
-    }
-    
-    init(manager: NewMomentManager?) {
-        super.init(nibName: nil, bundle: nil)
-        
-        self.manager = manager
-        initParentVC()
+
+    override init?(manager: NewMomentManager?) {
+        super.init(manager: manager)
+
         initView()
     }
-    
-    private func initParentVC() {
-        if let manager = manager {
-            if let canvas = manager.canvasVC {
-                self.parentVC = canvas
-            }
-        }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     func initView() {
         view = self.audioView
-        if let parentVC = self.parentVC {
-            audioView.playerButton.enabled = parentVC.enableInteraction
-        } 
+        if let manager = self.manager {
+           audioView.playerButton.enabled = manager.enableInteraction
+        }
     }
     
     func play(){
@@ -127,8 +112,15 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
         audioView.playerButton.addTarget(self, action: "play")
     
     }
-    
-    func addMusicAudio(music: MPMediaItem, location: CGPoint) -> Bool {
+
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        if flag == true {
+            player.stop()
+            setButtonForPlay()
+        }
+    }
+
+    override func addItem(musicItem music: MPMediaItem, location: CGPoint) {
         do {
             if let url = music.assetURL {
                 player = try AVAudioPlayer(contentsOfURL: url)
@@ -138,101 +130,61 @@ class AudioItemViewController: UIViewController, AVAudioPlayerDelegate, NewMomen
                 audioView.persistentID = String(music.persistentID)
                 audioView.playerButton.addTarget(self, action: "play")
                 audioView.setMusicPlayImage()
-                return true
+                
+                super.addToCanvas()
+                super.addGR()
             }
         } catch {
             print("ERROR: fail to initiate audioPlayer in AddMusicAudio of AudioItemViewController")
         }
-        
-        return false
     }
-
-    func addRecordedAudio(fileURL url: NSURL, location: CGPoint) -> Bool {
+    
+    override func addItem(recordingURL url: NSURL, location: CGPoint){
         do {
             player = try AVAudioPlayer(contentsOfURL: url)
             player?.delegate = self
             view.center = location
             audioView.fileURL = url
             audioView.playerButton.addTarget(self, action: "play")
-            return true
+            
+            super.addToCanvas()
+            super.addGR()
         } catch {
             print("ERROR: fail to initiate audioPlayer in AddRecordingAudio of AudioItemViewController")
         }
-        
-        return false
     }
     
-    func addAudio(audioItem: AudioItem) -> Bool {
+    override func addItem(audio audio: AudioItem) {
         do {
-            if let url = audioItem.getURL() {
+            if let url = audio.getURL() {
                 self.player = try AVAudioPlayer(contentsOfURL: url)
                 self.player?.delegate = self
-                audioView.frame = audioItem.getFrame()
-                audioView.layer.zPosition = CGFloat(audioItem.getZPosition())
+                audioView.frame = audio.getFrame()
+                audioView.layer.zPosition = CGFloat(audio.getZPosition())
                 audioView.fileURL = url
                 audioView.playerButton.addTarget(self, action: "play")
-                return true
+                
+                super.addToCanvas(audio.getZPosition())
+                super.addGR()
             } else {
                 print("no url found for audioItem")
             }
         } catch {
             print("ERROR: fail to initiate audioPlayer in AddAudio of AudioItemViewController")
         }
-        
-        return false
     }
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        if flag == true {
-            player.stop()
-            setButtonForPlay()
-        }
-    }
+    override func addPinchGR() {}
     
-    /*********************************************************************************
-     
-     GESTURE RECOGNIZERS
-     
-     *********************************************************************************/
-    var trashGR: UITapGestureRecognizer?
-    var dragGR: UIPanGestureRecognizer?
+    override func addRotateGR() {}
     
-    func addTrashGR(trashGR: UITapGestureRecognizer) {
-        self.trashGR = trashGR
-        self.view.addGestureRecognizer(trashGR)
-    }
-    
-    func addDragGR(dragGR: UIPanGestureRecognizer) {
-        self.dragGR = dragGR
-        self.view.addGestureRecognizer(dragGR)
-    }
-    
-    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
-    }
-    
-    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
-    }
-    
-    func enableTrash(enabled: Bool) {
-        if let trashGR = self.trashGR {
-            trashGR.enabled = enabled
-        }
+    override func enableTrash(enabled: Bool) {
+        super.enableTrash(enabled)
         audioView.playerButton.enabled = !enabled
     }
     
-    func enableViewMode(enabled: Bool) {
-        dragGR?.enabled = !enabled
+    override func tapToTrash(sender: UITapGestureRecognizer) {
+        super.tapToTrash(sender)
     }
-    
-    func tapToTrash(sender: UITapGestureRecognizer) {
-        if let senderView = sender.view {
-            if sender.numberOfTouches() != 1 {
-                return
-            }
-            senderView.removeFromSuperview()
-            self.removeFromParentViewController()
-        }
-    }
-    
 }
 

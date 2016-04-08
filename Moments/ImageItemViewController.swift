@@ -14,25 +14,9 @@ class ImageItemView: UIImageView {
 }
 
 
-class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
+class ImageItemViewController: ItemViewController {
     
-    var manager: NewMomentManager?
-    
-    convenience init() {
-        self.init(manager: nil)
-    }
-    
-    convenience required init?(coder aDecoder: NSCoder) {
-        self.init()
-    }
-    
-    init(manager: NewMomentManager?) {
-        super.init(nibName: nil, bundle: nil)
-        
-        self.manager = manager
-    }
-
-    func addImage(var image: UIImage, location: CGPoint, editingInfo: [String : AnyObject]?) {
+    override func addItem(image image: UIImage, location: CGPoint) {
         let defaultMaxDimension: CGFloat = 200.0
         let imageMaxDimension:CGFloat = max(image.size.height, image.size.width)
         var resizeRatio: CGFloat = 1.0
@@ -48,72 +32,28 @@ class ImageItemViewController: UIViewController, NewMomentItemGestureDelegate {
         imageView.image = image
         
         self.view = imageView
+        super.addToCanvas()
+        super.addGR()
     }
     
-    func addImage(imageItem: ImageItem) {
-        let imageView =  ImageItemView(frame: imageItem.getFrame())
-        imageView.image = imageItem.getImage()
-        imageView.layer.zPosition = CGFloat(imageItem.getZPosition())
+    override func addItem(image image: ImageItem) {
+        let imageView =  ImageItemView(frame: image.getFrame())
+        imageView.image = image.getImage()
+        imageView.layer.zPosition = CGFloat(image.getZPosition())
         
-        imageView.rotation = CGFloat(imageItem.getRotation())
+        imageView.rotation = CGFloat(image.getRotation())
         let currentTransform = imageView.transform
         let newTransform = CGAffineTransformRotate(currentTransform, imageView.rotation)
         imageView.transform = newTransform
         
         self.view = imageView
+        super.addToCanvas(image.getZPosition())
+        super.addGR()
     }
     
-    /*********************************************************************************
-     
-     GESTURE RECOGNIZERS
-     
-     *********************************************************************************/
-    
-    var trashGR: UITapGestureRecognizer?
-    var dragGR: UIPanGestureRecognizer?
-    var pinchGR: UIPinchGestureRecognizer?
-    var rotateGR: UIRotationGestureRecognizer?
-    
-    func addTrashGR(trashGR: UITapGestureRecognizer) {
-        self.trashGR = trashGR
-        self.view.addGestureRecognizer(trashGR)
+    override func tapToTrash(sender: UITapGestureRecognizer) {
+        super.tapToTrash(sender)
     }
-    
-    func addDragGR(dragGR: UIPanGestureRecognizer) {
-        self.dragGR = dragGR
-        self.view.addGestureRecognizer(dragGR)
-    }
-    
-    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
-        self.pinchGR = pinchGR
-        self.view.addGestureRecognizer(pinchGR)
-    }
-    
-    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
-        self.rotateGR = rotateGR
-        self.view.addGestureRecognizer(rotateGR)
-    }
-    
-    func enableTrash(enabled: Bool) {
-        if let trashGR = self.trashGR {
-            trashGR.enabled = enabled
-        }
-    }
-    
-    func enableViewMode(enabled: Bool) {
-        dragGR?.enabled = !enabled
-        pinchGR?.enabled = !enabled
-        rotateGR?.enabled = !enabled
-    }
-    
-    func tapToTrash(sender: UITapGestureRecognizer) {
-        if let senderView = sender.view {
-            if sender.numberOfTouches() != 1 {
-                return
-            }
-            senderView.removeFromSuperview()
-            self.removeFromParentViewController()
-        }
-    }
+
 }
 

@@ -25,81 +25,25 @@ class TextItemView: UITextView {
     }
 }
 
-class TextItemViewController: UIViewController, EditTextItemViewControllerDelegate, NewMomentItemGestureDelegate {
+class TextItemViewController: ItemViewController, EditTextItemViewControllerDelegate {
 
-    var manager: NewMomentManager?
-    var parentVC: NewMomentCanvasViewController?
     var editText: EditTextItemViewController!
     var dragBeginCoordinate: CGPoint?
     
-    convenience init() {
-        self.init(manager: nil)
-    }
-    
-    convenience required init?(coder aDecoder: NSCoder) {
-        self.init()
-    }
-    
-    init(manager: NewMomentManager?) {
-        super.init(nibName: nil, bundle: nil)
-        
-        self.manager = manager
-        initParentVC()
+    override init?(manager: NewMomentManager?) {
+        super.init(manager: manager)
         initEditView()
     }
     
-    private func initParentVC() {
-        if let manager = manager {
-            if let canvas = manager.canvasVC {
-                parentVC = canvas
-            }
-        }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     private func initEditView() {
         editText = EditTextItemViewController(delegate: self, text: nil, textAttribute: nil)
     }
     
-    func addText(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute ) {
-        // Computer text box size
-        let maxHeight: CGFloat = 300.0
-        let singleLineHeight: CGFloat = UIHelper.textSize("A", font: textAttribute.font).height
-        let fullWidth: CGFloat = UIHelper.textSize(text, font: textAttribute.font).width
-        let width: CGFloat = min(fullWidth + 20.0, windowWidth - 40.0)
-        var height: CGFloat = ceil(fullWidth / width) * singleLineHeight + 20.0
-        
-        if height > maxHeight {
-            height = maxHeight
-        }
-        
-        let textItemView = TextItemView(frame: CGRectMake(0,0, width, height))
-        textItemView.center = location
-        textItemView.textContainer.lineBreakMode = .ByCharWrapping
-        
-        initEditTextItemViewController(text, textAttribute: textAttribute)
-        initNewTextItemView(textItemView, text: text, textAttribute: textAttribute, rotation: 0.0)
-    }
 
-    func addText(textItem: TextItem) {
-        let textItemView = TextItemView(frame: textItem.getFrame())
-        let text = textItem.getContent()
-        let textAttribute = textItem.getOtherAttribute()
-        let zPosition = textItem.getZPosition()
-        let rotation = textItem.getRotation()
-        
-        textItemView.layer.zPosition = CGFloat(zPosition)
-        textItemView.item = textItem
-        
-        if let attr = textAttribute {
-            initEditTextItemViewController(text, textAttribute: attr)
-            initNewTextItemView(textItemView, text: text, textAttribute: attr, rotation: CGFloat(rotation))
-        } else {
-            let attr = TextItemOtherAttribute()
-            initEditTextItemViewController(text, textAttribute: attr)
-            initNewTextItemView(textItemView, text: text, textAttribute: attr, rotation: CGFloat(rotation))
-        }
-    }
-    
     private func initNewTextItemView(textView: TextItemView, text: String, textAttribute: TextItemOtherAttribute, rotation: CGFloat) {
         self.view = textView
         changeText(text, textAttribute: textAttribute)
@@ -127,77 +71,91 @@ class TextItemViewController: UIViewController, EditTextItemViewControllerDelega
         }
     }
     
-    /*********************************************************************************
-
-        GESTURE RECOGNIZERS
-
-    *********************************************************************************/
+    override func addItem(text: String, location: CGPoint, textAttribute: TextItemOtherAttribute ) {
+        // Computer text box size
+        let maxHeight: CGFloat = 300.0
+        let singleLineHeight: CGFloat = UIHelper.textSize("A", font: textAttribute.font).height
+        let fullWidth: CGFloat = UIHelper.textSize(text, font: textAttribute.font).width
+        let width: CGFloat = min(fullWidth + 20.0, windowWidth - 40.0)
+        var height: CGFloat = ceil(fullWidth / width) * singleLineHeight + 20.0
+        
+        if height > maxHeight {
+            height = maxHeight
+        }
+        
+        let textItemView = TextItemView(frame: CGRectMake(0,0, width, height))
+        textItemView.center = location
+        textItemView.textContainer.lineBreakMode = .ByCharWrapping
+        
+        initEditTextItemViewController(text, textAttribute: textAttribute)
+        initNewTextItemView(textItemView, text: text, textAttribute: textAttribute, rotation: 0.0)
+        
+        super.addToCanvas()
+        self.addGR()
+    }
+    
+    override func addItem(text text: TextItem) {
+        let textItemView = TextItemView(frame: text.getFrame())
+        let content = text.getContent()
+        let textAttribute = text.getOtherAttribute()
+        let zPosition = text.getZPosition()
+        let rotation = text.getRotation()
+        
+        textItemView.layer.zPosition = CGFloat(zPosition)
+        textItemView.item = text
+        
+        if let attr = textAttribute {
+            initEditTextItemViewController(content, textAttribute: attr)
+            initNewTextItemView(textItemView, text: content, textAttribute: attr, rotation: CGFloat(rotation))
+        } else {
+            let attr = TextItemOtherAttribute()
+            initEditTextItemViewController(content, textAttribute: attr)
+            initNewTextItemView(textItemView, text: content, textAttribute: attr, rotation: CGFloat(rotation))
+        }
+        
+        super.addToCanvas(text.getZPosition())
+        self.addGR()
+    }
     
     let tapToEditGR: UITapGestureRecognizer = UITapGestureRecognizer()
-    var trashGR: UITapGestureRecognizer?
-    var dragGR: UIPanGestureRecognizer?
-    var pinchGR: UIPinchGestureRecognizer?
-    var rotateGR: UIRotationGestureRecognizer?
+
     
-    func addTapToEditGR() {
+    override func enableTrash(enabled: Bool) {
+        super.enableTrash(enabled)
+        tapToEditGR.enabled = !enabled
+    }
+    
+    override func enableViewMode(enabled: Bool) {
+        super.enableViewMode(enabled)
+        tapToEditGR.enabled = !enabled
+    }
+    
+    override func addPinchGR() {
+        if let manager = self.manager {
+            self.pinchGR =  manager.pinchTextGR()
+            self.view.addGestureRecognizer(self.pinchGR!)
+        }
+    }
+    
+    override func tapToTrash(sender: UITapGestureRecognizer) {
+        super.tapToTrash(sender)
+    }
+    
+    private func addTapToEditGR() {
         tapToEditGR.addTarget(self, action: "tapToEdit")
-        if let parentVC = self.parentVC {
-            tapToEditGR.enabled = parentVC.enableInteraction
-        } else {
-            tapToEditGR.enabled = true
+        if let manager = self.manager {
+            tapToEditGR.enabled = manager.enableInteraction
         }
         self.view.addGestureRecognizer(tapToEditGR)
     }
-
-    func addTrashGR(trashGR: UITapGestureRecognizer) {
-        self.trashGR = trashGR
-        self.view.addGestureRecognizer(trashGR)
-    }
-    
-    func addDragGR(dragGR: UIPanGestureRecognizer) {
-        self.dragGR = dragGR
-        self.view.addGestureRecognizer(dragGR)
-    }
-    
-    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
-        self.pinchGR = pinchGR
-        self.view.addGestureRecognizer(pinchGR)
-    }
-    
-    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
-        self.rotateGR = rotateGR
-        self.view.addGestureRecognizer(rotateGR)
-    }
-    
-    func enableTrash(enabled: Bool) {
-        if let trashGR = self.trashGR {
-            trashGR.enabled = enabled
-        }
-        tapToEditGR.enabled = !enabled
-    }
-    
-    func enableViewMode(enabled: Bool) {
-        tapToEditGR.enabled = !enabled
-        dragGR?.enabled = !enabled
-        pinchGR?.enabled = !enabled
-        rotateGR?.enabled = !enabled
-    }
     
     func tapToEdit() {
-        if let parentVC = self.parentVC {
-            parentVC.presentViewController(editText, animated: true)
+        if let manager = self.manager {
+            manager.presentViewController(editText, animated: true)
         }
     }
     
-    func tapToTrash(sender: UITapGestureRecognizer) {
-        if let senderView = sender.view {
-            if sender.numberOfTouches() != 1 {
-                return
-            }
-            senderView.removeFromSuperview()
-            self.removeFromParentViewController()
-        }
-    }
+
 
     /*********************************************************************************
      
