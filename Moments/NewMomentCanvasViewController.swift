@@ -14,15 +14,20 @@ import CoreData
 import MobileCoreServices
 import Photos
 
-protocol NewMomentItemGestureDelegate {
-    func addTrashGR(trashGR: UITapGestureRecognizer)
+/*protocol NewMomentItemGestureDelegate {
+    /*func addTrashGR(trashGR: UITapGestureRecognizer)
     func addDragGR(dragGR: UIPanGestureRecognizer)
     func addPinchGR(pinchGR: UIPinchGestureRecognizer)
     func addRotateGR(rotateGR: UIRotationGestureRecognizer)
+    */
+    func addTrashGR()
+    func addDragGR()
+    func addPinchGR()
+    func addRotateGR()
     func enableTrash(enabled: Bool)
     func enableViewMode(enabled: Bool)
     func tapToTrash(sender: UITapGestureRecognizer)
-}
+}*/
 
 class NewMomentCanvasViewController: UIViewController,
     UIPopoverPresentationControllerDelegate,
@@ -59,7 +64,6 @@ class NewMomentCanvasViewController: UIViewController,
     
     var canvas: UIScrollView!
     private var trashButtonOn: Bool = true
-    var enableInteraction: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -255,7 +259,7 @@ class NewMomentCanvasViewController: UIViewController,
     }
     
     
-    func addNewViewController(vc: UIViewController) {
+    /*func addNewViewController(vc: UIViewController) {
         self.canvas.addSubview(vc.view)
         initNewViewController(vc)
     }
@@ -285,7 +289,7 @@ class NewMomentCanvasViewController: UIViewController,
         vc.view.multipleTouchEnabled = true
         vc.view.userInteractionEnabled = true
         self.addChildViewController(vc)
-    }
+    }*/
 
 
     /*******************************************************************
@@ -300,12 +304,7 @@ class NewMomentCanvasViewController: UIViewController,
         viewButton.removeTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
         viewButton.addTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
         
-        enableInteraction = true
-        for vc in self.childViewControllers {
-            if let vc = vc as? NewMomentItemGestureDelegate {
-                vc.enableViewMode(false)
-            }
-        }
+        manager!.cancelViewMode()
     }
     
     func selectViewMode() {
@@ -314,12 +313,7 @@ class NewMomentCanvasViewController: UIViewController,
         viewButton.removeTarget(self, action: "selectViewMode", forControlEvents: .TouchUpInside)
         viewButton.addTarget(self, action: "cancelViewMode", forControlEvents: .TouchUpInside)
         
-        enableInteraction = false
-        for vc in self.childViewControllers {
-            if let vc = vc as? NewMomentItemGestureDelegate {
-               vc.enableViewMode(true)
-            }
-        }
+        manager!.selectViewMode()
     }
 
     /*******************************************************************
@@ -347,7 +341,7 @@ class NewMomentCanvasViewController: UIViewController,
             trashButton.addTarget(self, action: "selectTrash")
             trashButtonOn = false
             
-            setEnabledOfTapToTrashGR(false)
+            manager!.setEnabledOfTapToTrashGR(false)
         }
     }
 
@@ -357,17 +351,10 @@ class NewMomentCanvasViewController: UIViewController,
         trashButton.addTarget(self, action: "cancelTrash")
         trashButtonOn = true
         
-        setEnabledOfTapToTrashGR(true)
+        manager!.setEnabledOfTapToTrashGR(true)
     }
     
-    func setEnabledOfTapToTrashGR(enabled:Bool) {
-        for vc in self.childViewControllers {
-            if let vc = vc as? NewMomentItemGestureDelegate {
-                print("vc: \(vc)")
-                vc.enableTrash(enabled)
-            }
-        }
-    }
+
     
     /*******************************************************************
      
@@ -394,7 +381,7 @@ class NewMomentCanvasViewController: UIViewController,
     // EditTextItemViewControllerDelegate functions
     func addText(controller: EditTextItemViewController, text: String, textAttribute: TextItemOtherAttribute) {
         controller.dismiss(true)
-        addNewViewController(manager!.addText(text, location: center, textAttribute: textAttribute))
+        manager!.addText(text, location: center, textAttribute: textAttribute)
     }
     
     // Functions for UIImagePickerControllerDelegate
@@ -409,19 +396,19 @@ class NewMomentCanvasViewController: UIViewController,
                 if stringType == kUTTypeMovie as String {
                     let urlOfVideo = info[UIImagePickerControllerMediaURL] as? NSURL
                     if let url = urlOfVideo {
-                        if let videoViewController = manager!.addRecordedVideo(fileURL: url, location: self.center) {
-                            addNewViewController(videoViewController)
+                        manager!.addRecordedVideo(fileURL: url, location: self.center)
+                        /*    addNewViewController(videoViewController)
                         } else {
                             print("cannot add videoItemVC onto canvas")
-                        }
+                        }*/
                     } else {
                         print("no url for video")
                     }
                 } else {
                     if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-                        addNewViewController(manager!.addImage(image, location: self.center, editingInfo: info))
+                        manager!.addImage(image, location: self.center)
                     } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-                        addNewViewController(manager!.addImage(image, location: self.center, editingInfo: info))
+                        manager!.addImage(image, location: self.center)
                     }
                 }
             }
@@ -440,9 +427,7 @@ class NewMomentCanvasViewController: UIViewController,
     func mediaPicker(mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         mediaPicker.dismiss(true)
         if let music: MPMediaItem = mediaItemCollection.representativeItem {
-            if let audioViewController = manager!.addMusicAudio(music, location: self.center) {
-                addNewViewController(audioViewController)
-            }
+            manager!.addMusicAudio(music, location: self.center)
         }
     }
     
@@ -459,11 +444,8 @@ class NewMomentCanvasViewController: UIViewController,
     
     // Functions for AudioRecorderViewController Delegate
     func saveRecording(controller: AudioRecorderViewController, url: NSURL) {
-        if let audioViewController = manager!.addRecordedAudio(fileURL: url, location: self.center) {
-            addNewViewController(audioViewController)
-        } else {
-            print("cannot add recording to canvas")
-        }
+        manager!.addRecordedAudio(fileURL: url, location: self.center)
+
     }
     
     // Functions for OtherCanvasOptionViewController
@@ -480,7 +462,7 @@ class NewMomentCanvasViewController: UIViewController,
     // Functions for StickerPickerController Delegate
     func didPickSticker(stickerPicker: StickerViewController, stickerName: String) {
         stickerPicker.dismiss(true)
-        addNewViewController(manager!.addSticker(stickerName, location: self.center))
+        manager!.addSticker(stickerName, location: self.center)
     }
     
     
@@ -489,36 +471,7 @@ class NewMomentCanvasViewController: UIViewController,
      GESTURE RECOGNIZERS
      
      *********************************************************************************/
-    private func trashGR(vc: UIViewController) -> UITapGestureRecognizer {
-        let trashGR = UITapGestureRecognizer(target: vc, action: "tapToTrash:")
-        trashGR.enabled = false
-        return trashGR
-    }
-    
-    private func dragItemGR() -> UIPanGestureRecognizer {
-        let dragGR = UIPanGestureRecognizer(target: self, action: "draggedView:")
-        dragGR.enabled = enableInteraction
-        return dragGR
-    }
-    
-    private func pinchItemGR() -> UIPinchGestureRecognizer {
-        let pinchGR = UIPinchGestureRecognizer(target: self, action: "pinchedView:")
-        pinchGR.enabled = enableInteraction
-        return pinchGR
-    }
-    
-    private func pinchTextItemGR() -> UIPinchGestureRecognizer {
-        let pinchGR = UIPinchGestureRecognizer(target: self, action: "pinchedTextView:")
-        
-        pinchGR.enabled = enableInteraction
-        return pinchGR
-    }
-    
-    private func rotateGR() -> UIRotationGestureRecognizer {
-        let rotateGR = UIRotationGestureRecognizer(target: self, action: "rotateView:")
-        rotateGR.enabled = enableInteraction
-        return rotateGR
-    }
+
 
     
     // PinchGestureRecognizer
@@ -619,6 +572,7 @@ class NewMomentCanvasViewController: UIViewController,
     
     // PanGestureRecognizer
     func draggedView(sender: UIPanGestureRecognizer) {
+        print("drag")
         if let senderView = sender.view {
             canvas.bringSubviewToFront(senderView)
             switch sender.state {

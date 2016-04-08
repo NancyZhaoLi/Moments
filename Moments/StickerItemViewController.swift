@@ -12,24 +12,9 @@ class StickerItemView: UIImageView {
     var stickerName: String?
 }
 
-class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate {
-    var manager: NewMomentManager?
-    
-    convenience init() {
-        self.init(manager: nil)
-    }
-    
-    convenience required init?(coder aDecoder: NSCoder) {
-        self.init()
-    }
-    
-    init(manager: NewMomentManager?) {
-        super.init(nibName: nil, bundle: nil)
-        
-        self.manager = manager
-    }
-    
-    func addSticker(stickerName: String, location: CGPoint) {
+class StickerItemViewController: ItemViewController {
+
+    override func addItem(stickerName stickerName: String, location: CGPoint) {
         let defaultMaxDimension: CGFloat = 130.0
         if let sticker = UIImage(named: stickerName) {
             // Calculate sticker size
@@ -48,66 +33,28 @@ class StickerItemViewController: UIViewController, NewMomentItemGestureDelegate 
             stickerView.stickerName = stickerName
             stickerView.image = sticker
             self.view = stickerView
+            
+            addToCanvas()
+            addGR()
         } else {
             print("cannot add sticker with name: \(stickerName)")
         }
     }
 
-    func addSticker(stickerItem: StickerItem) {
-        if let image = stickerItem.getImage() {
-            let stickerView = StickerItemView(frame: stickerItem.getFrame())
-            stickerView.stickerName = stickerItem.getName()
+    override func addItem(sticker sticker: StickerItem) {
+        if let image = sticker.getImage() {
+            let stickerView = StickerItemView(frame: sticker.getFrame())
+            stickerView.stickerName = sticker.getName()
             stickerView.image = image
             self.view = stickerView
+            
+            addToCanvas(sticker.getZPosition())
+            addGR()
         }
     }
     
-    /*********************************************************************************
-     
-     GESTURE RECOGNIZERS
-     
-     *********************************************************************************/
-    var trashGR: UITapGestureRecognizer?
-    var dragGR: UIPanGestureRecognizer?
-    var pinchGR: UIPinchGestureRecognizer?
-    
-    func addTrashGR(trashGR: UITapGestureRecognizer) {
-        self.trashGR = trashGR
-        self.view.addGestureRecognizer(trashGR)
-    }
-    
-    func addDragGR(dragGR: UIPanGestureRecognizer) {
-        self.dragGR = dragGR
-        self.view.addGestureRecognizer(dragGR)
-    }
-    
-    func addPinchGR(pinchGR: UIPinchGestureRecognizer) {
-        self.pinchGR = pinchGR
-        self.view.addGestureRecognizer(pinchGR)
-    }
-    
-    func addRotateGR(rotateGR: UIRotationGestureRecognizer) {
-    }
-    
-    func enableTrash(enabled: Bool) {
-        if let trashGR = self.trashGR {
-            trashGR.enabled = enabled
-        }
-    }
-    
-    func enableViewMode(enabled: Bool) {
-        dragGR?.enabled = !enabled
-        pinchGR?.enabled = !enabled
-    }
-    
-    func tapToTrash(sender: UITapGestureRecognizer) {
-        if let senderView = sender.view {
-            if sender.numberOfTouches() != 1 {
-                return
-            }
-            senderView.removeFromSuperview()
-            self.removeFromParentViewController()
-        }
+    override func tapToTrash(sender: UITapGestureRecognizer) {
+        super.tapToTrash(sender)
     }
 }
 

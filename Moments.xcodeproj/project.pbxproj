@@ -89,6 +89,7 @@
 		D04E67F01C9CE44600D7C38A /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04E67EF1C9CE44600D7C38A /* UIHelper.swift */; };
 		D04EEB701C79CFB600911661 /* EditTextItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */; };
 		D05674021C7C601E002AEDB3 /* NewMomentSavePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */; };
+		D067D88B1CB7442800B84D43 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D067D88A1CB7442800B84D43 /* ItemViewController.swift */; };
 		D0681B301CA8BA4000685302 /* CameraOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0681B2F1CA8BA4000685302 /* CameraOverlayView.swift */; };
 		D0A14E231C804A3F00729FB6 /* ColourPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */; };
 		D0C5366F1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C5366D1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift */; };
@@ -208,6 +209,7 @@
 		D04E67EF1C9CE44600D7C38A /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		D04EEB6F1C79CFB600911661 /* EditTextItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextItemViewController.swift; sourceTree = "<group>"; };
 		D05674011C7C601E002AEDB3 /* NewMomentSavePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentSavePageViewController.swift; sourceTree = "<group>"; };
+		D067D88A1CB7442800B84D43 /* ItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		D0681B2F1CA8BA4000685302 /* CameraOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraOverlayView.swift; sourceTree = "<group>"; };
 		D0A14E221C804A3F00729FB6 /* ColourPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourPickerViewController.swift; sourceTree = "<group>"; };
 		D0C5366D1CA3DD9300118E65 /* AudioMapping+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioMapping+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 		AD25BC861C8E322D006DA556 /* ItemVC */ = {
 			isa = PBXGroup;
 			children = (
+				D067D88A1CB7442800B84D43 /* ItemViewController.swift */,
 				D048BEEC1C7D976400BD3115 /* TextItemViewController.swift */,
 				468BC2811C7A81F800D93268 /* ImageItemViewController.swift */,
 				D02AA2361C7A085B00B2F88C /* AudioItemViewController.swift */,
@@ -793,6 +796,7 @@
 				760197E81C7E10AF00A7315A /* StickerItem.swift in Sources */,
 				46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */,
 				769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */,
+				D067D88B1CB7442800B84D43 /* ItemViewController.swift in Sources */,
 				ADD431C11C77ED1800DA345E /* NewMomentCanvasViewController.swift in Sources */,
 				760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */,
 				460BFD0F1CA2284E004CA963 /* CategoryIdIndex.swift in Sources */,
