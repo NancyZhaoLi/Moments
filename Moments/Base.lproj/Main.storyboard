@@ -846,6 +846,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30192412063735791" green="0.29684633277734612" blue="0.37682291666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="yJ8-Cd-tk8" kind="show" id="iT8-bF-UJq"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -950,6 +953,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKu-yo-Jgp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1367.5" y="2317.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wZI-Yd-5kd">
+            <objects>
+                <viewController id="yJ8-Cd-tk8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zeb-uE-5vb"/>
+                        <viewControllerLayoutGuide type="bottom" id="ypU-Fb-a0i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0nY-Ur-Yed">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.18540984448362569" green="0.20972600166306629" blue="0.24375000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.75658121359999997" green="1" blue="0.9504005418" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U2J-09-ANn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1828" y="2271"/>
         </scene>
         <!--Personal Setting View Controller-->
         <scene sceneID="sEo-ci-ZwF">
