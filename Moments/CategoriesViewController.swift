@@ -181,6 +181,12 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         addCategoryButton.enabled = !editing
         searchController.searchBar.userInteractionEnabled = !editing
         searchController.searchBar.translucent = !editing
+        if editing {
+        searchController.searchBar.alpha = 0.5
+        }
+        else{
+        searchController.searchBar.alpha = 1
+        }
         categoriesCollectionView.allowsMultipleSelection = editing
         
         let indexPaths = categoriesCollectionView.indexPathsForVisibleItems() as [NSIndexPath]
@@ -483,8 +489,10 @@ extension CategoriesViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
         navigationItem.leftBarButtonItem?.enabled = false
+       
         if !searchController.active {
         navigationItem.leftBarButtonItem?.enabled = true
+       
         }
     }
    // func searchBarCancelButtonClicked
