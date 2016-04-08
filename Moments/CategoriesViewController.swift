@@ -154,11 +154,10 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             print("sort- category id: \(category.getId())")
             
             let id = Int(category.getId())
-            //let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
-            //print("index is " + String(index))
-            tempCategories[id] = category
-            
-            
+            let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
+            //Monica recommend this: comment out the index and use id instead
+            // Bug is the new category didn't get the new index
+            tempCategories[index] = category
         }
         
         categories = tempCategories
