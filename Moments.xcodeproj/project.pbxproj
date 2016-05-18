@@ -31,6 +31,7 @@
 		46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */; };
 		46E642A91C93AADC00A1CA17 /* personalSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */; };
 		46E642AB1C93B78300A1CA17 /* accountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */; };
+		46F9DDC11CECCE7300C96ED6 /* TrashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F9DDC01CECCE7300C96ED6 /* TrashViewController.swift */; };
 		760197E51C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */; };
 		760197E61C7E10AF00A7315A /* VideoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D81C7E10AF00A7315A /* VideoItem.swift */; };
 		760197E71C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760197D91C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift */; };
@@ -142,6 +143,7 @@
 		46E642A61C9367F200A1CA17 /* resetpasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = resetpasswordViewController.swift; sourceTree = "<group>"; };
 		46E642A81C93AADC00A1CA17 /* personalSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = personalSettingViewController.swift; sourceTree = "<group>"; };
 		46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = accountSettingViewController.swift; sourceTree = "<group>"; };
+		46F9DDC01CECCE7300C96ED6 /* TrashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrashViewController.swift; sourceTree = "<group>"; };
 		760197D71C7E10AF00A7315A /* VideoItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		760197D81C7E10AF00A7315A /* VideoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoItem.swift; sourceTree = "<group>"; };
 		760197D91C7E10AF00A7315A /* StickerItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StickerItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				46AFC6031CA4AE9F00072308 /* resetNameViewController.swift */,
 				46E642AA1C93B78300A1CA17 /* accountSettingViewController.swift */,
 				46E642A21C92007C00A1CA17 /* aboutusViewController.swift */,
+				46F9DDC01CECCE7300C96ED6 /* TrashViewController.swift */,
 				46412CAF1C8E5A1C002F117A /* feedbackViewController.swift */,
 			);
 			name = Settings;
@@ -794,6 +797,7 @@
 				764BF99F1C8CD2EB00776AAB /* CategoryPresentationAnimationController.swift in Sources */,
 				D048BEE91C7D963B00BD3115 /* OtherCanvasOptionViewController.swift in Sources */,
 				760197E81C7E10AF00A7315A /* StickerItem.swift in Sources */,
+				46F9DDC11CECCE7300C96ED6 /* TrashViewController.swift in Sources */,
 				46E642A71C9367F200A1CA17 /* resetpasswordViewController.swift in Sources */,
 				769ABB5B1C8B893C0049666F /* CategoriesViewController.swift in Sources */,
 				D067D88B1CB7442800B84D43 /* ItemViewController.swift in Sources */,
