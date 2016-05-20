@@ -26,7 +26,7 @@ class Moment: NSManagedObject {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
-        
+        let trash: Bool = false
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: context)
             setMomentBackgroundColour(backgroundColour)
@@ -35,6 +35,7 @@ class Moment: NSManagedObject {
             setMomentId(nil)
             setMomentTitle(title)
             setMomentCategory(category)
+            setMomentTrashed(trash)
         } else {
             super.init()
             print("ERROR: entity not found for Moment")
@@ -46,7 +47,7 @@ class Moment: NSManagedObject {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
-        
+        let trash : Bool = false
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: context)
             setMomentBackgroundColour(backgroundColour)
@@ -55,6 +56,7 @@ class Moment: NSManagedObject {
             setMomentId(id)
             setMomentTitle(title)
             setMomentCategory(category)
+            setMomentTrashed(trash)
         } else {
             super.init()
             print("ERROR: entity not found for Moment")
@@ -62,6 +64,27 @@ class Moment: NSManagedObject {
         }
 
     }
+   //Monica add this for initialize a moment with trash property-----------
+    init?(backgroundColour: UIColor, favourite: Bool, title: String, trash : Bool, category: Category) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
+        if let entity = entity {
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
+            setMomentBackgroundColour(backgroundColour)
+            setMomentDate(nil)
+            setMomentFavourite(favourite)
+            setMomentId(nil)
+            setMomentTitle(title)
+            setMomentCategory(category)
+            setMomentTrashed(trash)
+        } else {
+            super.init()
+            print("ERROR: entity not found for Moment")
+            return nil
+        }
+    }
+   //-------------------------end of Monica's new init--------------------------------
     
     func getBackgroundColour() -> UIColor {
         return self.backgroundColour as! UIColor
@@ -90,7 +113,18 @@ class Moment: NSManagedObject {
     func setMomentFavourite(favourite: Bool) {
         self.favourite = NSNumber(bool: favourite)
     }
-    
+//--------------Monica add these for trash page---------------------
+    func getTrashed() -> Bool {
+        return self.trashed.boolValue
+    }
+    func setMomentTrashed(Trashed: Bool){
+        self.trashed = NSNumber(bool: Trashed)
+    }
+    func setMomentUnTrashed(){
+        print("setting this moment is not in trash")
+        self.trashed = NSNumber(bool: false)
+    }
+//---------------end of addition for trash page-----------------------------------
     private func setMomentId(id: Int64?) {
         if let id = id {
             self.id = NSNumber(longLong: id)

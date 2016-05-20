@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
     <entity name="AudioItem" representedClassName=".AudioItem" syncable="YES">
         <attribute name="frame" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zPosition" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -34,6 +34,7 @@
         <attribute name="favourite" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="trashed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="containedAudioItem" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AudioItem" inverseName="inMoment" inverseEntity="AudioItem" syncable="YES"/>
         <relationship name="containedImageItem" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ImageItem" inverseName="inMoment" inverseEntity="ImageItem" syncable="YES"/>
         <relationship name="containedStickerItem" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StickerItem" inverseName="inMoment" inverseEntity="StickerItem" syncable="YES"/>
@@ -68,7 +69,7 @@
         <element name="Category" positionX="-288" positionY="162" width="128" height="105"/>
         <element name="CategoryIdIndex" positionX="-180" positionY="99" width="128" height="75"/>
         <element name="ImageItem" positionX="-171" positionY="108" width="128" height="118"/>
-        <element name="Moment" positionX="-72" positionY="54" width="128" height="208"/>
+        <element name="Moment" positionX="-72" positionY="54" width="128" height="225"/>
         <element name="StickerItem" positionX="-180" positionY="90" width="128" height="103"/>
         <element name="TextItem" positionX="-288" positionY="-43" width="162" height="133"/>
         <element name="VideoItem" positionX="-180" positionY="99" width="128" height="120"/>

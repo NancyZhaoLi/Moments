@@ -20,6 +20,9 @@ class UserSettingViewController: UITableViewController {
         // Do any additional setup after loading the view.
         print("user loaded")
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

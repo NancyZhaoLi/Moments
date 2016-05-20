@@ -69,6 +69,11 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         return 120
         
     }
+    func reportFileSizeOfPersistentStores(){
+        //let allStores:NSArray = self.persistentStoreCoordinator.persistentStores
+        
+        
+    }
 
     /*
     // MARK: - Navigation
