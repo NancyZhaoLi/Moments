@@ -34,6 +34,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
+        requestMoments.predicate = NSPredicate(format: "trashed = %@", false)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -57,7 +58,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "date < %@", beforeDate)
+        requestMoments.predicate = NSPredicate(format: "date < %@ && trashed = %@", beforeDate, false)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -80,7 +81,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "favourite = %@", true)
+        requestMoments.predicate = NSPredicate(format: "favourite = %@ && trashed = %@", true, false)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -96,13 +97,36 @@ class CoreDataFetchHelper {
         
     }
     
+    static func fetchTrashedMomentsFromCoreData() -> [Moment] {
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        
+        let requestMoments = NSFetchRequest(entityName: "Moment")
+        requestMoments.predicate = NSPredicate(format: "trashed = %@", true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        
+        requestMoments.sortDescriptors = [sortDescriptor]
+        requestMoments.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.executeFetchRequest(requestMoments) as! [Moment]
+            
+            return results
+        } catch {
+            fatalError("Failure to fetch context: \(error)")
+        }
+        
+    }
+    
+    
     static func fetchDayMomentsMOFromCoreData(date: NSDate) -> [Moment] {
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@", date.startOfDay, date.endOfDay)
+        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@", date.startOfDay, date.endOfDay, false)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -124,7 +148,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@", start, end)
+        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@", start, end, false)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -282,7 +306,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let request = NSFetchRequest(entityName: "Moment")
-        request.predicate = NSPredicate(format: "date >= %@ && date <= %@", date.startOfDay, date.endOfDay)
+        request.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@", date.startOfDay, date.endOfDay, false)
         request.returnsObjectsAsFaults = true
         
         do {

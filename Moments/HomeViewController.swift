@@ -27,7 +27,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //=========================================================
+        //=============Adding a search bar ========================
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
@@ -35,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         searchController.searchBar.placeholder = "Search moments by title..."
         momentTableView.tableHeaderView = searchController.searchBar
         //self.automaticallyAdjustsScrollViewInsets = false
-        
+        //==================End of setting a search bar============
         checkDefaultCategories()
         getMomentsFromCoreData()
         
@@ -177,21 +178,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
                     }
                 }
                 
-                filterMoments[indexPath.row].delete()
+                //filterMoments[indexPath.row].delete()
+                filterMoments[indexPath.row].setMomentTrashed(true)
                 filterMoments.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
                 
             } else {
-                // delete moment in core data
-                moments[indexPath.row].delete()
+                // delete moment in core data -----> just move it to trash
+                //moments[indexPath.row].delete()  //---------> old
+                moments[indexPath.row].setMomentTrashed(true) //--------> new
                 
-                // delete categories in array
+                // delete categories in array------>????
                 moments.removeAtIndex(indexPath.row)
                 
                 // delete cell in table
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             }
-            
+           //tableView.reloadData()
         }
     }
     

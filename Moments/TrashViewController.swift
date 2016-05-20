@@ -25,7 +25,8 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         self.tableView.showsVerticalScrollIndicator=false
         self.tableView.backgroundColor=UIColor.clearColor()
         
-        moments = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
+        //moments = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
+        moments = CoreDataFetchHelper.fetchTrashedMomentsFromCoreData()
         // Do any additional setup after loading the view.
     }
 
@@ -56,9 +57,8 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
             //self.tableView.reloadData()
             moments[indexPath.row].delete()
             moments.removeAtIndex(indexPath.row)
-            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: <#T##UITableViewRowAnimation#>.Automatic)
-            
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
