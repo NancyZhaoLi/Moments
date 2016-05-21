@@ -29,6 +29,12 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         moments = CoreDataFetchHelper.fetchTrashedMomentsFromCoreData()
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.moments = CoreDataFetchHelper.fetchTrashedMomentsFromCoreData()
+        self.tableView.reloadData()
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,14 +58,7 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         return cell
     }
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete{
-          //self.dawgs.removeAtIndex(indexPath.row)
-            //self.tableView.reloadData()
-            moments[indexPath.row].delete()
-            moments.removeAtIndex(indexPath.row)
-            //self.tableView.reloadData()
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
+        
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
@@ -69,6 +68,31 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         return 120
         
     }
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        var recoverAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,title: "Recover", handler: {
+            (
+                action:UITableViewRowAction!, indexPath:NSIndexPath!
+            ) -> Void in
+            self.moments[indexPath.row].setMomentUnTrashed()
+            self.moments.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        
+        })
+        var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,title: "Delete", handler: {
+            (
+            action:UITableViewRowAction!, indexPath:NSIndexPath!
+            ) -> Void in
+            
+            self.moments[indexPath.row].delete()
+            self.moments.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            
+        })
+       
+        return[deleteAction,recoverAction]
+    }
+    
+    
     func reportFileSizeOfPersistentStores(){
         //let allStores:NSArray = self.persistentStoreCoordinator.persistentStores
         

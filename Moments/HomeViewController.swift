@@ -49,6 +49,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         
         global.setHomeViewController(self)
     }
+    override func viewWillAppear(animated: Bool) {
+        getMomentsFromCoreData()
+        self.momentTableView.reloadData()
+        super.viewWillAppear(animated)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
