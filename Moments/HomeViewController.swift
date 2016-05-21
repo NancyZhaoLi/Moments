@@ -157,6 +157,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         
         let cell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
+        print("Its trash status is "  + String( moments[indexPath.row].getTrashed()))
         self.indexOfCellClicked = indexPath.row
         
         dispatch_async(dispatch_get_main_queue(), {

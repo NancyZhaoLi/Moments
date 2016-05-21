@@ -119,10 +119,33 @@ class Moment: NSManagedObject {
     }
     func setMomentTrashed(Trashed: Bool){
         self.trashed = NSNumber(bool: Trashed)
+        
+        //Special part for save the trahsed status
+        if let context = self.managedObjectContext {
+            do {
+               try context.save()
+                // This could add a pop up window
+            }
+            catch {
+                print("Failed on moving into trash")
+            }
+        }//Specil part for save the trash status
     }
+    
     func setMomentUnTrashed(){
         print("setting this moment is not in trash")
         self.trashed = NSNumber(bool: false)
+        //Special part for save the trahsed status
+        if let context = self.managedObjectContext {
+            do {
+                try context.save()
+                // This could add a pop up window
+            }
+            catch {
+                print("Failed on takeing out of trash")
+            }
+        }//Specil part for save the trash status
+        
     }
 //---------------end of addition for trash page-----------------------------------
     private func setMomentId(id: Int64?) {
