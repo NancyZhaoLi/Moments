@@ -91,19 +91,27 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
             (
                 action:UITableViewRowAction!, indexPath:NSIndexPath!
             ) -> Void in
+            if self.searchController.active && self.searchController.searchBar.text != "" {
+                self.filterMoments[indexPath.row].setMomentUnTrashed()
+                self.filterMoments.removeAtIndex(indexPath.row)
+            }else{
             self.moments[indexPath.row].setMomentUnTrashed()
             self.moments.removeAtIndex(indexPath.row)
+            
+            }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        
         })
         
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,title: "Delete", handler: {
             (
             action:UITableViewRowAction!, indexPath:NSIndexPath!
             ) -> Void in
-            
+            if self.searchController.active && self.searchController.searchBar.text != ""{
+            self.filterMoments[indexPath.row].delete()
+            self.filterMoments.removeAtIndex(indexPath.row)
+            }else{
             self.moments[indexPath.row].delete()
-            self.moments.removeAtIndex(indexPath.row)
+                self.moments.removeAtIndex(indexPath.row)}
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             
         })
