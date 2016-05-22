@@ -11,10 +11,18 @@ import UIKit
 class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var dawgs = ["snoop", "sarah", "Fido", "Mark", "Jill"]
+    let searchController = UISearchController(searchResultsController: nil)
     var moments = [Moment]()
+    var filterMoments = [Moment]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        definesPresentationContext = true
+        searchController.searchBar.placeholder = "Search moments by title ..."
+        self.tableView.tableHeaderView = searchController.searchBar
+        
         self.view.backgroundColor =  UIColor.customBackgroundColor()
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -22,8 +30,8 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         let cellNib = UINib (nibName:"MomentTableCell", bundle: NSBundle.mainBundle())
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableCell")
         self.tableView.separatorStyle=UITableViewCellSeparatorStyle.None
-        self.tableView.showsVerticalScrollIndicator=false
-        self.tableView.backgroundColor=UIColor.clearColor()
+        self.tableView.showsVerticalScrollIndicator = false
+        self.tableView.backgroundColor = UIColor.clearColor()
         
         //moments = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
         moments = CoreDataFetchHelper.fetchTrashedMomentsFromCoreData()
@@ -35,13 +43,19 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         self.tableView.reloadData()
         
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func filterContentForSearchText(searchText:String, scope: String = "ALL"){
+        filterMoments = moments.filter{moment in
+        return moment.title.lowercaseString.containsString(searchText.lowercaseString)}
+        self.tableView.reloadData()
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int)->Int{
-    
+        if searchController.active && searchController.searchBar.text != ""{
+            return filterMoments.count
+        }
         return self.moments.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -49,8 +63,11 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         //cell.textLabel!.text = self.dawgs[indexPath.row]
         let cell=tableView.dequeueReusableCellWithIdentifier("MomentTableCell", forIndexPath: indexPath) as! MomentTableCell
         let moment: Moment
-        moment = moments[indexPath.row]
-        
+        if searchController.active && searchController.searchBar.text != "" {
+            moment = filterMoments[indexPath.row]
+        }else{
+            moment = moments[indexPath.row]
+        }
         cell.frame.size.width = self.tableView.frame.width
         //cell.frame.size.height = 100
         cell.moment = moment
@@ -111,4 +128,9 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
     }
     */
 
+}
+extension TrashViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }
