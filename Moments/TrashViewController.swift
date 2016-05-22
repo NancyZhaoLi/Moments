@@ -14,6 +14,7 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
     let searchController = UISearchController(searchResultsController: nil)
     var moments = [Moment]()
     var filterMoments = [Moment]()
+    let clearAll = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
         searchController.searchResultsUpdater = self
@@ -33,9 +34,25 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.backgroundColor = UIColor.clearColor()
         
+        clearAll.setTitle("Clear All", forState: .Normal)
+        clearAll.frame = CGRectMake(0,0,80,60)
+        clearAll.addTarget(self, action: "clear_All", forControlEvents: .TouchUpInside)
+        let item1 = UIBarButtonItem()
+        item1.customView = clearAll
+        self.navigationItem.rightBarButtonItem = item1
         //moments = CoreDataFetchHelper.fetchMomentsMOFromCoreData()
         moments = CoreDataFetchHelper.fetchTrashedMomentsFromCoreData()
         // Do any additional setup after loading the view.
+    }
+    func clear_All(){
+        moments = CoreDataFetchHelper.fetchTrashedMomentsFromCoreData()
+        print(moments.count)
+        for index in 1...moments.count {
+           // moments[index].delete()
+           // moments.removeAtIndex(index)
+            //tableView.deleteRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        //self.tableView.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -111,7 +128,7 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
             self.filterMoments.removeAtIndex(indexPath.row)
             }else{
             self.moments[indexPath.row].delete()
-                self.moments.removeAtIndex(indexPath.row)}
+            self.moments.removeAtIndex(indexPath.row)}
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             
         })
