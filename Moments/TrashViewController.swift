@@ -45,14 +45,12 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         // Do any additional setup after loading the view.
     }
     func clear_All(){
-        moments = CoreDataFetchHelper.fetchTrashedMomentsFromCoreData()
-        print(moments.count)
-        for index in 1...moments.count {
-           // moments[index].delete()
-           // moments.removeAtIndex(index)
-            //tableView.deleteRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
+        //var indexPaths = tableView.indexPathForCell(<#T##cell: UITableViewCell##UITableViewCell#>)
+        for moment in moments{
+            moment.delete()
         }
-        //self.tableView.reloadData()
+        self.moments.removeAll()
+        self.tableView.reloadData()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

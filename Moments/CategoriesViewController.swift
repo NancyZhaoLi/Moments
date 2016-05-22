@@ -156,7 +156,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             let id = Int(category.getId())
             let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
             //Monica recommend this: comment out the index and use id instead
-            // Bug is the new category didn't get the new index
+            // Bug is that the new category didn't get the new index
             tempCategories[index] = category
         }
         

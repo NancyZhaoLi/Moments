@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Signup View Controller-->
@@ -238,19 +237,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="TLT-Rz-mym">
                         <nil key="title"/>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="action" id="W6q-3Y-ZBt">
-                                <connections>
-                                    <action selector="update:" destination="lu1-WJ-L1u" id="cAV-z7-nUW"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem style="plain" id="UFG-2I-Z5D">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rA5-hF-jpX">
-                                    <rect key="frame" x="238" y="7" width="83" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </button>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="UFG-2I-Z5D">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rA5-hF-jpX">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -1940,6 +1932,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nCZ-T3-9av"/>
-        <segue reference="c0A-Oc-VLe"/>
+        <segue reference="FcY-4h-FoV"/>
     </inferredMetricsTieBreakers>
 </document>
