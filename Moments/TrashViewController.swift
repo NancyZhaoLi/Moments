@@ -57,15 +57,16 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         cell.backgroundColor = UIColor.clearColor()
         return cell
     }
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
+   
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         if (moments[indexPath.row].numOfImage() > 0) {
             return 185
         }
         return 120
+        
+    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -78,6 +79,7 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
         })
+        
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,title: "Delete", handler: {
             (
             action:UITableViewRowAction!, indexPath:NSIndexPath!
@@ -88,7 +90,7 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             
         })
-       
+        recoverAction.backgroundColor = UIColor(red: 0.349, green: 0.8392, blue: 0, alpha: 1.0)
         return[deleteAction,recoverAction]
     }
     
