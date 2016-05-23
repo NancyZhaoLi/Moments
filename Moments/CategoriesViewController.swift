@@ -103,6 +103,17 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         
     }
+    func filterCategoryUserId(categoryArray : [Category]) -> [Category] {
+        var returnArray = [Category]()
+        for index in 0 ... (categoryArray.count-1){
+            if categoryArray[index].getCategoryUserId() == ref.authData.uid {
+                print("Current category id is " + categoryArray[index].getCategoryUserId())
+                print("Current user id is " + ref.authData.uid)
+                returnArray.append(categoryArray[index])
+            }
+        }
+        return returnArray
+    }
     
     func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
         print("update moment in home view")
@@ -112,6 +123,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     // get categories from core data
     func getCategoriesFromCoreData(){
         categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+       // categories = filterCategoryUserId(categories)
     }
     func filterContentForSearchText(searchText: String, scope: String = "All"){
         filteredCategories = categories.filter{category in

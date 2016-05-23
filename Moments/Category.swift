@@ -34,6 +34,7 @@ class Category: NSManagedObject {
             setCategoryId(id)
             setCategoryColour(colour)
             setCategoryName(name)
+            setCategoryUserId()
         } else {
             super.init()
             print("ERROR: entity not found for Category")
@@ -47,6 +48,12 @@ class Category: NSManagedObject {
     
     func setCategoryId(id: Int64) {
         self.id = NSNumber(longLong: id)
+    }
+    func setCategoryUserId(){
+        self.userID =  ref.authData.uid
+    }
+    func getCategoryUserId() -> String {
+        return self.userID
     }
     
     func getColour() -> UIColor {
