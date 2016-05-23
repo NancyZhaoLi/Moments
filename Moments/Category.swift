@@ -72,7 +72,12 @@ class Category: NSManagedObject {
     
     func getSavedMoments() -> [Moment] {
         if let savedMoments = self.containedMoment {
-            return savedMoments.allObjects as! [Moment]
+            var resultArray = savedMoments.allObjects as! [Moment]
+            resultArray = filterForTrahsed(resultArray)
+            resultArray = filterForUserId(resultArray)
+            
+            //return savedMoments.allObjects as! [Moment]
+            return resultArray
         }
         
         return [Moment]()
@@ -81,12 +86,46 @@ class Category: NSManagedObject {
     func getSortedSavedMoments() -> [Moment] {
         if let savedMoments = self.containedMoment {
             let sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-            let momentArray: [Moment] = savedMoments.sortedArrayUsingDescriptors([sortDescriptor]) as! [Moment]
+            var momentArray: [Moment] = savedMoments.sortedArrayUsingDescriptors([sortDescriptor]) as! [Moment]
+            momentArray = filterForTrahsed(momentArray)
+            momentArray = filterForUserId(momentArray)
             return momentArray
         }
         
         return [Moment]()
     }
+    //=========Monica add these for filting trashed moments and those moments under different userID===========
+    
+    func filterForTrahsed(allMoments: [Moment]) -> [Moment] {
+        var resultArray = [Moment]()
+        if allMoments.isEmpty == false {
+            for index in 0...(allMoments.count-1){
+                if allMoments[index].getTrashed() == false {
+                    //allMoments.removeAtIndex(index)
+                    resultArray.append(allMoments[index])
+                }
+            }
+        }
+        else {
+            return allMoments
+        }
+        return resultArray
+    }
+    
+    func filterForUserId(allMoments: [Moment]) -> [Moment] {
+        var resultArray = [Moment]()
+        if allMoments.isEmpty == false {
+            for index in 0...(allMoments.count-1){
+                if allMoments[index].getUserId() == ref.authData.uid {
+                    //allMoments.removeAtIndex(index)
+                    resultArray.append(allMoments[index])
+                }
+            }
+        } else {return allMoments}
+        return resultArray
+    }
+    
+    //=========================End of Monica's filter==========================================================
     
     func save() {
         if let context = self.managedObjectContext {

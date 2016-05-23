@@ -163,6 +163,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         
         let cell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableCell
         print("cell at \(indexPath.row) is clicked")
+        print("User Id is " + moments[indexPath.row].getUserId())
+        print("current user id is " + ref.authData.uid)
         self.indexOfCellClicked = indexPath.row
         
         dispatch_async(dispatch_get_main_queue(), {

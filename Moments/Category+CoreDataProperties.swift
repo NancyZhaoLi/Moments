@@ -17,6 +17,7 @@ extension Category {
     @NSManaged internal var colour: NSObject
     @NSManaged internal var id: NSNumber
     @NSManaged internal var name: String
+    @NSManaged internal var userID: String
     @NSManaged var containedMoment: NSSet?
 
 }

@@ -9,6 +9,9 @@
 import Foundation
 import CoreData
 import UIKit
+import Firebase
+
+let ref = Firebase(url:"http://momentsxmen.firebaseio.com/")
 
 class Moment: NSManagedObject {
     
@@ -27,6 +30,7 @@ class Moment: NSManagedObject {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
         let trash: Bool = false
+        let userId: String = ref.authData.uid
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: context)
             setMomentBackgroundColour(backgroundColour)
@@ -36,6 +40,7 @@ class Moment: NSManagedObject {
             setMomentTitle(title)
             setMomentCategory(category)
             setMomentTrashed(trash)
+            setMomentUserId(userId)
         } else {
             super.init()
             print("ERROR: entity not found for Moment")
@@ -48,6 +53,7 @@ class Moment: NSManagedObject {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
         let trash : Bool = false
+        let userId: String = ref.authData.uid
         if let entity = entity {
             super.init(entity: entity, insertIntoManagedObjectContext: context)
             setMomentBackgroundColour(backgroundColour)
@@ -57,6 +63,7 @@ class Moment: NSManagedObject {
             setMomentTitle(title)
             setMomentCategory(category)
             setMomentTrashed(trash)
+            setMomentUserId(userId)
         } else {
             super.init()
             print("ERROR: entity not found for Moment")
@@ -64,8 +71,30 @@ class Moment: NSManagedObject {
         }
 
     }
-   //Monica add this for initialize a moment with trash property-----------
+   //-------Monica add this for initialize a moment with trash property-----------
     init?(backgroundColour: UIColor, favourite: Bool, title: String, trash : Bool, category: Category) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
+        let userId : String = ref.authData.uid
+        if let entity = entity {
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
+            setMomentBackgroundColour(backgroundColour)
+            setMomentDate(nil)
+            setMomentFavourite(favourite)
+            setMomentId(nil)
+            setMomentTitle(title)
+            setMomentCategory(category)
+            setMomentTrashed(trash)
+            setMomentUserId(userId)
+        } else {
+            super.init()
+            print("ERROR: entity not found for Moment")
+            return nil
+        }
+    }
+    
+    init?(backgroundColour: UIColor, favourite: Bool, title: String, trash : Bool, category: Category, userId: String) {
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         let entity = NSEntityDescription.entityForName("Moment", inManagedObjectContext: context)
@@ -78,6 +107,7 @@ class Moment: NSManagedObject {
             setMomentTitle(title)
             setMomentCategory(category)
             setMomentTrashed(trash)
+            setMomentUserId(userId)
         } else {
             super.init()
             print("ERROR: entity not found for Moment")
@@ -148,6 +178,9 @@ class Moment: NSManagedObject {
         
     }
 //---------------end of addition for trash page-----------------------------------
+    private func setMomentUserId(id : String){
+       self.userID = id
+    }
     private func setMomentId(id: Int64?) {
         if let id = id {
             self.id = NSNumber(longLong: id)
@@ -165,6 +198,9 @@ class Moment: NSManagedObject {
         }
         
         return NSNumber(longLong: Int64(idPrefix + idSuffix)!)
+    }
+    func getUserId() -> String {
+        return self.userID
     }
     
     func getId() -> Int64 {

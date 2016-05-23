@@ -20,6 +20,7 @@ extension Moment {
     @NSManaged internal var id: NSNumber
     @NSManaged internal var title: String
     @NSManaged internal var trashed: NSNumber
+    @NSManaged internal var userID: String
     @NSManaged internal var containedAudioItem: NSSet?
     @NSManaged internal var containedImageItem: NSSet?
     @NSManaged internal var containedStickerItem: NSSet?
