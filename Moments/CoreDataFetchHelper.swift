@@ -12,7 +12,7 @@ import CoreData
 //import Firebase
 
 //let current_ref = Firebase(url:"http://momentsxmen.firebaseio.com/")
-let current_userId = ref.authData.uid
+//let current_userId = ref.authData.uid
 
 extension NSDate {
     var startOfDay: NSDate {
@@ -38,7 +38,8 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "trashed = %@ && userID = %@", false, current_userId)
+        requestMoments.predicate = NSPredicate(format: "trashed = %@ && userID = %@", false, ref.authData.uid)
+        //print("In FetchHelper now, " + ref.authData.uid)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -62,7 +63,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "date < %@ && trashed = %@ && userID = %@", beforeDate, false, current_userId)
+        requestMoments.predicate = NSPredicate(format: "date < %@ && trashed = %@ && userID = %@", beforeDate, false, ref.authData.uid)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -85,7 +86,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "favourite = %@ && trashed = %@ && userID = %@", true, false, current_userId)
+        requestMoments.predicate = NSPredicate(format: "favourite = %@ && trashed = %@ && userID = %@", true, false, ref.authData.uid)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -107,7 +108,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "trashed = %@ && userID = %@", true, current_userId)
+        requestMoments.predicate = NSPredicate(format: "trashed = %@ && userID = %@", true, ref.authData.uid)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -130,7 +131,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@ && userID = %@", date.startOfDay, date.endOfDay, false, current_userId)
+        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@ && userID = %@", date.startOfDay, date.endOfDay, false, ref.authData.uid)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -152,7 +153,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestMoments = NSFetchRequest(entityName: "Moment")
-        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@ && userID = %@", start, end, false, current_userId)
+        requestMoments.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@ && userID = %@", start, end, false, ref.authData.uid)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         requestMoments.sortDescriptors = [sortDescriptor]
@@ -288,7 +289,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let request = NSFetchRequest(entityName: "Moment")
-        request.predicate = NSPredicate(format: "id == %lld && userID = %@", id, current_userId)
+        request.predicate = NSPredicate(format: "id == %lld && userID = %@", id, ref.authData.uid)
         
         do {
             let results = try context.executeFetchRequest(request)
@@ -311,7 +312,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let request = NSFetchRequest(entityName: "Moment")
-        request.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@  && userID = %@", date.startOfDay, date.endOfDay, false, current_userId)
+        request.predicate = NSPredicate(format: "date >= %@ && date <= %@ && trashed = %@  && userID = %@", date.startOfDay, date.endOfDay, false, ref.authData.uid)
         request.returnsObjectsAsFaults = true
         
         do {

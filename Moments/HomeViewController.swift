@@ -48,11 +48,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         self.momentTableView.backgroundColor = UIColor.clearColor()
         
         global.setHomeViewController(self)
+        
+     
+        //print("First time to get Home page")
     }
     override func viewWillAppear(animated: Bool) {
         getMomentsFromCoreData()
         self.momentTableView.reloadData()
+        //print("In homepage,view will appear moment" + moments[0].getUserId())
+       // print("In Homepage,view will appear current_userId" + current_userId)
+        //print("In homepage,view will appear ref" + ref.authData.uid)
         super.viewWillAppear(animated)
+        print("Come back to Home page")
         
     }
 
