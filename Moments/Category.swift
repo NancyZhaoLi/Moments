@@ -41,6 +41,23 @@ class Category: NSManagedObject {
             return nil
         }
     }
+    init?(id: Int64, colour: UIColor, name: String, userId: String) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Category", inManagedObjectContext: context)
+        
+        if let entity = entity {
+            super.init(entity: entity, insertIntoManagedObjectContext: context)
+            setCategoryId(id)
+            setCategoryColour(colour)
+            setCategoryName(name)
+            self.userID = userId
+        } else {
+            super.init()
+            print("ERROR: entity not found for Category")
+            return nil
+        }
+    }
     
     func getId() -> Int64 {
         return self.id.longLongValue

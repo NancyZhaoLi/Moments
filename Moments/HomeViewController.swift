@@ -89,14 +89,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     }
     func checkDefaultCategories(){
         
-        let categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+        var categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+        
         
         // If no category exists, create 2 default categories
         if categories.count == 0 {
-            if let uncategorizedCategory = Category(id: 0, colour: UIColor.customGreenColor(), name: "Uncategorized"){
+            if let uncategorizedCategory = Category(id: 0, colour: UIColor.customGreenColor(), name: "Uncategorized",userId: ref.authData.uid){
                 uncategorizedCategory.save()
             }
-            if let favouriteCategory = Category(id: 1, colour: UIColor.customRedColor(), name: "Favourite") {
+            if let favouriteCategory = Category(id: 1, colour: UIColor.customRedColor(), name: "Favourite",userId: ref.authData.uid) {
                 favouriteCategory.save()
             }
             
@@ -111,6 +112,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
             CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex)
             
         }
+       
     }
     
     func getMomentsFromCoreData() {

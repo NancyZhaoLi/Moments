@@ -175,7 +175,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestCategories = NSFetchRequest(entityName: "Category")
-        //requestCategories.predicate = NSPredicate(format: "")
+        requestCategories.predicate = NSPredicate(format: "userID = %@", ref.authData.uid)
         requestCategories.returnsObjectsAsFaults = false
         requestCategories.fetchLimit = defaultFetchSize
         
@@ -193,7 +193,7 @@ class CoreDataFetchHelper {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
 
         let requestCategory = NSFetchRequest(entityName: "Category")
-        requestCategory.predicate = NSPredicate(format: "name = %@", name)
+        requestCategory.predicate = NSPredicate(format: "name = %@ && userID = %@", name, ref.authData.uid)
         requestCategory.returnsObjectsAsFaults = false
         requestCategory.fetchLimit = 1
         
@@ -213,7 +213,13 @@ class CoreDataFetchHelper {
         let sortDes = NSSortDescriptor(key: "id", ascending: false)
         
         request.sortDescriptors = [sortDes]
+        if entity == "Moment" {
+            request.predicate = NSPredicate(format: "id >= %lld && trashed = %@ && userID = %@", minimum, false, ref.authData.uid)
+        }else if entity == "Category"{
+            request.predicate = NSPredicate(format: "id >= %lld && userID = %@", minimum, ref.authData.uid)
+        } else {
         request.predicate = NSPredicate(format: "id >= %lld", minimum)
+        }
         request.returnsObjectsAsFaults = false
         request.fetchLimit = 1
         
@@ -245,6 +251,7 @@ class CoreDataFetchHelper {
         let sortDes = NSSortDescriptor(key: "id", ascending: false)
         
         request.sortDescriptors = [sortDes]
+        request.predicate = NSPredicate(format: "userID = %@", ref.authData.uid)
         request.returnsObjectsAsFaults = false
         request.fetchLimit = 1
         
