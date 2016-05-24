@@ -96,14 +96,11 @@ class NewMomentSavePageViewController: UIViewController,
     
     private func displayCategories() {
         categories = Category.fetchOtherCategories()
-        print(categories.count)
         let uncategorized = Category.fetchUncategorized()
         categories.insert(uncategorized, atIndex: 0)
-        print(categories.count)
         for var i = 0; i < categories.count; i++ {
             let category = categories[i]
             if category.getName() == selectedCategory!.getName() {
-                print(category.getName())
                 let index = NSIndexPath(forRow: i, inSection: 0)
                 categoryList.selectRowAtIndexPath(index, animated: false, scrollPosition: .Middle)
                 break
@@ -128,10 +125,6 @@ class NewMomentSavePageViewController: UIViewController,
     /******************************************************************************
     Monica: Functions should be able to solve the category bug
     ******************************************************************************/
-    func getCategoriesFromCoreData(){
-        categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
-        //self.categories = filterCategoryUserIdWithConditions(self.categories, UnCategorized: true, favourite: true)
-    }
 
     func getCategoryMapsFromCoreData() {
         
@@ -154,34 +147,6 @@ class NewMomentSavePageViewController: UIViewController,
             print("2 default categories id and index not saved into maps")
         }
         
-    }
-    
-    func sortCategories() {
-        
-        var tempCategories = [Category]()
-        print ("the total cateogories is " + String(categories.count))
-        for var i = 0; i < categories.count; i++ {
-            tempCategories.append(Category())
-        }
-        
-        for category in categories {
-            
-            print("sort- category id: \(category.getId())")
-            
-            let id = Int(category.getId())
-            let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
-            //Monica recommend this: comment out the index and use id instead
-            // Bug is that the new category didn't get the new index
-            //print(index)
-            tempCategories[index] = category
-            
-        }
-        
-        categories = tempCategories
-        
-        for category in categories {
-            print("sorted category id: \(category.getId())")
-        }
     }
     /*********************************************************************************
 
