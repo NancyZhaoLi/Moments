@@ -74,14 +74,14 @@ class NewMomentSavePageViewController: UIViewController,
         if self.manager != nil {
             self.manager!.setSavePage(self)
             self.momentTitle.delegate = self
-            
-            initCategoryListUI()
-            displayCategories()
             //----------------Monica: We also setup for category index --------------------
             getCategoriesFromCoreData()
             getCategoryMapsFromCoreData()
             sortCategories()
             //---------------------------------------------------------------------
+            initCategoryListUI()
+            displayCategories()
+            
         } else {
             print("Manager not set for savePage")
         }
