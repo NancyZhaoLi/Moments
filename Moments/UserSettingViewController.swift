@@ -45,16 +45,18 @@ class UserSettingViewController: UITableViewController {
             alertController.addAction(UIAlertAction(title: "Rate on iTunes", style: .Default, handler: { (action: UIAlertAction) in
                 print("RateUs.RateUs_Tapped")
 
-                print("Send to iTunes Minica")
+                print("Send to iTunes Monica")
 
                 
-                //let delayTime = dispatch_time(DISPATCH_TIME_NOW, <#T##delta: Int64##Int64#>)
-                dispatch_after( 5000000000, dispatch_get_main_queue()){
+               // let delayTime = dispatch_time(DISPATCH_TIME_NOW, <#T##delta: Int64##Int64#>)
+                //dispatch_after( 5000000000, dispatch_get_main_queue()){
                 
-                    UIApplication.sharedApplication().openURL(NSURL(string: "https:google.com")!)
-                    alertController.dismissViewControllerAnimated(true, completion: nil)
+                UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/app/id1093880482")!)
+                print("Done?")
+                //UIApplication.sharedApplication().openURL(NSURL(string: "https://google.com")!)
+                //alertController.dismissViewControllerAnimated(true, completion: nil)
 
-                }
+                //}
             }))
             
             alertController.addAction(UIAlertAction(title: "No, Thanks!", style: .Default, handler: { (action: UIAlertAction) in
