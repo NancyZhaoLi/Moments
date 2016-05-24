@@ -74,14 +74,15 @@ class NewMomentSavePageViewController: UIViewController,
         if self.manager != nil {
             self.manager!.setSavePage(self)
             self.momentTitle.delegate = self
-            //----------------Monica: We also setup for category index --------------------
-            getCategoriesFromCoreData()
-            getCategoryMapsFromCoreData()
-            sortCategories()
-            //---------------------------------------------------------------------
+            
             initCategoryListUI()
             displayCategories()
             
+           //----------------Monica: We also setup for category index --------------------
+          
+            getCategoryMapsFromCoreData()
+           
+            //---------------------------------------------------------------------
         } else {
             print("Manager not set for savePage")
         }
@@ -95,11 +96,14 @@ class NewMomentSavePageViewController: UIViewController,
     
     private func displayCategories() {
         categories = Category.fetchOtherCategories()
+        print(categories.count)
         let uncategorized = Category.fetchUncategorized()
         categories.insert(uncategorized, atIndex: 0)
+        print(categories.count)
         for var i = 0; i < categories.count; i++ {
             let category = categories[i]
             if category.getName() == selectedCategory!.getName() {
+                print(category.getName())
                 let index = NSIndexPath(forRow: i, inSection: 0)
                 categoryList.selectRowAtIndexPath(index, animated: false, scrollPosition: .Middle)
                 break
@@ -264,36 +268,20 @@ class NewMomentSavePageViewController: UIViewController,
     // NewCategoryViewController Delegate
     func newCategory(controller: NewCategoryViewController, category: Category) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-     /*
-     //====================Monica add these trying to fix the bug========================
-       var idToIndex = NSMapTable()
-       var indexToId = NSMapTable()
-       idToIndex.setObject(category.id, forKey: category.id)
-       indexToId.setObject(category.id, forKey: category.id)
-      // print(index)
-        
-        var categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
-        //categoryIdIndex.userID = ref.authData.uid
-        //CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex, userId: ref.authData.uid)
-        print("updated Keys: \(categoryIdIndex.idToIndex.keyEnumerator().allObjects)")
-        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex)
-    //=====================End of this section========Bug was not fixed=========Have to load category page first, then bug is gone=============================
-*/
-        //Continue on fixing the bug
-        
-        
+ 
         print("category id: \(category.id)")
         //print("Category index:" \(category.i)
         category.save()
         categories.append(category)
         
         let count = categories.count
+        print("count is \(count)" )
         let index = count > 0 ? count-1  : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
         self.categoryList.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         
-        categoryIdIndex?.idToIndex.setObject(index,forKey: category.id)
-        categoryIdIndex?.indexToId.setObject(category.id, forKey: index)
+        categoryIdIndex?.idToIndex.setObject(index+1,forKey: category.id)
+        categoryIdIndex?.indexToId.setObject(category.id, forKey: index+1)
         CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
         
         
