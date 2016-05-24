@@ -103,6 +103,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         
     }
+    //==================Monica add thess filter for categories ================
     func filterCategoryUserId(categoryArray : [Category]) -> [Category] {
         var returnArray = [Category]()
         for index in 0 ... (categoryArray.count-1){
@@ -114,6 +115,26 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         }
         return returnArray
     }
+    func filterCategoryUserIdWithConditions(categoryArray : [Category], UnCategorized : Bool, favourite: Bool) -> [Category] {
+        var returnArray = [Category]()
+        for index in 0 ... (categoryArray.count-1){
+            if categoryArray[index].getCategoryUserId() == ref.authData.uid {
+                print("Current category id is " + categoryArray[index].getCategoryUserId())
+                print("Current user id is " + ref.authData.uid)
+                returnArray.append(categoryArray[index])
+            }else if UnCategorized {
+                if categoryArray[index].getName() == "Uncategorized" {
+                    returnArray.append(categoryArray[index])
+                }
+            }else if favourite {
+                if categoryArray[index].getName() == "Favourite" {
+                    returnArray.append(categoryArray[index])
+                }
+            }else { print("Not belong to this UserId")}
+        }
+        return returnArray
+    }
+    //=====================end of filter ======================================================
     
     func updateMoment(controller: NewMomentSavePageViewController, moment: Moment) {
         print("update moment in home view")
@@ -123,7 +144,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
     // get categories from core data
     func getCategoriesFromCoreData(){
         categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
-       // categories = filterCategoryUserId(categories)
+        //self.categories = filterCategoryUserIdWithConditions(self.categories, UnCategorized: true, favourite: true)
     }
     func filterContentForSearchText(searchText: String, scope: String = "All"){
         filteredCategories = categories.filter{category in
@@ -138,15 +159,16 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
         
         if fetchResult.count > 0 {
             categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
-        /*
-            Testing:
+        
+//Testing:===========================
             
             let idToIndex = categoryIdIndex?.idToIndex
             let indexToId = categoryIdIndex?.indexToId
         
             print("maps count: \(idToIndex?.count)")
             print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
-*/
+            print("Add another one: \(indexToId?.count)")
+//=================Testing======================
         } else {
             print("2 default categories id and index not saved into maps")
         }
@@ -430,10 +452,12 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
                 pickedCategory = categories[indexPath.row]
             }
             performSegueWithIdentifier("categoryMoments", sender: pickedCategory)
-            
+            print("In collection view did select item, Picked category is " + pickedCategory.getName())
+            print(pickedCategory.getId())
         } else {
             navigationController!.setToolbarHidden(false, animated: true)
         }
+        
         
     }
     
