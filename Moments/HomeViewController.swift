@@ -20,7 +20,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
     var filterMoments = [Moment]()
     var localNewMoments = [Moment]()
     var localEditMoments = [Moment]()
-    
+   
     var indexOfCellClicked: Int?
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -39,6 +39,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         //==================End of setting a search bar============
         checkDefaultCategories()
         getMomentsFromCoreData()
+        
+       
         
         let cellNib = UINib(nibName: "MomentTableCell", bundle: NSBundle.mainBundle())
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableCell")
@@ -108,8 +110,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
             indexToId.setObject(0, forKey: 0)
             indexToId.setObject(1, forKey: 1)
             
-            let categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
-            CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex)
+            var categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
+            //categoryIdIndex.userID = ref.authData.uid
+            CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex, userId: ref.authData.uid)
             
         }
        
@@ -316,6 +319,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, NewMomentViewCo
         }
         
     }
+    
 
 
 }

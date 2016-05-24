@@ -168,6 +168,7 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             print("maps count: \(idToIndex?.count)")
             print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
             print("Add another one: \(indexToId?.count)")
+            //print(categoryIdIndex.userID)
 //=================Testing======================
         } else {
             print("2 default categories id and index not saved into maps")
@@ -191,7 +192,9 @@ class CategoriesViewController: UICollectionViewController, NewCategoryViewContr
             let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
             //Monica recommend this: comment out the index and use id instead
             // Bug is that the new category didn't get the new index
+            //print(index)
             tempCategories[index] = category
+        
         }
         
         categories = tempCategories

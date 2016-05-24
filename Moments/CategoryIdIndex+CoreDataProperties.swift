@@ -16,5 +16,7 @@ extension CategoryIdIndex {
 
     @NSManaged var idToIndex: NSObject
     @NSManaged var indexToId: NSObject
+    @NSManaged internal var userID: String
+    
 
 }

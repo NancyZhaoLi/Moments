@@ -194,7 +194,7 @@ class Category: NSManagedObject {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestCategory = NSFetchRequest(entityName: "Category")
-        requestCategory.predicate = NSPredicate(format: "name = %@", name)
+        requestCategory.predicate = NSPredicate(format: "name = %@ && userID = %@", name, ref.authData.uid)
         requestCategory.returnsObjectsAsFaults = false
         requestCategory.fetchLimit = 1
         
@@ -220,7 +220,7 @@ class Category: NSManagedObject {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestCategories = NSFetchRequest(entityName: "Category")
-        requestCategories.predicate = NSPredicate(format: "name != %@ && name != %@", "Uncategorized", "Favourite")
+        requestCategories.predicate = NSPredicate(format: "name != %@ && name != %@ && userID = %@", "Uncategorized", "Favourite", ref.authData.uid)
         requestCategories.returnsObjectsAsFaults = false
         
         do {
@@ -237,7 +237,7 @@ class Category: NSManagedObject {
         let context: NSManagedObjectContext =  appDel.managedObjectContext
         
         let requestCategories = NSFetchRequest(entityName: "Category")
-        requestCategories.predicate = NSPredicate(format: "name = %@", name)
+        requestCategories.predicate = NSPredicate(format: "name = %@ && userID = %@", name, ref.authData.uid)
         requestCategories.includesSubentities = false
 
         let err: NSErrorPointer = NSErrorPointer()

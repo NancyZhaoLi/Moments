@@ -6,6 +6,13 @@
 //
 //
 
+//**************************Important*****************************************
+//The category bug is that when a new moment is saved in a (new) category before all category saved/sorted or initilized instead, it will save nil to index for a new born category
+//So here, we should do sth looks exactly the same with CategoriesViewController.swift
+//If you have another solution, please add it.
+//****************************************************************************
+
+
 import UIKit
 
 protocol NewMomentViewControllerDelegate {
@@ -25,7 +32,11 @@ class NewMomentSavePageViewController: UIViewController,
     private var categories : [Category] = [Category]()
     private var selectedCell: UITableViewCell?
     private var selectedCategory: Category?
-
+    
+    //====================Monica add this (for fixing category bug)===========
+    private var categoryIdIndex: CategoryIdIndexEntry?
+    //========================================================================
+    
     @IBOutlet weak private var momentTitle: UITextField!
     @IBOutlet weak private var categoryList: UITableView!
     @IBOutlet weak private var favourite: UIButton!
@@ -66,6 +77,11 @@ class NewMomentSavePageViewController: UIViewController,
             
             initCategoryListUI()
             displayCategories()
+            //----------------Monica: We also setup for category index --------------------
+            getCategoriesFromCoreData()
+            getCategoryMapsFromCoreData()
+            sortCategories()
+            //---------------------------------------------------------------------
         } else {
             print("Manager not set for savePage")
         }
@@ -89,6 +105,7 @@ class NewMomentSavePageViewController: UIViewController,
                 break
             }
         }
+        
     }
 
 
@@ -104,16 +121,72 @@ class NewMomentSavePageViewController: UIViewController,
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+    /******************************************************************************
+    Monica: Functions should be able to solve the category bug
+    ******************************************************************************/
+    func getCategoriesFromCoreData(){
+        categories = CoreDataFetchHelper.fetchCategoriesMOFromCoreData()
+        //self.categories = filterCategoryUserIdWithConditions(self.categories, UnCategorized: true, favourite: true)
+    }
 
+    func getCategoryMapsFromCoreData() {
+        
+        let fetchResult = CoreDataFetchHelper.fetchCategoryIdIndexFromCoreData()
+        
+        if fetchResult.count > 0 {
+            categoryIdIndex = CategoryIdIndexEntry(categoryIdIndexMO: fetchResult[0])
+            
+            //Testing:===========================
+            
+            let idToIndex = categoryIdIndex?.idToIndex
+            let indexToId = categoryIdIndex?.indexToId
+            
+            print("maps count: \(idToIndex?.count)")
+            print("Keys: \(idToIndex!.keyEnumerator().allObjects)")
+            print("Add another one: \(indexToId?.count)")
+            //print(categoryIdIndex.userID)
+            //=================Testing======================
+        } else {
+            print("2 default categories id and index not saved into maps")
+        }
+        
+    }
+    
+    func sortCategories() {
+        
+        var tempCategories = [Category]()
+        print ("the total cateogories is " + String(categories.count))
+        for var i = 0; i < categories.count; i++ {
+            tempCategories.append(Category())
+        }
+        
+        for category in categories {
+            
+            print("sort- category id: \(category.getId())")
+            
+            let id = Int(category.getId())
+            let index = categoryIdIndex?.idToIndex.objectForKey(id) as! Int
+            //Monica recommend this: comment out the index and use id instead
+            // Bug is that the new category didn't get the new index
+            //print(index)
+            tempCategories[index] = category
+            
+        }
+        
+        categories = tempCategories
+        
+        for category in categories {
+            print("sorted category id: \(category.getId())")
+        }
+    }
     /*********************************************************************************
-     
+
      FUNCTIONS CALLED BY MANAGER
      *********************************************************************************/
     func setInitialMomentTitle(title: String) {
         momentTitle.placeholder = title
     }
-    
+
     func setInitialMomentCategory(category: Category?) {
         if let category = category {
             self.selectedCategory = category
@@ -191,20 +264,45 @@ class NewMomentSavePageViewController: UIViewController,
     // NewCategoryViewController Delegate
     func newCategory(controller: NewCategoryViewController, category: Category) {
         controller.dismissViewControllerAnimated(true, completion: nil)
+     /*
+     //====================Monica add these trying to fix the bug========================
+       var idToIndex = NSMapTable()
+       var indexToId = NSMapTable()
+       idToIndex.setObject(category.id, forKey: category.id)
+       indexToId.setObject(category.id, forKey: category.id)
+      // print(index)
+        
+        var categoryIdIndex = CategoryIdIndexEntry(idToIndex: idToIndex, indexToId: indexToId)
+        //categoryIdIndex.userID = ref.authData.uid
+        //CoreDataSaveHelper.saveCategoryIdIndexToCoreData(categoryIdIndex, userId: ref.authData.uid)
+        print("updated Keys: \(categoryIdIndex.idToIndex.keyEnumerator().allObjects)")
+        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex)
+    //=====================End of this section========Bug was not fixed=========Have to load category page first, then bug is gone=============================
+*/
+        //Continue on fixing the bug
+        
         
         print("category id: \(category.id)")
+        //print("Category index:" \(category.i)
         category.save()
-        
         categories.append(category)
         
         let count = categories.count
-        let index = count > 0 ? count - 1 : 0
+        let index = count > 0 ? count-1  : 0
         let indexPath = NSIndexPath(forRow: index, inSection: 0)
         self.categoryList.insertRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        
+        categoryIdIndex?.idToIndex.setObject(index,forKey: category.id)
+        categoryIdIndex?.indexToId.setObject(category.id, forKey: index)
+        CoreDataSetHelper.setCategoryIdIndexInCoreData(categoryIdIndex!)
+        
+        
         
         if let categoriesVC = global.getCategoriesViewController() {
             categoriesVC.addNewCategory(category)
         }
+
+        
         
     }
 

@@ -33,6 +33,24 @@ class CategoryIdIndex: NSManagedObject {
         self.idToIndex = idToIndex
         self.indexToId = indexToId
     }*/
+    /*init?(idToIndex: NSMapTable, indexToId: NSMapTable, userId: String) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext =  appDel.managedObjectContext
+        let entity = NSEntityDescription.entityForName("TextItem", inManagedObjectContext: context)
+        
+        if let entity = entity {
+            super.init(entity: entity, insertIntoManagedObjectContext: nil)
+            
+        } else {
+            super.init()
+            print("ERROR: entity not found for TextItem")
+            return nil
+        }
+        
+        self.idToIndex = idToIndex
+        self.indexToId = indexToId
+        self.userID = userId
+    }*/
 
 
 }

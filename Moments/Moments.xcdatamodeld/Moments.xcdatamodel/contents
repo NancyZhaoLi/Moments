@@ -21,6 +21,7 @@
     <entity name="CategoryIdIndex" representedClassName=".CategoryIdIndex" syncable="YES">
         <attribute name="idToIndex" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="indexToId" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="ImageItem" representedClassName=".ImageItem" syncable="YES">
         <attribute name="frame" attributeType="String" syncable="YES"/>
@@ -69,7 +70,7 @@
         <element name="AudioItem" positionX="-162" positionY="117" width="128" height="103"/>
         <element name="AudioMapping" positionX="-180" positionY="99" width="128" height="90"/>
         <element name="Category" positionX="-288" positionY="162" width="128" height="120"/>
-        <element name="CategoryIdIndex" positionX="-180" positionY="99" width="128" height="75"/>
+        <element name="CategoryIdIndex" positionX="-180" positionY="99" width="128" height="90"/>
         <element name="ImageItem" positionX="-171" positionY="108" width="128" height="118"/>
         <element name="Moment" positionX="-72" positionY="54" width="128" height="240"/>
         <element name="StickerItem" positionX="-180" positionY="90" width="128" height="103"/>

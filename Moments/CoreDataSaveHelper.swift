@@ -159,7 +159,7 @@ class CoreDataSaveHelper {
         return categoryMO
     }*/
     
-    static func saveCategoryIdIndexToCoreData(categoryIdIndex: CategoryIdIndexEntry) {
+    static func saveCategoryIdIndexToCoreData(categoryIdIndex: CategoryIdIndexEntry, userId: String) {
         
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context: NSManagedObjectContext =  appDel.managedObjectContext
@@ -168,6 +168,7 @@ class CoreDataSaveHelper {
         let categoryIdIndexMO = CategoryIdIndex(entity: entity!, insertIntoManagedObjectContext: context)
         categoryIdIndexMO.idToIndex = categoryIdIndex.idToIndex
         categoryIdIndexMO.indexToId = categoryIdIndex.indexToId
+        categoryIdIndexMO.userID = userId
         
         do{
             try context.save()
