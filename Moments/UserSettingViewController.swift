@@ -51,7 +51,9 @@ class UserSettingViewController: UITableViewController {
                // let delayTime = dispatch_time(DISPATCH_TIME_NOW, <#T##delta: Int64##Int64#>)
                 //dispatch_after( 5000000000, dispatch_get_main_queue()){
                 
-                UIApplication.sharedApplication().openURL(NSURL(string: "http://itunes.apple.com/app/id1093880482")!)
+                UIApplication.sharedApplication().openURL(NSURL(string: "itunes.apple.com/app/id1093880482")!)
+                //UIApplication.sharedApplication().openURL(NSURL(string: "itunes.apple.com/app/id959379869")!)
+               // 959379869
                 print("Done?")
                 //UIApplication.sharedApplication().openURL(NSURL(string: "https://google.com")!)
                 //alertController.dismissViewControllerAnimated(true, completion: nil)
