@@ -34,8 +34,8 @@ class CategoryMomentsViewController: UIViewController, UITableViewDelegate, NewM
         self.momentsTableView.showsVerticalScrollIndicator = false
         self.momentsTableView.backgroundColor = UIColor.clearColor()
         
-        self.view.backgroundColor = UIColor.customGreenColor()
-        
+        //self.view.backgroundColor = UIColor.customGreenColor()
+        self.view.backgroundColor = category?.getColour()
         initUI()
 
     }
