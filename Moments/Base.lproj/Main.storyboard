@@ -1927,22 +1927,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDp-Gg-p9w">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Moments" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="eDp-Gg-p9w">
                                 <rect key="frame" x="46" y="60" width="283" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eDp-Gg-p9w" secondAttribute="height" multiplier="283:112" id="8Tr-kK-SjV"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="61"/>
                                 <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please Type Your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-yI-6OS">
-                                <rect key="frame" x="58" y="249" width="259" height="30"/>
-                                <color key="tintColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" red="0.38881975870000002" green="0.32930419449999998" blue="0.29958410000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DE4-7X-2jw">
-                                <rect key="frame" x="58" y="319" width="102" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DE4-7X-2jw">
+                                <rect key="frame" x="46" y="264" width="102" height="30"/>
                                 <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DE4-7X-2jw" secondAttribute="height" multiplier="17:5" id="bmI-C7-dPV"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.36862745099999999" green="0.31372549020000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1951,9 +1950,12 @@
                                     <action selector="nothinghappen:" destination="TmL-Lg-hNR" eventType="touchUpInside" id="lLT-XS-5Kn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qeo-A7-Ukc">
-                                <rect key="frame" x="221" y="319" width="96" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qeo-A7-Ukc">
+                                <rect key="frame" x="233" y="264" width="96" height="30"/>
                                 <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Qeo-A7-Ukc" secondAttribute="height" multiplier="16:5" id="8JD-pi-CGk"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="OK">
                                     <color key="titleColor" red="0.36862745099999999" green="0.31372549020000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1962,12 +1964,36 @@
                                     <action selector="resetPassword:" destination="TmL-Lg-hNR" eventType="touchUpInside" id="B7l-WK-3PZ"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_page" translatesAutoresizingMaskIntoConstraints="NO" id="qL8-L9-bwj">
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login_page" translatesAutoresizingMaskIntoConstraints="NO" id="qL8-L9-bwj">
                                 <rect key="frame" x="0.0" y="469" width="375" height="185"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qL8-L9-bwj" secondAttribute="height" multiplier="75:37" id="uVA-fZ-9al"/>
+                                </constraints>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please Type Your Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-yI-6OS">
+                                <rect key="frame" x="46" y="202" width="283" height="30"/>
+                                <color key="tintColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.38881975870000002" green="0.32930419449999998" blue="0.29958410000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.83301611779999996" green="0.98351390709999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="WTC-yI-6OS" firstAttribute="top" secondItem="eDp-Gg-p9w" secondAttribute="bottom" constant="30" id="AWM-iG-l7g"/>
+                            <constraint firstItem="Qeo-A7-Ukc" firstAttribute="top" secondItem="WTC-yI-6OS" secondAttribute="bottom" constant="32" id="Bf9-5Y-2qb"/>
+                            <constraint firstItem="dSB-aV-Zxi" firstAttribute="top" secondItem="qL8-L9-bwj" secondAttribute="bottom" constant="13" id="JcJ-6j-vKb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Qeo-A7-Ukc" secondAttribute="trailing" constant="26" id="XDR-oT-cUa"/>
+                            <constraint firstItem="DE4-7X-2jw" firstAttribute="leading" secondItem="4Gn-i1-jRW" secondAttribute="leadingMargin" constant="26" id="bcF-ku-awK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qL8-L9-bwj" secondAttribute="trailing" constant="-20" id="gCp-f2-hO7"/>
+                            <constraint firstItem="eDp-Gg-p9w" firstAttribute="leading" secondItem="4Gn-i1-jRW" secondAttribute="leadingMargin" constant="26" id="jHQ-D1-hbl"/>
+                            <constraint firstItem="WTC-yI-6OS" firstAttribute="leading" secondItem="4Gn-i1-jRW" secondAttribute="leadingMargin" constant="26" id="lCJ-Qb-Z88"/>
+                            <constraint firstItem="qL8-L9-bwj" firstAttribute="leading" secondItem="4Gn-i1-jRW" secondAttribute="leadingMargin" constant="-20" id="p9a-8s-Aud"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eDp-Gg-p9w" secondAttribute="trailing" constant="26" id="pne-CE-wol"/>
+                            <constraint firstItem="DE4-7X-2jw" firstAttribute="top" secondItem="WTC-yI-6OS" secondAttribute="bottom" constant="32" id="tru-Vb-QJM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WTC-yI-6OS" secondAttribute="trailing" constant="26" id="vy2-UL-kA3"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="email" destination="WTC-yI-6OS" id="7hC-85-gc0"/>
