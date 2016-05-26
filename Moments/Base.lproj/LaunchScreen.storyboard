@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,17 +19,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch_page" translatesAutoresizingMaskIntoConstraints="NO" id="18P-ZY-vL0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch_page" translatesAutoresizingMaskIntoConstraints="NO" id="18P-ZY-vL0">
                                 <rect key="frame" x="0.0" y="417" width="375" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="18P-ZY-vL0" secondAttribute="height" multiplier="3:2" id="Wbb-la-6CU"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Moments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsA-ar-qzZ">
-                                <rect key="frame" x="47" y="109" width="283" height="112"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Moments" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="FsA-ar-qzZ">
+                                <rect key="frame" x="46" y="109" width="283" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="FsA-ar-qzZ" secondAttribute="height" multiplier="283:112" id="GFh-ZM-QAe"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="61"/>
                                 <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="18P-ZY-vL0" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="YoG-SK-g3f"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FsA-ar-qzZ" secondAttribute="trailing" constant="26" id="bw7-rD-MeD"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="18P-ZY-vL0" secondAttribute="bottom" id="cfa-k6-WbM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="18P-ZY-vL0" secondAttribute="trailing" constant="-20" id="rfq-3o-GB7"/>
+                            <constraint firstItem="FsA-ar-qzZ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="26" id="sQu-yQ-gmv"/>
+                            <constraint firstItem="FsA-ar-qzZ" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="89" id="tFs-6s-Mqe"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
