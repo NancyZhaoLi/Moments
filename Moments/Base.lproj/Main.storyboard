@@ -353,14 +353,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m74-nf-6np">
                                 <rect key="frame" x="162" y="560" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8ih-dg-fjH"/>
+                                    <constraint firstAttribute="width" secondItem="m74-nf-6np" secondAttribute="height" multiplier="1:1" id="9da-zb-bwa"/>
+                                    <constraint firstAttribute="width" constant="50" id="RXQ-5h-A50"/>
+                                </constraints>
                                 <state key="normal" image="add"/>
                                 <connections>
                                     <segue destination="z3s-as-AkJ" kind="show" identifier="HomeToNewMoment" id="c0A-Oc-VLe"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="esN-9B-b61">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="esN-9B-b61">
                                 <rect key="frame" x="0.0" y="64" width="375" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -370,6 +375,14 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="0.96619073275862055" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="m74-nf-6np" firstAttribute="centerX" secondItem="e13-7W-GB8" secondAttribute="centerX" id="DSY-P3-dLm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="esN-9B-b61" secondAttribute="trailing" constant="-20" id="Qoh-wf-7vE"/>
+                            <constraint firstItem="esN-9B-b61" firstAttribute="top" secondItem="ed7-pZ-OYd" secondAttribute="bottom" id="WSm-RW-nRb"/>
+                            <constraint firstItem="m74-nf-6np" firstAttribute="top" secondItem="esN-9B-b61" secondAttribute="bottom" constant="8" id="fwe-Hh-V1D"/>
+                            <constraint firstItem="esN-9B-b61" firstAttribute="leading" secondItem="e13-7W-GB8" secondAttribute="leadingMargin" constant="-20" id="hex-ty-5tI"/>
+                            <constraint firstItem="jIu-Sb-iYP" firstAttribute="top" secondItem="m74-nf-6np" secondAttribute="bottom" constant="8" id="qLR-EF-tdx"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Moments" id="iIp-1l-LCR"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -2026,7 +2039,7 @@
         <image name="twitter_f" width="50" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FcY-4h-FoV"/>
         <segue reference="nCZ-T3-9av"/>
+        <segue reference="c0A-Oc-VLe"/>
     </inferredMetricsTieBreakers>
 </document>
