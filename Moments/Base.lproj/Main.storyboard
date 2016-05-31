@@ -1116,8 +1116,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whm-a2-e8p">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whm-a2-e8p">
                                                     <rect key="frame" x="238" y="11" width="104" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="UaP-Ma-WXl"/>
+                                                        <constraint firstAttribute="width" secondItem="Whm-a2-e8p" secondAttribute="height" multiplier="104:21" id="x8l-sP-hUa"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.53802545079999997" green="0.91544575579999998" blue="0.92151206640000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1129,6 +1133,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Whm-a2-e8p" secondAttribute="bottom" constant="3.5" id="9oR-Yz-hhs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Whm-a2-e8p" secondAttribute="trailing" constant="-8" id="DAM-PP-nTu"/>
+                                                <constraint firstItem="Whm-a2-e8p" firstAttribute="top" secondItem="nAX-EY-jWh" secondAttribute="topMargin" constant="3" id="bSo-Af-cLR"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30192412060000001" green="0.2968463328" blue="0.37682291670000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -1142,8 +1151,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3J-L0-Zi2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3J-L0-Zi2">
                                                     <rect key="frame" x="133" y="11" width="209" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="GLp-BY-5X0"/>
+                                                        <constraint firstAttribute="width" constant="209" id="YRU-6m-QJJ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.53802545079999997" green="0.91544575579999998" blue="0.92151206640000005" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1155,6 +1168,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="f3J-L0-Zi2" secondAttribute="trailing" constant="-8" id="03I-Db-yEh"/>
+                                                <constraint firstItem="f3J-L0-Zi2" firstAttribute="top" secondItem="BNJ-OH-YAb" secondAttribute="topMargin" constant="3" id="D7e-nu-ceV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="f3J-L0-Zi2" secondAttribute="bottom" constant="3.5" id="YU7-eR-eYz"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30192412060000001" green="0.2968463328" blue="0.37682291670000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
