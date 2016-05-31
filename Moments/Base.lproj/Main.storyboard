@@ -875,8 +875,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="mtA-5Y-pUR">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" translatesAutoresizingMaskIntoConstraints="NO" id="mtA-5Y-pUR">
                                                     <rect key="frame" x="313" y="5" width="29" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="29" id="35N-VF-TA3"/>
+                                                        <constraint firstAttribute="height" constant="33" id="N51-fz-OFP"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Privacy Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPo-yt-U5c">
                                                     <rect key="frame" x="16" y="10" width="129" height="21"/>
@@ -885,6 +889,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="mtA-5Y-pUR" secondAttribute="trailing" constant="-8" id="53q-zN-mBH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mtA-5Y-pUR" secondAttribute="bottom" constant="-2.5" id="Ncu-QL-bN4"/>
+                                                <constraint firstItem="mtA-5Y-pUR" firstAttribute="top" secondItem="Bht-I0-b3j" secondAttribute="topMargin" constant="-3" id="jZZ-fq-g1c"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30192412063735791" green="0.29684633277734612" blue="0.37682291666666667" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -902,8 +911,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkZ-YP-bRg">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkZ-YP-bRg">
                                                     <rect key="frame" x="292" y="11" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="dgZ-c8-x1e"/>
+                                                        <constraint firstAttribute="width" constant="42" id="nGD-qj-h1y"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.60810846362367843" green="0.60415532797262717" blue="0.62790464743589736" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -915,6 +928,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="EkZ-YP-bRg" firstAttribute="trailing" secondItem="vg9-yc-j8h" secondAttribute="trailingMargin" id="1CZ-7Q-otV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EkZ-YP-bRg" secondAttribute="bottom" constant="3.5" id="7ww-dP-kTG"/>
+                                                <constraint firstItem="EkZ-YP-bRg" firstAttribute="top" secondItem="vg9-yc-j8h" secondAttribute="topMargin" constant="3" id="bgF-a1-X8b"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.30192412063735791" green="0.29684633277734612" blue="0.37682291666666667" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
