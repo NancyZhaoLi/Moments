@@ -999,7 +999,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPG-1H-07e">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oPG-1H-07e">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <state key="normal" title="Logout"/>
                                                     <connections>
@@ -1009,6 +1009,12 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.93167067306923079" green="0.37442021043123297" blue="0.38314295358150929" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="oPG-1H-07e" secondAttribute="bottom" constant="-8.5" id="Jnw-wN-ArI"/>
+                                                <constraint firstItem="oPG-1H-07e" firstAttribute="top" secondItem="C4C-Cd-p7P" secondAttribute="topMargin" constant="-8" id="V7y-rr-cg0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oPG-1H-07e" secondAttribute="trailing" constant="-8" id="Y3u-4R-UuF"/>
+                                                <constraint firstItem="oPG-1H-07e" firstAttribute="leading" secondItem="C4C-Cd-p7P" secondAttribute="leadingMargin" constant="-8" id="YEe-zs-S6x"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
