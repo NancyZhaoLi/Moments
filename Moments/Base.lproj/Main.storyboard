@@ -1070,13 +1070,19 @@
                                     <color key="titleColor" red="0.97413166713724697" green="1" blue="0.98911924412640795" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JUo-J3-m2T">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JUo-J3-m2T">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.18540984448362569" green="0.20972600166306629" blue="0.24375000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.75658121359999997" green="1" blue="0.9504005418" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JUo-J3-m2T" firstAttribute="leading" secondItem="0nY-Ur-Yed" secondAttribute="leadingMargin" constant="-20" id="C89-YL-xtx"/>
+                            <constraint firstItem="ypU-Fb-a0i" firstAttribute="top" secondItem="JUo-J3-m2T" secondAttribute="bottom" id="Vcg-sw-RNV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JUo-J3-m2T" secondAttribute="trailing" constant="-20" id="dZ4-qc-GAx"/>
+                            <constraint firstItem="JUo-J3-m2T" firstAttribute="top" secondItem="Zeb-uE-5vb" secondAttribute="bottom" id="e18-Mj-wh7"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="JUo-J3-m2T" id="gws-9I-Tn2"/>
@@ -2064,6 +2070,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nCZ-T3-9av"/>
-        <segue reference="c0A-Oc-VLe"/>
+        <segue reference="FcY-4h-FoV"/>
     </inferredMetricsTieBreakers>
 </document>
