@@ -1602,6 +1602,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="content" destination="eeh-rx-oYt" id="UCd-t8-BhD"/>
+                        <outlet property="scrollView" destination="BPU-2V-ImU" id="Gb5-Be-4rg"/>
                         <outlet property="subject" destination="2rb-0H-Ici" id="qlS-6U-1ZX"/>
                     </connections>
                 </viewController>

@@ -15,6 +15,7 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
     @IBOutlet weak var subject: UITextField!
     
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var content: UITextView!
     
     
@@ -177,16 +178,24 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         self.scrollView.scrollEnabled = false
         
     }
-    
+    /*
     func textFieldDidBeginEditing(textField: UITextField!)
     {
-        content = textField
+        subject = textField
     }
-    
     func textFieldDidEndEditing(textField: UITextField!)
     {
+        subject = nil
+    }*/
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        content = textView
+    }
+    func textViewDidEndEditing(textView: UITextView) {
         content = nil
     }
+    
+    
     
     //=================End of keyboard reaction=================================*/
     
