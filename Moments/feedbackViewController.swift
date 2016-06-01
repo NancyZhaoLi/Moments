@@ -35,7 +35,6 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
     // close keyboard when touches began
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
-        
     }
     
     // close keyboard when press return button
@@ -113,6 +112,7 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         
        print( self.view.backgroundColor?.CGColor)
         self.automaticallyAdjustsScrollViewInsets = false;
+        self.hideKeyboardWhenTappedAround()
         //print(self.backg)
         
         // Do any additional setup after loading the view.
@@ -201,4 +201,5 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
     */
     
 }
+
 

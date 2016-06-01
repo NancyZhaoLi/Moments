@@ -113,4 +113,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+            //MARK: Close keyboard by touching anywhere:
+            //just say: self.hideKeyboardWhenTappedAround() in viewDidLoad()
+            extension UIViewController {
+                func hideKeyboardWhenTappedAround() {
+                    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+                    view.addGestureRecognizer(tap)
+                }
+                
+                func dismissKeyboard() {
+                    view.endEditing(true)
+                }
+            }
 
