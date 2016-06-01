@@ -1405,7 +1405,7 @@
                         <viewControllerLayoutGuide type="top" id="pqU-yV-z6b"/>
                         <viewControllerLayoutGuide type="bottom" id="hjw-id-Ihc"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="m5P-ei-eMA">
+                    <view key="view" contentMode="scaleAspectFit" id="m5P-ei-eMA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1524,11 +1524,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPU-2V-ImU">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPU-2V-ImU">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40O-KT-Xqe">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Give Us Feedback!" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-C4-kMj">
                                                 <rect key="frame" x="91" y="32" width="193" height="21"/>
@@ -1572,6 +1572,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="2rb-0H-Ici" firstAttribute="leading" secondItem="40O-KT-Xqe" secondAttribute="leading" constant="34" id="8K2-Qk-xRC"/>
+                                            <constraint firstItem="EiB-C4-kMj" firstAttribute="top" secondItem="40O-KT-Xqe" secondAttribute="top" constant="32" id="Hi0-JK-CQv"/>
                                             <constraint firstItem="eeh-rx-oYt" firstAttribute="top" secondItem="2rb-0H-Ici" secondAttribute="bottom" constant="35" id="WWT-I3-FYT"/>
                                             <constraint firstItem="EiB-C4-kMj" firstAttribute="centerX" secondItem="40O-KT-Xqe" secondAttribute="centerX" id="YsP-P7-0hf"/>
                                             <constraint firstItem="eeh-rx-oYt" firstAttribute="leading" secondItem="40O-KT-Xqe" secondAttribute="leading" constant="34" id="dJH-q8-jxQ"/>
@@ -1592,9 +1593,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.21176470589999999" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="BPU-2V-ImU" secondAttribute="trailing" id="5IF-bt-Y9f"/>
                             <constraint firstItem="P83-SX-5Xd" firstAttribute="top" secondItem="BPU-2V-ImU" secondAttribute="bottom" id="PL3-fI-man"/>
-                            <constraint firstItem="BPU-2V-ImU" firstAttribute="leading" secondItem="MLK-il-GQ2" secondAttribute="leading" id="UAZ-07-aKe"/>
                             <constraint firstItem="BPU-2V-ImU" firstAttribute="top" secondItem="EuF-xx-gGz" secondAttribute="bottom" id="Wp2-xN-xmb"/>
                             <constraint firstItem="40O-KT-Xqe" firstAttribute="width" secondItem="MLK-il-GQ2" secondAttribute="width" id="qn5-0M-kxS"/>
                         </constraints>

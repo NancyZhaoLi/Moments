@@ -112,6 +112,7 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         self.subject.delegate = self
         
        print( self.view.backgroundColor?.CGColor)
+        self.automaticallyAdjustsScrollViewInsets = false;
         //print(self.backg)
         
         // Do any additional setup after loading the view.
