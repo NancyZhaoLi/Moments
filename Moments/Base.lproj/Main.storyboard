@@ -524,8 +524,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wtu-Je-Fqn" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="20" y="195" width="335" height="327"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wtu-Je-Fqn" customClass="CVCalendarView" customModule="CVCalendar">
+                                <rect key="frame" x="20" y="193" width="335" height="112"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="calendarAppearanceDelegate" destination="OvC-yC-rzH" id="4dw-RK-1EU"/>
@@ -574,7 +574,6 @@
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="vPU-Ig-bE2"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="wJc-dG-3gp"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="yUW-c2-rli"/>
-                            <constraint firstItem="BWl-Sg-y0T" firstAttribute="top" secondItem="wtu-Je-Fqn" secondAttribute="bottom" constant="43" id="zRn-WQ-OBX"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -2299,7 +2298,7 @@
         <image name="twitter_f" width="50" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nCZ-T3-9av"/>
         <segue reference="iBH-Wo-LOK"/>
+        <segue reference="nCZ-T3-9av"/>
     </inferredMetricsTieBreakers>
 </document>
