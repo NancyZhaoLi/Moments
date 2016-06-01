@@ -43,9 +43,6 @@ class privacyViewController: UIViewController, UITextFieldDelegate {
         self.presentViewController(alert, animated: true, completion: nil)
         
     }
-    
-    
-    
 
     @IBOutlet weak var newpassword: UITextField!
     @IBOutlet weak var oldpassword: UITextField!
@@ -83,9 +80,7 @@ class privacyViewController: UIViewController, UITextFieldDelegate {
         
         
         }
-        
-        
-        
+   
         else{
         if oldpassword.text != nil && newpassword.text != nil {
             ref.changePasswordForUser(useremail, fromOld: oldpassword.text, toNew: newpassword.text, withCompletionBlock:  { error in
@@ -114,9 +109,7 @@ class privacyViewController: UIViewController, UITextFieldDelegate {
        
     
     }
-    
-    
-    
+
    /* @IBAction func ResetPasswordForUser(sender: AnyObject) {
         self.sendPasswordResetForUser()
         
@@ -136,9 +129,7 @@ class privacyViewController: UIViewController, UITextFieldDelegate {
     
     }*/
     
-    
-    
-    
+
         // close keyboard when touches began
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)

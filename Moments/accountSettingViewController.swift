@@ -24,12 +24,12 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         //if sender.title == "Reset Email" {
         let alert = UIAlertController(title: "Required password", message: "Please type your password in order to complete process",preferredStyle: UIAlertControllerStyle.Alert)
         //alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-       // alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        // alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
-           // println("Handle Ok logic here")
+            // println("Handle Ok logic here")
             
             let textfield = alert.textFields![0] as UITextField
-           self.password = textfield.text!
+            self.password = textfield.text!
             print(self.password)
             self.changeEmail()
             
@@ -42,20 +42,17 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
             textField.placeholder = "Enter password"
             textField.secureTextEntry = true
-           // print(textField.text)
+            // print(textField.text)
         })
         self.presentViewController(alert, animated: true, completion: nil)
         
         //}
         /*else {
         //for reset name
-            self.changename()
-         
-        
+        self.changename()
+
         }*/
-        
-        
-        
+      
     }
     func displayLogoutAlert(title: String, message: String) {
         
@@ -84,20 +81,18 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
     }
     /*
     func changename(){
-        
-        let currentuid =  ref.authData.uid as? String
-        //let URL_F = "https://momentsxmen.firebaseio.com/users/" + ref.authData.uid
-        //let reff = Firebase(url: URL_F)
-        let reff = ref.childByAppendingPath("users").childByAppendingPath(currentuid)
-        var changedname = ["name" : self.resetname]
-        reff.updateChildValues(changedname)
-        
     
+    let currentuid =  ref.authData.uid as? String
+    //let URL_F = "https://momentsxmen.firebaseio.com/users/" + ref.authData.uid
+    //let reff = Firebase(url: URL_F)
+    let reff = ref.childByAppendingPath("users").childByAppendingPath(currentuid)
+    var changedname = ["name" : self.resetname]
+    reff.updateChildValues(changedname)
+  
     }*/
-    
-
+ 
     func changeEmail(){
-    
+        
         if resetemail.text != nil {
             
             ref.changeEmailForUser(useremail, password: self.password,
@@ -118,38 +113,38 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
                                 self.displayAlert("Failed Login", message: "An error has occured")
                             }
                         }
-   
+                        
                     } else {
                         // Email changed succ
                         
                         
                         self.displayLogoutAlert("Succeed!", message: "You have successfully changed your user email")
-  
+                        
                     }
             })
             
         }
- 
+        
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: CGFloat(0.2), green: CGFloat(0.211765), blue: CGFloat(0.286275), alpha: 1.0)
         self.resetemail.delegate = self
-       // self.resetname.delegate = self
+        // self.resetname.delegate = self
         showName()
-       // self.resetname.text = showName()
+        // self.resetname.text = showName()
         if ref.authData != nil{
             useremail = ref.authData.providerData["email"] as! String
             //print(ref.authData.providerData["password"]!)
             print(ref.authData.provider)
             self.hideKeyboardWhenTappedAround()
         }
-
-
+        
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -169,8 +164,8 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
                     counter += 1
                     if counter == 2 {
                         print(snapshot.value)
-                     //   let newname = snapshot.value as! String
-                      //  return newname
+                        //   let newname = snapshot.value as! String
+                        //  return newname
                         
                     }
                     
@@ -184,7 +179,7 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         
         
     }
-
+    
     
     
     
@@ -205,17 +200,17 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
     {
         ref.unauth()
         self.dismissViewControllerAnimated(true, completion: nil)
-    
+        
     }
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

@@ -29,9 +29,7 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         } else {
             self.showSendMailErrorAlert()
         }
-        
-        
-        
+    
     }
     // close keyboard when touches began
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -57,21 +55,18 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         
         return mailComposerVC
     }
-    
     func showSendMailErrorAlert() {
         print("I'm here")
         let sendMailErrorAlert = UIAlertController(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.",preferredStyle: UIAlertControllerStyle.Alert)
         sendMailErrorAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-       
+        
     }
     func sendAlert(alertTitle : String, alertMessage: String){
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
-    
-    
+     }
+ 
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -82,12 +77,10 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         case MFMailComposeResultCancelled.rawValue:
             print("Cancelled mail")
             sendAlert("Sending Cancelled", alertMessage: "You have cancelled sending your email!")
-          
-            
-            
+  
         case MFMailComposeResultSent.rawValue:
             print("Mail Sent")
-          
+            
             sendAlert("Mail Sent", alertMessage: "Your email has been sent to us!\n Thank you very much!")
             
         case MFMailComposeResultSaved.rawValue:
@@ -97,21 +90,15 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
         default:
             break
         }
-        
-        
-        
-        
+     
     }
-    
-    
-    
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.content.delegate = self
         self.subject.delegate = self
         
-       print( self.view.backgroundColor?.CGColor)
+        print( self.view.backgroundColor?.CGColor)
         self.automaticallyAdjustsScrollViewInsets = false;
         self.hideKeyboardWhenTappedAround()
         //print(self.backg)
@@ -128,71 +115,71 @@ class feedbackViewController: UIViewController,MFMailComposeViewControllerDelega
     
     func registerForKeyboardNotifications()
     {
-        //Adding notifies on keyboard appearing
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+    //Adding notifies on keyboard appearing
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     
     func deregisterFromKeyboardNotifications()
     {
-        //Removing notifies on keyboard appearing
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    //Removing notifies on keyboard appearing
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+    NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func keyboardWasShown(notification: NSNotification)
     {
-        //Need to calculate keyboard exact size due to Apple suggestions
-        self.scrollView.scrollEnabled = true
-        var info : NSDictionary = notification.userInfo!
-        var keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size
-        var contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
-        
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        
-        var aRect : CGRect = self.view.frame
-        aRect.size.height -= keyboardSize!.height
-        if let activeFieldPresent = content
-        {
-            if (!CGRectContainsPoint(aRect, content!.frame.origin))
-            {
-                self.scrollView.scrollRectToVisible(content!.frame, animated: true)
-            }
-        }
-        
-        
+    //Need to calculate keyboard exact size due to Apple suggestions
+    self.scrollView.scrollEnabled = true
+    var info : NSDictionary = notification.userInfo!
+    var keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size
+    var contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height, 0.0)
+    
+    self.scrollView.contentInset = contentInsets
+    self.scrollView.scrollIndicatorInsets = contentInsets
+    
+    var aRect : CGRect = self.view.frame
+    aRect.size.height -= keyboardSize!.height
+    if let activeFieldPresent = content
+    {
+    if (!CGRectContainsPoint(aRect, content!.frame.origin))
+    {
+    self.scrollView.scrollRectToVisible(content!.frame, animated: true)
+    }
+    }
+    
+    
     }
     
     
     func keyboardWillBeHidden(notification: NSNotification)
     {
-        //Once keyboard disappears, restore original positions
-        var info : NSDictionary = notification.userInfo!
-        var keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size
-        var contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        self.view.endEditing(true)
-        self.scrollView.scrollEnabled = false
-        
+    //Once keyboard disappears, restore original positions
+    var info : NSDictionary = notification.userInfo!
+    var keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size
+    var contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+    self.scrollView.contentInset = contentInsets
+    self.scrollView.scrollIndicatorInsets = contentInsets
+    self.view.endEditing(true)
+    self.scrollView.scrollEnabled = false
+    
     }
     /*
     func textFieldDidBeginEditing(textField: UITextField!)
     {
-        subject = textField
+    subject = textField
     }
     func textFieldDidEndEditing(textField: UITextField!)
     {
-        subject = nil
+    subject = nil
     }*/
     
     func textViewDidBeginEditing(textView: UITextView) {
-        content = textView
+    content = textView
     }
     func textViewDidEndEditing(textView: UITextView) {
-        content = nil
+    content = nil
     }
     
     

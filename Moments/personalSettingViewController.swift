@@ -25,29 +25,28 @@ class personalSettingViewController: UITableViewController  {
     }
     func showName(){
         if ref.authData != nil {
-          
+            
             print("showsth")
-         
+            
             var counter = 0
-             ref.childByAppendingPath(ref.authData.uid)
+            ref.childByAppendingPath(ref.authData.uid)
                 //.childByAppendingPath("name")
                 .observeEventType(.ChildAdded, withBlock: { snapshot in
-            
+                    
                     counter += 1
                     if counter == 2 {
                         print(snapshot.value)
                         self.username.text = snapshot.value as? String
-                    
+                        
                     }
-                
-                }, withCancelBlock: { error in
-                    print(error.description)
-            })
-                   
                     
+                    }, withCancelBlock: { error in
+                        print(error.description)
+                })
+  
         }
         
-    
+        
     }
     
     override func viewDidLoad() {
@@ -70,15 +69,7 @@ class personalSettingViewController: UITableViewController  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-   
-    
-    
-    
-    
-    
-    
+ 
     /*
     // MARK: - Navigation
 

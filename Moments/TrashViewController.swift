@@ -9,7 +9,7 @@
 import UIKit
 
 class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     let searchController = UISearchController(searchResultsController: nil)
     var moments = [Moment]()
@@ -64,7 +64,7 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
     }
     func filterContentForSearchText(searchText:String, scope: String = "ALL"){
         filterMoments = moments.filter{moment in
-        return moment.title.lowercaseString.containsString(searchText.lowercaseString)}
+            return moment.title.lowercaseString.containsString(searchText.lowercaseString)}
         self.tableView.reloadData()
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int)->Int{
@@ -89,7 +89,7 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         cell.backgroundColor = UIColor.clearColor()
         return cell
     }
-   
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         if (moments[indexPath.row].numOfImage() > 0) {
@@ -104,15 +104,15 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         var recoverAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,title: "Recover", handler: {
             (
-                action:UITableViewRowAction!, indexPath:NSIndexPath!
+            action:UITableViewRowAction!, indexPath:NSIndexPath!
             ) -> Void in
             if self.searchController.active && self.searchController.searchBar.text != "" {
                 self.filterMoments[indexPath.row].setMomentUnTrashed()
                 self.filterMoments.removeAtIndex(indexPath.row)
             }else{
-            self.moments[indexPath.row].setMomentUnTrashed()
-            self.moments.removeAtIndex(indexPath.row)
-            
+                self.moments[indexPath.row].setMomentUnTrashed()
+                self.moments.removeAtIndex(indexPath.row)
+                
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         })
@@ -122,11 +122,11 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
             action:UITableViewRowAction!, indexPath:NSIndexPath!
             ) -> Void in
             if self.searchController.active && self.searchController.searchBar.text != ""{
-            self.filterMoments[indexPath.row].delete()
-            self.filterMoments.removeAtIndex(indexPath.row)
+                self.filterMoments[indexPath.row].delete()
+                self.filterMoments.removeAtIndex(indexPath.row)
             }else{
-            self.moments[indexPath.row].delete()
-            self.moments.removeAtIndex(indexPath.row)}
+                self.moments[indexPath.row].delete()
+                self.moments.removeAtIndex(indexPath.row)}
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             
         })
@@ -140,17 +140,17 @@ class TrashViewController: UIViewController,UITableViewDataSource,UITableViewDel
         
         
     }
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 extension TrashViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
