@@ -90,6 +90,7 @@ class resetNameViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.customBlueColor()
+        self.hideKeyboardWhenTappedAround()
         showName()
         
 

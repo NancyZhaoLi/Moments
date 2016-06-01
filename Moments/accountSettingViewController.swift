@@ -118,29 +118,18 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
                                 self.displayAlert("Failed Login", message: "An error has occured")
                             }
                         }
-
-                        
-                        
-                        
-                        
+   
                     } else {
                         // Email changed succ
                         
                         
                         self.displayLogoutAlert("Succeed!", message: "You have successfully changed your user email")
-                        
-
-                        
-                        
+  
                     }
             })
             
         }
-        
-       
-
-    
-    
+ 
     }
 
     override func viewDidLoad() {
@@ -151,12 +140,10 @@ class accountSettingViewController: UIViewController,UITextFieldDelegate {
         showName()
        // self.resetname.text = showName()
         if ref.authData != nil{
-            
-          //  print(ref.authData)
-           // print(ref.authData.providerData["email"]!)
             useremail = ref.authData.providerData["email"] as! String
             //print(ref.authData.providerData["password"]!)
             print(ref.authData.provider)
+            self.hideKeyboardWhenTappedAround()
         }
 
 
