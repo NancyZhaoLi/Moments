@@ -524,9 +524,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wtu-Je-Fqn" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="20" y="193" width="335" height="112"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtu-Je-Fqn" customClass="CVCalendarView" customModule="CVCalendar">
+                                <rect key="frame" x="20" y="193" width="335" height="130"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wtu-Je-Fqn" secondAttribute="height" multiplier="67:26" id="T9i-bY-qHc"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="calendarAppearanceDelegate" destination="OvC-yC-rzH" id="4dw-RK-1EU"/>
                                     <outlet property="calendarDelegate" destination="OvC-yC-rzH" id="p5D-Vq-Acl"/>
@@ -535,8 +538,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWl-Sg-y0T">
                                 <rect key="frame" x="162" y="565" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="3Bk-4I-ws8"/>
                                     <constraint firstAttribute="width" constant="50" id="8db-fm-EXT"/>
+                                    <constraint firstAttribute="height" constant="50" id="xHj-BJ-7tf"/>
                                 </constraints>
                                 <state key="normal" image="add"/>
                                 <connections>
@@ -560,20 +563,28 @@
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="PPJ-oE-TOv"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="QfM-dQ-Iss"/>
                             <constraint firstItem="NOd-Lr-Rn6" firstAttribute="top" secondItem="9hU-rM-3cO" secondAttribute="bottom" constant="15" id="TRC-NQ-Qor"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="Y7k-V6-5nb"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="top" secondItem="j5x-kn-Yhv" secondAttribute="bottom" constant="5" id="Yqy-El-9as"/>
+                            <constraint firstAttribute="trailing" secondItem="wtu-Je-Fqn" secondAttribute="trailing" constant="20" id="ZQx-aR-i9M"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leading" constant="20" id="ZoX-Cd-s7g"/>
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="top" secondItem="dT4-7a-InT" secondAttribute="bottom" constant="7" id="afY-GS-N8X"/>
                             <constraint firstItem="dT4-7a-InT" firstAttribute="centerX" secondItem="qOK-9V-XWF" secondAttribute="centerX" id="bDN-nY-s4P"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="dcQ-MZ-Xe4"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="fPa-au-RI7"/>
-                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="hpL-zn-Awv"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="top" secondItem="j5x-kn-Yhv" secondAttribute="bottom" constant="3" id="hVI-mO-rO9"/>
                             <constraint firstItem="dT4-7a-InT" firstAttribute="top" secondItem="9hU-rM-3cO" secondAttribute="bottom" constant="30" id="i9h-pp-hWW"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="jbD-JG-ozS"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="top" secondItem="j5x-kn-Yhv" secondAttribute="bottom" constant="3" id="kC5-jd-jgT"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="opl-x7-XuN"/>
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="centerX" secondItem="qOK-9V-XWF" secondAttribute="centerX" id="qsa-rb-WO1"/>
                             <constraint firstItem="NOd-Lr-Rn6" firstAttribute="centerX" secondItem="qOK-9V-XWF" secondAttribute="centerX" id="rJQ-RY-ASU"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="saQ-P2-ddM"/>
                             <constraint firstItem="jtD-k9-okw" firstAttribute="top" secondItem="9hU-rM-3cO" secondAttribute="bottom" constant="39" id="sbq-VV-svC"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="tw1-2E-PwW"/>
                             <constraint firstItem="Lgm-zH-6uR" firstAttribute="leading" secondItem="NOd-Lr-Rn6" secondAttribute="trailing" constant="72" id="vL0-T8-rOx"/>
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="vPU-Ig-bE2"/>
+                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="wCM-vU-z9C"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="wJc-dG-3gp"/>
-                            <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="yUW-c2-rli"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
