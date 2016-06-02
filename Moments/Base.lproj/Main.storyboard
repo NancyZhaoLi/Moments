@@ -886,19 +886,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click below to play your moments!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-jd-3Hv">
-                                <rect key="frame" x="37" y="137" width="300" height="49"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="city_background" translatesAutoresizingMaskIntoConstraints="NO" id="g4s-Zg-uZz">
+                                <rect key="frame" x="0.0" y="457" width="669" height="192"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="g4s-Zg-uZz" secondAttribute="height" multiplier="223:64" id="RL0-Sh-Phk"/>
+                                    <constraint firstAttribute="width" secondItem="g4s-Zg-uZz" secondAttribute="height" multiplier="223:64" id="sPb-hU-5Sl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Click below to play your moments!" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-jd-3Hv">
+                                <rect key="frame" x="37" y="101" width="300" height="35"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="center" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-xw-xqp">
-                                <rect key="frame" x="50" y="209" width="300" height="250"/>
+                            <webView contentMode="center" ambiguous="YES" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-xw-xqp">
+                                <rect key="frame" x="37" y="149" width="300" height="250"/>
                                 <color key="backgroundColor" red="0.74806368459999995" green="0.99345012629999996" blue="0.6791862608" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP1-J9-oBi">
-                                <rect key="frame" x="140" y="504" width="120" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP1-J9-oBi">
+                                <rect key="frame" x="127" y="428" width="120" height="40"/>
                                 <color key="backgroundColor" red="0.031372549020000001" green="0.64313725489999995" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Ucj-yC-2oZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="oKA-CM-rvq"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="w0b-aK-ABG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Save Video">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -908,7 +920,16 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="oP1-J9-oBi" firstAttribute="centerX" secondItem="OD0-7t-NTR" secondAttribute="centerX" id="A6i-QN-mpL"/>
+                            <constraint firstItem="CzW-jd-3Hv" firstAttribute="top" secondItem="aPB-mK-9NN" secondAttribute="bottom" constant="37" id="Mkw-7B-uY8"/>
+                            <constraint firstItem="ZRh-xw-xqp" firstAttribute="top" secondItem="CzW-jd-3Hv" secondAttribute="bottom" constant="13" id="WE8-mg-qAv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g4s-Zg-uZz" secondAttribute="trailing" constant="-314" id="akv-zT-2fE"/>
+                            <constraint firstItem="g4s-Zg-uZz" firstAttribute="leading" secondItem="OD0-7t-NTR" secondAttribute="leadingMargin" constant="-20" id="eru-cz-vqm"/>
+                            <constraint firstItem="CzW-jd-3Hv" firstAttribute="centerX" secondItem="OD0-7t-NTR" secondAttribute="centerX" id="kol-eT-UUP"/>
+                            <constraint firstItem="g4s-Zg-uZz" firstAttribute="top" secondItem="ZRh-xw-xqp" secondAttribute="bottom" constant="58" id="xLe-od-Myu"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
