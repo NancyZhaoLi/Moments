@@ -469,7 +469,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="city_background" translatesAutoresizingMaskIntoConstraints="NO" id="UdN-hF-TvV">
-                                <rect key="frame" x="0.0" y="450" width="669" height="192"/>
+                                <rect key="frame" x="0.0" y="430" width="669" height="192"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UdN-hF-TvV" secondAttribute="height" multiplier="223:64" id="WNT-mb-ANL"/>
                                 </constraints>
