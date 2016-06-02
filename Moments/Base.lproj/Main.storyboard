@@ -468,6 +468,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="city_background" translatesAutoresizingMaskIntoConstraints="NO" id="UdN-hF-TvV">
+                                <rect key="frame" x="0.0" y="450" width="669" height="192"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UdN-hF-TvV" secondAttribute="height" multiplier="223:64" id="WNT-mb-ANL"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-7a-InT">
                                 <rect key="frame" x="99" y="94" width="177" height="47"/>
                                 <constraints>
@@ -562,6 +568,7 @@
                             <constraint firstItem="NOd-Lr-Rn6" firstAttribute="leading" secondItem="jtD-k9-okw" secondAttribute="trailing" constant="73" id="KJB-jl-oAO"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="PPJ-oE-TOv"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="QfM-dQ-Iss"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UdN-hF-TvV" secondAttribute="trailing" constant="-314" id="Qg4-LG-bs0"/>
                             <constraint firstItem="NOd-Lr-Rn6" firstAttribute="top" secondItem="9hU-rM-3cO" secondAttribute="bottom" constant="15" id="TRC-NQ-Qor"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="Y7k-V6-5nb"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="top" secondItem="j5x-kn-Yhv" secondAttribute="bottom" constant="5" id="Yqy-El-9as"/>
@@ -576,6 +583,7 @@
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" id="jbD-JG-ozS"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="top" secondItem="j5x-kn-Yhv" secondAttribute="bottom" constant="3" id="kC5-jd-jgT"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="opl-x7-XuN"/>
+                            <constraint firstItem="UdN-hF-TvV" firstAttribute="leading" secondItem="qOK-9V-XWF" secondAttribute="leadingMargin" constant="-20" id="pRD-16-9gb"/>
                             <constraint firstItem="j5x-kn-Yhv" firstAttribute="centerX" secondItem="qOK-9V-XWF" secondAttribute="centerX" id="qsa-rb-WO1"/>
                             <constraint firstItem="NOd-Lr-Rn6" firstAttribute="centerX" secondItem="qOK-9V-XWF" secondAttribute="centerX" id="rJQ-RY-ASU"/>
                             <constraint firstItem="wtu-Je-Fqn" firstAttribute="trailing" secondItem="qOK-9V-XWF" secondAttribute="trailingMargin" id="saQ-P2-ddM"/>
