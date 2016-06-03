@@ -29,6 +29,10 @@ import Photos
     override func viewDidLoad() {
         super.viewDidLoad()
         self.webView.delegate = self
+        self.webView.backgroundColor = UIColor.clearColor()
+        self.webView.opaque = false
+        self.view.backgroundColor = UIColor.customBackgroundColor()
+        
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         let fileURL = NSURL(fileURLWithPath: path)
