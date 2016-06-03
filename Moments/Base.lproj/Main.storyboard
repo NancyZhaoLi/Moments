@@ -903,13 +903,11 @@
                                 <rect key="frame" x="37" y="149" width="300" height="250"/>
                                 <color key="backgroundColor" red="0.74806368459999995" green="0.99345012629999996" blue="0.6791862608" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP1-J9-oBi">
-                                <rect key="frame" x="272" y="410" width="65" height="54"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP1-J9-oBi">
+                                <rect key="frame" x="155" y="556" width="65" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="65" id="6bS-Ns-bDF"/>
                                     <constraint firstAttribute="height" constant="54" id="AGK-2u-pOP"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="IT5-PV-VmR"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="54" id="mxB-dF-oEU"/>
                                 </constraints>
                                 <state key="normal" image="download_icon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -921,14 +919,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="oP1-J9-oBi" firstAttribute="trailing" secondItem="ZRh-xw-xqp" secondAttribute="trailing" id="BxW-da-nFe"/>
+                            <constraint firstItem="ZRh-xw-xqp" firstAttribute="top" secondItem="CzW-jd-3Hv" secondAttribute="bottom" constant="13" id="8JB-oT-Tin"/>
                             <constraint firstItem="CzW-jd-3Hv" firstAttribute="top" secondItem="aPB-mK-9NN" secondAttribute="bottom" constant="37" id="Mkw-7B-uY8"/>
-                            <constraint firstItem="ZRh-xw-xqp" firstAttribute="top" secondItem="CzW-jd-3Hv" secondAttribute="bottom" constant="13" id="WE8-mg-qAv"/>
+                            <constraint firstItem="oP1-J9-oBi" firstAttribute="centerX" secondItem="OD0-7t-NTR" secondAttribute="centerX" id="aIQ-tG-5IH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="g4s-Zg-uZz" secondAttribute="trailing" constant="-314" id="akv-zT-2fE"/>
-                            <constraint firstItem="oP1-J9-oBi" firstAttribute="top" secondItem="ZRh-xw-xqp" secondAttribute="bottom" constant="11" id="btZ-Kp-yoF"/>
+                            <constraint firstItem="ZRh-xw-xqp" firstAttribute="centerX" secondItem="OD0-7t-NTR" secondAttribute="centerX" id="cmS-X0-aKa"/>
                             <constraint firstItem="g4s-Zg-uZz" firstAttribute="leading" secondItem="OD0-7t-NTR" secondAttribute="leadingMargin" constant="-20" id="eru-cz-vqm"/>
                             <constraint firstItem="CzW-jd-3Hv" firstAttribute="centerX" secondItem="OD0-7t-NTR" secondAttribute="centerX" id="kol-eT-UUP"/>
-                            <constraint firstItem="g4s-Zg-uZz" firstAttribute="top" secondItem="ZRh-xw-xqp" secondAttribute="bottom" constant="58" id="xLe-od-Myu"/>
+                            <constraint firstItem="ZRh-xw-xqp" firstAttribute="leading" secondItem="OD0-7t-NTR" secondAttribute="leadingMargin" constant="17" id="quF-is-77z"/>
+                            <constraint firstItem="ZMJ-G1-dGP" firstAttribute="top" secondItem="oP1-J9-oBi" secondAttribute="bottom" constant="8" id="s1o-Ef-iDG"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
