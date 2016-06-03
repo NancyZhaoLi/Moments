@@ -753,8 +753,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="city_background" translatesAutoresizingMaskIntoConstraints="NO" id="fuf-G8-i4D">
-                                <rect key="frame" x="0.0" y="456" width="669" height="192"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="city_background" translatesAutoresizingMaskIntoConstraints="NO" id="fuf-G8-i4D">
+                                <rect key="frame" x="0.0" y="430" width="669" height="192"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fuf-G8-i4D" secondAttribute="height" multiplier="223:64" id="J84-8P-Vmv"/>
                                 </constraints>
@@ -844,7 +844,6 @@
                             <constraint firstItem="fuf-G8-i4D" firstAttribute="leading" secondItem="Ntk-0J-uLe" secondAttribute="leadingMargin" constant="-20" id="LVu-ro-EtX"/>
                             <constraint firstItem="4UW-cX-jtJ" firstAttribute="top" secondItem="QTg-c0-iW5" secondAttribute="bottom" constant="28" id="Oqh-5U-WUm"/>
                             <constraint firstItem="312-oE-xn8" firstAttribute="top" secondItem="Lau-FV-GNe" secondAttribute="bottom" constant="19" id="Qr0-47-ybk"/>
-                            <constraint firstItem="fuf-G8-i4D" firstAttribute="top" secondItem="WRz-NC-lGd" secondAttribute="bottom" constant="56" id="Xpn-Co-MZm"/>
                             <constraint firstItem="Lau-FV-GNe" firstAttribute="leading" secondItem="4UW-cX-jtJ" secondAttribute="leading" id="ay4-mj-nse"/>
                             <constraint firstItem="WRz-NC-lGd" firstAttribute="centerX" secondItem="kDA-Ox-ayT" secondAttribute="centerX" id="c9j-O6-lTH"/>
                             <constraint firstItem="Hnl-fs-bcd" firstAttribute="centerY" secondItem="kDA-Ox-ayT" secondAttribute="centerY" id="d1r-MP-shI"/>
