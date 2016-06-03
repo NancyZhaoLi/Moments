@@ -887,10 +887,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="city_background" translatesAutoresizingMaskIntoConstraints="NO" id="g4s-Zg-uZz">
-                                <rect key="frame" x="0.0" y="457" width="669" height="192"/>
+                                <rect key="frame" x="0.0" y="430" width="669" height="192"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="g4s-Zg-uZz" secondAttribute="height" multiplier="223:64" id="RL0-Sh-Phk"/>
-                                    <constraint firstAttribute="width" secondItem="g4s-Zg-uZz" secondAttribute="height" multiplier="223:64" id="sPb-hU-5Sl"/>
+                                    <constraint firstAttribute="width" secondItem="g4s-Zg-uZz" secondAttribute="height" multiplier="223:64" id="3vh-td-nFr"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Click below to play your moments!" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="CzW-jd-3Hv">
